@@ -22,7 +22,7 @@ public:
 		{
 			//No HostName specified...
 			//auto speed = InternetConnectionState::GetInternetConnectionSpeed();
-			HostName host = L"channel9.msdn.com";
+			HostName host = L"channel9.msdn.com"; 
 			//Specify target location for maximum usefulness (so, how long to/from the service you're going to hit...
 			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
 			
