@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InetSpeed", "InetSpeed\InetSpeed.vcxproj", "{254EB46F-141E-4228-943C-4A55170A1647}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|ARM.ActiveCfg = Debug|ARM
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|ARM.Build.0 = Debug|ARM
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|ARM.Deploy.0 = Debug|ARM
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|x64.ActiveCfg = Debug|x64
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|x64.Build.0 = Debug|x64
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|x64.Deploy.0 = Debug|x64
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|x86.ActiveCfg = Debug|Win32
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|x86.Build.0 = Debug|Win32
+		{254EB46F-141E-4228-943C-4A55170A1647}.Debug|x86.Deploy.0 = Debug|Win32
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|ARM.ActiveCfg = Release|ARM
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|ARM.Build.0 = Release|ARM
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|ARM.Deploy.0 = Release|ARM
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|x64.ActiveCfg = Release|x64
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|x64.Build.0 = Release|x64
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|x64.Deploy.0 = Release|x64
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|x86.ActiveCfg = Release|Win32
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|x86.Build.0 = Release|Win32
+		{254EB46F-141E-4228-943C-4A55170A1647}.Release|x86.Deploy.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

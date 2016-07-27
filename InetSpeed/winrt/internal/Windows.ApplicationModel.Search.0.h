@@ -1,0 +1,83 @@
+// C++ for the Windows Runtime v1.29
+// Copyright (c) 2016 Microsoft Corporation
+
+#pragma once
+
+
+WINRT_EXPORT namespace winrt {
+
+namespace ABI::Windows::ApplicationModel::Search {
+
+struct ILocalContentSuggestionSettings;
+struct ISearchPane;
+struct ISearchPaneQueryChangedEventArgs;
+struct ISearchPaneQueryLinguisticDetails;
+struct ISearchPaneQuerySubmittedEventArgs;
+struct ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails;
+struct ISearchPaneResultSuggestionChosenEventArgs;
+struct ISearchPaneStatics;
+struct ISearchPaneStaticsWithHideThisApplication;
+struct ISearchPaneSuggestionsRequest;
+struct ISearchPaneSuggestionsRequestDeferral;
+struct ISearchPaneSuggestionsRequestedEventArgs;
+struct ISearchPaneVisibilityChangedEventArgs;
+struct ISearchQueryLinguisticDetails;
+struct ISearchQueryLinguisticDetailsFactory;
+struct ISearchSuggestionCollection;
+struct ISearchSuggestionsRequest;
+struct ISearchSuggestionsRequestDeferral;
+struct LocalContentSuggestionSettings;
+struct SearchPane;
+struct SearchPaneQueryChangedEventArgs;
+struct SearchPaneQueryLinguisticDetails;
+struct SearchPaneQuerySubmittedEventArgs;
+struct SearchPaneResultSuggestionChosenEventArgs;
+struct SearchPaneSuggestionsRequest;
+struct SearchPaneSuggestionsRequestDeferral;
+struct SearchPaneSuggestionsRequestedEventArgs;
+struct SearchPaneVisibilityChangedEventArgs;
+struct SearchQueryLinguisticDetails;
+struct SearchSuggestionCollection;
+struct SearchSuggestionsRequest;
+struct SearchSuggestionsRequestDeferral;
+
+}
+
+namespace Windows::ApplicationModel::Search {
+
+struct ILocalContentSuggestionSettings;
+struct ISearchPane;
+struct ISearchPaneQueryChangedEventArgs;
+struct ISearchPaneQueryLinguisticDetails;
+struct ISearchPaneQuerySubmittedEventArgs;
+struct ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails;
+struct ISearchPaneResultSuggestionChosenEventArgs;
+struct ISearchPaneStatics;
+struct ISearchPaneStaticsWithHideThisApplication;
+struct ISearchPaneSuggestionsRequest;
+struct ISearchPaneSuggestionsRequestDeferral;
+struct ISearchPaneSuggestionsRequestedEventArgs;
+struct ISearchPaneVisibilityChangedEventArgs;
+struct ISearchQueryLinguisticDetails;
+struct ISearchQueryLinguisticDetailsFactory;
+struct ISearchSuggestionCollection;
+struct ISearchSuggestionsRequest;
+struct ISearchSuggestionsRequestDeferral;
+struct LocalContentSuggestionSettings;
+struct SearchPane;
+struct SearchPaneQueryChangedEventArgs;
+struct SearchPaneQueryLinguisticDetails;
+struct SearchPaneQuerySubmittedEventArgs;
+struct SearchPaneResultSuggestionChosenEventArgs;
+struct SearchPaneSuggestionsRequest;
+struct SearchPaneSuggestionsRequestDeferral;
+struct SearchPaneSuggestionsRequestedEventArgs;
+struct SearchPaneVisibilityChangedEventArgs;
+struct SearchQueryLinguisticDetails;
+struct SearchSuggestionCollection;
+struct SearchSuggestionsRequest;
+struct SearchSuggestionsRequestDeferral;
+
+}
+
+}
