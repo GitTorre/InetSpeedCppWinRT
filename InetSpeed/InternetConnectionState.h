@@ -1,8 +1,5 @@
 #pragma once
 #include "pch.h"
-#include <experimental\coroutine>
-#include <future>
-#include "Enums.h"
 
 using namespace winrt;
 using namespace Windows::Foundation;
