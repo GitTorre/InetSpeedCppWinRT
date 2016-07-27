@@ -105,8 +105,6 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 		_rawSpeed = rawSpeed;
 		return InternetConnectionState::GetConnectionSpeed(rawSpeed);
 	}
-
-	return ConnectionSpeed::Unknown;
 }
 
 double InternetConnectionState::RawSpeed()
