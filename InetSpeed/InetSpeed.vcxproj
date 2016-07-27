@@ -100,7 +100,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
-      <AdditionalOptions>/bigobj /std:c++latest</AdditionalOptions>
+      <AdditionalOptions>/bigobj /std:c++latest /await</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>..;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level4</WarningLevel>
@@ -118,7 +118,7 @@
       <Message />
     </CustomBuildStep>
     <PreBuildEvent>
-      <Command>copy InetSpeed.winmd $(OutDir)InetSpeed.winmd</Command>
+      <Command>copy InetSpeed.winmd "$(OutDir)InetSpeed.winmd"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -146,7 +146,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions>/bigobj /std:c++latest</AdditionalOptions>
+      <AdditionalOptions>/bigobj /std:c++latest /await</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>..;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level4</WarningLevel>
@@ -164,7 +164,7 @@
       <Message />
     </CustomBuildStep>
     <PreBuildEvent>
-      <Command>copy InetSpeed.winmd $(OutDir)InetSpeed.winmd</Command>
+      <Command>copy InetSpeed.winmd "$(OutDir)InetSpeed.winmd"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -187,7 +187,7 @@
       <Message />
     </CustomBuildStep>
     <PreBuildEvent>
-      <Command>copy InetSpeed.winmd $(OutDir)InetSpeed.winmd</Command>
+      <Command>copy InetSpeed.winmd "$(OutDir)InetSpeed.winmd"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -210,7 +210,7 @@
       <Message />
     </CustomBuildStep>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)$(MSBuildProjectName).winmd" "$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\$(MSBuildProjectName).winmd"</Command>
+      <Command>copy InetSpeed.winmd "$(OutDir)InetSpeed.winmd"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -234,7 +234,7 @@
     </CustomBuildStep>
     <PreBuildEvent />
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)$(MSBuildProjectName).winmd" "$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\$(MSBuildProjectName).winmd"</Command>
+      <Command>copy InetSpeed.winmd "$(OutDir)InetSpeed.winmd"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
