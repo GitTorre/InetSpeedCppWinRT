@@ -130,7 +130,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 	}).get();
 }
 
-ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName& hostName)
+ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName)
 {
 	if (!InternetConnectionState::InternetConnected())
 	{

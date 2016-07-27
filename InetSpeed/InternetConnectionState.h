@@ -20,7 +20,7 @@ namespace InetSpeed
 
 	public:
 		static ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed();
-		static ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName& hostName);
+		static ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName);
 		static bool InternetConnectionState::InternetConnected();
 		static double InternetConnectionState::RawSpeed();
 	};
