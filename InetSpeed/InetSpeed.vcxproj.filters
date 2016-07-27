@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="InetSpeed_TemporaryKey.pfx" />
+    <None Include="InetSpeed.winmd" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png" />

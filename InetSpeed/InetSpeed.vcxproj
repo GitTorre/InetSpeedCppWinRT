@@ -141,7 +141,7 @@
       <Message />
     </CustomBuildStep>
     <PreBuildEvent>
-      <Command>copy InetSpeed.winmd $(OutDir)InetSpeed.winmd</Command>
+      <Command>copy InetSpeed.winmd "$(OutDir)InetSpeed.winmd"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -246,6 +246,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="InetSpeed.winmd" />
     <None Include="InetSpeed_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
