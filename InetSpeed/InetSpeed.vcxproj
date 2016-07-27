@@ -210,7 +210,7 @@
       <Message />
     </CustomBuildStep>
     <PreBuildEvent>
-      <Command>copy $(SolutionDir)\$(MSBuildProjectName).winmd $(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\$(MSBuildProjectName).winmd</Command>
+      <Command>copy $(SolutionDir)$(MSBuildProjectName).winmd $(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\$(MSBuildProjectName).winmd</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -232,6 +232,9 @@
     <CustomBuildStep>
       <Message />
     </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>copy $(SolutionDir)\$(MSBuildProjectName).winmd $(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\$(MSBuildProjectName).winmd</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Enums.h" />
