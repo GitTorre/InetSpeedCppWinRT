@@ -68,6 +68,20 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 	int retries = 4;
 	double currentSpeed = 0.0;
 
+	ConnectionType connectionType = InternetConnectionState::GetConnectionType();
+	
+	/* Need to figure out a timeout for when this becomes a component - API calls can only take so long....
+	if (connectionType == ConnectionType::LAN)
+	{
+		//task_timeout_ms = 1000;
+	}
+	*/
+
+	if (connectionType == ConnectionType::Cellular || connectionType == ConnectionType::WiFi)
+	{
+		retries = 2;
+	}
+
 	for (int i = 0; i < retries; ++i)
 	{
 		if (_serverHost == nullptr || !_custom)
@@ -84,7 +98,6 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 		try
 		{
 			co_await _clientSocket.ConnectAsync(_serverHost, L"80", SocketProtectionLevel::PlainSocket);
-
 			currentSpeed += _clientSocket.Information().RoundTripTimeStatistics().Min / 1000000.0;
 		}
 		catch (...)
