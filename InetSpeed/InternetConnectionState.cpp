@@ -20,7 +20,7 @@ bool _custom;
 ConnectionType InternetConnectionState::GetConnectionType()
 {
 	auto profile = NetworkInformation::GetInternetConnectionProfile();
-	if (profile == nullptr) return ConnectionType::None;
+	if (profile == nullptr) return ConnectionType::Unknown;
 
 	auto interfaceType = profile.NetworkAdapter().IanaInterfaceType();
 
@@ -40,7 +40,7 @@ ConnectionType InternetConnectionState::GetConnectionType()
 	}
 	else
 	{
-		return ConnectionType::None;
+		return ConnectionType::Unknown;
 	}
 }
 ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime)
@@ -65,13 +65,11 @@ ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime
 
 future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 {
-	bool _canceled = false;
+	//bool _canceled = false;
 	int retries = 4;
 	//long long task_timeout_ms = 1000;
 	double currentSpeed = 0.0;
 	auto connectionType = InternetConnectionState::GetConnectionType();
-	
-
 
 	if (connectionType == ConnectionType::Cellular || connectionType == ConnectionType::WiFi)
 	{
@@ -142,10 +140,11 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 	return std::async(std::launch::async, [&]() -> ConnectionSpeed
 	{
 		auto future = InternetConnectionState::InternetConnectSocketAsync();
-		auto status = future.wait_for(timeout);
 
 		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
 		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...
+		auto status = future.wait_for(timeout);
+		
 		if (status == future_status::timeout)
 		{
 			return ConnectionSpeed::Unknown;
@@ -175,10 +174,11 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 	return std::async(std::launch::async, [&]() -> ConnectionSpeed
 	{
 		auto future = InternetConnectionState::InternetConnectSocketAsync();
-		auto status = future.wait_for(timeout);
 
 		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
 		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...
+		auto status = future.wait_for(timeout);
+
 		if (status == future_status::timeout)
 		{
 			return ConnectionSpeed::Unknown;

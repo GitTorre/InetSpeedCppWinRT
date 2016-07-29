@@ -15,7 +15,6 @@ namespace InetSpeed
 	{
 		static ConnectionType InternetConnectionState::GetConnectionType();
 		static future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync();
-		static bool _connected;
 		static ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime);
 
 	public:

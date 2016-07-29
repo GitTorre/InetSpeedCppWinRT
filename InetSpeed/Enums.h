@@ -14,6 +14,6 @@ namespace InetSpeed
 		Cellular,
 		WiFi,
 		LAN,
-		None
+		Unknown
 	};
 }
