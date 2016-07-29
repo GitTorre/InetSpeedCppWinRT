@@ -71,12 +71,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 	double currentSpeed = 0.0;
 	auto connectionType = InternetConnectionState::GetConnectionType();
 	
-	/* Need to figure out a timeout for when this becomes a component - API calls can only take so long....
-	if (connectionType == ConnectionType::LAN)
-	{
-		//task_timeout_ms = 500;
-	}
-	*/
+
 
 	if (connectionType == ConnectionType::Cellular || connectionType == ConnectionType::WiFi)
 	{
@@ -89,12 +84,13 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 		{
 			_serverHost = HostName(_socketTcpWellKnownHostNames[i]);
 		}
+		/*TODO: Need to figure out a timeout for when this becomes a component - API calls can only take so long...
 
-		//this must complete in a fixed amount of time, cancel otherwise...
-		//concurrency::cancellation_token_source tcs;
-		//auto token = tcs.get_token();
-		//std::chrono::milliseconds timeout(task_timeout_ms);
-
+		concurrency::cancellation_token_source tcs;
+		auto token = tcs.get_token();
+		std::chrono::milliseconds timeout(task_timeout_ms);
+		
+		*/
 		StreamSocket _clientSocket;
 		_clientSocket.Control().NoDelay(true);
 		_clientSocket.Control().QualityOfService(SocketQualityOfService::LowLatency);
@@ -102,7 +98,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 
 		try
 		{
-			co_await _clientSocket.ConnectAsync(_serverHost, L"80", SocketProtectionLevel::PlainSocket);
+			co_await /*(token * */_clientSocket.ConnectAsync(_serverHost, L"80", SocketProtectionLevel::PlainSocket)/*)*/;
 			currentSpeed += _clientSocket.Information().RoundTripTimeStatistics().Min / 1000000.0;
 		}
 		catch (...)
@@ -213,7 +209,7 @@ bool InternetConnectionState::InternetConnected()
 }
 
 template <typename T>
-concurrency::cancellation_token operator * (concurrency::cancellation_token ct, T* async)
+auto operator * (concurrency::cancellation_token ct, T* async)
 {
 	ct.register_callback([=]()
 	{

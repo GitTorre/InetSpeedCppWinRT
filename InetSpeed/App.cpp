@@ -21,10 +21,10 @@ public:
 		if (InternetConnectionState::InternetConnected())
 		{
 			//No HostName specified...
-			auto speed = InternetConnectionState::GetInternetConnectionSpeed();
-			HostName host = L"nohost"; 
+			//auto speed = InternetConnectionState::GetInternetConnectionSpeed();
+			HostName host = L"bing.com"; 
 			//Specify target location for maximum usefulness (so, how long to/from the service you're going to hit...
-			//auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
+			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
 			
 			std::wstring rawspeed = std::to_wstring(InternetConnectionState::RawSpeed());
 
