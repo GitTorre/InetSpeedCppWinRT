@@ -22,27 +22,29 @@ public:
 		{
 			//No HostName specified...
 			//auto speed = InternetConnectionState::GetInternetConnectionSpeed();
-			HostName host = L"bing.com"; 
-			//Specify target location for maximum usefulness (so, how long to/from the service you're going to hit...
+		
+			//Specify target location (as a HostName) for maximum usefulness -> quickly figure out if you are on a fast connection (Fast or Average) 
+			//by testing networking conditions to/from supplied domain...
+			HostName host = L"bing.com";
 			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
 			
 			std::wstring rawspeed = std::to_wstring(InternetConnectionState::RawSpeed());
 
 			if (speed == ConnectionSpeed::High)
 			{
-				text.Text(L"Connected to Internet at high speed!\n raw speed: " + rawspeed + L"s to/from " + host.DisplayName().c_str());
+				text.Text(L"Connected High!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
 			}
 			else if (speed == ConnectionSpeed::Average)
 			{
-				text.Text(L"Connected to Internet at average speed!\n raw speed: " + rawspeed + L"s to/from " + host.DisplayName().c_str());
+				text.Text(L"Connected Average!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
 			}
 			else if (speed == ConnectionSpeed::Low)
 			{
-				text.Text(L"Connected to Internet at low speed!\n raw speed: " + rawspeed + L"s to/from " + host.DisplayName().c_str());
+				text.Text(L"Connected Low!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
 			}
 			else
 			{
-				text.Text(L"Connected to Internet at unknown speed. Careful!");
+				text.Text(L"Connected Unknown. Careful!");
 			}
 		}
 		else
@@ -52,7 +54,7 @@ public:
 
 		text.FontFamily(FontFamily(L"Segoe UI Semibold"));
 		text.FontSize(72.0);
-		text.Foreground(SolidColorBrush(Colors::DarkGray()));
+		text.Foreground(SolidColorBrush(Colors::MidnightBlue()));
 		text.VerticalAlignment(VerticalAlignment::Center);
 		text.TextAlignment(TextAlignment::Center);
 		text.TextWrapping(TextWrapping::Wrap);
