@@ -50,12 +50,12 @@ ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime
 		return ConnectionSpeed::Unknown;
 	}
 
-	if (roundtriptime <= 0.0014)
+	if (roundtriptime <= 0.005)
 	{
 		return ConnectionSpeed::High;
 	}
 
-	if (roundtriptime > 0.0014 && roundtriptime < 0.14)
+	if (roundtriptime > 0.005 && roundtriptime < 0.15)
 	{
 		return ConnectionSpeed::Average;
 	}
@@ -65,15 +65,16 @@ ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime
 
 future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 {
+	bool _canceled = false;
 	int retries = 4;
+	//long long task_timeout_ms = 1000;
 	double currentSpeed = 0.0;
-
-	ConnectionType connectionType = InternetConnectionState::GetConnectionType();
+	auto connectionType = InternetConnectionState::GetConnectionType();
 	
 	/* Need to figure out a timeout for when this becomes a component - API calls can only take so long....
 	if (connectionType == ConnectionType::LAN)
 	{
-		//task_timeout_ms = 1000;
+		//task_timeout_ms = 500;
 	}
 	*/
 
@@ -89,8 +90,12 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 			_serverHost = HostName(_socketTcpWellKnownHostNames[i]);
 		}
 
-		StreamSocket _clientSocket;
+		//this must complete in a fixed amount of time, cancel otherwise...
+		//concurrency::cancellation_token_source tcs;
+		//auto token = tcs.get_token();
+		//std::chrono::milliseconds timeout(task_timeout_ms);
 
+		StreamSocket _clientSocket;
 		_clientSocket.Control().NoDelay(true);
 		_clientSocket.Control().QualityOfService(SocketQualityOfService::LowLatency);
 		_clientSocket.Control().KeepAlive(false);
@@ -105,6 +110,8 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 			currentSpeed = 0.0;
 			retries--;
 		}
+		//close stream socket...
+		_clientSocket.Close();
 	}
 
 	//Compute speed...
@@ -134,10 +141,24 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 
 	_serverHost = nullptr;
 	_custom = false;
+	auto timeout = std::chrono::seconds(1LL);
 
-	return std::async(std::launch::async, []() -> ConnectionSpeed
+	return std::async(std::launch::async, [&]() -> ConnectionSpeed
 	{
-		return InternetConnectionState::InternetConnectSocketAsync().get();
+		auto future = InternetConnectionState::InternetConnectSocketAsync();
+		auto status = future.wait_for(timeout);
+		//if shared state is not ready and timeout has elapsed, abandon (?..) future and return Unknown. Else, get() result...
+		//this guarantees that the API will return a result in a reasonable amount of time (1s). However, this is a hack...
+		//Proper support for cancellation in winrt_await_adapters will replace this since I'll be able to cancel the ConnectAsync co_awaitable operation...
+		if (status == future_status::timeout)
+		{
+			future._Abandon();
+			return ConnectionSpeed::Unknown;
+		}
+		else 
+		{
+			return future.get();
+		}
 	}).get();
 }
 
@@ -154,9 +175,24 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 		_custom = true;
 	}
 
-	return std::async(std::launch::async, []() -> ConnectionSpeed
+	auto timeout = std::chrono::seconds(1LL);
+
+	return std::async(std::launch::async, [&]() -> ConnectionSpeed
 	{
-		return InternetConnectSocketAsync().get();
+		auto future = InternetConnectionState::InternetConnectSocketAsync();
+		auto status = future.wait_for(timeout);
+		//if shared state is not ready and timeout has elapsed, abandon (?.._Abandon) future and return ConnectionSpeed::Unknown. Else, get() result...
+		//this guarantees that this function will return a result in a reasonable amount of time (1s). However, this is a hack...
+		//Proper support for cancellation in winrt_await_adapters will replace this since I'll be able to cancel the ConnectAsync co_awaitable operation...
+		if (status == future_status::timeout)
+		{
+			future._Abandon();
+			return ConnectionSpeed::Unknown;
+		}
+		else
+		{
+			return future.get();
+		}
 	}).get();
 }
 
@@ -176,4 +212,14 @@ bool InternetConnectionState::InternetConnected()
 	}
 
 	return false;
+}
+
+template <typename T>
+concurrency::cancellation_token operator * (concurrency::cancellation_token ct, T* async)
+{
+	ct.register_callback([=]()
+	{
+		async->Cancel();
+	});
+	return async;
 }
