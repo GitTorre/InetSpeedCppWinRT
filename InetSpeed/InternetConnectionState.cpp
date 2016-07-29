@@ -131,7 +131,7 @@ double InternetConnectionState::RawSpeed()
 {
 	return _rawSpeed;
 }
-
+//TODO: this needs to be async...
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 {
 	if (!InternetConnectionState::InternetConnected())
@@ -147,12 +147,11 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 	{
 		auto future = InternetConnectionState::InternetConnectSocketAsync();
 		auto status = future.wait_for(timeout);
-		//if shared state is not ready and timeout has elapsed, abandon (?.._Abandon) future and return ConnectionSpeed::Unknown. Else, get() result...
-		//this guarantees that this function will return a result in a reasonable amount of time (1s). However, this is a hack...
-		//Proper support for cancellation in winrt_await_adapters will replace this since I'll be able to cancel the ConnectAsync co_awaitable operation...
+
+		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
+		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...
 		if (status == future_status::timeout)
 		{
-			future._Abandon();
 			return ConnectionSpeed::Unknown;
 		}
 		else 
@@ -161,7 +160,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 		}
 	}).get();
 }
-
+//TODO: this needs to be async...
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName)
 {
 	if (!InternetConnectionState::InternetConnected())
@@ -181,12 +180,11 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 	{
 		auto future = InternetConnectionState::InternetConnectSocketAsync();
 		auto status = future.wait_for(timeout);
-		//if shared state is not ready and timeout has elapsed, abandon (?.._Abandon) future and return ConnectionSpeed::Unknown. Else, get() result...
-		//this guarantees that this function will return a result in a reasonable amount of time (1s). However, this is a hack...
-		//Proper support for cancellation in winrt_await_adapters will replace this since I'll be able to cancel the ConnectAsync co_awaitable operation...
+
+		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
+		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...
 		if (status == future_status::timeout)
 		{
-			future._Abandon();
 			return ConnectionSpeed::Unknown;
 		}
 		else
