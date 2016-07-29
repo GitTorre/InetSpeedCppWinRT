@@ -5,6 +5,9 @@
 using namespace winrt;
 
 using namespace Windows::ApplicationModel::Activation;
+using namespace Windows::Foundation;
+using namespace Windows::ApplicationModel::Core;
+using namespace Windows::UI::Core;
 using namespace Windows::UI;
 using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
@@ -17,17 +20,31 @@ public:
 
 	void OnLaunched(LaunchActivatedEventArgs const &)
 	{
+		Window window = Window::Current();
+		InternetDetect(window);
+
+		CoreWindow coreWindow = window.CoreWindow();
+		coreWindow.PointerPressed([=](auto && ...)
+		{
+			InternetDetect(window);
+		});
+		CoreDispatcher dispatcher = coreWindow.Dispatcher();
+		dispatcher.ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
+	}
+
+	void InternetDetect(Window window)
+	{
 		TextBlock text;
 		if (InternetConnectionState::InternetConnected())
 		{
 			//No HostName specified...
 			//auto speed = InternetConnectionState::GetInternetConnectionSpeed();
-		
+
 			//Specify target location (as a HostName) for maximum usefulness -> quickly figure out if you are on a fast connection (Fast or Average) 
 			//by testing networking conditions to/from supplied domain...
 			HostName host = L"bing.com";
 			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
-			
+
 			std::wstring rawspeed = std::to_wstring(InternetConnectionState::RawSpeed());
 
 			if (speed == ConnectionSpeed::High)
@@ -58,8 +75,6 @@ public:
 		text.VerticalAlignment(VerticalAlignment::Center);
 		text.TextAlignment(TextAlignment::Center);
 		text.TextWrapping(TextWrapping::Wrap);
-
-		Window window = Window::Current();
 		window.Content(text);
 		window.Activate();
 	}
@@ -71,5 +86,6 @@ int __stdcall wWinMain(HINSTANCE, HINSTANCE, PWSTR, int)
 	{
 		make<App>();
 	});
+	
 	return 0;
 }
