@@ -63,9 +63,8 @@ ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime
 	return ConnectionSpeed::Low;
 }
 
-future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
+future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(const std::atomic_bool& cancelled)
 {
-	//bool _canceled = false;
 	int retries = 4;
 	//long long task_timeout_ms = 1000;
 	double currentSpeed = 0.0;
@@ -78,17 +77,14 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 
 	for (int i = 0; i < retries; ++i)
 	{
+		if (cancelled)
+			return ConnectionSpeed::Unknown;
+
 		if (_serverHost == nullptr || !_custom)
 		{
 			_serverHost = HostName(_socketTcpWellKnownHostNames[i]);
 		}
-		/*TODO: Need to figure out a timeout for when this becomes a component - API calls can only take so long...
 
-		concurrency::cancellation_token_source tcs;
-		auto token = tcs.get_token();
-		std::chrono::milliseconds timeout(task_timeout_ms);
-		
-		*/
 		StreamSocket _clientSocket;
 		_clientSocket.Control().NoDelay(true);
 		_clientSocket.Control().QualityOfService(SocketQualityOfService::LowLatency);
@@ -96,7 +92,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync()
 
 		try
 		{
-			co_await /*(token * */_clientSocket.ConnectAsync(_serverHost, L"80", SocketProtectionLevel::PlainSocket)/*)*/;
+			co_await _clientSocket.ConnectAsync(_serverHost, L"80", SocketProtectionLevel::PlainSocket);
 			currentSpeed += _clientSocket.Information().RoundTripTimeStatistics().Min / 1000000.0;
 		}
 		catch (...)
@@ -135,11 +131,12 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 
 	_serverHost = nullptr;
 	_custom = false;
-	auto timeout = std::chrono::seconds(1LL);
+	auto timeout = std::chrono::seconds(1);
+	std::atomic_bool cancellation_token = false;
 
 	return std::async(std::launch::async, [&]() -> ConnectionSpeed
 	{
-		auto future = InternetConnectionState::InternetConnectSocketAsync();
+		auto future = InternetConnectionState::InternetConnectSocketAsync(std::ref(cancellation_token));
 
 		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
 		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...
@@ -169,11 +166,12 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 		_custom = true;
 	}
 
-	auto timeout = std::chrono::seconds(1LL);
+	auto timeout = std::chrono::seconds(1);
+	std::atomic_bool cancellation_token = false;
 
 	return std::async(std::launch::async, [&]() -> ConnectionSpeed
 	{
-		auto future = InternetConnectionState::InternetConnectSocketAsync();
+		auto future = InternetConnectionState::InternetConnectSocketAsync(std::ref(cancellation_token));
 
 		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
 		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...
@@ -181,12 +179,12 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 
 		if (status == future_status::timeout)
 		{
+			cancellation_token = true;
 			return ConnectionSpeed::Unknown;
 		}
-		else
-		{
-			return future.get();
-		}
+		
+	    return future.get();
+		
 	}).get();
 }
 

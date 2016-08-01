@@ -14,7 +14,7 @@ namespace InetSpeed
 	class InternetConnectionState
 	{
 		static ConnectionType InternetConnectionState::GetConnectionType();
-		static future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync();
+		static future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(const std::atomic_bool& cancelled);
 		static ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime);
 
 	public:
