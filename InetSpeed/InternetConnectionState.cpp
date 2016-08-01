@@ -64,7 +64,7 @@ ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime
 }
 
 future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(const std::atomic_bool& cancelled)
-{
+{	
 	int retries = 4;
 	//long long task_timeout_ms = 1000;
 	double currentSpeed = 0.0;
@@ -77,7 +77,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 
 	for (int i = 0; i < retries; ++i)
 	{
-		if (cancelled)
+		if(cancelled)
 			return ConnectionSpeed::Unknown;
 
 		if (_serverHost == nullptr || !_custom)
@@ -121,7 +121,7 @@ double InternetConnectionState::RawSpeed()
 {
 	return _rawSpeed;
 }
-//TODO: this needs to be async...
+//TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 {
 	if (!InternetConnectionState::InternetConnected())
@@ -151,8 +151,10 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 		return future.get();
 		
 	}).get();
+
+	return ConnectionSpeed::Unknown;
 }
-//TODO: this needs to be async...
+//TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName)
 {
 	if (!InternetConnectionState::InternetConnected())
