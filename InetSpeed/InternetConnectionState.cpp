@@ -144,12 +144,12 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 		
 		if (status == future_status::timeout)
 		{
+			cancellation_token = true;
 			return ConnectionSpeed::Unknown;
 		}
-		else 
-		{
-			return future.get();
-		}
+		
+		return future.get();
+		
 	}).get();
 }
 //TODO: this needs to be async...
