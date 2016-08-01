@@ -13,6 +13,7 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Media;
 using namespace InetSpeed;
+using namespace std;
 
 struct App : ApplicationT<App>
 {
@@ -45,7 +46,7 @@ public:
 			HostName host = L"bing.com";
 			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
 
-			std::wstring rawspeed = std::to_wstring(InternetConnectionState::RawSpeed());
+			wstring rawspeed = to_wstring(InternetConnectionState::RawSpeed());
 
 			if (speed == ConnectionSpeed::High)
 			{

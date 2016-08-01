@@ -29,12 +29,13 @@ ConnectionType InternetConnectionState::GetConnectionType()
 	{
 		return ConnectionType::WiFi;
 	}
-	else if (interfaceType == 6)
+	
+	if (interfaceType == 6)
 	{
 		return ConnectionType::LAN;
 	}
 	// 243 & 244 is 3G/Mobile
-	else if (interfaceType == 243 || interfaceType == 244)
+	if (interfaceType == 243 || interfaceType == 244)
 	{
 		return ConnectionType::Cellular;
 	}
@@ -109,12 +110,10 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 	{
 		return ConnectionSpeed::Unknown;
 	}
-	else
-	{
-		double rawSpeed = currentSpeed / retries;
-		_rawSpeed = rawSpeed;
-		return InternetConnectionState::GetConnectionSpeed(rawSpeed);
-	}
+	
+	double rawSpeed = currentSpeed / retries;
+	_rawSpeed = rawSpeed;
+	return InternetConnectionState::GetConnectionSpeed(rawSpeed);
 }
 
 double InternetConnectionState::RawSpeed()
@@ -131,10 +130,10 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 
 	_serverHost = nullptr;
 	_custom = false;
-	auto timeout = std::chrono::seconds(1);
-	std::atomic_bool cancellation_token = false;
+	auto timeout = chrono::seconds(1);
+	atomic_bool cancellation_token = false;
 
-	return std::async(std::launch::async, [&]() -> ConnectionSpeed
+	return async(launch::async, [&]() -> ConnectionSpeed
 	{
 		auto future = InternetConnectionState::InternetConnectSocketAsync(std::ref(cancellation_token));
 
@@ -171,7 +170,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 	auto timeout = std::chrono::seconds(1);
 	std::atomic_bool cancellation_token = false;
 
-	return std::async(std::launch::async, [&]() -> ConnectionSpeed
+	return async(launch::async, [&]() -> ConnectionSpeed
 	{
 		auto future = InternetConnectionState::InternetConnectSocketAsync(std::ref(cancellation_token));
 
@@ -192,19 +191,17 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 
 bool InternetConnectionState::InternetConnected()
 {
-	auto internetConnectionProfile = Windows::Networking::Connectivity::NetworkInformation::GetInternetConnectionProfile();
+	auto internetConnectionProfile = NetworkInformation::GetInternetConnectionProfile();
 	if (internetConnectionProfile == nullptr)
 	{
 		return false;
 	}
-	else
+	
+	if (internetConnectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel::InternetAccess)
 	{
-		if (internetConnectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel::InternetAccess)
-		{
-			return true;
-		}
+		return true;
 	}
-
+	
 	return false;
 }
 
