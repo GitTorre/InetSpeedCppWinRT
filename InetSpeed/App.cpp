@@ -23,17 +23,20 @@ public:
 	{
 		Window window = Window::Current();
 		InternetDetect(window);
+		ProcessPointerEvents(window);
+	}
 
+	void ProcessPointerEvents(Window const & window)
+	{
 		CoreWindow coreWindow = window.CoreWindow();
 		coreWindow.PointerPressed([=](auto && ...)
 		{
 			InternetDetect(window);
 		});
-		CoreDispatcher dispatcher = coreWindow.Dispatcher();
-		dispatcher.ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
+		coreWindow.Activate();
 	}
 
-	void InternetDetect(Window window)
+	void InternetDetect(Window const & window)
 	{
 		TextBlock text;
 		if (InternetConnectionState::InternetConnected())
