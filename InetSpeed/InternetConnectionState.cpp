@@ -150,8 +150,6 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 		return future.get();
 		
 	}).get();
-
-	return ConnectionSpeed::Unknown;
 }
 //TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName)
@@ -203,14 +201,4 @@ bool InternetConnectionState::InternetConnected()
 	}
 	
 	return false;
-}
-
-template <typename T>
-auto operator * (concurrency::cancellation_token ct, T* async)
-{
-	ct.register_callback([=]()
-	{
-		async->Cancel();
-	});
-	return async;
 }
