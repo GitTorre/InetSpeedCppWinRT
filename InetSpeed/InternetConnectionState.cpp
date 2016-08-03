@@ -130,7 +130,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 
 	_serverHost = nullptr;
 	_custom = false;
-	auto timeout = chrono::seconds(1);
+	auto timeout = chrono::milliseconds(200);
 	atomic_bool cancellation_token = false;
 
 	return async(launch::async, [&]() -> ConnectionSpeed
@@ -165,7 +165,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 		_custom = true;
 	}
 
-	auto timeout = std::chrono::seconds(1);
+	auto timeout = std::chrono::milliseconds(200);
 	std::atomic_bool cancellation_token = false;
 
 	return async(launch::async, [&]() -> ConnectionSpeed
