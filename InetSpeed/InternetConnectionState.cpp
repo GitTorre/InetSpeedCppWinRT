@@ -78,7 +78,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 
 	for (int i = 0; i < retries; ++i)
 	{
-		if(cancelled)
+		if (cancelled)
 			return ConnectionSpeed::Unknown;
 
 		if (_serverHost == nullptr || !_custom)

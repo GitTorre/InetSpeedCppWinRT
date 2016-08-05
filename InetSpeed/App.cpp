@@ -48,29 +48,28 @@ public:
 			//by testing networking conditions to/from supplied domain...
 			HostName host = L"bing.com";
 			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
-
 			wstring rawspeed = to_wstring(InternetConnectionState::RawSpeed());
 
 			if (speed == ConnectionSpeed::High)
 			{
-				text.Text(L"Connected High!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
+				text.Text(L"Internet connected High!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
 			}
 			else if (speed == ConnectionSpeed::Average)
 			{
-				text.Text(L"Connected Average!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
+				text.Text(L"Internet connected Average!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
 			}
 			else if (speed == ConnectionSpeed::Low)
 			{
-				text.Text(L"Connected Low!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
+				text.Text(L"Internet connected Low!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
 			}
 			else
 			{
-				text.Text(L"Connected Unknown. Careful!");
+				text.Text(L"Internet connected Unknown. Careful!");
 			}
 		}
 		else
 		{
-			text.Text(L"You are not connected to Internet!");
+			text.Text(L"No Internet connection!");
 		}
 
 		text.FontFamily(FontFamily(L"Segoe UI Semibold"));
