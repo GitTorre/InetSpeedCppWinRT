@@ -78,7 +78,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 
 	for (int i = 0; i < retries; ++i)
 	{
-		if(cancelled)
+		if (cancelled)
 			return ConnectionSpeed::Unknown;
 
 		if (_serverHost == nullptr || !_custom)
@@ -130,7 +130,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 
 	_serverHost = nullptr;
 	_custom = false;
-	auto timeout = chrono::seconds(1);
+	auto timeout = chrono::milliseconds(200);
 	atomic_bool cancellation_token = false;
 
 	return async(launch::async, [&]() -> ConnectionSpeed
@@ -150,8 +150,6 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 		return future.get();
 		
 	}).get();
-
-	return ConnectionSpeed::Unknown;
 }
 //TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName)
@@ -167,7 +165,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 		_custom = true;
 	}
 
-	auto timeout = std::chrono::seconds(1);
+	auto timeout = std::chrono::milliseconds(200);
 	std::atomic_bool cancellation_token = false;
 
 	return async(launch::async, [&]() -> ConnectionSpeed
@@ -203,14 +201,4 @@ bool InternetConnectionState::InternetConnected()
 	}
 	
 	return false;
-}
-
-template <typename T>
-auto operator * (concurrency::cancellation_token ct, T* async)
-{
-	ct.register_callback([=]()
-	{
-		async->Cancel();
-	});
-	return async;
 }
