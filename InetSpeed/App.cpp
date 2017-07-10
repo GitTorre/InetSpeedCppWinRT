@@ -9,26 +9,26 @@ using namespace Windows::Foundation;
 using namespace Windows::ApplicationModel::Core;
 using namespace Windows::UI::Core;
 using namespace Windows::UI;
-using namespace Windows::UI::Xaml;
-using namespace Windows::UI::Xaml::Controls;
-using namespace Windows::UI::Xaml::Media;
+using namespace Xaml;
+using namespace Controls;
+using namespace Media;
 using namespace InetSpeed;
 using namespace std;
 
 struct App : ApplicationT<App>
 {
-public:
+	virtual ~App() = default;
 
-	void OnLaunched(LaunchActivatedEventArgs const &)
+	void OnLaunched (LaunchActivatedEventArgs const &)
 	{
-		Window window = Window::Current();
+		auto window = Window::Current();
 		InternetDetect(window);
 		ProcessPointerEvents(window);
 	}
 
 	void ProcessPointerEvents(Window const & window)
 	{
-		CoreWindow coreWindow = window.CoreWindow();
+		auto coreWindow = window.CoreWindow();
 		coreWindow.PointerPressed([=](auto && ...)
 		{
 			InternetDetect(window);
@@ -36,7 +36,7 @@ public:
 		coreWindow.Activate();
 	}
 
-	void InternetDetect(Window const & window)
+	void InternetDetect(Window const & window) const
 	{
 		TextBlock text;
 		if (InternetConnectionState::InternetConnected())
@@ -49,7 +49,7 @@ public:
 			HostName host = L"bing.com";
 			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
 
-			wstring rawspeed = to_wstring(InternetConnectionState::RawSpeed());
+			auto rawspeed = to_wstring(InternetConnectionState::RawSpeed());
 
 			if (speed == ConnectionSpeed::High)
 			{
