@@ -1,10 +1,13 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.UI.3.h"
-#include "internal\Windows.Media.ClosedCaptioning.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.UI.3.h"
+#include "internal/Windows.Media.ClosedCaptioning.3.h"
 #include "Windows.Media.h"
 
 WINRT_EXPORT namespace winrt {
@@ -18,7 +21,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().FontColor());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FontColor());
             return S_OK;
         }
         catch (...)
@@ -27,11 +31,12 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
         }
     }
 
-    HRESULT __stdcall get_ComputedFontColor(abi_arg_out<Windows::UI::Color> value) noexcept override
+    HRESULT __stdcall get_ComputedFontColor(impl::abi_arg_out<Windows::UI::Color> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ComputedFontColor());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ComputedFontColor());
             return S_OK;
         }
         catch (...)
@@ -44,7 +49,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().FontOpacity());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FontOpacity());
             return S_OK;
         }
         catch (...)
@@ -57,7 +63,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().FontSize());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FontSize());
             return S_OK;
         }
         catch (...)
@@ -70,7 +77,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().FontStyle());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FontStyle());
             return S_OK;
         }
         catch (...)
@@ -83,7 +91,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().FontEffect());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FontEffect());
             return S_OK;
         }
         catch (...)
@@ -96,7 +105,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().BackgroundColor());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BackgroundColor());
             return S_OK;
         }
         catch (...)
@@ -105,11 +115,12 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
         }
     }
 
-    HRESULT __stdcall get_ComputedBackgroundColor(abi_arg_out<Windows::UI::Color> value) noexcept override
+    HRESULT __stdcall get_ComputedBackgroundColor(impl::abi_arg_out<Windows::UI::Color> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ComputedBackgroundColor());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ComputedBackgroundColor());
             return S_OK;
         }
         catch (...)
@@ -122,7 +133,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().BackgroundOpacity());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BackgroundOpacity());
             return S_OK;
         }
         catch (...)
@@ -135,7 +147,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().RegionColor());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RegionColor());
             return S_OK;
         }
         catch (...)
@@ -144,11 +157,12 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
         }
     }
 
-    HRESULT __stdcall get_ComputedRegionColor(abi_arg_out<Windows::UI::Color> value) noexcept override
+    HRESULT __stdcall get_ComputedRegionColor(impl::abi_arg_out<Windows::UI::Color> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ComputedRegionColor());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ComputedRegionColor());
             return S_OK;
         }
         catch (...)
@@ -161,7 +175,8 @@ struct produce<D, Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStat
     {
         try
         {
-            *value = detach(shim().RegionOpacity());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RegionOpacity());
             return S_OK;
         }
         catch (...)
@@ -178,84 +193,84 @@ namespace Windows::Media::ClosedCaptioning {
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionColor impl_IClosedCaptionPropertiesStatics<D>::FontColor() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionColor value {};
-    check_hresult(shim()->get_FontColor(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_FontColor(&value));
     return value;
 }
 
 template <typename D> Windows::UI::Color impl_IClosedCaptionPropertiesStatics<D>::ComputedFontColor() const
 {
     Windows::UI::Color value {};
-    check_hresult(shim()->get_ComputedFontColor(put(value)));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_ComputedFontColor(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionOpacity impl_IClosedCaptionPropertiesStatics<D>::FontOpacity() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionOpacity value {};
-    check_hresult(shim()->get_FontOpacity(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_FontOpacity(&value));
     return value;
 }
 
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionSize impl_IClosedCaptionPropertiesStatics<D>::FontSize() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionSize value {};
-    check_hresult(shim()->get_FontSize(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_FontSize(&value));
     return value;
 }
 
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionStyle impl_IClosedCaptionPropertiesStatics<D>::FontStyle() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionStyle value {};
-    check_hresult(shim()->get_FontStyle(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_FontStyle(&value));
     return value;
 }
 
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionEdgeEffect impl_IClosedCaptionPropertiesStatics<D>::FontEffect() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionEdgeEffect value {};
-    check_hresult(shim()->get_FontEffect(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_FontEffect(&value));
     return value;
 }
 
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionColor impl_IClosedCaptionPropertiesStatics<D>::BackgroundColor() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionColor value {};
-    check_hresult(shim()->get_BackgroundColor(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_BackgroundColor(&value));
     return value;
 }
 
 template <typename D> Windows::UI::Color impl_IClosedCaptionPropertiesStatics<D>::ComputedBackgroundColor() const
 {
     Windows::UI::Color value {};
-    check_hresult(shim()->get_ComputedBackgroundColor(put(value)));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_ComputedBackgroundColor(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionOpacity impl_IClosedCaptionPropertiesStatics<D>::BackgroundOpacity() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionOpacity value {};
-    check_hresult(shim()->get_BackgroundOpacity(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_BackgroundOpacity(&value));
     return value;
 }
 
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionColor impl_IClosedCaptionPropertiesStatics<D>::RegionColor() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionColor value {};
-    check_hresult(shim()->get_RegionColor(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_RegionColor(&value));
     return value;
 }
 
 template <typename D> Windows::UI::Color impl_IClosedCaptionPropertiesStatics<D>::ComputedRegionColor() const
 {
     Windows::UI::Color value {};
-    check_hresult(shim()->get_ComputedRegionColor(put(value)));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_ComputedRegionColor(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::ClosedCaptioning::ClosedCaptionOpacity impl_IClosedCaptionPropertiesStatics<D>::RegionOpacity() const
 {
     Windows::Media::ClosedCaptioning::ClosedCaptionOpacity value {};
-    check_hresult(shim()->get_RegionOpacity(&value));
+    check_hresult(WINRT_SHIM(IClosedCaptionPropertiesStatics)->get_RegionOpacity(&value));
     return value;
 }
 
@@ -322,3 +337,14 @@ inline Windows::Media::ClosedCaptioning::ClosedCaptionOpacity ClosedCaptionPrope
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics>
+{
+    size_t operator()(const winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

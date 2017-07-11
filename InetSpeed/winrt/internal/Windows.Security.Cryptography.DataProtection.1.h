@@ -1,9 +1,9 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.Security.Cryptography.DataProtection.0.h"
 #include "Windows.Foundation.0.h"
 #include "Windows.Storage.Streams.0.h"
@@ -14,7 +14,7 @@ WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::Security::Cryptography::DataProtection {
 
-struct __declspec(uuid("09639948-ed22-4270-bd1c-6d72c00f8787")) __declspec(novtable) IDataProtectionProvider : Windows::IInspectable
+struct __declspec(uuid("09639948-ed22-4270-bd1c-6d72c00f8787")) __declspec(novtable) IDataProtectionProvider : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall abi_ProtectAsync(Windows::Storage::Streams::IBuffer * data, Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> ** value) = 0;
     virtual HRESULT __stdcall abi_UnprotectAsync(Windows::Storage::Streams::IBuffer * data, Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> ** value) = 0;
@@ -22,7 +22,7 @@ struct __declspec(uuid("09639948-ed22-4270-bd1c-6d72c00f8787")) __declspec(novta
     virtual HRESULT __stdcall abi_UnprotectStreamAsync(Windows::Storage::Streams::IInputStream * src, Windows::Storage::Streams::IOutputStream * dest, Windows::Foundation::IAsyncAction ** value) = 0;
 };
 
-struct __declspec(uuid("adf33dac-4932-4cdf-ac41-7214333514ca")) __declspec(novtable) IDataProtectionProviderFactory : Windows::IInspectable
+struct __declspec(uuid("adf33dac-4932-4cdf-ac41-7214333514ca")) __declspec(novtable) IDataProtectionProviderFactory : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall abi_CreateOverloadExplicit(hstring protectionDescriptor, Windows::Security::Cryptography::DataProtection::IDataProtectionProvider ** value) = 0;
 };
@@ -37,8 +37,20 @@ template <> struct traits<Windows::Security::Cryptography::DataProtection::DataP
 
 namespace Windows::Security::Cryptography::DataProtection {
 
-template <typename T> class impl_IDataProtectionProvider;
-template <typename T> class impl_IDataProtectionProviderFactory;
+template <typename D>
+struct WINRT_EBO impl_IDataProtectionProvider
+{
+    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> ProtectAsync(const Windows::Storage::Streams::IBuffer & data) const;
+    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> UnprotectAsync(const Windows::Storage::Streams::IBuffer & data) const;
+    Windows::Foundation::IAsyncAction ProtectStreamAsync(const Windows::Storage::Streams::IInputStream & src, const Windows::Storage::Streams::IOutputStream & dest) const;
+    Windows::Foundation::IAsyncAction UnprotectStreamAsync(const Windows::Storage::Streams::IInputStream & src, const Windows::Storage::Streams::IOutputStream & dest) const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IDataProtectionProviderFactory
+{
+    Windows::Security::Cryptography::DataProtection::DataProtectionProvider CreateOverloadExplicit(hstring_view protectionDescriptor) const;
+};
 
 }
 
@@ -59,7 +71,6 @@ template <> struct traits<Windows::Security::Cryptography::DataProtection::IData
 template <> struct traits<Windows::Security::Cryptography::DataProtection::DataProtectionProvider>
 {
     using abi = ABI::Windows::Security::Cryptography::DataProtection::DataProtectionProvider;
-    using default_interface = Windows::Security::Cryptography::DataProtection::IDataProtectionProvider;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Security.Cryptography.DataProtection.DataProtectionProvider"; }
 };
 

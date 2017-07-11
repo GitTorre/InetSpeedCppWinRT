@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -15,8 +15,8 @@ struct WINRT_EBO JsonArray :
 {
     JsonArray(std::nullptr_t) noexcept {}
     JsonArray();
-    static Windows::Data::Json::JsonArray Parse(hstring_ref input);
-    static bool TryParse(hstring_ref input, Windows::Data::Json::JsonArray & result);
+    static Windows::Data::Json::JsonArray Parse(hstring_view input);
+    static bool TryParse(hstring_view input, Windows::Data::Json::JsonArray & result);
 };
 
 struct JsonError
@@ -27,7 +27,7 @@ struct JsonError
 
 struct WINRT_EBO JsonObject :
     Windows::Data::Json::IJsonObject,
-    impl::require<JsonObject, Windows::Data::Json::IJsonObjectWithDefaultValues, Windows::Foundation::IStringable, Windows::Foundation::Collections::IMap<hstring, Windows::Data::Json::IJsonValue>, Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, Windows::Data::Json::IJsonValue>>>
+    impl::require<JsonObject, Windows::Foundation::IStringable, Windows::Data::Json::IJsonObjectWithDefaultValues, Windows::Foundation::Collections::IMap<hstring, Windows::Data::Json::IJsonValue>, Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, Windows::Data::Json::IJsonValue>>>
 {
     JsonObject(std::nullptr_t) noexcept {}
     JsonObject();
@@ -43,8 +43,8 @@ struct WINRT_EBO JsonObject :
     using impl_IJsonObjectWithDefaultValues::GetNamedObject;
     using impl_IJsonObjectWithDefaultValues::GetNamedString;
     using impl_IJsonObjectWithDefaultValues::GetNamedValue;
-    static Windows::Data::Json::JsonObject Parse(hstring_ref input);
-    static bool TryParse(hstring_ref input, Windows::Data::Json::JsonObject & result);
+    static Windows::Data::Json::JsonObject Parse(hstring_view input);
+    static bool TryParse(hstring_view input, Windows::Data::Json::JsonObject & result);
 };
 
 struct WINRT_EBO JsonValue :
@@ -52,11 +52,11 @@ struct WINRT_EBO JsonValue :
     impl::require<JsonValue, Windows::Foundation::IStringable>
 {
     JsonValue(std::nullptr_t) noexcept {}
-    static Windows::Data::Json::JsonValue Parse(hstring_ref input);
-    static bool TryParse(hstring_ref input, Windows::Data::Json::JsonValue & result);
+    static Windows::Data::Json::JsonValue Parse(hstring_view input);
+    static bool TryParse(hstring_view input, Windows::Data::Json::JsonValue & result);
     static Windows::Data::Json::JsonValue CreateBooleanValue(bool input);
     static Windows::Data::Json::JsonValue CreateNumberValue(double input);
-    static Windows::Data::Json::JsonValue CreateStringValue(hstring_ref input);
+    static Windows::Data::Json::JsonValue CreateStringValue(hstring_view input);
     static Windows::Data::Json::JsonValue CreateNullValue();
 };
 

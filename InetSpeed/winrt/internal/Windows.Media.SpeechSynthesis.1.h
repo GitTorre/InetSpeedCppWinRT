@@ -1,9 +1,9 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.Media.SpeechSynthesis.0.h"
 #include "Windows.Foundation.0.h"
 #include "Windows.Storage.Streams.0.h"
@@ -15,18 +15,18 @@ WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::Media::SpeechSynthesis {
 
-struct __declspec(uuid("7d526ecc-7533-4c3f-85be-888c2baeebdc")) __declspec(novtable) IInstalledVoicesStatic : Windows::IInspectable
+struct __declspec(uuid("7d526ecc-7533-4c3f-85be-888c2baeebdc")) __declspec(novtable) IInstalledVoicesStatic : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_AllVoices(Windows::Foundation::Collections::IVectorView<Windows::Media::SpeechSynthesis::VoiceInformation> ** value) = 0;
     virtual HRESULT __stdcall get_DefaultVoice(Windows::Media::SpeechSynthesis::IVoiceInformation ** value) = 0;
 };
 
-struct __declspec(uuid("83e46e93-244c-4622-ba0b-6229c4d0d65d")) __declspec(novtable) ISpeechSynthesisStream : Windows::IInspectable
+struct __declspec(uuid("83e46e93-244c-4622-ba0b-6229c4d0d65d")) __declspec(novtable) ISpeechSynthesisStream : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Markers(Windows::Foundation::Collections::IVectorView<Windows::Media::IMediaMarker> ** value) = 0;
 };
 
-struct __declspec(uuid("ce9f7c76-97f4-4ced-ad68-d51c458e45c6")) __declspec(novtable) ISpeechSynthesizer : Windows::IInspectable
+struct __declspec(uuid("ce9f7c76-97f4-4ced-ad68-d51c458e45c6")) __declspec(novtable) ISpeechSynthesizer : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall abi_SynthesizeTextToStreamAsync(hstring text, Windows::Foundation::IAsyncOperation<Windows::Media::SpeechSynthesis::SpeechSynthesisStream> ** operation) = 0;
     virtual HRESULT __stdcall abi_SynthesizeSsmlToStreamAsync(hstring Ssml, Windows::Foundation::IAsyncOperation<Windows::Media::SpeechSynthesis::SpeechSynthesisStream> ** operation) = 0;
@@ -34,7 +34,7 @@ struct __declspec(uuid("ce9f7c76-97f4-4ced-ad68-d51c458e45c6")) __declspec(novta
     virtual HRESULT __stdcall get_Voice(Windows::Media::SpeechSynthesis::IVoiceInformation ** value) = 0;
 };
 
-struct __declspec(uuid("b127d6a4-1291-4604-aa9c-83134083352c")) __declspec(novtable) IVoiceInformation : Windows::IInspectable
+struct __declspec(uuid("b127d6a4-1291-4604-aa9c-83134083352c")) __declspec(novtable) IVoiceInformation : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_DisplayName(hstring * value) = 0;
     virtual HRESULT __stdcall get_Id(hstring * value) = 0;
@@ -55,10 +55,37 @@ template <> struct traits<Windows::Media::SpeechSynthesis::VoiceInformation> { u
 
 namespace Windows::Media::SpeechSynthesis {
 
-template <typename T> class impl_IInstalledVoicesStatic;
-template <typename T> class impl_ISpeechSynthesisStream;
-template <typename T> class impl_ISpeechSynthesizer;
-template <typename T> class impl_IVoiceInformation;
+template <typename D>
+struct WINRT_EBO impl_IInstalledVoicesStatic
+{
+    Windows::Foundation::Collections::IVectorView<Windows::Media::SpeechSynthesis::VoiceInformation> AllVoices() const;
+    Windows::Media::SpeechSynthesis::VoiceInformation DefaultVoice() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ISpeechSynthesisStream
+{
+    Windows::Foundation::Collections::IVectorView<Windows::Media::IMediaMarker> Markers() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ISpeechSynthesizer
+{
+    Windows::Foundation::IAsyncOperation<Windows::Media::SpeechSynthesis::SpeechSynthesisStream> SynthesizeTextToStreamAsync(hstring_view text) const;
+    Windows::Foundation::IAsyncOperation<Windows::Media::SpeechSynthesis::SpeechSynthesisStream> SynthesizeSsmlToStreamAsync(hstring_view Ssml) const;
+    void Voice(const Windows::Media::SpeechSynthesis::VoiceInformation & value) const;
+    Windows::Media::SpeechSynthesis::VoiceInformation Voice() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IVoiceInformation
+{
+    hstring DisplayName() const;
+    hstring Id() const;
+    hstring Language() const;
+    hstring Description() const;
+    Windows::Media::SpeechSynthesis::VoiceGender Gender() const;
+};
 
 }
 
@@ -91,21 +118,18 @@ template <> struct traits<Windows::Media::SpeechSynthesis::IVoiceInformation>
 template <> struct traits<Windows::Media::SpeechSynthesis::SpeechSynthesisStream>
 {
     using abi = ABI::Windows::Media::SpeechSynthesis::SpeechSynthesisStream;
-    using default_interface = Windows::Media::SpeechSynthesis::ISpeechSynthesisStream;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Media.SpeechSynthesis.SpeechSynthesisStream"; }
 };
 
 template <> struct traits<Windows::Media::SpeechSynthesis::SpeechSynthesizer>
 {
     using abi = ABI::Windows::Media::SpeechSynthesis::SpeechSynthesizer;
-    using default_interface = Windows::Media::SpeechSynthesis::ISpeechSynthesizer;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Media.SpeechSynthesis.SpeechSynthesizer"; }
 };
 
 template <> struct traits<Windows::Media::SpeechSynthesis::VoiceInformation>
 {
     using abi = ABI::Windows::Media::SpeechSynthesis::VoiceInformation;
-    using default_interface = Windows::Media::SpeechSynthesis::IVoiceInformation;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Media.SpeechSynthesis.VoiceInformation"; }
 };
 

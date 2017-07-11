@@ -1,9 +1,9 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.UI.Composition.Effects.0.h"
 #include "Windows.Graphics.Effects.0.h"
 
@@ -11,7 +11,7 @@ WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::UI::Composition::Effects {
 
-struct __declspec(uuid("91bb5e52-95d1-4f8b-9a5a-6408b24b8c6a")) __declspec(novtable) ISceneLightingEffect : Windows::IInspectable
+struct __declspec(uuid("91bb5e52-95d1-4f8b-9a5a-6408b24b8c6a")) __declspec(novtable) ISceneLightingEffect : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_AmbientAmount(float * value) = 0;
     virtual HRESULT __stdcall put_AmbientAmount(float value) = 0;
@@ -35,7 +35,20 @@ template <> struct traits<Windows::UI::Composition::Effects::SceneLightingEffect
 
 namespace Windows::UI::Composition::Effects {
 
-template <typename T> class impl_ISceneLightingEffect;
+template <typename D>
+struct WINRT_EBO impl_ISceneLightingEffect
+{
+    float AmbientAmount() const;
+    void AmbientAmount(float value) const;
+    float DiffuseAmount() const;
+    void DiffuseAmount(float value) const;
+    Windows::Graphics::Effects::IGraphicsEffectSource NormalMapSource() const;
+    void NormalMapSource(const Windows::Graphics::Effects::IGraphicsEffectSource & value) const;
+    float SpecularAmount() const;
+    void SpecularAmount(float value) const;
+    float SpecularShine() const;
+    void SpecularShine(float value) const;
+};
 
 }
 
@@ -50,7 +63,6 @@ template <> struct traits<Windows::UI::Composition::Effects::ISceneLightingEffec
 template <> struct traits<Windows::UI::Composition::Effects::SceneLightingEffect>
 {
     using abi = ABI::Windows::UI::Composition::Effects::SceneLightingEffect;
-    using default_interface = Windows::UI::Composition::Effects::ISceneLightingEffect;
     static constexpr const wchar_t * name() noexcept { return L"Windows.UI.Composition.Effects.SceneLightingEffect"; }
 };
 

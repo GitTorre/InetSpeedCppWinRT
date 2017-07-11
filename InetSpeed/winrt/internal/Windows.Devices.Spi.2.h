@@ -1,10 +1,10 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
 #include "Windows.Devices.Spi.1.h"
-#include "Windows.Foundation.2.h"
+#include "Windows.Foundation.1.h"
 
 WINRT_EXPORT namespace winrt {
 
@@ -40,6 +40,11 @@ namespace ABI::Windows::Foundation::Collections {
 template <> struct __declspec(uuid("35fec489-44a2-5543-8a0c-b52e2f9cf87c")) __declspec(novtable) IVectorView<Windows::Devices::Spi::SpiController> : impl_IVectorView<Windows::Devices::Spi::SpiController> {};
 #endif
 
+#ifndef WINRT_GENERIC_b939af5b_b45d_5489_9149_61442c1905fe
+#define WINRT_GENERIC_b939af5b_b45d_5489_9149_61442c1905fe
+template <> struct __declspec(uuid("b939af5b-b45d-5489-9149-61442c1905fe")) __declspec(novtable) IVector<int32_t> : impl_IVector<int32_t> {};
+#endif
+
 #ifndef WINRT_GENERIC_bfea7f78_50c2_5f1d_a6ea_9e978d2699ff
 #define WINRT_GENERIC_bfea7f78_50c2_5f1d_a6ea_9e978d2699ff
 template <> struct __declspec(uuid("bfea7f78-50c2-5f1d-a6ea-9e978d2699ff")) __declspec(novtable) IIterator<int32_t> : impl_IIterator<int32_t> {};
@@ -65,6 +70,31 @@ template <> struct __declspec(uuid("a88a28ba-6966-55e7-8c81-7c65f74e39c0")) __de
 template <> struct __declspec(uuid("5e94d949-a844-5b25-a3cc-afabeb18c1d2")) __declspec(novtable) AsyncOperationCompletedHandler<Windows::Devices::Spi::SpiController> : impl_AsyncOperationCompletedHandler<Windows::Devices::Spi::SpiController> {};
 #endif
 
+
+}
+
+namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_53ba4bbb_1daf_5e2b_9086_c346aa909544
+#define WINRT_GENERIC_53ba4bbb_1daf_5e2b_9086_c346aa909544
+template <> struct __declspec(uuid("53ba4bbb-1daf-5e2b-9086-c346aa909544")) __declspec(novtable) IVector<Windows::Devices::Spi::SpiController> : impl_IVector<Windows::Devices::Spi::SpiController> {};
+#endif
+
+#ifndef WINRT_GENERIC_fd7d5997_544c_5be9_b0fa_1d0efbfc4a03
+#define WINRT_GENERIC_fd7d5997_544c_5be9_b0fa_1d0efbfc4a03
+template <> struct __declspec(uuid("fd7d5997-544c-5be9-b0fa-1d0efbfc4a03")) __declspec(novtable) IIterator<Windows::Devices::Spi::SpiController> : impl_IIterator<Windows::Devices::Spi::SpiController> {};
+#endif
+
+#ifndef WINRT_GENERIC_7b076938_dc1b_5368_9003_059291d37f35
+#define WINRT_GENERIC_7b076938_dc1b_5368_9003_059291d37f35
+template <> struct __declspec(uuid("7b076938-dc1b-5368-9003-059291d37f35")) __declspec(novtable) IIterable<Windows::Devices::Spi::SpiController> : impl_IIterable<Windows::Devices::Spi::SpiController> {};
+#endif
+
+
+}
+
+namespace ABI::Windows::Foundation {
+
 #ifndef WINRT_GENERIC_89624331_f802_56f7_9b33_17c616ecbcfa
 #define WINRT_GENERIC_89624331_f802_56f7_9b33_17c616ecbcfa
 template <> struct __declspec(uuid("89624331-f802-56f7-9b33-17c616ecbcfa")) __declspec(novtable) IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Spi::SpiController>> : impl_IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Spi::SpiController>> {};
@@ -80,152 +110,54 @@ template <> struct __declspec(uuid("c8afc9cb-6807-57ec-84c9-9f3dbc003450")) __de
 
 namespace Windows::Devices::Spi {
 
-template <typename D>
-class WINRT_EBO impl_ISpiBusInfo
-{
-    auto shim() const { return impl::shim<D, ISpiBusInfo>(this); }
-
-public:
-
-    int32_t ChipSelectLineCount() const;
-    int32_t MinClockFrequency() const;
-    int32_t MaxClockFrequency() const;
-    Windows::Foundation::Collections::IVectorView<int32_t> SupportedDataBitLengths() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISpiConnectionSettings
-{
-    auto shim() const { return impl::shim<D, ISpiConnectionSettings>(this); }
-
-public:
-
-    int32_t ChipSelectLine() const;
-    void ChipSelectLine(int32_t value) const;
-    Windows::Devices::Spi::SpiMode Mode() const;
-    void Mode(Windows::Devices::Spi::SpiMode value) const;
-    int32_t DataBitLength() const;
-    void DataBitLength(int32_t value) const;
-    int32_t ClockFrequency() const;
-    void ClockFrequency(int32_t value) const;
-    Windows::Devices::Spi::SpiSharingMode SharingMode() const;
-    void SharingMode(Windows::Devices::Spi::SpiSharingMode value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISpiConnectionSettingsFactory
-{
-    auto shim() const { return impl::shim<D, ISpiConnectionSettingsFactory>(this); }
-
-public:
-
-    Windows::Devices::Spi::SpiConnectionSettings Create(int32_t chipSelectLine) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISpiController
-{
-    auto shim() const { return impl::shim<D, ISpiController>(this); }
-
-public:
-
-    Windows::Devices::Spi::SpiDevice GetDevice(const Windows::Devices::Spi::SpiConnectionSettings & settings) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISpiControllerStatics
-{
-    auto shim() const { return impl::shim<D, ISpiControllerStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Spi::SpiController> GetDefaultAsync() const;
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Spi::SpiController>> GetControllersAsync(const Windows::Devices::Spi::Provider::ISpiProvider & provider) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISpiDevice
-{
-    auto shim() const { return impl::shim<D, ISpiDevice>(this); }
-
-public:
-
-    hstring DeviceId() const;
-    Windows::Devices::Spi::SpiConnectionSettings ConnectionSettings() const;
-    void Write(array_ref<const uint8_t> buffer) const;
-    void Read(array_ref<uint8_t> buffer) const;
-    void TransferSequential(array_ref<const uint8_t> writeBuffer, array_ref<uint8_t> readBuffer) const;
-    void TransferFullDuplex(array_ref<const uint8_t> writeBuffer, array_ref<uint8_t> readBuffer) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISpiDeviceStatics
-{
-    auto shim() const { return impl::shim<D, ISpiDeviceStatics>(this); }
-
-public:
-
-    hstring GetDeviceSelector() const;
-    hstring GetDeviceSelector(hstring_ref friendlyName) const;
-    Windows::Devices::Spi::SpiBusInfo GetBusInfo(hstring_ref busId) const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Spi::SpiDevice> FromIdAsync(hstring_ref busId, const Windows::Devices::Spi::SpiConnectionSettings & settings) const;
-};
-
 struct ISpiBusInfo :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISpiBusInfo>
 {
     ISpiBusInfo(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISpiBusInfo>(m_ptr); }
 };
 
 struct ISpiConnectionSettings :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISpiConnectionSettings>
 {
     ISpiConnectionSettings(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISpiConnectionSettings>(m_ptr); }
 };
 
 struct ISpiConnectionSettingsFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISpiConnectionSettingsFactory>
 {
     ISpiConnectionSettingsFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISpiConnectionSettingsFactory>(m_ptr); }
 };
 
 struct ISpiController :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISpiController>
 {
     ISpiController(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISpiController>(m_ptr); }
 };
 
 struct ISpiControllerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISpiControllerStatics>
 {
     ISpiControllerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISpiControllerStatics>(m_ptr); }
 };
 
 struct ISpiDevice :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISpiDevice>,
     impl::require<ISpiDevice, Windows::Foundation::IClosable>
 {
     ISpiDevice(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISpiDevice>(m_ptr); }
 };
 
 struct ISpiDeviceStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISpiDeviceStatics>
 {
     ISpiDeviceStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISpiDeviceStatics>(m_ptr); }
 };
 
 }

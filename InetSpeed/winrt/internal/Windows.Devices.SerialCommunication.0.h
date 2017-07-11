@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -27,6 +27,15 @@ struct ISerialDeviceStatics;
 struct ErrorReceivedEventArgs;
 struct PinChangedEventArgs;
 struct SerialDevice;
+
+}
+
+namespace Windows::Devices::SerialCommunication {
+
+template <typename T> struct impl_IErrorReceivedEventArgs;
+template <typename T> struct impl_IPinChangedEventArgs;
+template <typename T> struct impl_ISerialDevice;
+template <typename T> struct impl_ISerialDeviceStatics;
 
 }
 

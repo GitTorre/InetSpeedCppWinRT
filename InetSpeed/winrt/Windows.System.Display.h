@@ -1,9 +1,12 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.System.Display.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.System.Display.3.h"
 #include "Windows.System.h"
 
 WINRT_EXPORT namespace winrt {
@@ -17,7 +20,8 @@ struct produce<D, Windows::System::Display::IDisplayRequest> : produce_base<D, W
     {
         try
         {
-            shim().RequestActive();
+            typename D::abi_guard guard(this->shim());
+            this->shim().RequestActive();
             return S_OK;
         }
         catch (...)
@@ -30,7 +34,8 @@ struct produce<D, Windows::System::Display::IDisplayRequest> : produce_base<D, W
     {
         try
         {
-            shim().RequestRelease();
+            typename D::abi_guard guard(this->shim());
+            this->shim().RequestRelease();
             return S_OK;
         }
         catch (...)
@@ -46,12 +51,12 @@ namespace Windows::System::Display {
 
 template <typename D> void impl_IDisplayRequest<D>::RequestActive() const
 {
-    check_hresult(shim()->abi_RequestActive());
+    check_hresult(WINRT_SHIM(IDisplayRequest)->abi_RequestActive());
 }
 
 template <typename D> void impl_IDisplayRequest<D>::RequestRelease() const
 {
-    check_hresult(shim()->abi_RequestRelease());
+    check_hresult(WINRT_SHIM(IDisplayRequest)->abi_RequestRelease());
 }
 
 inline DisplayRequest::DisplayRequest() :
@@ -61,3 +66,23 @@ inline DisplayRequest::DisplayRequest() :
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::System::Display::IDisplayRequest>
+{
+    size_t operator()(const winrt::Windows::System::Display::IDisplayRequest & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::System::Display::DisplayRequest>
+{
+    size_t operator()(const winrt::Windows::System::Display::DisplayRequest & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

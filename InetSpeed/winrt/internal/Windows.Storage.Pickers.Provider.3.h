@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -20,6 +20,7 @@ struct WINRT_EBO FileRemovedEventArgs :
 {
     FileRemovedEventArgs(std::nullptr_t) noexcept {}
 };
+struct [[deprecated("Since Windows 10, only apps can remove files, not end users so the FileRemoved event will not be raised.")]] FileRemovedEventArgs;
 
 struct WINRT_EBO FileSavePickerUI :
     Windows::Storage::Pickers::Provider::IFileSavePickerUI

@@ -1,13 +1,16 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.Foundation.3.h"
-#include "internal\Windows.Graphics.Imaging.3.h"
-#include "internal\Windows.Storage.Streams.3.h"
-#include "internal\Windows.Foundation.Collections.3.h"
-#include "internal\Windows.ApplicationModel.SocialInfo.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.Foundation.3.h"
+#include "internal/Windows.Graphics.Imaging.3.h"
+#include "internal/Windows.Storage.Streams.3.h"
+#include "internal/Windows.Foundation.Collections.3.h"
+#include "internal/Windows.ApplicationModel.SocialInfo.3.h"
 #include "Windows.ApplicationModel.h"
 
 WINRT_EXPORT namespace winrt {
@@ -17,11 +20,12 @@ namespace impl {
 template <typename D>
 struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> : produce_base<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem>
 {
-    HRESULT __stdcall get_Author(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialUserInfo> value) noexcept override
+    HRESULT __stdcall get_Author(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialUserInfo> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Author());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Author());
             return S_OK;
         }
         catch (...)
@@ -31,11 +35,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> :
         }
     }
 
-    HRESULT __stdcall get_PrimaryContent(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
+    HRESULT __stdcall get_PrimaryContent(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PrimaryContent());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PrimaryContent());
             return S_OK;
         }
         catch (...)
@@ -45,11 +50,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> :
         }
     }
 
-    HRESULT __stdcall get_SecondaryContent(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
+    HRESULT __stdcall get_SecondaryContent(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SecondaryContent());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SecondaryContent());
             return S_OK;
         }
         catch (...)
@@ -59,11 +65,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> :
         }
     }
 
-    HRESULT __stdcall get_Timestamp(abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
+    HRESULT __stdcall get_Timestamp(impl::abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Timestamp());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Timestamp());
             return S_OK;
         }
         catch (...)
@@ -72,11 +79,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> :
         }
     }
 
-    HRESULT __stdcall put_Timestamp(abi_arg_in<Windows::Foundation::DateTime> value) noexcept override
+    HRESULT __stdcall put_Timestamp(impl::abi_arg_in<Windows::Foundation::DateTime> value) noexcept override
     {
         try
         {
-            shim().Timestamp(*reinterpret_cast<const Windows::Foundation::DateTime *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Timestamp(*reinterpret_cast<const Windows::Foundation::DateTime *>(&value));
             return S_OK;
         }
         catch (...)
@@ -85,38 +93,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> :
         }
     }
 
-    HRESULT __stdcall get_TargetUri(abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_TargetUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetUri());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_TargetUri(abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
-    {
-        try
-        {
-            shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_Thumbnails(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::ApplicationModel::SocialInfo::SocialItemThumbnail>> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().Thumbnails());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetUri());
             return S_OK;
         }
         catch (...)
@@ -126,11 +108,26 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> :
         }
     }
 
-    HRESULT __stdcall get_SharedItem(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> value) noexcept override
+    HRESULT __stdcall put_TargetUri(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SharedItem());
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_Thumbnails(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::ApplicationModel::SocialInfo::SocialItemThumbnail>> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Thumbnails());
             return S_OK;
         }
         catch (...)
@@ -140,11 +137,27 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> :
         }
     }
 
-    HRESULT __stdcall put_SharedItem(abi_arg_in<Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> value) noexcept override
+    HRESULT __stdcall get_SharedItem(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> value) noexcept override
     {
         try
         {
-            shim().SharedItem(*reinterpret_cast<const Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem *>(&value));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SharedItem());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_SharedItem(impl::abi_arg_in<Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SharedItem(*reinterpret_cast<const Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem *>(&value));
             return S_OK;
         }
         catch (...)
@@ -157,11 +170,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> :
 template <typename D>
 struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedContent> : produce_base<D, Windows::ApplicationModel::SocialInfo::ISocialFeedContent>
 {
-    HRESULT __stdcall get_Title(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Title(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Title());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Title());
             return S_OK;
         }
         catch (...)
@@ -171,11 +185,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedContent> : p
         }
     }
 
-    HRESULT __stdcall put_Title(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_Title(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().Title(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Title(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -184,38 +199,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedContent> : p
         }
     }
 
-    HRESULT __stdcall get_Message(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Message(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Message());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_Message(abi_arg_in<hstring> value) noexcept override
-    {
-        try
-        {
-            shim().Message(*reinterpret_cast<const hstring *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_TargetUri(abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().TargetUri());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Message());
             return S_OK;
         }
         catch (...)
@@ -225,11 +214,41 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedContent> : p
         }
     }
 
-    HRESULT __stdcall put_TargetUri(abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall put_Message(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Message(*reinterpret_cast<const hstring *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_TargetUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetUri());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_TargetUri(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
             return S_OK;
         }
         catch (...)
@@ -242,11 +261,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedContent> : p
 template <typename D>
 struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : produce_base<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem>
 {
-    HRESULT __stdcall get_Author(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialUserInfo> value) noexcept override
+    HRESULT __stdcall get_Author(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialUserInfo> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Author());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Author());
             return S_OK;
         }
         catch (...)
@@ -256,11 +276,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall get_PrimaryContent(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
+    HRESULT __stdcall get_PrimaryContent(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PrimaryContent());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PrimaryContent());
             return S_OK;
         }
         catch (...)
@@ -270,11 +291,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall get_SecondaryContent(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
+    HRESULT __stdcall get_SecondaryContent(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SecondaryContent());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SecondaryContent());
             return S_OK;
         }
         catch (...)
@@ -284,11 +306,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall get_Timestamp(abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
+    HRESULT __stdcall get_Timestamp(impl::abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Timestamp());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Timestamp());
             return S_OK;
         }
         catch (...)
@@ -297,11 +320,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall put_Timestamp(abi_arg_in<Windows::Foundation::DateTime> value) noexcept override
+    HRESULT __stdcall put_Timestamp(impl::abi_arg_in<Windows::Foundation::DateTime> value) noexcept override
     {
         try
         {
-            shim().Timestamp(*reinterpret_cast<const Windows::Foundation::DateTime *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Timestamp(*reinterpret_cast<const Windows::Foundation::DateTime *>(&value));
             return S_OK;
         }
         catch (...)
@@ -310,38 +334,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall get_TargetUri(abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_TargetUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetUri());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_TargetUri(abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
-    {
-        try
-        {
-            shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_Thumbnails(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::ApplicationModel::SocialInfo::SocialItemThumbnail>> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().Thumbnails());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetUri());
             return S_OK;
         }
         catch (...)
@@ -351,11 +349,26 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall get_SharedItem(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> value) noexcept override
+    HRESULT __stdcall put_TargetUri(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SharedItem());
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_Thumbnails(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::ApplicationModel::SocialInfo::SocialItemThumbnail>> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Thumbnails());
             return S_OK;
         }
         catch (...)
@@ -365,11 +378,27 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall put_SharedItem(abi_arg_in<Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> value) noexcept override
+    HRESULT __stdcall get_SharedItem(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> value) noexcept override
     {
         try
         {
-            shim().SharedItem(*reinterpret_cast<const Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem *>(&value));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SharedItem());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_SharedItem(impl::abi_arg_in<Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SharedItem(*reinterpret_cast<const Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem *>(&value));
             return S_OK;
         }
         catch (...)
@@ -382,7 +411,8 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
     {
         try
         {
-            *value = detach(shim().BadgeStyle());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BadgeStyle());
             return S_OK;
         }
         catch (...)
@@ -395,7 +425,8 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
     {
         try
         {
-            shim().BadgeStyle(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().BadgeStyle(value);
             return S_OK;
         }
         catch (...)
@@ -408,7 +439,8 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
     {
         try
         {
-            *value = detach(shim().BadgeCountValue());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BadgeCountValue());
             return S_OK;
         }
         catch (...)
@@ -421,7 +453,8 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
     {
         try
         {
-            shim().BadgeCountValue(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().BadgeCountValue(value);
             return S_OK;
         }
         catch (...)
@@ -430,38 +463,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall get_RemoteId(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_RemoteId(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RemoteId());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_RemoteId(abi_arg_in<hstring> value) noexcept override
-    {
-        try
-        {
-            shim().RemoteId(*reinterpret_cast<const hstring *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_ChildItem(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().ChildItem());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RemoteId());
             return S_OK;
         }
         catch (...)
@@ -471,11 +478,41 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
         }
     }
 
-    HRESULT __stdcall put_ChildItem(abi_arg_in<Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> value) noexcept override
+    HRESULT __stdcall put_RemoteId(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().ChildItem(*reinterpret_cast<const Windows::ApplicationModel::SocialInfo::SocialFeedChildItem *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemoteId(*reinterpret_cast<const hstring *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_ChildItem(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ChildItem());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_ChildItem(impl::abi_arg_in<Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ChildItem(*reinterpret_cast<const Windows::ApplicationModel::SocialInfo::SocialFeedChildItem *>(&value));
             return S_OK;
         }
         catch (...)
@@ -488,7 +525,8 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
     {
         try
         {
-            *value = detach(shim().Style());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Style());
             return S_OK;
         }
         catch (...)
@@ -501,7 +539,8 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
     {
         try
         {
-            shim().Style(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Style(value);
             return S_OK;
         }
         catch (...)
@@ -514,11 +553,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedItem> : prod
 template <typename D>
 struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> : produce_base<D, Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem>
 {
-    HRESULT __stdcall get_OriginalSource(abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_OriginalSource(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OriginalSource());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OriginalSource());
             return S_OK;
         }
         catch (...)
@@ -528,11 +568,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> 
         }
     }
 
-    HRESULT __stdcall put_OriginalSource(abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall put_OriginalSource(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            shim().OriginalSource(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().OriginalSource(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
             return S_OK;
         }
         catch (...)
@@ -541,51 +582,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> 
         }
     }
 
-    HRESULT __stdcall get_Content(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
+    HRESULT __stdcall get_Content(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialFeedContent> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Content());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_Timestamp(abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().Timestamp());
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_Timestamp(abi_arg_in<Windows::Foundation::DateTime> value) noexcept override
-    {
-        try
-        {
-            shim().Timestamp(*reinterpret_cast<const Windows::Foundation::DateTime *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_TargetUri(abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().TargetUri());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Content());
             return S_OK;
         }
         catch (...)
@@ -595,11 +597,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> 
         }
     }
 
-    HRESULT __stdcall put_TargetUri(abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_Timestamp(impl::abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
     {
         try
         {
-            shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Timestamp());
             return S_OK;
         }
         catch (...)
@@ -608,11 +611,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> 
         }
     }
 
-    HRESULT __stdcall put_Thumbnail(abi_arg_in<Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> value) noexcept override
+    HRESULT __stdcall put_Timestamp(impl::abi_arg_in<Windows::Foundation::DateTime> value) noexcept override
     {
         try
         {
-            shim().Thumbnail(*reinterpret_cast<const Windows::ApplicationModel::SocialInfo::SocialItemThumbnail *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Timestamp(*reinterpret_cast<const Windows::Foundation::DateTime *>(&value));
             return S_OK;
         }
         catch (...)
@@ -621,11 +625,55 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> 
         }
     }
 
-    HRESULT __stdcall get_Thumbnail(abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> value) noexcept override
+    HRESULT __stdcall get_TargetUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Thumbnail());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetUri());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_TargetUri(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_Thumbnail(impl::abi_arg_in<Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Thumbnail(*reinterpret_cast<const Windows::ApplicationModel::SocialInfo::SocialItemThumbnail *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_Thumbnail(impl::abi_arg_out<Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Thumbnail());
             return S_OK;
         }
         catch (...)
@@ -639,11 +687,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem> 
 template <typename D>
 struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> : produce_base<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail>
 {
-    HRESULT __stdcall get_TargetUri(abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_TargetUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetUri());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetUri());
             return S_OK;
         }
         catch (...)
@@ -653,11 +702,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> :
         }
     }
 
-    HRESULT __stdcall put_TargetUri(abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall put_TargetUri(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
             return S_OK;
         }
         catch (...)
@@ -666,11 +716,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> :
         }
     }
 
-    HRESULT __stdcall get_ImageUri(abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_ImageUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ImageUri());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ImageUri());
             return S_OK;
         }
         catch (...)
@@ -680,11 +731,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> :
         }
     }
 
-    HRESULT __stdcall put_ImageUri(abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall put_ImageUri(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
     {
         try
         {
-            shim().ImageUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ImageUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
             return S_OK;
         }
         catch (...)
@@ -693,11 +745,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> :
         }
     }
 
-    HRESULT __stdcall get_BitmapSize(abi_arg_out<Windows::Graphics::Imaging::BitmapSize> value) noexcept override
+    HRESULT __stdcall get_BitmapSize(impl::abi_arg_out<Windows::Graphics::Imaging::BitmapSize> value) noexcept override
     {
         try
         {
-            *value = detach(shim().BitmapSize());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BitmapSize());
             return S_OK;
         }
         catch (...)
@@ -706,11 +759,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> :
         }
     }
 
-    HRESULT __stdcall put_BitmapSize(abi_arg_in<Windows::Graphics::Imaging::BitmapSize> value) noexcept override
+    HRESULT __stdcall put_BitmapSize(impl::abi_arg_in<Windows::Graphics::Imaging::BitmapSize> value) noexcept override
     {
         try
         {
-            shim().BitmapSize(*reinterpret_cast<const Windows::Graphics::Imaging::BitmapSize *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().BitmapSize(*reinterpret_cast<const Windows::Graphics::Imaging::BitmapSize *>(&value));
             return S_OK;
         }
         catch (...)
@@ -719,11 +773,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> :
         }
     }
 
-    HRESULT __stdcall abi_SetImageAsync(abi_arg_in<Windows::Storage::Streams::IInputStream> image, abi_arg_out<Windows::Foundation::IAsyncAction> operation) noexcept override
+    HRESULT __stdcall abi_SetImageAsync(impl::abi_arg_in<Windows::Storage::Streams::IInputStream> image, impl::abi_arg_out<Windows::Foundation::IAsyncAction> operation) noexcept override
     {
         try
         {
-            *operation = detach(shim().SetImageAsync(*reinterpret_cast<const Windows::Storage::Streams::IInputStream *>(&image)));
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().SetImageAsync(*reinterpret_cast<const Windows::Storage::Streams::IInputStream *>(&image)));
             return S_OK;
         }
         catch (...)
@@ -737,11 +792,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail> :
 template <typename D>
 struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialUserInfo> : produce_base<D, Windows::ApplicationModel::SocialInfo::ISocialUserInfo>
 {
-    HRESULT __stdcall get_DisplayName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_DisplayName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().DisplayName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().DisplayName());
             return S_OK;
         }
         catch (...)
@@ -751,11 +807,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialUserInfo> : prod
         }
     }
 
-    HRESULT __stdcall put_DisplayName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_DisplayName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().DisplayName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().DisplayName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -764,38 +821,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialUserInfo> : prod
         }
     }
 
-    HRESULT __stdcall get_UserName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_UserName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().UserName());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_UserName(abi_arg_in<hstring> value) noexcept override
-    {
-        try
-        {
-            shim().UserName(*reinterpret_cast<const hstring *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_RemoteId(abi_arg_out<hstring> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().RemoteId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().UserName());
             return S_OK;
         }
         catch (...)
@@ -805,11 +836,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialUserInfo> : prod
         }
     }
 
-    HRESULT __stdcall put_RemoteId(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_UserName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().RemoteId(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().UserName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -818,11 +850,12 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialUserInfo> : prod
         }
     }
 
-    HRESULT __stdcall get_TargetUri(abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_RemoteId(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetUri());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RemoteId());
             return S_OK;
         }
         catch (...)
@@ -832,11 +865,41 @@ struct produce<D, Windows::ApplicationModel::SocialInfo::ISocialUserInfo> : prod
         }
     }
 
-    HRESULT __stdcall put_TargetUri(abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall put_RemoteId(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemoteId(*reinterpret_cast<const hstring *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_TargetUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetUri());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_TargetUri(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetUri(*reinterpret_cast<const Windows::Foundation::Uri *>(&value));
             return S_OK;
         }
         catch (...)
@@ -853,370 +916,370 @@ namespace Windows::ApplicationModel::SocialInfo {
 template <typename D> Windows::Foundation::Uri impl_ISocialItemThumbnail<D>::TargetUri() const
 {
     Windows::Foundation::Uri value { nullptr };
-    check_hresult(shim()->get_TargetUri(put(value)));
+    check_hresult(WINRT_SHIM(ISocialItemThumbnail)->get_TargetUri(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialItemThumbnail<D>::TargetUri(const Windows::Foundation::Uri & value) const
 {
-    check_hresult(shim()->put_TargetUri(get(value)));
+    check_hresult(WINRT_SHIM(ISocialItemThumbnail)->put_TargetUri(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Uri impl_ISocialItemThumbnail<D>::ImageUri() const
 {
     Windows::Foundation::Uri value { nullptr };
-    check_hresult(shim()->get_ImageUri(put(value)));
+    check_hresult(WINRT_SHIM(ISocialItemThumbnail)->get_ImageUri(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialItemThumbnail<D>::ImageUri(const Windows::Foundation::Uri & value) const
 {
-    check_hresult(shim()->put_ImageUri(get(value)));
+    check_hresult(WINRT_SHIM(ISocialItemThumbnail)->put_ImageUri(get_abi(value)));
 }
 
 template <typename D> Windows::Graphics::Imaging::BitmapSize impl_ISocialItemThumbnail<D>::BitmapSize() const
 {
     Windows::Graphics::Imaging::BitmapSize value {};
-    check_hresult(shim()->get_BitmapSize(put(value)));
+    check_hresult(WINRT_SHIM(ISocialItemThumbnail)->get_BitmapSize(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialItemThumbnail<D>::BitmapSize(const Windows::Graphics::Imaging::BitmapSize & value) const
 {
-    check_hresult(shim()->put_BitmapSize(get(value)));
+    check_hresult(WINRT_SHIM(ISocialItemThumbnail)->put_BitmapSize(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IAsyncAction impl_ISocialItemThumbnail<D>::SetImageAsync(const Windows::Storage::Streams::IInputStream & image) const
 {
     Windows::Foundation::IAsyncAction operation;
-    check_hresult(shim()->abi_SetImageAsync(get(image), put(operation)));
+    check_hresult(WINRT_SHIM(ISocialItemThumbnail)->abi_SetImageAsync(get_abi(image), put_abi(operation)));
     return operation;
 }
 
 template <typename D> hstring impl_ISocialFeedContent<D>::Title() const
 {
     hstring value;
-    check_hresult(shim()->get_Title(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedContent)->get_Title(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISocialFeedContent<D>::Title(hstring_ref value) const
+template <typename D> void impl_ISocialFeedContent<D>::Title(hstring_view value) const
 {
-    check_hresult(shim()->put_Title(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedContent)->put_Title(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISocialFeedContent<D>::Message() const
 {
     hstring value;
-    check_hresult(shim()->get_Message(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedContent)->get_Message(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISocialFeedContent<D>::Message(hstring_ref value) const
+template <typename D> void impl_ISocialFeedContent<D>::Message(hstring_view value) const
 {
-    check_hresult(shim()->put_Message(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedContent)->put_Message(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Uri impl_ISocialFeedContent<D>::TargetUri() const
 {
     Windows::Foundation::Uri value { nullptr };
-    check_hresult(shim()->get_TargetUri(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedContent)->get_TargetUri(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedContent<D>::TargetUri(const Windows::Foundation::Uri & value) const
 {
-    check_hresult(shim()->put_TargetUri(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedContent)->put_TargetUri(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISocialUserInfo<D>::DisplayName() const
 {
     hstring value;
-    check_hresult(shim()->get_DisplayName(put(value)));
+    check_hresult(WINRT_SHIM(ISocialUserInfo)->get_DisplayName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISocialUserInfo<D>::DisplayName(hstring_ref value) const
+template <typename D> void impl_ISocialUserInfo<D>::DisplayName(hstring_view value) const
 {
-    check_hresult(shim()->put_DisplayName(get(value)));
+    check_hresult(WINRT_SHIM(ISocialUserInfo)->put_DisplayName(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISocialUserInfo<D>::UserName() const
 {
     hstring value;
-    check_hresult(shim()->get_UserName(put(value)));
+    check_hresult(WINRT_SHIM(ISocialUserInfo)->get_UserName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISocialUserInfo<D>::UserName(hstring_ref value) const
+template <typename D> void impl_ISocialUserInfo<D>::UserName(hstring_view value) const
 {
-    check_hresult(shim()->put_UserName(get(value)));
+    check_hresult(WINRT_SHIM(ISocialUserInfo)->put_UserName(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISocialUserInfo<D>::RemoteId() const
 {
     hstring value;
-    check_hresult(shim()->get_RemoteId(put(value)));
+    check_hresult(WINRT_SHIM(ISocialUserInfo)->get_RemoteId(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISocialUserInfo<D>::RemoteId(hstring_ref value) const
+template <typename D> void impl_ISocialUserInfo<D>::RemoteId(hstring_view value) const
 {
-    check_hresult(shim()->put_RemoteId(get(value)));
+    check_hresult(WINRT_SHIM(ISocialUserInfo)->put_RemoteId(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Uri impl_ISocialUserInfo<D>::TargetUri() const
 {
     Windows::Foundation::Uri value { nullptr };
-    check_hresult(shim()->get_TargetUri(put(value)));
+    check_hresult(WINRT_SHIM(ISocialUserInfo)->get_TargetUri(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialUserInfo<D>::TargetUri(const Windows::Foundation::Uri & value) const
 {
-    check_hresult(shim()->put_TargetUri(get(value)));
+    check_hresult(WINRT_SHIM(ISocialUserInfo)->put_TargetUri(get_abi(value)));
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialUserInfo impl_ISocialFeedItem<D>::Author() const
 {
     Windows::ApplicationModel::SocialInfo::SocialUserInfo value { nullptr };
-    check_hresult(shim()->get_Author(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_Author(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedContent impl_ISocialFeedItem<D>::PrimaryContent() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedContent value { nullptr };
-    check_hresult(shim()->get_PrimaryContent(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_PrimaryContent(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedContent impl_ISocialFeedItem<D>::SecondaryContent() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedContent value { nullptr };
-    check_hresult(shim()->get_SecondaryContent(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_SecondaryContent(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::DateTime impl_ISocialFeedItem<D>::Timestamp() const
 {
     Windows::Foundation::DateTime value {};
-    check_hresult(shim()->get_Timestamp(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_Timestamp(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedItem<D>::Timestamp(const Windows::Foundation::DateTime & value) const
 {
-    check_hresult(shim()->put_Timestamp(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->put_Timestamp(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Uri impl_ISocialFeedItem<D>::TargetUri() const
 {
     Windows::Foundation::Uri value { nullptr };
-    check_hresult(shim()->get_TargetUri(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_TargetUri(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedItem<D>::TargetUri(const Windows::Foundation::Uri & value) const
 {
-    check_hresult(shim()->put_TargetUri(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->put_TargetUri(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Collections::IVector<Windows::ApplicationModel::SocialInfo::SocialItemThumbnail> impl_ISocialFeedItem<D>::Thumbnails() const
 {
     Windows::Foundation::Collections::IVector<Windows::ApplicationModel::SocialInfo::SocialItemThumbnail> value;
-    check_hresult(shim()->get_Thumbnails(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_Thumbnails(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem impl_ISocialFeedItem<D>::SharedItem() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem value { nullptr };
-    check_hresult(shim()->get_SharedItem(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_SharedItem(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedItem<D>::SharedItem(const Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem & value) const
 {
-    check_hresult(shim()->put_SharedItem(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->put_SharedItem(get_abi(value)));
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialItemBadgeStyle impl_ISocialFeedItem<D>::BadgeStyle() const
 {
     Windows::ApplicationModel::SocialInfo::SocialItemBadgeStyle value {};
-    check_hresult(shim()->get_BadgeStyle(&value));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_BadgeStyle(&value));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedItem<D>::BadgeStyle(Windows::ApplicationModel::SocialInfo::SocialItemBadgeStyle value) const
 {
-    check_hresult(shim()->put_BadgeStyle(value));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->put_BadgeStyle(value));
 }
 
 template <typename D> int32_t impl_ISocialFeedItem<D>::BadgeCountValue() const
 {
     int32_t value {};
-    check_hresult(shim()->get_BadgeCountValue(&value));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_BadgeCountValue(&value));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedItem<D>::BadgeCountValue(int32_t value) const
 {
-    check_hresult(shim()->put_BadgeCountValue(value));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->put_BadgeCountValue(value));
 }
 
 template <typename D> hstring impl_ISocialFeedItem<D>::RemoteId() const
 {
     hstring value;
-    check_hresult(shim()->get_RemoteId(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_RemoteId(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISocialFeedItem<D>::RemoteId(hstring_ref value) const
+template <typename D> void impl_ISocialFeedItem<D>::RemoteId(hstring_view value) const
 {
-    check_hresult(shim()->put_RemoteId(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->put_RemoteId(get_abi(value)));
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedChildItem impl_ISocialFeedItem<D>::ChildItem() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedChildItem value { nullptr };
-    check_hresult(shim()->get_ChildItem(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_ChildItem(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedItem<D>::ChildItem(const Windows::ApplicationModel::SocialInfo::SocialFeedChildItem & value) const
 {
-    check_hresult(shim()->put_ChildItem(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->put_ChildItem(get_abi(value)));
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedItemStyle impl_ISocialFeedItem<D>::Style() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedItemStyle value {};
-    check_hresult(shim()->get_Style(&value));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->get_Style(&value));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedItem<D>::Style(Windows::ApplicationModel::SocialInfo::SocialFeedItemStyle value) const
 {
-    check_hresult(shim()->put_Style(value));
+    check_hresult(WINRT_SHIM(ISocialFeedItem)->put_Style(value));
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialUserInfo impl_ISocialFeedChildItem<D>::Author() const
 {
     Windows::ApplicationModel::SocialInfo::SocialUserInfo value { nullptr };
-    check_hresult(shim()->get_Author(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->get_Author(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedContent impl_ISocialFeedChildItem<D>::PrimaryContent() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedContent value { nullptr };
-    check_hresult(shim()->get_PrimaryContent(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->get_PrimaryContent(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedContent impl_ISocialFeedChildItem<D>::SecondaryContent() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedContent value { nullptr };
-    check_hresult(shim()->get_SecondaryContent(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->get_SecondaryContent(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::DateTime impl_ISocialFeedChildItem<D>::Timestamp() const
 {
     Windows::Foundation::DateTime value {};
-    check_hresult(shim()->get_Timestamp(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->get_Timestamp(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedChildItem<D>::Timestamp(const Windows::Foundation::DateTime & value) const
 {
-    check_hresult(shim()->put_Timestamp(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->put_Timestamp(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Uri impl_ISocialFeedChildItem<D>::TargetUri() const
 {
     Windows::Foundation::Uri value { nullptr };
-    check_hresult(shim()->get_TargetUri(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->get_TargetUri(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedChildItem<D>::TargetUri(const Windows::Foundation::Uri & value) const
 {
-    check_hresult(shim()->put_TargetUri(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->put_TargetUri(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Collections::IVector<Windows::ApplicationModel::SocialInfo::SocialItemThumbnail> impl_ISocialFeedChildItem<D>::Thumbnails() const
 {
     Windows::Foundation::Collections::IVector<Windows::ApplicationModel::SocialInfo::SocialItemThumbnail> value;
-    check_hresult(shim()->get_Thumbnails(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->get_Thumbnails(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem impl_ISocialFeedChildItem<D>::SharedItem() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem value { nullptr };
-    check_hresult(shim()->get_SharedItem(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->get_SharedItem(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedChildItem<D>::SharedItem(const Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem & value) const
 {
-    check_hresult(shim()->put_SharedItem(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedChildItem)->put_SharedItem(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Uri impl_ISocialFeedSharedItem<D>::OriginalSource() const
 {
     Windows::Foundation::Uri value { nullptr };
-    check_hresult(shim()->get_OriginalSource(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->get_OriginalSource(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedSharedItem<D>::OriginalSource(const Windows::Foundation::Uri & value) const
 {
-    check_hresult(shim()->put_OriginalSource(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->put_OriginalSource(get_abi(value)));
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialFeedContent impl_ISocialFeedSharedItem<D>::Content() const
 {
     Windows::ApplicationModel::SocialInfo::SocialFeedContent value { nullptr };
-    check_hresult(shim()->get_Content(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->get_Content(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::DateTime impl_ISocialFeedSharedItem<D>::Timestamp() const
 {
     Windows::Foundation::DateTime value {};
-    check_hresult(shim()->get_Timestamp(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->get_Timestamp(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedSharedItem<D>::Timestamp(const Windows::Foundation::DateTime & value) const
 {
-    check_hresult(shim()->put_Timestamp(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->put_Timestamp(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Uri impl_ISocialFeedSharedItem<D>::TargetUri() const
 {
     Windows::Foundation::Uri value { nullptr };
-    check_hresult(shim()->get_TargetUri(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->get_TargetUri(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISocialFeedSharedItem<D>::TargetUri(const Windows::Foundation::Uri & value) const
 {
-    check_hresult(shim()->put_TargetUri(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->put_TargetUri(get_abi(value)));
 }
 
 template <typename D> void impl_ISocialFeedSharedItem<D>::Thumbnail(const Windows::ApplicationModel::SocialInfo::SocialItemThumbnail & value) const
 {
-    check_hresult(shim()->put_Thumbnail(get(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->put_Thumbnail(get_abi(value)));
 }
 
 template <typename D> Windows::ApplicationModel::SocialInfo::SocialItemThumbnail impl_ISocialFeedSharedItem<D>::Thumbnail() const
 {
     Windows::ApplicationModel::SocialInfo::SocialItemThumbnail value { nullptr };
-    check_hresult(shim()->get_Thumbnail(put(value)));
+    check_hresult(WINRT_SHIM(ISocialFeedSharedItem)->get_Thumbnail(put_abi(value)));
     return value;
 }
 
@@ -1239,3 +1302,113 @@ inline SocialItemThumbnail::SocialItemThumbnail() :
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::ISocialFeedChildItem & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::ISocialFeedContent>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::ISocialFeedContent & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::ISocialFeedItem>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::ISocialFeedItem & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::ISocialFeedSharedItem & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::ISocialItemThumbnail & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::ISocialUserInfo>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::ISocialUserInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::SocialFeedChildItem>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::SocialFeedChildItem & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::SocialFeedContent>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::SocialFeedContent & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::SocialFeedItem>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::SocialFeedItem & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::SocialFeedSharedItem & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::SocialItemThumbnail>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::SocialItemThumbnail & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::SocialInfo::SocialUserInfo>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::SocialInfo::SocialUserInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

@@ -1,16 +1,16 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.System.RemoteDesktop.0.h"
 
 WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::System::RemoteDesktop {
 
-struct __declspec(uuid("60884631-dd3a-4576-9c8d-e8027618bdce")) __declspec(novtable) IInteractiveSessionStatics : Windows::IInspectable
+struct __declspec(uuid("60884631-dd3a-4576-9c8d-e8027618bdce")) __declspec(novtable) IInteractiveSessionStatics : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_IsRemote(bool * value) = 0;
 };
@@ -24,7 +24,11 @@ namespace ABI {
 
 namespace Windows::System::RemoteDesktop {
 
-template <typename T> class impl_IInteractiveSessionStatics;
+template <typename D>
+struct WINRT_EBO impl_IInteractiveSessionStatics
+{
+    bool IsRemote() const;
+};
 
 }
 

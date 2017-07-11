@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -12,7 +12,7 @@ namespace Windows::Management::Deployment::Preview {
 struct ClassicAppManager
 {
     ClassicAppManager() = delete;
-    static Windows::Management::Deployment::Preview::InstalledClassicAppInfo FindInstalledApp(hstring_ref appUninstallKey);
+    static Windows::Management::Deployment::Preview::InstalledClassicAppInfo FindInstalledApp(hstring_view appUninstallKey);
 };
 
 struct WINRT_EBO InstalledClassicAppInfo :

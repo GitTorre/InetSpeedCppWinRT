@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -40,6 +40,20 @@ struct UserDataAccountManager;
 struct UserDataAccountManagerForUser;
 struct UserDataAccountStore;
 struct UserDataAccountStoreChangedEventArgs;
+
+}
+
+namespace Windows::ApplicationModel::UserDataAccounts {
+
+template <typename T> struct impl_IUserDataAccount;
+template <typename T> struct impl_IUserDataAccount2;
+template <typename T> struct impl_IUserDataAccount3;
+template <typename T> struct impl_IUserDataAccountManagerForUser;
+template <typename T> struct impl_IUserDataAccountManagerStatics;
+template <typename T> struct impl_IUserDataAccountManagerStatics2;
+template <typename T> struct impl_IUserDataAccountStore;
+template <typename T> struct impl_IUserDataAccountStore2;
+template <typename T> struct impl_IUserDataAccountStoreChangedEventArgs;
 
 }
 

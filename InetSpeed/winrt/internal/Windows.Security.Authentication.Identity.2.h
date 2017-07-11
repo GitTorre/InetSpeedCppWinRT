@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -12,6 +12,21 @@ namespace ABI::Windows::Foundation::Collections {
 #ifndef WINRT_GENERIC_3b631cbb_63f8_5eff_8815_69c822c09ce1
 #define WINRT_GENERIC_3b631cbb_63f8_5eff_8815_69c822c09ce1
 template <> struct __declspec(uuid("3b631cbb-63f8-5eff-8815-69c822c09ce1")) __declspec(novtable) IVectorView<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo> : impl_IVectorView<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo> {};
+#endif
+
+#ifndef WINRT_GENERIC_f6e2d04c_76d7_5e74_81ec_76c48e9bd3a9
+#define WINRT_GENERIC_f6e2d04c_76d7_5e74_81ec_76c48e9bd3a9
+template <> struct __declspec(uuid("f6e2d04c-76d7-5e74-81ec-76c48e9bd3a9")) __declspec(novtable) IVector<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo> : impl_IVector<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo> {};
+#endif
+
+#ifndef WINRT_GENERIC_e3497259_1737_5fad_803b_9d2d29273e3b
+#define WINRT_GENERIC_e3497259_1737_5fad_803b_9d2d29273e3b
+template <> struct __declspec(uuid("e3497259-1737-5fad-803b-9d2d29273e3b")) __declspec(novtable) IIterator<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo> : impl_IIterator<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo> {};
+#endif
+
+#ifndef WINRT_GENERIC_e7eea796_77f9_5473_a913_734ea0e3ff46
+#define WINRT_GENERIC_e7eea796_77f9_5473_a913_734ea0e3ff46
+template <> struct __declspec(uuid("e7eea796-77f9-5473-a913-734ea0e3ff46")) __declspec(novtable) IIterable<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo> : impl_IIterable<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo> {};
 #endif
 
 
@@ -34,62 +49,25 @@ template <> struct __declspec(uuid("67746c40-ade0-5981-ae23-104891748853")) __de
 
 namespace Windows::Security::Authentication::Identity {
 
-template <typename D>
-class WINRT_EBO impl_IEnterpriseKeyCredentialRegistrationInfo
-{
-    auto shim() const { return impl::shim<D, IEnterpriseKeyCredentialRegistrationInfo>(this); }
-
-public:
-
-    hstring TenantId() const;
-    hstring TenantName() const;
-    hstring Subject() const;
-    hstring KeyId() const;
-    hstring KeyName() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IEnterpriseKeyCredentialRegistrationManager
-{
-    auto shim() const { return impl::shim<D, IEnterpriseKeyCredentialRegistrationManager>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationInfo>> GetRegistrationsAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IEnterpriseKeyCredentialRegistrationManagerStatics
-{
-    auto shim() const { return impl::shim<D, IEnterpriseKeyCredentialRegistrationManagerStatics>(this); }
-
-public:
-
-    Windows::Security::Authentication::Identity::EnterpriseKeyCredentialRegistrationManager Current() const;
-};
-
 struct IEnterpriseKeyCredentialRegistrationInfo :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IEnterpriseKeyCredentialRegistrationInfo>
 {
     IEnterpriseKeyCredentialRegistrationInfo(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IEnterpriseKeyCredentialRegistrationInfo>(m_ptr); }
 };
 
 struct IEnterpriseKeyCredentialRegistrationManager :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IEnterpriseKeyCredentialRegistrationManager>
 {
     IEnterpriseKeyCredentialRegistrationManager(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IEnterpriseKeyCredentialRegistrationManager>(m_ptr); }
 };
 
 struct IEnterpriseKeyCredentialRegistrationManagerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IEnterpriseKeyCredentialRegistrationManagerStatics>
 {
     IEnterpriseKeyCredentialRegistrationManagerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IEnterpriseKeyCredentialRegistrationManagerStatics>(m_ptr); }
 };
 
 }

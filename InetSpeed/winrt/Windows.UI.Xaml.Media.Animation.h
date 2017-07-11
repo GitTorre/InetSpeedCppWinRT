@@ -1,20 +1,23 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.Foundation.3.h"
-#include "internal\Windows.UI.3.h"
-#include "internal\Windows.UI.Xaml.3.h"
-#include "internal\Windows.Foundation.Collections.3.h"
-#include "internal\Windows.UI.Xaml.Controls.Primitives.3.h"
-#include "internal\Windows.UI.Composition.3.h"
-#include "internal\Windows.UI.Xaml.Controls.3.h"
-#include "internal\Windows.UI.Xaml.Media.Animation.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.Foundation.3.h"
+#include "internal/Windows.UI.3.h"
+#include "internal/Windows.UI.Xaml.3.h"
+#include "internal/Windows.Foundation.Collections.3.h"
+#include "internal/Windows.UI.Xaml.Controls.Primitives.3.h"
+#include "internal/Windows.UI.Composition.3.h"
+#include "internal/Windows.UI.Xaml.Controls.3.h"
+#include "internal/Windows.UI.Xaml.Media.Animation.3.h"
 #include "Windows.UI.Xaml.Media.h"
 #include "Windows.Foundation.Collections.h"
-#include "internal\Windows.UI.Xaml.Media.Animation.4.h"
-#include "internal\Windows.UI.Xaml.Media.Animation.5.h"
+#include "internal/Windows.UI.Xaml.Media.Animation.4.h"
+#include "internal/Windows.UI.Xaml.Media.Animation.5.h"
 
 WINRT_EXPORT namespace winrt {
 
@@ -31,7 +34,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBackEase> : produce_base
     {
         try
         {
-            *value = detach(shim().Amplitude());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Amplitude());
             return S_OK;
         }
         catch (...)
@@ -44,7 +48,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBackEase> : produce_base
     {
         try
         {
-            shim().Amplitude(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Amplitude(value);
             return S_OK;
         }
         catch (...)
@@ -57,11 +62,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBackEase> : produce_base
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IBackEaseStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IBackEaseStatics>
 {
-    HRESULT __stdcall get_AmplitudeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_AmplitudeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().AmplitudeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().AmplitudeProperty());
             return S_OK;
         }
         catch (...)
@@ -75,11 +81,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBackEaseStatics> : produ
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IBeginStoryboard> : produce_base<D, Windows::UI::Xaml::Media::Animation::IBeginStoryboard>
 {
-    HRESULT __stdcall get_Storyboard(abi_arg_out<Windows::UI::Xaml::Media::Animation::IStoryboard> value) noexcept override
+    HRESULT __stdcall get_Storyboard(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IStoryboard> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Storyboard());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Storyboard());
             return S_OK;
         }
         catch (...)
@@ -89,11 +96,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBeginStoryboard> : produ
         }
     }
 
-    HRESULT __stdcall put_Storyboard(abi_arg_in<Windows::UI::Xaml::Media::Animation::IStoryboard> value) noexcept override
+    HRESULT __stdcall put_Storyboard(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IStoryboard> value) noexcept override
     {
         try
         {
-            shim().Storyboard(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Storyboard *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Storyboard(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Storyboard *>(&value));
             return S_OK;
         }
         catch (...)
@@ -106,11 +114,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBeginStoryboard> : produ
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IBeginStoryboardStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IBeginStoryboardStatics>
 {
-    HRESULT __stdcall get_StoryboardProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StoryboardProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StoryboardProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StoryboardProperty());
             return S_OK;
         }
         catch (...)
@@ -128,7 +137,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBounceEase> : produce_ba
     {
         try
         {
-            *value = detach(shim().Bounces());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Bounces());
             return S_OK;
         }
         catch (...)
@@ -141,7 +151,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBounceEase> : produce_ba
     {
         try
         {
-            shim().Bounces(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Bounces(value);
             return S_OK;
         }
         catch (...)
@@ -154,7 +165,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBounceEase> : produce_ba
     {
         try
         {
-            *value = detach(shim().Bounciness());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Bounciness());
             return S_OK;
         }
         catch (...)
@@ -167,7 +179,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBounceEase> : produce_ba
     {
         try
         {
-            shim().Bounciness(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Bounciness(value);
             return S_OK;
         }
         catch (...)
@@ -180,11 +193,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBounceEase> : produce_ba
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IBounceEaseStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IBounceEaseStatics>
 {
-    HRESULT __stdcall get_BouncesProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_BouncesProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().BouncesProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BouncesProperty());
             return S_OK;
         }
         catch (...)
@@ -194,11 +208,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IBounceEaseStatics> : pro
         }
     }
 
-    HRESULT __stdcall get_BouncinessProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_BouncinessProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().BouncinessProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BouncinessProperty());
             return S_OK;
         }
         catch (...)
@@ -216,11 +231,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ICircleEase> : produce_ba
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IColorAnimation>
 {
-    HRESULT __stdcall get_From(abi_arg_out<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
+    HRESULT __stdcall get_From(impl::abi_arg_out<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().From());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().From());
             return S_OK;
         }
         catch (...)
@@ -230,11 +246,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produc
         }
     }
 
-    HRESULT __stdcall put_From(abi_arg_in<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
+    HRESULT __stdcall put_From(impl::abi_arg_in<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
     {
         try
         {
-            shim().From(*reinterpret_cast<const Windows::Foundation::IReference<Windows::UI::Color> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().From(*reinterpret_cast<const Windows::Foundation::IReference<Windows::UI::Color> *>(&value));
             return S_OK;
         }
         catch (...)
@@ -243,38 +260,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produc
         }
     }
 
-    HRESULT __stdcall get_To(abi_arg_out<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
+    HRESULT __stdcall get_To(impl::abi_arg_out<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().To());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_To(abi_arg_in<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
-    {
-        try
-        {
-            shim().To(*reinterpret_cast<const Windows::Foundation::IReference<Windows::UI::Color> *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_By(abi_arg_out<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().By());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().To());
             return S_OK;
         }
         catch (...)
@@ -284,11 +275,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produc
         }
     }
 
-    HRESULT __stdcall put_By(abi_arg_in<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
+    HRESULT __stdcall put_To(impl::abi_arg_in<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
     {
         try
         {
-            shim().By(*reinterpret_cast<const Windows::Foundation::IReference<Windows::UI::Color> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().To(*reinterpret_cast<const Windows::Foundation::IReference<Windows::UI::Color> *>(&value));
             return S_OK;
         }
         catch (...)
@@ -297,11 +289,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produc
         }
     }
 
-    HRESULT __stdcall get_EasingFunction(abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall get_By(impl::abi_arg_out<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunction());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().By());
             return S_OK;
         }
         catch (...)
@@ -311,11 +304,41 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produc
         }
     }
 
-    HRESULT __stdcall put_EasingFunction(abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall put_By(impl::abi_arg_in<Windows::Foundation::IReference<Windows::UI::Color>> value) noexcept override
     {
         try
         {
-            shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().By(*reinterpret_cast<const Windows::Foundation::IReference<Windows::UI::Color> *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_EasingFunction(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunction());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_EasingFunction(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
             return S_OK;
         }
         catch (...)
@@ -328,7 +351,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produc
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimation());
             return S_OK;
         }
         catch (...)
@@ -341,7 +365,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produc
     {
         try
         {
-            shim().EnableDependentAnimation(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableDependentAnimation(value);
             return S_OK;
         }
         catch (...)
@@ -354,11 +379,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimation> : produc
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IColorAnimationStatics>
 {
-    HRESULT __stdcall get_FromProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromProperty());
             return S_OK;
         }
         catch (...)
@@ -368,11 +394,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationStatics> :
         }
     }
 
-    HRESULT __stdcall get_ToProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ToProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ToProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToProperty());
             return S_OK;
         }
         catch (...)
@@ -382,11 +409,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationStatics> :
         }
     }
 
-    HRESULT __stdcall get_ByProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ByProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ByProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ByProperty());
             return S_OK;
         }
         catch (...)
@@ -396,11 +424,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationStatics> :
         }
     }
 
-    HRESULT __stdcall get_EasingFunctionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EasingFunctionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunctionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunctionProperty());
             return S_OK;
         }
         catch (...)
@@ -410,11 +439,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationStatics> :
         }
     }
 
-    HRESULT __stdcall get_EnableDependentAnimationProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EnableDependentAnimationProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimationProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimationProperty());
             return S_OK;
         }
         catch (...)
@@ -428,11 +458,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationStatics> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFrames> : produce_base<D, Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFrames>
 {
-    HRESULT __stdcall get_KeyFrames(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::ColorKeyFrame>> value) noexcept override
+    HRESULT __stdcall get_KeyFrames(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::ColorKeyFrame>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyFrames());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyFrames());
             return S_OK;
         }
         catch (...)
@@ -446,7 +477,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFr
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimation());
             return S_OK;
         }
         catch (...)
@@ -459,7 +491,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFr
     {
         try
         {
-            shim().EnableDependentAnimation(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableDependentAnimation(value);
             return S_OK;
         }
         catch (...)
@@ -472,11 +505,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFr
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFramesStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFramesStatics>
 {
-    HRESULT __stdcall get_EnableDependentAnimationProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EnableDependentAnimationProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimationProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimationProperty());
             return S_OK;
         }
         catch (...)
@@ -490,11 +524,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFr
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrame>
 {
-    HRESULT __stdcall get_Value(abi_arg_out<Windows::UI::Color> value) noexcept override
+    HRESULT __stdcall get_Value(impl::abi_arg_out<Windows::UI::Color> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Value());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Value());
             return S_OK;
         }
         catch (...)
@@ -503,11 +538,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrame> : produce
         }
     }
 
-    HRESULT __stdcall put_Value(abi_arg_in<Windows::UI::Color> value) noexcept override
+    HRESULT __stdcall put_Value(impl::abi_arg_in<Windows::UI::Color> value) noexcept override
     {
         try
         {
-            shim().Value(*reinterpret_cast<const Windows::UI::Color *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Value(*reinterpret_cast<const Windows::UI::Color *>(&value));
             return S_OK;
         }
         catch (...)
@@ -516,11 +552,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrame> : produce
         }
     }
 
-    HRESULT __stdcall get_KeyTime(abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
+    HRESULT __stdcall get_KeyTime(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyTime());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyTime());
             return S_OK;
         }
         catch (...)
@@ -529,11 +566,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrame> : produce
         }
     }
 
-    HRESULT __stdcall put_KeyTime(abi_arg_in<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
+    HRESULT __stdcall put_KeyTime(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
     {
         try
         {
-            shim().KeyTime(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeyTime *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().KeyTime(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeyTime *>(&value));
             return S_OK;
         }
         catch (...)
@@ -546,11 +584,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrame> : produce
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrameFactory> : produce_base<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrameFactory>
 {
-    HRESULT __stdcall abi_CreateInstance(abi_arg_in<Windows::IInspectable> outer, abi_arg_out<Windows::IInspectable> inner, abi_arg_out<Windows::UI::Xaml::Media::Animation::IColorKeyFrame> instance) noexcept override
+    HRESULT __stdcall abi_CreateInstance(impl::abi_arg_in<Windows::Foundation::IInspectable> outer, impl::abi_arg_out<Windows::Foundation::IInspectable> inner, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IColorKeyFrame> instance) noexcept override
     {
         try
         {
-            *instance = detach(shim().CreateInstance(*reinterpret_cast<const Windows::IInspectable *>(&outer), *inner));
+            typename D::abi_guard guard(this->shim());
+            *instance = detach_abi(this->shim().CreateInstance(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&outer), *reinterpret_cast<Windows::Foundation::IInspectable *>(inner)));
             return S_OK;
         }
         catch (...)
@@ -565,11 +604,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrameFactory> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrameStatics>
 {
-    HRESULT __stdcall get_ValueProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ValueProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ValueProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ValueProperty());
             return S_OK;
         }
         catch (...)
@@ -579,11 +619,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IColorKeyFrameStatics> : 
         }
     }
 
-    HRESULT __stdcall get_KeyTimeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_KeyTimeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyTimeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyTimeProperty());
             return S_OK;
         }
         catch (...)
@@ -601,7 +642,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransiti
     {
         try
         {
-            *value = detach(shim().IsStaggeringEnabled());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsStaggeringEnabled());
             return S_OK;
         }
         catch (...)
@@ -614,7 +656,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransiti
     {
         try
         {
-            shim().IsStaggeringEnabled(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsStaggeringEnabled(value);
             return S_OK;
         }
         catch (...)
@@ -627,11 +670,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransiti
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransitionInfoStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransitionInfoStatics>
 {
-    HRESULT __stdcall get_IsStaggeringEnabledProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_IsStaggeringEnabledProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().IsStaggeringEnabledProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsStaggeringEnabledProperty());
             return S_OK;
         }
         catch (...)
@@ -641,11 +685,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransiti
         }
     }
 
-    HRESULT __stdcall get_IsStaggerElementProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_IsStaggerElementProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().IsStaggerElementProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsStaggerElementProperty());
             return S_OK;
         }
         catch (...)
@@ -655,11 +700,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransiti
         }
     }
 
-    HRESULT __stdcall abi_GetIsStaggerElement(abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool * value) noexcept override
+    HRESULT __stdcall abi_GetIsStaggerElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool * value) noexcept override
     {
         try
         {
-            *value = detach(shim().GetIsStaggerElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element)));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GetIsStaggerElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element)));
             return S_OK;
         }
         catch (...)
@@ -668,11 +714,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransiti
         }
     }
 
-    HRESULT __stdcall abi_SetIsStaggerElement(abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool value) noexcept override
+    HRESULT __stdcall abi_SetIsStaggerElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool value) noexcept override
     {
         try
         {
-            shim().SetIsStaggerElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element), value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetIsStaggerElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element), value);
             return S_OK;
         }
         catch (...)
@@ -685,11 +732,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ICommonNavigationTransiti
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimation>
 {
-    HRESULT __stdcall add_Completed(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Media::Animation::ConnectedAnimation, Windows::IInspectable>> value, event_token * token) noexcept override
+    HRESULT __stdcall add_Completed(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Media::Animation::ConnectedAnimation, Windows::Foundation::IInspectable>> value, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().Completed(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Media::Animation::ConnectedAnimation, Windows::IInspectable> *>(&value)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().Completed(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Media::Animation::ConnectedAnimation, Windows::Foundation::IInspectable> *>(&value)));
             return S_OK;
         }
         catch (...)
@@ -702,7 +750,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimation> : pr
     {
         try
         {
-            shim().Completed(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Completed(token);
             return S_OK;
         }
         catch (...)
@@ -711,11 +760,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimation> : pr
         }
     }
 
-    HRESULT __stdcall abi_TryStart(abi_arg_in<Windows::UI::Xaml::IUIElement> destination, bool * returnValue) noexcept override
+    HRESULT __stdcall abi_TryStart(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> destination, bool * returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().TryStart(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&destination)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().TryStart(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&destination)));
             return S_OK;
         }
         catch (...)
@@ -728,7 +778,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimation> : pr
     {
         try
         {
-            shim().Cancel();
+            typename D::abi_guard guard(this->shim());
+            this->shim().Cancel();
             return S_OK;
         }
         catch (...)
@@ -741,11 +792,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimation> : pr
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationService> : produce_base<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationService>
 {
-    HRESULT __stdcall get_DefaultDuration(abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_DefaultDuration(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            *value = detach(shim().DefaultDuration());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().DefaultDuration());
             return S_OK;
         }
         catch (...)
@@ -754,11 +806,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationServic
         }
     }
 
-    HRESULT __stdcall put_DefaultDuration(abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall put_DefaultDuration(impl::abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            shim().DefaultDuration(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().DefaultDuration(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
             return S_OK;
         }
         catch (...)
@@ -767,11 +820,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationServic
         }
     }
 
-    HRESULT __stdcall get_DefaultEasingFunction(abi_arg_out<Windows::UI::Composition::ICompositionEasingFunction> value) noexcept override
+    HRESULT __stdcall get_DefaultEasingFunction(impl::abi_arg_out<Windows::UI::Composition::ICompositionEasingFunction> value) noexcept override
     {
         try
         {
-            *value = detach(shim().DefaultEasingFunction());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().DefaultEasingFunction());
             return S_OK;
         }
         catch (...)
@@ -781,11 +835,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationServic
         }
     }
 
-    HRESULT __stdcall put_DefaultEasingFunction(abi_arg_in<Windows::UI::Composition::ICompositionEasingFunction> value) noexcept override
+    HRESULT __stdcall put_DefaultEasingFunction(impl::abi_arg_in<Windows::UI::Composition::ICompositionEasingFunction> value) noexcept override
     {
         try
         {
-            shim().DefaultEasingFunction(*reinterpret_cast<const Windows::UI::Composition::CompositionEasingFunction *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().DefaultEasingFunction(*reinterpret_cast<const Windows::UI::Composition::CompositionEasingFunction *>(&value));
             return S_OK;
         }
         catch (...)
@@ -794,11 +849,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationServic
         }
     }
 
-    HRESULT __stdcall abi_PrepareToAnimate(abi_arg_in<hstring> key, abi_arg_in<Windows::UI::Xaml::IUIElement> source, abi_arg_out<Windows::UI::Xaml::Media::Animation::IConnectedAnimation> returnValue) noexcept override
+    HRESULT __stdcall abi_PrepareToAnimate(impl::abi_arg_in<hstring> key, impl::abi_arg_in<Windows::UI::Xaml::IUIElement> source, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IConnectedAnimation> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().PrepareToAnimate(*reinterpret_cast<const hstring *>(&key), *reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&source)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().PrepareToAnimate(*reinterpret_cast<const hstring *>(&key), *reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&source)));
             return S_OK;
         }
         catch (...)
@@ -808,11 +864,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationServic
         }
     }
 
-    HRESULT __stdcall abi_GetAnimation(abi_arg_in<hstring> key, abi_arg_out<Windows::UI::Xaml::Media::Animation::IConnectedAnimation> returnValue) noexcept override
+    HRESULT __stdcall abi_GetAnimation(impl::abi_arg_in<hstring> key, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IConnectedAnimation> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().GetAnimation(*reinterpret_cast<const hstring *>(&key)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().GetAnimation(*reinterpret_cast<const hstring *>(&key)));
             return S_OK;
         }
         catch (...)
@@ -826,11 +883,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationServic
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationServiceStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IConnectedAnimationServiceStatics>
 {
-    HRESULT __stdcall abi_GetForCurrentView(abi_arg_out<Windows::UI::Xaml::Media::Animation::IConnectedAnimationService> returnValue) noexcept override
+    HRESULT __stdcall abi_GetForCurrentView(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IConnectedAnimationService> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().GetForCurrentView());
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().GetForCurrentView());
             return S_OK;
         }
         catch (...)
@@ -848,7 +906,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransition> 
     {
         try
         {
-            *value = detach(shim().HorizontalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().HorizontalOffset());
             return S_OK;
         }
         catch (...)
@@ -861,7 +920,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransition> 
     {
         try
         {
-            shim().HorizontalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().HorizontalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -874,7 +934,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransition> 
     {
         try
         {
-            *value = detach(shim().VerticalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().VerticalOffset());
             return S_OK;
         }
         catch (...)
@@ -887,7 +948,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransition> 
     {
         try
         {
-            shim().VerticalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().VerticalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -900,11 +962,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransition> 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransitionStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransitionStatics>
 {
-    HRESULT __stdcall get_HorizontalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_HorizontalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().HorizontalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().HorizontalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -914,11 +977,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransitionSt
         }
     }
 
-    HRESULT __stdcall get_VerticalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_VerticalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().VerticalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().VerticalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -932,11 +996,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContentThemeTransitionSt
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTransitionInfo> : produce_base<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTransitionInfo>
 {
-    HRESULT __stdcall get_ExitElement(abi_arg_out<Windows::UI::Xaml::IUIElement> value) noexcept override
+    HRESULT __stdcall get_ExitElement(impl::abi_arg_out<Windows::UI::Xaml::IUIElement> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExitElement());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitElement());
             return S_OK;
         }
         catch (...)
@@ -946,11 +1011,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTrans
         }
     }
 
-    HRESULT __stdcall put_ExitElement(abi_arg_in<Windows::UI::Xaml::IUIElement> value) noexcept override
+    HRESULT __stdcall put_ExitElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> value) noexcept override
     {
         try
         {
-            shim().ExitElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ExitElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&value));
             return S_OK;
         }
         catch (...)
@@ -963,11 +1029,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTrans
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTransitionInfoStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTransitionInfoStatics>
 {
-    HRESULT __stdcall get_ExitElementProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ExitElementProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExitElementProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitElementProperty());
             return S_OK;
         }
         catch (...)
@@ -977,11 +1044,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTrans
         }
     }
 
-    HRESULT __stdcall get_IsEntranceElementProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_IsEntranceElementProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().IsEntranceElementProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsEntranceElementProperty());
             return S_OK;
         }
         catch (...)
@@ -991,11 +1059,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTrans
         }
     }
 
-    HRESULT __stdcall abi_GetIsEntranceElement(abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool * value) noexcept override
+    HRESULT __stdcall abi_GetIsEntranceElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool * value) noexcept override
     {
         try
         {
-            *value = detach(shim().GetIsEntranceElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element)));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GetIsEntranceElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element)));
             return S_OK;
         }
         catch (...)
@@ -1004,11 +1073,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTrans
         }
     }
 
-    HRESULT __stdcall abi_SetIsEntranceElement(abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool value) noexcept override
+    HRESULT __stdcall abi_SetIsEntranceElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool value) noexcept override
     {
         try
         {
-            shim().SetIsEntranceElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element), value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetIsEntranceElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element), value);
             return S_OK;
         }
         catch (...)
@@ -1017,51 +1087,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTrans
         }
     }
 
-    HRESULT __stdcall get_IsExitElementProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_IsExitElementProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().IsExitElementProperty());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall abi_GetIsExitElement(abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool * value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().GetIsExitElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element)));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall abi_SetIsExitElement(abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool value) noexcept override
-    {
-        try
-        {
-            shim().SetIsExitElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element), value);
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_ExitElementContainerProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().ExitElementContainerProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsExitElementProperty());
             return S_OK;
         }
         catch (...)
@@ -1071,11 +1102,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTrans
         }
     }
 
-    HRESULT __stdcall abi_GetExitElementContainer(abi_arg_in<Windows::UI::Xaml::Controls::IListViewBase> element, bool * value) noexcept override
+    HRESULT __stdcall abi_GetIsExitElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool * value) noexcept override
     {
         try
         {
-            *value = detach(shim().GetExitElementContainer(*reinterpret_cast<const Windows::UI::Xaml::Controls::ListViewBase *>(&element)));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GetIsExitElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element)));
             return S_OK;
         }
         catch (...)
@@ -1084,11 +1116,55 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IContinuumNavigationTrans
         }
     }
 
-    HRESULT __stdcall abi_SetExitElementContainer(abi_arg_in<Windows::UI::Xaml::Controls::IListViewBase> element, bool value) noexcept override
+    HRESULT __stdcall abi_SetIsExitElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool value) noexcept override
     {
         try
         {
-            shim().SetExitElementContainer(*reinterpret_cast<const Windows::UI::Xaml::Controls::ListViewBase *>(&element), value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetIsExitElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element), value);
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_ExitElementContainerProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitElementContainerProperty());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall abi_GetExitElementContainer(impl::abi_arg_in<Windows::UI::Xaml::Controls::IListViewBase> element, bool * value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GetExitElementContainer(*reinterpret_cast<const Windows::UI::Xaml::Controls::ListViewBase *>(&element)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall abi_SetExitElementContainer(impl::abi_arg_in<Windows::UI::Xaml::Controls::IListViewBase> element, bool value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetExitElementContainer(*reinterpret_cast<const Windows::UI::Xaml::Controls::ListViewBase *>(&element), value);
             return S_OK;
         }
         catch (...)
@@ -1121,11 +1197,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDiscretePointKeyFrame> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation>
 {
-    HRESULT __stdcall get_From(abi_arg_out<Windows::Foundation::IReference<double>> value) noexcept override
+    HRESULT __stdcall get_From(impl::abi_arg_out<Windows::Foundation::IReference<double>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().From());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().From());
             return S_OK;
         }
         catch (...)
@@ -1135,11 +1212,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produ
         }
     }
 
-    HRESULT __stdcall put_From(abi_arg_in<Windows::Foundation::IReference<double>> value) noexcept override
+    HRESULT __stdcall put_From(impl::abi_arg_in<Windows::Foundation::IReference<double>> value) noexcept override
     {
         try
         {
-            shim().From(*reinterpret_cast<const Windows::Foundation::IReference<double> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().From(*reinterpret_cast<const Windows::Foundation::IReference<double> *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1148,38 +1226,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produ
         }
     }
 
-    HRESULT __stdcall get_To(abi_arg_out<Windows::Foundation::IReference<double>> value) noexcept override
+    HRESULT __stdcall get_To(impl::abi_arg_out<Windows::Foundation::IReference<double>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().To());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_To(abi_arg_in<Windows::Foundation::IReference<double>> value) noexcept override
-    {
-        try
-        {
-            shim().To(*reinterpret_cast<const Windows::Foundation::IReference<double> *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_By(abi_arg_out<Windows::Foundation::IReference<double>> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().By());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().To());
             return S_OK;
         }
         catch (...)
@@ -1189,11 +1241,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produ
         }
     }
 
-    HRESULT __stdcall put_By(abi_arg_in<Windows::Foundation::IReference<double>> value) noexcept override
+    HRESULT __stdcall put_To(impl::abi_arg_in<Windows::Foundation::IReference<double>> value) noexcept override
     {
         try
         {
-            shim().By(*reinterpret_cast<const Windows::Foundation::IReference<double> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().To(*reinterpret_cast<const Windows::Foundation::IReference<double> *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1202,11 +1255,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produ
         }
     }
 
-    HRESULT __stdcall get_EasingFunction(abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall get_By(impl::abi_arg_out<Windows::Foundation::IReference<double>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunction());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().By());
             return S_OK;
         }
         catch (...)
@@ -1216,11 +1270,41 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produ
         }
     }
 
-    HRESULT __stdcall put_EasingFunction(abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall put_By(impl::abi_arg_in<Windows::Foundation::IReference<double>> value) noexcept override
     {
         try
         {
-            shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().By(*reinterpret_cast<const Windows::Foundation::IReference<double> *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_EasingFunction(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunction());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_EasingFunction(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1233,7 +1317,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produ
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimation());
             return S_OK;
         }
         catch (...)
@@ -1246,7 +1331,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produ
     {
         try
         {
-            shim().EnableDependentAnimation(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableDependentAnimation(value);
             return S_OK;
         }
         catch (...)
@@ -1259,11 +1345,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimation> : produ
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics>
 {
-    HRESULT __stdcall get_FromProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromProperty());
             return S_OK;
         }
         catch (...)
@@ -1273,11 +1360,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics> 
         }
     }
 
-    HRESULT __stdcall get_ToProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ToProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ToProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToProperty());
             return S_OK;
         }
         catch (...)
@@ -1287,11 +1375,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics> 
         }
     }
 
-    HRESULT __stdcall get_ByProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ByProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ByProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ByProperty());
             return S_OK;
         }
         catch (...)
@@ -1301,11 +1390,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics> 
         }
     }
 
-    HRESULT __stdcall get_EasingFunctionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EasingFunctionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunctionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunctionProperty());
             return S_OK;
         }
         catch (...)
@@ -1315,11 +1405,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics> 
         }
     }
 
-    HRESULT __stdcall get_EnableDependentAnimationProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EnableDependentAnimationProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimationProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimationProperty());
             return S_OK;
         }
         catch (...)
@@ -1333,11 +1424,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics> 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyFrames> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyFrames>
 {
-    HRESULT __stdcall get_KeyFrames(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::DoubleKeyFrame>> value) noexcept override
+    HRESULT __stdcall get_KeyFrames(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::DoubleKeyFrame>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyFrames());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyFrames());
             return S_OK;
         }
         catch (...)
@@ -1351,7 +1443,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyF
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimation());
             return S_OK;
         }
         catch (...)
@@ -1364,7 +1457,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyF
     {
         try
         {
-            shim().EnableDependentAnimation(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableDependentAnimation(value);
             return S_OK;
         }
         catch (...)
@@ -1377,11 +1471,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyF
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyFramesStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyFramesStatics>
 {
-    HRESULT __stdcall get_EnableDependentAnimationProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EnableDependentAnimationProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimationProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimationProperty());
             return S_OK;
         }
         catch (...)
@@ -1399,7 +1494,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame> : produc
     {
         try
         {
-            *value = detach(shim().Value());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Value());
             return S_OK;
         }
         catch (...)
@@ -1412,7 +1508,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame> : produc
     {
         try
         {
-            shim().Value(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Value(value);
             return S_OK;
         }
         catch (...)
@@ -1421,11 +1518,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame> : produc
         }
     }
 
-    HRESULT __stdcall get_KeyTime(abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
+    HRESULT __stdcall get_KeyTime(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyTime());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyTime());
             return S_OK;
         }
         catch (...)
@@ -1434,11 +1532,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame> : produc
         }
     }
 
-    HRESULT __stdcall put_KeyTime(abi_arg_in<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
+    HRESULT __stdcall put_KeyTime(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
     {
         try
         {
-            shim().KeyTime(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeyTime *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().KeyTime(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeyTime *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1451,11 +1550,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame> : produc
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameFactory> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameFactory>
 {
-    HRESULT __stdcall abi_CreateInstance(abi_arg_in<Windows::IInspectable> outer, abi_arg_out<Windows::IInspectable> inner, abi_arg_out<Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame> instance) noexcept override
+    HRESULT __stdcall abi_CreateInstance(impl::abi_arg_in<Windows::Foundation::IInspectable> outer, impl::abi_arg_out<Windows::Foundation::IInspectable> inner, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame> instance) noexcept override
     {
         try
         {
-            *instance = detach(shim().CreateInstance(*reinterpret_cast<const Windows::IInspectable *>(&outer), *inner));
+            typename D::abi_guard guard(this->shim());
+            *instance = detach_abi(this->shim().CreateInstance(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&outer), *reinterpret_cast<Windows::Foundation::IInspectable *>(inner)));
             return S_OK;
         }
         catch (...)
@@ -1470,11 +1570,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameFactory> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameStatics>
 {
-    HRESULT __stdcall get_ValueProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ValueProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ValueProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ValueProperty());
             return S_OK;
         }
         catch (...)
@@ -1484,11 +1585,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameStatics> :
         }
     }
 
-    HRESULT __stdcall get_KeyTimeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_KeyTimeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyTimeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyTimeProperty());
             return S_OK;
         }
         catch (...)
@@ -1502,11 +1604,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameStatics> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -1516,11 +1619,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimation> 
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1533,11 +1637,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimation> 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -1551,11 +1656,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimationSt
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -1565,11 +1671,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation> 
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1582,7 +1689,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation> 
     {
         try
         {
-            *value = detach(shim().ToOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToOffset());
             return S_OK;
         }
         catch (...)
@@ -1595,7 +1703,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation> 
     {
         try
         {
-            shim().ToOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToOffset(value);
             return S_OK;
         }
         catch (...)
@@ -1608,7 +1717,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation> 
     {
         try
         {
-            *value = detach(shim().Direction());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Direction());
             return S_OK;
         }
         catch (...)
@@ -1621,7 +1731,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation> 
     {
         try
         {
-            shim().Direction(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Direction(value);
             return S_OK;
         }
         catch (...)
@@ -1634,11 +1745,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation> 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -1648,11 +1760,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimationSt
         }
     }
 
-    HRESULT __stdcall get_ToOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ToOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ToOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -1662,11 +1775,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimationSt
         }
     }
 
-    HRESULT __stdcall get_DirectionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_DirectionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().DirectionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().DirectionProperty());
             return S_OK;
         }
         catch (...)
@@ -1684,11 +1798,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInNavigationTransit
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation>
 {
-    HRESULT __stdcall get_EntranceTargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_EntranceTargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EntranceTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EntranceTargetName());
             return S_OK;
         }
         catch (...)
@@ -1698,11 +1813,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation> :
         }
     }
 
-    HRESULT __stdcall put_EntranceTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_EntranceTargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().EntranceTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().EntranceTargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1711,38 +1827,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation> :
         }
     }
 
-    HRESULT __stdcall get_EntranceTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_EntranceTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EntranceTarget());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_EntranceTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
-    {
-        try
-        {
-            shim().EntranceTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_ExitTargetName(abi_arg_out<hstring> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().ExitTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EntranceTarget());
             return S_OK;
         }
         catch (...)
@@ -1752,11 +1842,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation> :
         }
     }
 
-    HRESULT __stdcall put_ExitTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_EntranceTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            shim().ExitTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().EntranceTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1765,11 +1856,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation> :
         }
     }
 
-    HRESULT __stdcall get_ExitTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_ExitTargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExitTarget());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitTargetName());
             return S_OK;
         }
         catch (...)
@@ -1779,11 +1871,41 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation> :
         }
     }
 
-    HRESULT __stdcall put_ExitTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall put_ExitTargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().ExitTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ExitTargetName(*reinterpret_cast<const hstring *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_ExitTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitTarget());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_ExitTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ExitTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1796,11 +1918,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimationStatics>
 {
-    HRESULT __stdcall get_EntranceTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EntranceTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EntranceTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EntranceTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -1810,11 +1933,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimationSta
         }
     }
 
-    HRESULT __stdcall get_EntranceTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EntranceTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EntranceTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EntranceTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -1824,11 +1948,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimationSta
         }
     }
 
-    HRESULT __stdcall get_ExitTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ExitTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExitTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -1838,11 +1963,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimationSta
         }
     }
 
-    HRESULT __stdcall get_ExitTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ExitTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExitTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -1856,11 +1982,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimationSta
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation>
 {
-    HRESULT __stdcall get_EntranceTargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_EntranceTargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EntranceTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EntranceTargetName());
             return S_OK;
         }
         catch (...)
@@ -1870,11 +1997,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation> 
         }
     }
 
-    HRESULT __stdcall put_EntranceTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_EntranceTargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().EntranceTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().EntranceTargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1883,38 +2011,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation> 
         }
     }
 
-    HRESULT __stdcall get_EntranceTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_EntranceTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EntranceTarget());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_EntranceTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
-    {
-        try
-        {
-            shim().EntranceTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_ExitTargetName(abi_arg_out<hstring> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().ExitTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EntranceTarget());
             return S_OK;
         }
         catch (...)
@@ -1924,11 +2026,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation> 
         }
     }
 
-    HRESULT __stdcall put_ExitTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_EntranceTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            shim().ExitTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().EntranceTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1937,11 +2040,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation> 
         }
     }
 
-    HRESULT __stdcall get_ExitTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_ExitTargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExitTarget());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitTargetName());
             return S_OK;
         }
         catch (...)
@@ -1951,11 +2055,41 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation> 
         }
     }
 
-    HRESULT __stdcall put_ExitTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall put_ExitTargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().ExitTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ExitTargetName(*reinterpret_cast<const hstring *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_ExitTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitTarget());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_ExitTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ExitTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1968,11 +2102,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation> 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimationStatics>
 {
-    HRESULT __stdcall get_EntranceTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EntranceTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EntranceTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EntranceTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -1982,11 +2117,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimationSt
         }
     }
 
-    HRESULT __stdcall get_EntranceTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EntranceTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EntranceTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EntranceTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -1996,11 +2132,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimationSt
         }
     }
 
-    HRESULT __stdcall get_ExitTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ExitTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExitTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -2010,11 +2147,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimationSt
         }
     }
 
-    HRESULT __stdcall get_ExitTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ExitTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExitTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExitTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -2028,11 +2166,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimationSt
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -2042,11 +2181,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnima
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2059,11 +2199,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnima
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -2077,11 +2218,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnima
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrame>
 {
-    HRESULT __stdcall get_EasingFunction(abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall get_EasingFunction(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunction());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunction());
             return S_OK;
         }
         catch (...)
@@ -2091,11 +2233,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrame> : p
         }
     }
 
-    HRESULT __stdcall put_EasingFunction(abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall put_EasingFunction(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
     {
         try
         {
-            shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2108,11 +2251,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrame> : p
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrameStatics>
 {
-    HRESULT __stdcall get_EasingFunctionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EasingFunctionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunctionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunctionProperty());
             return S_OK;
         }
         catch (...)
@@ -2126,11 +2270,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrameStati
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrame>
 {
-    HRESULT __stdcall get_EasingFunction(abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall get_EasingFunction(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunction());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunction());
             return S_OK;
         }
         catch (...)
@@ -2140,11 +2285,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrame> : 
         }
     }
 
-    HRESULT __stdcall put_EasingFunction(abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall put_EasingFunction(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
     {
         try
         {
-            shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2157,11 +2303,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrame> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrameStatics>
 {
-    HRESULT __stdcall get_EasingFunctionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EasingFunctionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunctionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunctionProperty());
             return S_OK;
         }
         catch (...)
@@ -2179,7 +2326,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> : pr
     {
         try
         {
-            *value = detach(shim().EasingMode());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingMode());
             return S_OK;
         }
         catch (...)
@@ -2192,7 +2340,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> : pr
     {
         try
         {
-            shim().EasingMode(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EasingMode(value);
             return S_OK;
         }
         catch (...)
@@ -2205,7 +2354,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> : pr
     {
         try
         {
-            *returnValue = detach(shim().Ease(normalizedTime));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().Ease(normalizedTime));
             return S_OK;
         }
         catch (...)
@@ -2222,11 +2372,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingFunctionBaseFactor
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingFunctionBaseStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEasingFunctionBaseStatics>
 {
-    HRESULT __stdcall get_EasingModeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EasingModeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingModeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingModeProperty());
             return S_OK;
         }
         catch (...)
@@ -2240,11 +2391,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingFunctionBaseStatic
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrame>
 {
-    HRESULT __stdcall get_EasingFunction(abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall get_EasingFunction(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunction());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunction());
             return S_OK;
         }
         catch (...)
@@ -2254,11 +2406,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrame> : p
         }
     }
 
-    HRESULT __stdcall put_EasingFunction(abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall put_EasingFunction(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
     {
         try
         {
-            shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2271,11 +2424,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrame> : p
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrameStatics>
 {
-    HRESULT __stdcall get_EasingFunctionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EasingFunctionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunctionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunctionProperty());
             return S_OK;
         }
         catch (...)
@@ -2293,7 +2447,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransition> :
     {
         try
         {
-            *value = detach(shim().Edge());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Edge());
             return S_OK;
         }
         catch (...)
@@ -2306,7 +2461,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransition> :
     {
         try
         {
-            shim().Edge(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Edge(value);
             return S_OK;
         }
         catch (...)
@@ -2319,11 +2475,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransition> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransitionStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransitionStatics>
 {
-    HRESULT __stdcall get_EdgeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EdgeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EdgeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EdgeProperty());
             return S_OK;
         }
         catch (...)
@@ -2341,7 +2498,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IElasticEase> : produce_b
     {
         try
         {
-            *value = detach(shim().Oscillations());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Oscillations());
             return S_OK;
         }
         catch (...)
@@ -2354,7 +2512,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IElasticEase> : produce_b
     {
         try
         {
-            shim().Oscillations(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Oscillations(value);
             return S_OK;
         }
         catch (...)
@@ -2367,7 +2526,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IElasticEase> : produce_b
     {
         try
         {
-            *value = detach(shim().Springiness());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Springiness());
             return S_OK;
         }
         catch (...)
@@ -2380,7 +2540,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IElasticEase> : produce_b
     {
         try
         {
-            shim().Springiness(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Springiness(value);
             return S_OK;
         }
         catch (...)
@@ -2393,11 +2554,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IElasticEase> : produce_b
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IElasticEaseStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IElasticEaseStatics>
 {
-    HRESULT __stdcall get_OscillationsProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OscillationsProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OscillationsProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OscillationsProperty());
             return S_OK;
         }
         catch (...)
@@ -2407,11 +2569,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IElasticEaseStatics> : pr
         }
     }
 
-    HRESULT __stdcall get_SpringinessProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_SpringinessProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SpringinessProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SpringinessProperty());
             return S_OK;
         }
         catch (...)
@@ -2429,11 +2592,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransi
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransitionInfoStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransitionInfoStatics>
 {
-    HRESULT __stdcall get_IsTargetElementProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_IsTargetElementProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().IsTargetElementProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsTargetElementProperty());
             return S_OK;
         }
         catch (...)
@@ -2443,11 +2607,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransi
         }
     }
 
-    HRESULT __stdcall abi_GetIsTargetElement(abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool * value) noexcept override
+    HRESULT __stdcall abi_GetIsTargetElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool * value) noexcept override
     {
         try
         {
-            *value = detach(shim().GetIsTargetElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element)));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GetIsTargetElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element)));
             return S_OK;
         }
         catch (...)
@@ -2456,11 +2621,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransi
         }
     }
 
-    HRESULT __stdcall abi_SetIsTargetElement(abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool value) noexcept override
+    HRESULT __stdcall abi_SetIsTargetElement(impl::abi_arg_in<Windows::UI::Xaml::IUIElement> element, bool value) noexcept override
     {
         try
         {
-            shim().SetIsTargetElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element), value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetIsTargetElement(*reinterpret_cast<const Windows::UI::Xaml::UIElement *>(&element), value);
             return S_OK;
         }
         catch (...)
@@ -2477,7 +2643,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition>
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffset());
             return S_OK;
         }
         catch (...)
@@ -2490,7 +2657,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition>
     {
         try
         {
-            shim().FromHorizontalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromHorizontalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -2503,7 +2671,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition>
     {
         try
         {
-            *value = detach(shim().FromVerticalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffset());
             return S_OK;
         }
         catch (...)
@@ -2516,7 +2685,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition>
     {
         try
         {
-            shim().FromVerticalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromVerticalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -2529,7 +2699,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition>
     {
         try
         {
-            *value = detach(shim().IsStaggeringEnabled());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsStaggeringEnabled());
             return S_OK;
         }
         catch (...)
@@ -2542,7 +2713,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition>
     {
         try
         {
-            shim().IsStaggeringEnabled(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsStaggeringEnabled(value);
             return S_OK;
         }
         catch (...)
@@ -2555,11 +2727,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition>
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransitionStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransitionStatics>
 {
-    HRESULT __stdcall get_FromHorizontalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromHorizontalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -2569,11 +2742,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransitionS
         }
     }
 
-    HRESULT __stdcall get_FromVerticalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromVerticalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromVerticalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -2583,11 +2757,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IEntranceThemeTransitionS
         }
     }
 
-    HRESULT __stdcall get_IsStaggeringEnabledProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_IsStaggeringEnabledProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().IsStaggeringEnabledProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsStaggeringEnabledProperty());
             return S_OK;
         }
         catch (...)
@@ -2605,7 +2780,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IExponentialEase> : produ
     {
         try
         {
-            *value = detach(shim().Exponent());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Exponent());
             return S_OK;
         }
         catch (...)
@@ -2618,7 +2794,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IExponentialEase> : produ
     {
         try
         {
-            shim().Exponent(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Exponent(value);
             return S_OK;
         }
         catch (...)
@@ -2631,11 +2808,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IExponentialEase> : produ
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IExponentialEaseStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IExponentialEaseStatics>
 {
-    HRESULT __stdcall get_ExponentProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ExponentProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExponentProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExponentProperty());
             return S_OK;
         }
         catch (...)
@@ -2649,11 +2827,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IExponentialEaseStatics> 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -2663,11 +2842,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimation> : 
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2680,11 +2860,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimation> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -2698,11 +2879,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimationStat
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -2712,11 +2894,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimation> :
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2729,11 +2912,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimation> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -2747,11 +2931,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimationSta
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IKeySpline> : produce_base<D, Windows::UI::Xaml::Media::Animation::IKeySpline>
 {
-    HRESULT __stdcall get_ControlPoint1(abi_arg_out<Windows::Foundation::Point> value) noexcept override
+    HRESULT __stdcall get_ControlPoint1(impl::abi_arg_out<Windows::Foundation::Point> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ControlPoint1());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ControlPoint1());
             return S_OK;
         }
         catch (...)
@@ -2760,11 +2945,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IKeySpline> : produce_bas
         }
     }
 
-    HRESULT __stdcall put_ControlPoint1(abi_arg_in<Windows::Foundation::Point> value) noexcept override
+    HRESULT __stdcall put_ControlPoint1(impl::abi_arg_in<Windows::Foundation::Point> value) noexcept override
     {
         try
         {
-            shim().ControlPoint1(*reinterpret_cast<const Windows::Foundation::Point *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ControlPoint1(*reinterpret_cast<const Windows::Foundation::Point *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2773,11 +2959,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IKeySpline> : produce_bas
         }
     }
 
-    HRESULT __stdcall get_ControlPoint2(abi_arg_out<Windows::Foundation::Point> value) noexcept override
+    HRESULT __stdcall get_ControlPoint2(impl::abi_arg_out<Windows::Foundation::Point> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ControlPoint2());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ControlPoint2());
             return S_OK;
         }
         catch (...)
@@ -2786,11 +2973,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IKeySpline> : produce_bas
         }
     }
 
-    HRESULT __stdcall put_ControlPoint2(abi_arg_in<Windows::Foundation::Point> value) noexcept override
+    HRESULT __stdcall put_ControlPoint2(impl::abi_arg_in<Windows::Foundation::Point> value) noexcept override
     {
         try
         {
-            shim().ControlPoint2(*reinterpret_cast<const Windows::Foundation::Point *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ControlPoint2(*reinterpret_cast<const Windows::Foundation::Point *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2807,11 +2995,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IKeyTimeHelper> : produce
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IKeyTimeHelperStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IKeyTimeHelperStatics>
 {
-    HRESULT __stdcall abi_FromTimeSpan(abi_arg_in<Windows::Foundation::TimeSpan> timeSpan, abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> returnValue) noexcept override
+    HRESULT __stdcall abi_FromTimeSpan(impl::abi_arg_in<Windows::Foundation::TimeSpan> timeSpan, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().FromTimeSpan(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&timeSpan)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().FromTimeSpan(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&timeSpan)));
             return S_OK;
         }
         catch (...)
@@ -2836,11 +3025,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ILinearPointKeyFrame> : p
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationThemeTransition> : produce_base<D, Windows::UI::Xaml::Media::Animation::INavigationThemeTransition>
 {
-    HRESULT __stdcall get_DefaultNavigationTransitionInfo(abi_arg_out<Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo> value) noexcept override
+    HRESULT __stdcall get_DefaultNavigationTransitionInfo(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo> value) noexcept override
     {
         try
         {
-            *value = detach(shim().DefaultNavigationTransitionInfo());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().DefaultNavigationTransitionInfo());
             return S_OK;
         }
         catch (...)
@@ -2850,11 +3040,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationThemeTransitio
         }
     }
 
-    HRESULT __stdcall put_DefaultNavigationTransitionInfo(abi_arg_in<Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo> value) noexcept override
+    HRESULT __stdcall put_DefaultNavigationTransitionInfo(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo> value) noexcept override
     {
         try
         {
-            shim().DefaultNavigationTransitionInfo(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().DefaultNavigationTransitionInfo(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo *>(&value));
             return S_OK;
         }
         catch (...)
@@ -2867,11 +3058,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationThemeTransitio
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationThemeTransitionStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::INavigationThemeTransitionStatics>
 {
-    HRESULT __stdcall get_DefaultNavigationTransitionInfoProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_DefaultNavigationTransitionInfoProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().DefaultNavigationTransitionInfoProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().DefaultNavigationTransitionInfoProperty());
             return S_OK;
         }
         catch (...)
@@ -2889,11 +3081,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationTransitionInfoFactory> : produce_base<D, Windows::UI::Xaml::Media::Animation::INavigationTransitionInfoFactory>
 {
-    HRESULT __stdcall abi_CreateInstance(abi_arg_in<Windows::IInspectable> outer, abi_arg_out<Windows::IInspectable> inner, abi_arg_out<Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo> instance) noexcept override
+    HRESULT __stdcall abi_CreateInstance(impl::abi_arg_in<Windows::Foundation::IInspectable> outer, impl::abi_arg_out<Windows::Foundation::IInspectable> inner, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo> instance) noexcept override
     {
         try
         {
-            *instance = detach(shim().CreateInstance(*reinterpret_cast<const Windows::IInspectable *>(&outer), *inner));
+            typename D::abi_guard guard(this->shim());
+            *instance = detach_abi(this->shim().CreateInstance(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&outer), *reinterpret_cast<Windows::Foundation::IInspectable *>(inner)));
             return S_OK;
         }
         catch (...)
@@ -2908,11 +3101,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationTransitionInfoOverrides> : produce_base<D, Windows::UI::Xaml::Media::Animation::INavigationTransitionInfoOverrides>
 {
-    HRESULT __stdcall abi_GetNavigationStateCore(abi_arg_out<hstring> returnValue) noexcept override
+    HRESULT __stdcall abi_GetNavigationStateCore(impl::abi_arg_out<hstring> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().GetNavigationStateCore());
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().GetNavigationStateCore());
             return S_OK;
         }
         catch (...)
@@ -2922,11 +3116,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo
         }
     }
 
-    HRESULT __stdcall abi_SetNavigationStateCore(abi_arg_in<hstring> navigationState) noexcept override
+    HRESULT __stdcall abi_SetNavigationStateCore(impl::abi_arg_in<hstring> navigationState) noexcept override
     {
         try
         {
-            shim().SetNavigationStateCore(*reinterpret_cast<const hstring *>(&navigationState));
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetNavigationStateCore(*reinterpret_cast<const hstring *>(&navigationState));
             return S_OK;
         }
         catch (...)
@@ -2939,11 +3134,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyFrames> : produce_base<D, Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyFrames>
 {
-    HRESULT __stdcall get_KeyFrames(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::ObjectKeyFrame>> value) noexcept override
+    HRESULT __stdcall get_KeyFrames(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::ObjectKeyFrame>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyFrames());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyFrames());
             return S_OK;
         }
         catch (...)
@@ -2957,7 +3153,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyF
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimation());
             return S_OK;
         }
         catch (...)
@@ -2970,7 +3167,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyF
     {
         try
         {
-            shim().EnableDependentAnimation(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableDependentAnimation(value);
             return S_OK;
         }
         catch (...)
@@ -2983,11 +3181,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyF
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyFramesStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyFramesStatics>
 {
-    HRESULT __stdcall get_EnableDependentAnimationProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EnableDependentAnimationProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimationProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimationProperty());
             return S_OK;
         }
         catch (...)
@@ -3001,11 +3200,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyF
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrame>
 {
-    HRESULT __stdcall get_Value(abi_arg_out<Windows::IInspectable> value) noexcept override
+    HRESULT __stdcall get_Value(impl::abi_arg_out<Windows::Foundation::IInspectable> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Value());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Value());
             return S_OK;
         }
         catch (...)
@@ -3015,11 +3215,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrame> : produc
         }
     }
 
-    HRESULT __stdcall put_Value(abi_arg_in<Windows::IInspectable> value) noexcept override
+    HRESULT __stdcall put_Value(impl::abi_arg_in<Windows::Foundation::IInspectable> value) noexcept override
     {
         try
         {
-            shim().Value(*reinterpret_cast<const Windows::IInspectable *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Value(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3028,11 +3229,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrame> : produc
         }
     }
 
-    HRESULT __stdcall get_KeyTime(abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
+    HRESULT __stdcall get_KeyTime(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyTime());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyTime());
             return S_OK;
         }
         catch (...)
@@ -3041,11 +3243,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrame> : produc
         }
     }
 
-    HRESULT __stdcall put_KeyTime(abi_arg_in<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
+    HRESULT __stdcall put_KeyTime(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
     {
         try
         {
-            shim().KeyTime(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeyTime *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().KeyTime(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeyTime *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3058,11 +3261,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrame> : produc
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrameFactory> : produce_base<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrameFactory>
 {
-    HRESULT __stdcall abi_CreateInstance(abi_arg_in<Windows::IInspectable> outer, abi_arg_out<Windows::IInspectable> inner, abi_arg_out<Windows::UI::Xaml::Media::Animation::IObjectKeyFrame> instance) noexcept override
+    HRESULT __stdcall abi_CreateInstance(impl::abi_arg_in<Windows::Foundation::IInspectable> outer, impl::abi_arg_out<Windows::Foundation::IInspectable> inner, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IObjectKeyFrame> instance) noexcept override
     {
         try
         {
-            *instance = detach(shim().CreateInstance(*reinterpret_cast<const Windows::IInspectable *>(&outer), *inner));
+            typename D::abi_guard guard(this->shim());
+            *instance = detach_abi(this->shim().CreateInstance(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&outer), *reinterpret_cast<Windows::Foundation::IInspectable *>(inner)));
             return S_OK;
         }
         catch (...)
@@ -3077,11 +3281,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrameFactory> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrameStatics>
 {
-    HRESULT __stdcall get_ValueProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ValueProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ValueProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ValueProperty());
             return S_OK;
         }
         catch (...)
@@ -3091,11 +3296,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IObjectKeyFrameStatics> :
         }
     }
 
-    HRESULT __stdcall get_KeyTimeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_KeyTimeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyTimeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyTimeProperty());
             return S_OK;
         }
         catch (...)
@@ -3113,7 +3319,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPaneThemeTransition> : p
     {
         try
         {
-            *value = detach(shim().Edge());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Edge());
             return S_OK;
         }
         catch (...)
@@ -3126,7 +3333,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPaneThemeTransition> : p
     {
         try
         {
-            shim().Edge(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Edge(value);
             return S_OK;
         }
         catch (...)
@@ -3139,11 +3347,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPaneThemeTransition> : p
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPaneThemeTransitionStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPaneThemeTransitionStatics>
 {
-    HRESULT __stdcall get_EdgeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EdgeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EdgeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EdgeProperty());
             return S_OK;
         }
         catch (...)
@@ -3157,11 +3366,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPaneThemeTransitionStati
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointAnimation>
 {
-    HRESULT __stdcall get_From(abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
+    HRESULT __stdcall get_From(impl::abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().From());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().From());
             return S_OK;
         }
         catch (...)
@@ -3171,11 +3381,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produc
         }
     }
 
-    HRESULT __stdcall put_From(abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
+    HRESULT __stdcall put_From(impl::abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            shim().From(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::Point> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().From(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::Point> *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3184,38 +3395,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produc
         }
     }
 
-    HRESULT __stdcall get_To(abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
+    HRESULT __stdcall get_To(impl::abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().To());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_To(abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
-    {
-        try
-        {
-            shim().To(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::Point> *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_By(abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().By());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().To());
             return S_OK;
         }
         catch (...)
@@ -3225,11 +3410,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produc
         }
     }
 
-    HRESULT __stdcall put_By(abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
+    HRESULT __stdcall put_To(impl::abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            shim().By(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::Point> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().To(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::Point> *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3238,11 +3424,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produc
         }
     }
 
-    HRESULT __stdcall get_EasingFunction(abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall get_By(impl::abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunction());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().By());
             return S_OK;
         }
         catch (...)
@@ -3252,11 +3439,41 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produc
         }
     }
 
-    HRESULT __stdcall put_EasingFunction(abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    HRESULT __stdcall put_By(impl::abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().By(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::Point> *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_EasingFunction(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunction());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_EasingFunction(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IEasingFunctionBase> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().EasingFunction(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::EasingFunctionBase *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3269,7 +3486,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produc
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimation());
             return S_OK;
         }
         catch (...)
@@ -3282,7 +3500,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produc
     {
         try
         {
-            shim().EnableDependentAnimation(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableDependentAnimation(value);
             return S_OK;
         }
         catch (...)
@@ -3295,11 +3514,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimation> : produc
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointAnimationStatics>
 {
-    HRESULT __stdcall get_FromProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromProperty());
             return S_OK;
         }
         catch (...)
@@ -3309,11 +3529,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationStatics> :
         }
     }
 
-    HRESULT __stdcall get_ToProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ToProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ToProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToProperty());
             return S_OK;
         }
         catch (...)
@@ -3323,11 +3544,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationStatics> :
         }
     }
 
-    HRESULT __stdcall get_ByProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ByProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ByProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ByProperty());
             return S_OK;
         }
         catch (...)
@@ -3337,11 +3559,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationStatics> :
         }
     }
 
-    HRESULT __stdcall get_EasingFunctionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EasingFunctionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EasingFunctionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EasingFunctionProperty());
             return S_OK;
         }
         catch (...)
@@ -3351,11 +3574,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationStatics> :
         }
     }
 
-    HRESULT __stdcall get_EnableDependentAnimationProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EnableDependentAnimationProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimationProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimationProperty());
             return S_OK;
         }
         catch (...)
@@ -3369,11 +3593,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationStatics> :
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFrames> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFrames>
 {
-    HRESULT __stdcall get_KeyFrames(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::PointKeyFrame>> value) noexcept override
+    HRESULT __stdcall get_KeyFrames(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::PointKeyFrame>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyFrames());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyFrames());
             return S_OK;
         }
         catch (...)
@@ -3387,7 +3612,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFr
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimation());
             return S_OK;
         }
         catch (...)
@@ -3400,7 +3626,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFr
     {
         try
         {
-            shim().EnableDependentAnimation(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableDependentAnimation(value);
             return S_OK;
         }
         catch (...)
@@ -3413,11 +3640,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFr
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFramesStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFramesStatics>
 {
-    HRESULT __stdcall get_EnableDependentAnimationProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_EnableDependentAnimationProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EnableDependentAnimationProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnableDependentAnimationProperty());
             return S_OK;
         }
         catch (...)
@@ -3431,11 +3659,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFr
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrame>
 {
-    HRESULT __stdcall get_Value(abi_arg_out<Windows::Foundation::Point> value) noexcept override
+    HRESULT __stdcall get_Value(impl::abi_arg_out<Windows::Foundation::Point> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Value());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Value());
             return S_OK;
         }
         catch (...)
@@ -3444,11 +3673,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrame> : produce
         }
     }
 
-    HRESULT __stdcall put_Value(abi_arg_in<Windows::Foundation::Point> value) noexcept override
+    HRESULT __stdcall put_Value(impl::abi_arg_in<Windows::Foundation::Point> value) noexcept override
     {
         try
         {
-            shim().Value(*reinterpret_cast<const Windows::Foundation::Point *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Value(*reinterpret_cast<const Windows::Foundation::Point *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3457,11 +3687,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrame> : produce
         }
     }
 
-    HRESULT __stdcall get_KeyTime(abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
+    HRESULT __stdcall get_KeyTime(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyTime());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyTime());
             return S_OK;
         }
         catch (...)
@@ -3470,11 +3701,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrame> : produce
         }
     }
 
-    HRESULT __stdcall put_KeyTime(abi_arg_in<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
+    HRESULT __stdcall put_KeyTime(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::KeyTime> value) noexcept override
     {
         try
         {
-            shim().KeyTime(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeyTime *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().KeyTime(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeyTime *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3487,11 +3719,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrame> : produce
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrameFactory> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrameFactory>
 {
-    HRESULT __stdcall abi_CreateInstance(abi_arg_in<Windows::IInspectable> outer, abi_arg_out<Windows::IInspectable> inner, abi_arg_out<Windows::UI::Xaml::Media::Animation::IPointKeyFrame> instance) noexcept override
+    HRESULT __stdcall abi_CreateInstance(impl::abi_arg_in<Windows::Foundation::IInspectable> outer, impl::abi_arg_out<Windows::Foundation::IInspectable> inner, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IPointKeyFrame> instance) noexcept override
     {
         try
         {
-            *instance = detach(shim().CreateInstance(*reinterpret_cast<const Windows::IInspectable *>(&outer), *inner));
+            typename D::abi_guard guard(this->shim());
+            *instance = detach_abi(this->shim().CreateInstance(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&outer), *reinterpret_cast<Windows::Foundation::IInspectable *>(inner)));
             return S_OK;
         }
         catch (...)
@@ -3506,11 +3739,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrameFactory> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrameStatics>
 {
-    HRESULT __stdcall get_ValueProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ValueProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ValueProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ValueProperty());
             return S_OK;
         }
         catch (...)
@@ -3520,11 +3754,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrameStatics> : 
         }
     }
 
-    HRESULT __stdcall get_KeyTimeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_KeyTimeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeyTimeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeyTimeProperty());
             return S_OK;
         }
         catch (...)
@@ -3538,11 +3773,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointKeyFrameStatics> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -3552,11 +3788,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimatio
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3569,11 +3806,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimatio
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -3587,11 +3825,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimatio
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -3601,11 +3840,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimation>
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3618,11 +3858,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimation>
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -3636,11 +3877,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimationS
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -3650,11 +3892,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation> : p
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3667,7 +3910,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation> : p
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffset());
             return S_OK;
         }
         catch (...)
@@ -3680,7 +3924,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation> : p
     {
         try
         {
-            shim().FromHorizontalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromHorizontalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -3693,7 +3938,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation> : p
     {
         try
         {
-            *value = detach(shim().FromVerticalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffset());
             return S_OK;
         }
         catch (...)
@@ -3706,7 +3952,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation> : p
     {
         try
         {
-            shim().FromVerticalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromVerticalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -3719,11 +3966,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation> : p
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -3733,11 +3981,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimationStati
         }
     }
 
-    HRESULT __stdcall get_FromHorizontalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromHorizontalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -3747,11 +3996,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimationStati
         }
     }
 
-    HRESULT __stdcall get_FromVerticalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromVerticalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromVerticalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -3765,11 +4015,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopInThemeAnimationStati
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -3779,11 +4030,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimation> : 
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -3796,11 +4048,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimation> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -3818,7 +4071,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopupThemeTransition> : 
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffset());
             return S_OK;
         }
         catch (...)
@@ -3831,7 +4085,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopupThemeTransition> : 
     {
         try
         {
-            shim().FromHorizontalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromHorizontalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -3844,7 +4099,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopupThemeTransition> : 
     {
         try
         {
-            *value = detach(shim().FromVerticalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffset());
             return S_OK;
         }
         catch (...)
@@ -3857,7 +4113,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopupThemeTransition> : 
     {
         try
         {
-            shim().FromVerticalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromVerticalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -3870,11 +4127,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopupThemeTransition> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPopupThemeTransitionStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPopupThemeTransitionStatics>
 {
-    HRESULT __stdcall get_FromHorizontalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromHorizontalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -3884,11 +4142,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPopupThemeTransitionStat
         }
     }
 
-    HRESULT __stdcall get_FromVerticalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromVerticalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromVerticalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -3906,7 +4165,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPowerEase> : produce_bas
     {
         try
         {
-            *value = detach(shim().Power());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Power());
             return S_OK;
         }
         catch (...)
@@ -3919,7 +4179,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPowerEase> : produce_bas
     {
         try
         {
-            shim().Power(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Power(value);
             return S_OK;
         }
         catch (...)
@@ -3932,11 +4193,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IPowerEase> : produce_bas
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IPowerEaseStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IPowerEaseStatics>
 {
-    HRESULT __stdcall get_PowerProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_PowerProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PowerProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PowerProperty());
             return S_OK;
         }
         catch (...)
@@ -3970,11 +4232,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelper> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStatics>
 {
-    HRESULT __stdcall get_Forever(abi_arg_out<Windows::UI::Xaml::Media::Animation::RepeatBehavior> value) noexcept override
+    HRESULT __stdcall get_Forever(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::RepeatBehavior> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Forever());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Forever());
             return S_OK;
         }
         catch (...)
@@ -3983,11 +4246,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStat
         }
     }
 
-    HRESULT __stdcall abi_FromCount(double count, abi_arg_out<Windows::UI::Xaml::Media::Animation::RepeatBehavior> returnValue) noexcept override
+    HRESULT __stdcall abi_FromCount(double count, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::RepeatBehavior> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().FromCount(count));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().FromCount(count));
             return S_OK;
         }
         catch (...)
@@ -3996,11 +4260,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStat
         }
     }
 
-    HRESULT __stdcall abi_FromDuration(abi_arg_in<Windows::Foundation::TimeSpan> duration, abi_arg_out<Windows::UI::Xaml::Media::Animation::RepeatBehavior> returnValue) noexcept override
+    HRESULT __stdcall abi_FromDuration(impl::abi_arg_in<Windows::Foundation::TimeSpan> duration, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::RepeatBehavior> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().FromDuration(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&duration)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().FromDuration(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&duration)));
             return S_OK;
         }
         catch (...)
@@ -4009,11 +4274,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStat
         }
     }
 
-    HRESULT __stdcall abi_GetHasCount(abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> target, bool * value) noexcept override
+    HRESULT __stdcall abi_GetHasCount(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> target, bool * value) noexcept override
     {
         try
         {
-            *value = detach(shim().GetHasCount(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&target)));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GetHasCount(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&target)));
             return S_OK;
         }
         catch (...)
@@ -4022,11 +4288,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStat
         }
     }
 
-    HRESULT __stdcall abi_GetHasDuration(abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> target, bool * value) noexcept override
+    HRESULT __stdcall abi_GetHasDuration(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> target, bool * value) noexcept override
     {
         try
         {
-            *value = detach(shim().GetHasDuration(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&target)));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GetHasDuration(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&target)));
             return S_OK;
         }
         catch (...)
@@ -4035,11 +4302,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStat
         }
     }
 
-    HRESULT __stdcall abi_Equals(abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> target, abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> value, bool * returnValue) noexcept override
+    HRESULT __stdcall abi_Equals(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> target, impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> value, bool * returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().Equals(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&target), *reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&value)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().Equals(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&target), *reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&value)));
             return S_OK;
         }
         catch (...)
@@ -4052,11 +4320,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStat
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -4066,11 +4335,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4083,7 +4353,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffset());
             return S_OK;
         }
         catch (...)
@@ -4096,7 +4367,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation
     {
         try
         {
-            shim().FromHorizontalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromHorizontalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -4109,7 +4381,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation
     {
         try
         {
-            *value = detach(shim().FromVerticalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffset());
             return S_OK;
         }
         catch (...)
@@ -4122,7 +4395,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation
     {
         try
         {
-            shim().FromVerticalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromVerticalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -4135,11 +4409,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -4149,11 +4424,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_FromHorizontalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromHorizontalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -4163,11 +4439,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_FromVerticalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromVerticalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromVerticalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -4189,7 +4466,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeTransitio
     {
         try
         {
-            *value = detach(shim().IsStaggeringEnabled());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsStaggeringEnabled());
             return S_OK;
         }
         catch (...)
@@ -4202,7 +4480,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeTransitio
     {
         try
         {
-            shim().IsStaggeringEnabled(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsStaggeringEnabled(value);
             return S_OK;
         }
         catch (...)
@@ -4215,11 +4494,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeTransitio
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeTransitionStatics2> : produce_base<D, Windows::UI::Xaml::Media::Animation::IRepositionThemeTransitionStatics2>
 {
-    HRESULT __stdcall get_IsStaggeringEnabledProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_IsStaggeringEnabledProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().IsStaggeringEnabledProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsStaggeringEnabledProperty());
             return S_OK;
         }
         catch (...)
@@ -4241,11 +4521,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISlideNavigationTransitio
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrame>
 {
-    HRESULT __stdcall get_KeySpline(abi_arg_out<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
+    HRESULT __stdcall get_KeySpline(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeySpline());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeySpline());
             return S_OK;
         }
         catch (...)
@@ -4255,11 +4536,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrame> : p
         }
     }
 
-    HRESULT __stdcall put_KeySpline(abi_arg_in<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
+    HRESULT __stdcall put_KeySpline(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
     {
         try
         {
-            shim().KeySpline(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeySpline *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().KeySpline(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeySpline *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4272,11 +4554,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrame> : p
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrameStatics>
 {
-    HRESULT __stdcall get_KeySplineProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_KeySplineProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeySplineProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeySplineProperty());
             return S_OK;
         }
         catch (...)
@@ -4290,11 +4573,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrameStati
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrame>
 {
-    HRESULT __stdcall get_KeySpline(abi_arg_out<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
+    HRESULT __stdcall get_KeySpline(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeySpline());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeySpline());
             return S_OK;
         }
         catch (...)
@@ -4304,11 +4588,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrame> : 
         }
     }
 
-    HRESULT __stdcall put_KeySpline(abi_arg_in<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
+    HRESULT __stdcall put_KeySpline(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
     {
         try
         {
-            shim().KeySpline(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeySpline *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().KeySpline(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeySpline *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4321,11 +4606,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrame> : 
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrameStatics>
 {
-    HRESULT __stdcall get_KeySplineProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_KeySplineProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeySplineProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeySplineProperty());
             return S_OK;
         }
         catch (...)
@@ -4339,11 +4625,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrameStat
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrame> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrame>
 {
-    HRESULT __stdcall get_KeySpline(abi_arg_out<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
+    HRESULT __stdcall get_KeySpline(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeySpline());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeySpline());
             return S_OK;
         }
         catch (...)
@@ -4353,11 +4640,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrame> : p
         }
     }
 
-    HRESULT __stdcall put_KeySpline(abi_arg_in<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
+    HRESULT __stdcall put_KeySpline(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::IKeySpline> value) noexcept override
     {
         try
         {
-            shim().KeySpline(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeySpline *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().KeySpline(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::KeySpline *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4370,11 +4658,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrame> : p
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrameStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrameStatics>
 {
-    HRESULT __stdcall get_KeySplineProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_KeySplineProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().KeySplineProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().KeySplineProperty());
             return S_OK;
         }
         catch (...)
@@ -4388,11 +4677,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrameStati
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation>
 {
-    HRESULT __stdcall get_OpenedTargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_OpenedTargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedTargetName());
             return S_OK;
         }
         catch (...)
@@ -4402,11 +4692,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall put_OpenedTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_OpenedTargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().OpenedTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().OpenedTargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4415,38 +4706,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_OpenedTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_OpenedTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedTarget());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_OpenedTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
-    {
-        try
-        {
-            shim().OpenedTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_ClosedTargetName(abi_arg_out<hstring> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().ClosedTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedTarget());
             return S_OK;
         }
         catch (...)
@@ -4456,11 +4721,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall put_ClosedTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_OpenedTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            shim().ClosedTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().OpenedTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4469,38 +4735,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ClosedTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_ClosedTargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ClosedTarget());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_ClosedTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
-    {
-        try
-        {
-            shim().ClosedTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_ContentTargetName(abi_arg_out<hstring> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().ContentTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedTargetName());
             return S_OK;
         }
         catch (...)
@@ -4510,11 +4750,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall put_ContentTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_ClosedTargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().ContentTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ClosedTargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4523,11 +4764,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ContentTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_ClosedTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTarget());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedTarget());
             return S_OK;
         }
         catch (...)
@@ -4537,11 +4779,70 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall put_ContentTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall put_ClosedTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            shim().ContentTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ClosedTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_ContentTargetName(impl::abi_arg_out<hstring> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTargetName());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_ContentTargetName(impl::abi_arg_in<hstring> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ContentTargetName(*reinterpret_cast<const hstring *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_ContentTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTarget());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_ContentTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ContentTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4554,7 +4855,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            *value = detach(shim().OpenedLength());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedLength());
             return S_OK;
         }
         catch (...)
@@ -4567,7 +4869,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            shim().OpenedLength(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().OpenedLength(value);
             return S_OK;
         }
         catch (...)
@@ -4580,7 +4883,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            *value = detach(shim().ClosedLength());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedLength());
             return S_OK;
         }
         catch (...)
@@ -4593,7 +4897,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            shim().ClosedLength(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ClosedLength(value);
             return S_OK;
         }
         catch (...)
@@ -4606,7 +4911,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            *value = detach(shim().OffsetFromCenter());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OffsetFromCenter());
             return S_OK;
         }
         catch (...)
@@ -4619,7 +4925,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            shim().OffsetFromCenter(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().OffsetFromCenter(value);
             return S_OK;
         }
         catch (...)
@@ -4632,7 +4939,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            *value = detach(shim().ContentTranslationDirection());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTranslationDirection());
             return S_OK;
         }
         catch (...)
@@ -4645,7 +4953,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            shim().ContentTranslationDirection(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ContentTranslationDirection(value);
             return S_OK;
         }
         catch (...)
@@ -4658,7 +4967,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            *value = detach(shim().ContentTranslationOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTranslationOffset());
             return S_OK;
         }
         catch (...)
@@ -4671,7 +4981,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
     {
         try
         {
-            shim().ContentTranslationOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ContentTranslationOffset(value);
             return S_OK;
         }
         catch (...)
@@ -4684,11 +4995,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimationStatics>
 {
-    HRESULT __stdcall get_OpenedTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OpenedTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -4698,11 +5010,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_OpenedTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OpenedTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -4712,11 +5025,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ClosedTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ClosedTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ClosedTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -4726,11 +5040,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ClosedTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ClosedTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ClosedTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -4740,11 +5055,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ContentTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ContentTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -4754,11 +5070,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ContentTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ContentTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -4768,11 +5085,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_OpenedLengthProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OpenedLengthProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedLengthProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedLengthProperty());
             return S_OK;
         }
         catch (...)
@@ -4782,11 +5100,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ClosedLengthProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ClosedLengthProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ClosedLengthProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedLengthProperty());
             return S_OK;
         }
         catch (...)
@@ -4796,11 +5115,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_OffsetFromCenterProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OffsetFromCenterProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OffsetFromCenterProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OffsetFromCenterProperty());
             return S_OK;
         }
         catch (...)
@@ -4810,11 +5130,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ContentTranslationDirectionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ContentTranslationDirectionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTranslationDirectionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTranslationDirectionProperty());
             return S_OK;
         }
         catch (...)
@@ -4824,11 +5145,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
         }
     }
 
-    HRESULT __stdcall get_ContentTranslationOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ContentTranslationOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTranslationOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTranslationOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -4842,11 +5164,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
 {
-    HRESULT __stdcall get_OpenedTargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_OpenedTargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedTargetName());
             return S_OK;
         }
         catch (...)
@@ -4856,11 +5179,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
         }
     }
 
-    HRESULT __stdcall put_OpenedTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_OpenedTargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().OpenedTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().OpenedTargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4869,38 +5193,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
         }
     }
 
-    HRESULT __stdcall get_OpenedTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_OpenedTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedTarget());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_OpenedTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
-    {
-        try
-        {
-            shim().OpenedTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_ClosedTargetName(abi_arg_out<hstring> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().ClosedTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedTarget());
             return S_OK;
         }
         catch (...)
@@ -4910,11 +5208,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
         }
     }
 
-    HRESULT __stdcall put_ClosedTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_OpenedTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            shim().ClosedTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().OpenedTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4923,38 +5222,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
         }
     }
 
-    HRESULT __stdcall get_ClosedTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_ClosedTargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ClosedTarget());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall put_ClosedTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
-    {
-        try
-        {
-            shim().ClosedTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_ContentTargetName(abi_arg_out<hstring> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().ContentTargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedTargetName());
             return S_OK;
         }
         catch (...)
@@ -4964,11 +5237,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
         }
     }
 
-    HRESULT __stdcall put_ContentTargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_ClosedTargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().ContentTargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ClosedTargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -4977,11 +5251,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
         }
     }
 
-    HRESULT __stdcall get_ContentTarget(abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall get_ClosedTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTarget());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedTarget());
             return S_OK;
         }
         catch (...)
@@ -4991,11 +5266,70 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
         }
     }
 
-    HRESULT __stdcall put_ContentTarget(abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    HRESULT __stdcall put_ClosedTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
     {
         try
         {
-            shim().ContentTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ClosedTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_ContentTargetName(impl::abi_arg_out<hstring> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTargetName());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_ContentTargetName(impl::abi_arg_in<hstring> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ContentTargetName(*reinterpret_cast<const hstring *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_ContentTarget(impl::abi_arg_out<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTarget());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_ContentTarget(impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ContentTarget(*reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&value));
             return S_OK;
         }
         catch (...)
@@ -5008,7 +5342,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            *value = detach(shim().OpenedLength());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedLength());
             return S_OK;
         }
         catch (...)
@@ -5021,7 +5356,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            shim().OpenedLength(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().OpenedLength(value);
             return S_OK;
         }
         catch (...)
@@ -5034,7 +5370,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            *value = detach(shim().ClosedLength());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedLength());
             return S_OK;
         }
         catch (...)
@@ -5047,7 +5384,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            shim().ClosedLength(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ClosedLength(value);
             return S_OK;
         }
         catch (...)
@@ -5060,7 +5398,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            *value = detach(shim().OffsetFromCenter());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OffsetFromCenter());
             return S_OK;
         }
         catch (...)
@@ -5073,7 +5412,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            shim().OffsetFromCenter(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().OffsetFromCenter(value);
             return S_OK;
         }
         catch (...)
@@ -5086,7 +5426,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            *value = detach(shim().ContentTranslationDirection());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTranslationDirection());
             return S_OK;
         }
         catch (...)
@@ -5099,7 +5440,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            shim().ContentTranslationDirection(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ContentTranslationDirection(value);
             return S_OK;
         }
         catch (...)
@@ -5112,7 +5454,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            *value = detach(shim().ContentTranslationOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTranslationOffset());
             return S_OK;
         }
         catch (...)
@@ -5125,7 +5468,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
     {
         try
         {
-            shim().ContentTranslationOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ContentTranslationOffset(value);
             return S_OK;
         }
         catch (...)
@@ -5138,11 +5482,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationStatics>
 {
-    HRESULT __stdcall get_OpenedTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OpenedTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -5152,11 +5497,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_OpenedTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OpenedTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -5166,11 +5512,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ClosedTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ClosedTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ClosedTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -5180,11 +5527,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ClosedTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ClosedTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ClosedTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -5194,11 +5542,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ContentTargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ContentTargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -5208,11 +5557,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ContentTargetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ContentTargetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTargetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTargetProperty());
             return S_OK;
         }
         catch (...)
@@ -5222,11 +5572,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_OpenedLengthProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OpenedLengthProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OpenedLengthProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OpenedLengthProperty());
             return S_OK;
         }
         catch (...)
@@ -5236,11 +5587,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ClosedLengthProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ClosedLengthProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ClosedLengthProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ClosedLengthProperty());
             return S_OK;
         }
         catch (...)
@@ -5250,11 +5602,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_OffsetFromCenterProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_OffsetFromCenterProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().OffsetFromCenterProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().OffsetFromCenterProperty());
             return S_OK;
         }
         catch (...)
@@ -5264,11 +5617,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ContentTranslationDirectionProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ContentTranslationDirectionProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTranslationDirectionProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTranslationDirectionProperty());
             return S_OK;
         }
         catch (...)
@@ -5278,11 +5632,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ContentTranslationOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ContentTranslationOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContentTranslationOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContentTranslationOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -5296,11 +5651,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationS
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_base<D, Windows::UI::Xaml::Media::Animation::IStoryboard>
 {
-    HRESULT __stdcall get_Children(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::Timeline>> value) noexcept override
+    HRESULT __stdcall get_Children(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::UI::Xaml::Media::Animation::Timeline>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Children());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Children());
             return S_OK;
         }
         catch (...)
@@ -5310,11 +5666,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
         }
     }
 
-    HRESULT __stdcall abi_Seek(abi_arg_in<Windows::Foundation::TimeSpan> offset) noexcept override
+    HRESULT __stdcall abi_Seek(impl::abi_arg_in<Windows::Foundation::TimeSpan> offset) noexcept override
     {
         try
         {
-            shim().Seek(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&offset));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Seek(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&offset));
             return S_OK;
         }
         catch (...)
@@ -5327,7 +5684,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
     {
         try
         {
-            shim().Stop();
+            typename D::abi_guard guard(this->shim());
+            this->shim().Stop();
             return S_OK;
         }
         catch (...)
@@ -5340,7 +5698,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
     {
         try
         {
-            shim().Begin();
+            typename D::abi_guard guard(this->shim());
+            this->shim().Begin();
             return S_OK;
         }
         catch (...)
@@ -5353,7 +5712,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
     {
         try
         {
-            shim().Pause();
+            typename D::abi_guard guard(this->shim());
+            this->shim().Pause();
             return S_OK;
         }
         catch (...)
@@ -5366,7 +5726,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
     {
         try
         {
-            shim().Resume();
+            typename D::abi_guard guard(this->shim());
+            this->shim().Resume();
             return S_OK;
         }
         catch (...)
@@ -5379,7 +5740,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
     {
         try
         {
-            *returnValue = detach(shim().GetCurrentState());
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().GetCurrentState());
             return S_OK;
         }
         catch (...)
@@ -5388,11 +5750,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
         }
     }
 
-    HRESULT __stdcall abi_GetCurrentTime(abi_arg_out<Windows::Foundation::TimeSpan> returnValue) noexcept override
+    HRESULT __stdcall abi_GetCurrentTime(impl::abi_arg_out<Windows::Foundation::TimeSpan> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().GetCurrentTime());
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().GetCurrentTime());
             return S_OK;
         }
         catch (...)
@@ -5401,11 +5764,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
         }
     }
 
-    HRESULT __stdcall abi_SeekAlignedToLastTick(abi_arg_in<Windows::Foundation::TimeSpan> offset) noexcept override
+    HRESULT __stdcall abi_SeekAlignedToLastTick(impl::abi_arg_in<Windows::Foundation::TimeSpan> offset) noexcept override
     {
         try
         {
-            shim().SeekAlignedToLastTick(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&offset));
+            typename D::abi_guard guard(this->shim());
+            this->shim().SeekAlignedToLastTick(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&offset));
             return S_OK;
         }
         catch (...)
@@ -5418,7 +5782,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
     {
         try
         {
-            shim().SkipToFill();
+            typename D::abi_guard guard(this->shim());
+            this->shim().SkipToFill();
             return S_OK;
         }
         catch (...)
@@ -5431,11 +5796,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboard> : produce_ba
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboardStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::IStoryboardStatics>
 {
-    HRESULT __stdcall get_TargetPropertyProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetPropertyProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetPropertyProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetPropertyProperty());
             return S_OK;
         }
         catch (...)
@@ -5445,11 +5811,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboardStatics> : pro
         }
     }
 
-    HRESULT __stdcall abi_GetTargetProperty(abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> element, abi_arg_out<hstring> path) noexcept override
+    HRESULT __stdcall abi_GetTargetProperty(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> element, impl::abi_arg_out<hstring> path) noexcept override
     {
         try
         {
-            *path = detach(shim().GetTargetProperty(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&element)));
+            typename D::abi_guard guard(this->shim());
+            *path = detach_abi(this->shim().GetTargetProperty(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&element)));
             return S_OK;
         }
         catch (...)
@@ -5459,11 +5826,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboardStatics> : pro
         }
     }
 
-    HRESULT __stdcall abi_SetTargetProperty(abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> element, abi_arg_in<hstring> path) noexcept override
+    HRESULT __stdcall abi_SetTargetProperty(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> element, impl::abi_arg_in<hstring> path) noexcept override
     {
         try
         {
-            shim().SetTargetProperty(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&element), *reinterpret_cast<const hstring *>(&path));
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetTargetProperty(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&element), *reinterpret_cast<const hstring *>(&path));
             return S_OK;
         }
         catch (...)
@@ -5472,11 +5840,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboardStatics> : pro
         }
     }
 
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -5486,11 +5855,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboardStatics> : pro
         }
     }
 
-    HRESULT __stdcall abi_GetTargetName(abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> element, abi_arg_out<hstring> name) noexcept override
+    HRESULT __stdcall abi_GetTargetName(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> element, impl::abi_arg_out<hstring> name) noexcept override
     {
         try
         {
-            *name = detach(shim().GetTargetName(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&element)));
+            typename D::abi_guard guard(this->shim());
+            *name = detach_abi(this->shim().GetTargetName(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&element)));
             return S_OK;
         }
         catch (...)
@@ -5500,11 +5870,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboardStatics> : pro
         }
     }
 
-    HRESULT __stdcall abi_SetTargetName(abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> element, abi_arg_in<hstring> name) noexcept override
+    HRESULT __stdcall abi_SetTargetName(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> element, impl::abi_arg_in<hstring> name) noexcept override
     {
         try
         {
-            shim().SetTargetName(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&element), *reinterpret_cast<const hstring *>(&name));
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetTargetName(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&element), *reinterpret_cast<const hstring *>(&name));
             return S_OK;
         }
         catch (...)
@@ -5513,11 +5884,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::IStoryboardStatics> : pro
         }
     }
 
-    HRESULT __stdcall abi_SetTarget(abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> timeline, abi_arg_in<Windows::UI::Xaml::IDependencyObject> target) noexcept override
+    HRESULT __stdcall abi_SetTarget(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::ITimeline> timeline, impl::abi_arg_in<Windows::UI::Xaml::IDependencyObject> target) noexcept override
     {
         try
         {
-            shim().SetTarget(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&timeline), *reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&target));
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetTarget(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::Timeline *>(&timeline), *reinterpret_cast<const Windows::UI::Xaml::DependencyObject *>(&target));
             return S_OK;
         }
         catch (...)
@@ -5534,11 +5906,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISuppressNavigationTransi
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -5548,11 +5921,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation>
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -5565,7 +5939,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation>
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffset());
             return S_OK;
         }
         catch (...)
@@ -5578,7 +5953,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation>
     {
         try
         {
-            shim().FromHorizontalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromHorizontalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -5591,7 +5967,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation>
     {
         try
         {
-            *value = detach(shim().FromVerticalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffset());
             return S_OK;
         }
         catch (...)
@@ -5604,7 +5981,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation>
     {
         try
         {
-            shim().FromVerticalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FromVerticalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -5617,11 +5995,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation>
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -5631,11 +6010,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_FromHorizontalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromHorizontalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromHorizontalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromHorizontalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -5645,11 +6025,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_FromVerticalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FromVerticalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FromVerticalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FromVerticalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -5663,11 +6044,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimationS
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation>
 {
-    HRESULT __stdcall get_TargetName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TargetName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetName());
             return S_OK;
         }
         catch (...)
@@ -5677,11 +6059,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation>
         }
     }
 
-    HRESULT __stdcall put_TargetName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_TargetName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().TargetName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TargetName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -5694,7 +6077,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation>
     {
         try
         {
-            *value = detach(shim().ToHorizontalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToHorizontalOffset());
             return S_OK;
         }
         catch (...)
@@ -5707,7 +6091,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation>
     {
         try
         {
-            shim().ToHorizontalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToHorizontalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -5720,7 +6105,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation>
     {
         try
         {
-            *value = detach(shim().ToVerticalOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToVerticalOffset());
             return S_OK;
         }
         catch (...)
@@ -5733,7 +6119,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation>
     {
         try
         {
-            shim().ToVerticalOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToVerticalOffset(value);
             return S_OK;
         }
         catch (...)
@@ -5746,11 +6133,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation>
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimationStatics> : produce_base<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimationStatics>
 {
-    HRESULT __stdcall get_TargetNameProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_TargetNameProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TargetNameProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TargetNameProperty());
             return S_OK;
         }
         catch (...)
@@ -5760,11 +6148,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ToHorizontalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ToHorizontalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ToHorizontalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToHorizontalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -5774,11 +6163,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimationS
         }
     }
 
-    HRESULT __stdcall get_ToVerticalOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_ToVerticalOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ToVerticalOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ToVerticalOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -5796,7 +6186,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
     {
         try
         {
-            *value = detach(shim().AutoReverse());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().AutoReverse());
             return S_OK;
         }
         catch (...)
@@ -5809,7 +6200,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
     {
         try
         {
-            shim().AutoReverse(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().AutoReverse(value);
             return S_OK;
         }
         catch (...)
@@ -5818,11 +6210,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
         }
     }
 
-    HRESULT __stdcall get_BeginTime(abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::TimeSpan>> value) noexcept override
+    HRESULT __stdcall get_BeginTime(impl::abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::TimeSpan>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().BeginTime());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BeginTime());
             return S_OK;
         }
         catch (...)
@@ -5832,11 +6225,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
         }
     }
 
-    HRESULT __stdcall put_BeginTime(abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::TimeSpan>> value) noexcept override
+    HRESULT __stdcall put_BeginTime(impl::abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::TimeSpan>> value) noexcept override
     {
         try
         {
-            shim().BeginTime(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::TimeSpan> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().BeginTime(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::TimeSpan> *>(&value));
             return S_OK;
         }
         catch (...)
@@ -5845,11 +6239,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
         }
     }
 
-    HRESULT __stdcall get_Duration(abi_arg_out<Windows::UI::Xaml::Duration> value) noexcept override
+    HRESULT __stdcall get_Duration(impl::abi_arg_out<Windows::UI::Xaml::Duration> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Duration());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Duration());
             return S_OK;
         }
         catch (...)
@@ -5858,11 +6253,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
         }
     }
 
-    HRESULT __stdcall put_Duration(abi_arg_in<Windows::UI::Xaml::Duration> value) noexcept override
+    HRESULT __stdcall put_Duration(impl::abi_arg_in<Windows::UI::Xaml::Duration> value) noexcept override
     {
         try
         {
-            shim().Duration(*reinterpret_cast<const Windows::UI::Xaml::Duration *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Duration(*reinterpret_cast<const Windows::UI::Xaml::Duration *>(&value));
             return S_OK;
         }
         catch (...)
@@ -5875,7 +6271,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
     {
         try
         {
-            *value = detach(shim().SpeedRatio());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SpeedRatio());
             return S_OK;
         }
         catch (...)
@@ -5888,7 +6285,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
     {
         try
         {
-            shim().SpeedRatio(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().SpeedRatio(value);
             return S_OK;
         }
         catch (...)
@@ -5901,7 +6299,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
     {
         try
         {
-            *value = detach(shim().FillBehavior());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FillBehavior());
             return S_OK;
         }
         catch (...)
@@ -5914,7 +6313,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
     {
         try
         {
-            shim().FillBehavior(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FillBehavior(value);
             return S_OK;
         }
         catch (...)
@@ -5923,11 +6323,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
         }
     }
 
-    HRESULT __stdcall get_RepeatBehavior(abi_arg_out<Windows::UI::Xaml::Media::Animation::RepeatBehavior> value) noexcept override
+    HRESULT __stdcall get_RepeatBehavior(impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::RepeatBehavior> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RepeatBehavior());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RepeatBehavior());
             return S_OK;
         }
         catch (...)
@@ -5936,11 +6337,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
         }
     }
 
-    HRESULT __stdcall put_RepeatBehavior(abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> value) noexcept override
+    HRESULT __stdcall put_RepeatBehavior(impl::abi_arg_in<Windows::UI::Xaml::Media::Animation::RepeatBehavior> value) noexcept override
     {
         try
         {
-            shim().RepeatBehavior(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().RepeatBehavior(*reinterpret_cast<const Windows::UI::Xaml::Media::Animation::RepeatBehavior *>(&value));
             return S_OK;
         }
         catch (...)
@@ -5949,11 +6351,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
         }
     }
 
-    HRESULT __stdcall add_Completed(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> value, event_token * token) noexcept override
+    HRESULT __stdcall add_Completed(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> value, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().Completed(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&value)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().Completed(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&value)));
             return S_OK;
         }
         catch (...)
@@ -5966,7 +6369,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
     {
         try
         {
-            shim().Completed(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Completed(token);
             return S_OK;
         }
         catch (...)
@@ -5979,11 +6383,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimeline> : produce_base
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Media::Animation::ITimelineFactory> : produce_base<D, Windows::UI::Xaml::Media::Animation::ITimelineFactory>
 {
-    HRESULT __stdcall abi_CreateInstance(abi_arg_in<Windows::IInspectable> outer, abi_arg_out<Windows::IInspectable> inner, abi_arg_out<Windows::UI::Xaml::Media::Animation::ITimeline> instance) noexcept override
+    HRESULT __stdcall abi_CreateInstance(impl::abi_arg_in<Windows::Foundation::IInspectable> outer, impl::abi_arg_out<Windows::Foundation::IInspectable> inner, impl::abi_arg_out<Windows::UI::Xaml::Media::Animation::ITimeline> instance) noexcept override
     {
         try
         {
-            *instance = detach(shim().CreateInstance(*reinterpret_cast<const Windows::IInspectable *>(&outer), *inner));
+            typename D::abi_guard guard(this->shim());
+            *instance = detach_abi(this->shim().CreateInstance(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&outer), *reinterpret_cast<Windows::Foundation::IInspectable *>(inner)));
             return S_OK;
         }
         catch (...)
@@ -6002,7 +6407,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimelineStatics> : produ
     {
         try
         {
-            *value = detach(shim().AllowDependentAnimations());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().AllowDependentAnimations());
             return S_OK;
         }
         catch (...)
@@ -6015,7 +6421,8 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimelineStatics> : produ
     {
         try
         {
-            shim().AllowDependentAnimations(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().AllowDependentAnimations(value);
             return S_OK;
         }
         catch (...)
@@ -6024,25 +6431,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimelineStatics> : produ
         }
     }
 
-    HRESULT __stdcall get_AutoReverseProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_AutoReverseProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().AutoReverseProperty());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_BeginTimeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().BeginTimeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().AutoReverseProperty());
             return S_OK;
         }
         catch (...)
@@ -6052,11 +6446,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimelineStatics> : produ
         }
     }
 
-    HRESULT __stdcall get_DurationProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_BeginTimeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().DurationProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BeginTimeProperty());
             return S_OK;
         }
         catch (...)
@@ -6066,11 +6461,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimelineStatics> : produ
         }
     }
 
-    HRESULT __stdcall get_SpeedRatioProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_DurationProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SpeedRatioProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().DurationProperty());
             return S_OK;
         }
         catch (...)
@@ -6080,11 +6476,12 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimelineStatics> : produ
         }
     }
 
-    HRESULT __stdcall get_FillBehaviorProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_SpeedRatioProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FillBehaviorProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SpeedRatioProperty());
             return S_OK;
         }
         catch (...)
@@ -6094,11 +6491,27 @@ struct produce<D, Windows::UI::Xaml::Media::Animation::ITimelineStatics> : produ
         }
     }
 
-    HRESULT __stdcall get_RepeatBehaviorProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FillBehaviorProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RepeatBehaviorProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FillBehaviorProperty());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_RepeatBehaviorProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RepeatBehaviorProperty());
             return S_OK;
         }
         catch (...)
@@ -6124,2606 +6537,2606 @@ namespace Windows::UI::Xaml::Media::Animation {
 template <typename D> Windows::UI::Xaml::Media::Animation::KeyTime impl_IKeyTimeHelperStatics<D>::FromTimeSpan(const Windows::Foundation::TimeSpan & timeSpan) const
 {
     Windows::UI::Xaml::Media::Animation::KeyTime returnValue {};
-    check_hresult(shim()->abi_FromTimeSpan(get(timeSpan), put(returnValue)));
+    check_hresult(WINRT_SHIM(IKeyTimeHelperStatics)->abi_FromTimeSpan(get_abi(timeSpan), put_abi(returnValue)));
     return returnValue;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::RepeatBehavior impl_IRepeatBehaviorHelperStatics<D>::Forever() const
 {
     Windows::UI::Xaml::Media::Animation::RepeatBehavior value {};
-    check_hresult(shim()->get_Forever(put(value)));
+    check_hresult(WINRT_SHIM(IRepeatBehaviorHelperStatics)->get_Forever(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::RepeatBehavior impl_IRepeatBehaviorHelperStatics<D>::FromCount(double count) const
 {
     Windows::UI::Xaml::Media::Animation::RepeatBehavior returnValue {};
-    check_hresult(shim()->abi_FromCount(count, put(returnValue)));
+    check_hresult(WINRT_SHIM(IRepeatBehaviorHelperStatics)->abi_FromCount(count, put_abi(returnValue)));
     return returnValue;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::RepeatBehavior impl_IRepeatBehaviorHelperStatics<D>::FromDuration(const Windows::Foundation::TimeSpan & duration) const
 {
     Windows::UI::Xaml::Media::Animation::RepeatBehavior returnValue {};
-    check_hresult(shim()->abi_FromDuration(get(duration), put(returnValue)));
+    check_hresult(WINRT_SHIM(IRepeatBehaviorHelperStatics)->abi_FromDuration(get_abi(duration), put_abi(returnValue)));
     return returnValue;
 }
 
 template <typename D> bool impl_IRepeatBehaviorHelperStatics<D>::GetHasCount(const Windows::UI::Xaml::Media::Animation::RepeatBehavior & target) const
 {
     bool value {};
-    check_hresult(shim()->abi_GetHasCount(get(target), &value));
+    check_hresult(WINRT_SHIM(IRepeatBehaviorHelperStatics)->abi_GetHasCount(get_abi(target), &value));
     return value;
 }
 
 template <typename D> bool impl_IRepeatBehaviorHelperStatics<D>::GetHasDuration(const Windows::UI::Xaml::Media::Animation::RepeatBehavior & target) const
 {
     bool value {};
-    check_hresult(shim()->abi_GetHasDuration(get(target), &value));
+    check_hresult(WINRT_SHIM(IRepeatBehaviorHelperStatics)->abi_GetHasDuration(get_abi(target), &value));
     return value;
 }
 
 template <typename D> bool impl_IRepeatBehaviorHelperStatics<D>::Equals(const Windows::UI::Xaml::Media::Animation::RepeatBehavior & target, const Windows::UI::Xaml::Media::Animation::RepeatBehavior & value) const
 {
     bool returnValue {};
-    check_hresult(shim()->abi_Equals(get(target), get(value), &returnValue));
+    check_hresult(WINRT_SHIM(IRepeatBehaviorHelperStatics)->abi_Equals(get_abi(target), get_abi(value), &returnValue));
     return returnValue;
 }
 
 template <typename D> Windows::UI::Color impl_IColorKeyFrame<D>::Value() const
 {
     Windows::UI::Color value {};
-    check_hresult(shim()->get_Value(put(value)));
+    check_hresult(WINRT_SHIM(IColorKeyFrame)->get_Value(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IColorKeyFrame<D>::Value(const Windows::UI::Color & value) const
 {
-    check_hresult(shim()->put_Value(get(value)));
+    check_hresult(WINRT_SHIM(IColorKeyFrame)->put_Value(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::KeyTime impl_IColorKeyFrame<D>::KeyTime() const
 {
     Windows::UI::Xaml::Media::Animation::KeyTime value {};
-    check_hresult(shim()->get_KeyTime(put(value)));
+    check_hresult(WINRT_SHIM(IColorKeyFrame)->get_KeyTime(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IColorKeyFrame<D>::KeyTime(const Windows::UI::Xaml::Media::Animation::KeyTime & value) const
 {
-    check_hresult(shim()->put_KeyTime(get(value)));
+    check_hresult(WINRT_SHIM(IColorKeyFrame)->put_KeyTime(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IColorKeyFrameStatics<D>::ValueProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ValueProperty(put(value)));
+    check_hresult(WINRT_SHIM(IColorKeyFrameStatics)->get_ValueProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IColorKeyFrameStatics<D>::KeyTimeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_KeyTimeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IColorKeyFrameStatics)->get_KeyTimeProperty(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::UI::Xaml::Media::Animation::ColorKeyFrame impl_IColorKeyFrameFactory<D>::CreateInstance(const Windows::IInspectable & outer, Windows::IInspectable & inner) const
+template <typename D> Windows::UI::Xaml::Media::Animation::ColorKeyFrame impl_IColorKeyFrameFactory<D>::CreateInstance(const Windows::Foundation::IInspectable & outer, Windows::Foundation::IInspectable & inner) const
 {
     Windows::UI::Xaml::Media::Animation::ColorKeyFrame instance { nullptr };
-    check_hresult(shim()->abi_CreateInstance(get(outer), put(inner), put(instance)));
+    check_hresult(WINRT_SHIM(IColorKeyFrameFactory)->abi_CreateInstance(get_abi(outer), put_abi(inner), put_abi(instance)));
     return instance;
 }
 
 template <typename D> double impl_IDoubleKeyFrame<D>::Value() const
 {
     double value {};
-    check_hresult(shim()->get_Value(&value));
+    check_hresult(WINRT_SHIM(IDoubleKeyFrame)->get_Value(&value));
     return value;
 }
 
 template <typename D> void impl_IDoubleKeyFrame<D>::Value(double value) const
 {
-    check_hresult(shim()->put_Value(value));
+    check_hresult(WINRT_SHIM(IDoubleKeyFrame)->put_Value(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::KeyTime impl_IDoubleKeyFrame<D>::KeyTime() const
 {
     Windows::UI::Xaml::Media::Animation::KeyTime value {};
-    check_hresult(shim()->get_KeyTime(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleKeyFrame)->get_KeyTime(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IDoubleKeyFrame<D>::KeyTime(const Windows::UI::Xaml::Media::Animation::KeyTime & value) const
 {
-    check_hresult(shim()->put_KeyTime(get(value)));
+    check_hresult(WINRT_SHIM(IDoubleKeyFrame)->put_KeyTime(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDoubleKeyFrameStatics<D>::ValueProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ValueProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleKeyFrameStatics)->get_ValueProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDoubleKeyFrameStatics<D>::KeyTimeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_KeyTimeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleKeyFrameStatics)->get_KeyTimeProperty(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::UI::Xaml::Media::Animation::DoubleKeyFrame impl_IDoubleKeyFrameFactory<D>::CreateInstance(const Windows::IInspectable & outer, Windows::IInspectable & inner) const
+template <typename D> Windows::UI::Xaml::Media::Animation::DoubleKeyFrame impl_IDoubleKeyFrameFactory<D>::CreateInstance(const Windows::Foundation::IInspectable & outer, Windows::Foundation::IInspectable & inner) const
 {
     Windows::UI::Xaml::Media::Animation::DoubleKeyFrame instance { nullptr };
-    check_hresult(shim()->abi_CreateInstance(get(outer), put(inner), put(instance)));
+    check_hresult(WINRT_SHIM(IDoubleKeyFrameFactory)->abi_CreateInstance(get_abi(outer), put_abi(inner), put_abi(instance)));
     return instance;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::EasingMode impl_IEasingFunctionBase<D>::EasingMode() const
 {
     Windows::UI::Xaml::Media::Animation::EasingMode value {};
-    check_hresult(shim()->get_EasingMode(&value));
+    check_hresult(WINRT_SHIM(IEasingFunctionBase)->get_EasingMode(&value));
     return value;
 }
 
 template <typename D> void impl_IEasingFunctionBase<D>::EasingMode(Windows::UI::Xaml::Media::Animation::EasingMode value) const
 {
-    check_hresult(shim()->put_EasingMode(value));
+    check_hresult(WINRT_SHIM(IEasingFunctionBase)->put_EasingMode(value));
 }
 
 template <typename D> double impl_IEasingFunctionBase<D>::Ease(double normalizedTime) const
 {
     double returnValue {};
-    check_hresult(shim()->abi_Ease(normalizedTime, &returnValue));
+    check_hresult(WINRT_SHIM(IEasingFunctionBase)->abi_Ease(normalizedTime, &returnValue));
     return returnValue;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEasingFunctionBaseStatics<D>::EasingModeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EasingModeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEasingFunctionBaseStatics)->get_EasingModeProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::Point impl_IKeySpline<D>::ControlPoint1() const
 {
     Windows::Foundation::Point value {};
-    check_hresult(shim()->get_ControlPoint1(put(value)));
+    check_hresult(WINRT_SHIM(IKeySpline)->get_ControlPoint1(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IKeySpline<D>::ControlPoint1(const Windows::Foundation::Point & value) const
 {
-    check_hresult(shim()->put_ControlPoint1(get(value)));
+    check_hresult(WINRT_SHIM(IKeySpline)->put_ControlPoint1(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Point impl_IKeySpline<D>::ControlPoint2() const
 {
     Windows::Foundation::Point value {};
-    check_hresult(shim()->get_ControlPoint2(put(value)));
+    check_hresult(WINRT_SHIM(IKeySpline)->get_ControlPoint2(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IKeySpline<D>::ControlPoint2(const Windows::Foundation::Point & value) const
 {
-    check_hresult(shim()->put_ControlPoint2(get(value)));
+    check_hresult(WINRT_SHIM(IKeySpline)->put_ControlPoint2(get_abi(value)));
 }
 
 template <typename D> hstring impl_INavigationTransitionInfoOverrides<D>::GetNavigationStateCore() const
 {
     hstring returnValue;
-    check_hresult(shim()->abi_GetNavigationStateCore(put(returnValue)));
+    check_hresult(WINRT_SHIM(INavigationTransitionInfoOverrides)->abi_GetNavigationStateCore(put_abi(returnValue)));
     return returnValue;
 }
 
-template <typename D> void impl_INavigationTransitionInfoOverrides<D>::SetNavigationStateCore(hstring_ref navigationState) const
+template <typename D> void impl_INavigationTransitionInfoOverrides<D>::SetNavigationStateCore(hstring_view navigationState) const
 {
-    check_hresult(shim()->abi_SetNavigationStateCore(get(navigationState)));
+    check_hresult(WINRT_SHIM(INavigationTransitionInfoOverrides)->abi_SetNavigationStateCore(get_abi(navigationState)));
 }
 
-template <typename D> Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo impl_INavigationTransitionInfoFactory<D>::CreateInstance(const Windows::IInspectable & outer, Windows::IInspectable & inner) const
+template <typename D> Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo impl_INavigationTransitionInfoFactory<D>::CreateInstance(const Windows::Foundation::IInspectable & outer, Windows::Foundation::IInspectable & inner) const
 {
     Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo instance { nullptr };
-    check_hresult(shim()->abi_CreateInstance(get(outer), put(inner), put(instance)));
+    check_hresult(WINRT_SHIM(INavigationTransitionInfoFactory)->abi_CreateInstance(get_abi(outer), put_abi(inner), put_abi(instance)));
     return instance;
 }
 
-template <typename D> Windows::IInspectable impl_IObjectKeyFrame<D>::Value() const
+template <typename D> Windows::Foundation::IInspectable impl_IObjectKeyFrame<D>::Value() const
 {
-    Windows::IInspectable value;
-    check_hresult(shim()->get_Value(put(value)));
+    Windows::Foundation::IInspectable value;
+    check_hresult(WINRT_SHIM(IObjectKeyFrame)->get_Value(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IObjectKeyFrame<D>::Value(const Windows::IInspectable & value) const
+template <typename D> void impl_IObjectKeyFrame<D>::Value(const Windows::Foundation::IInspectable & value) const
 {
-    check_hresult(shim()->put_Value(get(value)));
+    check_hresult(WINRT_SHIM(IObjectKeyFrame)->put_Value(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::KeyTime impl_IObjectKeyFrame<D>::KeyTime() const
 {
     Windows::UI::Xaml::Media::Animation::KeyTime value {};
-    check_hresult(shim()->get_KeyTime(put(value)));
+    check_hresult(WINRT_SHIM(IObjectKeyFrame)->get_KeyTime(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IObjectKeyFrame<D>::KeyTime(const Windows::UI::Xaml::Media::Animation::KeyTime & value) const
 {
-    check_hresult(shim()->put_KeyTime(get(value)));
+    check_hresult(WINRT_SHIM(IObjectKeyFrame)->put_KeyTime(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IObjectKeyFrameStatics<D>::ValueProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ValueProperty(put(value)));
+    check_hresult(WINRT_SHIM(IObjectKeyFrameStatics)->get_ValueProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IObjectKeyFrameStatics<D>::KeyTimeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_KeyTimeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IObjectKeyFrameStatics)->get_KeyTimeProperty(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::UI::Xaml::Media::Animation::ObjectKeyFrame impl_IObjectKeyFrameFactory<D>::CreateInstance(const Windows::IInspectable & outer, Windows::IInspectable & inner) const
+template <typename D> Windows::UI::Xaml::Media::Animation::ObjectKeyFrame impl_IObjectKeyFrameFactory<D>::CreateInstance(const Windows::Foundation::IInspectable & outer, Windows::Foundation::IInspectable & inner) const
 {
     Windows::UI::Xaml::Media::Animation::ObjectKeyFrame instance { nullptr };
-    check_hresult(shim()->abi_CreateInstance(get(outer), put(inner), put(instance)));
+    check_hresult(WINRT_SHIM(IObjectKeyFrameFactory)->abi_CreateInstance(get_abi(outer), put_abi(inner), put_abi(instance)));
     return instance;
 }
 
 template <typename D> Windows::Foundation::Point impl_IPointKeyFrame<D>::Value() const
 {
     Windows::Foundation::Point value {};
-    check_hresult(shim()->get_Value(put(value)));
+    check_hresult(WINRT_SHIM(IPointKeyFrame)->get_Value(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IPointKeyFrame<D>::Value(const Windows::Foundation::Point & value) const
 {
-    check_hresult(shim()->put_Value(get(value)));
+    check_hresult(WINRT_SHIM(IPointKeyFrame)->put_Value(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::KeyTime impl_IPointKeyFrame<D>::KeyTime() const
 {
     Windows::UI::Xaml::Media::Animation::KeyTime value {};
-    check_hresult(shim()->get_KeyTime(put(value)));
+    check_hresult(WINRT_SHIM(IPointKeyFrame)->get_KeyTime(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IPointKeyFrame<D>::KeyTime(const Windows::UI::Xaml::Media::Animation::KeyTime & value) const
 {
-    check_hresult(shim()->put_KeyTime(get(value)));
+    check_hresult(WINRT_SHIM(IPointKeyFrame)->put_KeyTime(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointKeyFrameStatics<D>::ValueProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ValueProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointKeyFrameStatics)->get_ValueProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointKeyFrameStatics<D>::KeyTimeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_KeyTimeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointKeyFrameStatics)->get_KeyTimeProperty(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::UI::Xaml::Media::Animation::PointKeyFrame impl_IPointKeyFrameFactory<D>::CreateInstance(const Windows::IInspectable & outer, Windows::IInspectable & inner) const
+template <typename D> Windows::UI::Xaml::Media::Animation::PointKeyFrame impl_IPointKeyFrameFactory<D>::CreateInstance(const Windows::Foundation::IInspectable & outer, Windows::Foundation::IInspectable & inner) const
 {
     Windows::UI::Xaml::Media::Animation::PointKeyFrame instance { nullptr };
-    check_hresult(shim()->abi_CreateInstance(get(outer), put(inner), put(instance)));
+    check_hresult(WINRT_SHIM(IPointKeyFrameFactory)->abi_CreateInstance(get_abi(outer), put_abi(inner), put_abi(instance)));
     return instance;
 }
 
 template <typename D> bool impl_ITimeline<D>::AutoReverse() const
 {
     bool value {};
-    check_hresult(shim()->get_AutoReverse(&value));
+    check_hresult(WINRT_SHIM(ITimeline)->get_AutoReverse(&value));
     return value;
 }
 
 template <typename D> void impl_ITimeline<D>::AutoReverse(bool value) const
 {
-    check_hresult(shim()->put_AutoReverse(value));
+    check_hresult(WINRT_SHIM(ITimeline)->put_AutoReverse(value));
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::Foundation::TimeSpan> impl_ITimeline<D>::BeginTime() const
 {
     Windows::Foundation::IReference<Windows::Foundation::TimeSpan> value;
-    check_hresult(shim()->get_BeginTime(put(value)));
+    check_hresult(WINRT_SHIM(ITimeline)->get_BeginTime(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ITimeline<D>::BeginTime(const Windows::Foundation::IReference<Windows::Foundation::TimeSpan> & value) const
+template <typename D> void impl_ITimeline<D>::BeginTime(const optional<Windows::Foundation::TimeSpan> & value) const
 {
-    check_hresult(shim()->put_BeginTime(get(value)));
+    check_hresult(WINRT_SHIM(ITimeline)->put_BeginTime(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Duration impl_ITimeline<D>::Duration() const
 {
     Windows::UI::Xaml::Duration value {};
-    check_hresult(shim()->get_Duration(put(value)));
+    check_hresult(WINRT_SHIM(ITimeline)->get_Duration(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ITimeline<D>::Duration(const Windows::UI::Xaml::Duration & value) const
 {
-    check_hresult(shim()->put_Duration(get(value)));
+    check_hresult(WINRT_SHIM(ITimeline)->put_Duration(get_abi(value)));
 }
 
 template <typename D> double impl_ITimeline<D>::SpeedRatio() const
 {
     double value {};
-    check_hresult(shim()->get_SpeedRatio(&value));
+    check_hresult(WINRT_SHIM(ITimeline)->get_SpeedRatio(&value));
     return value;
 }
 
 template <typename D> void impl_ITimeline<D>::SpeedRatio(double value) const
 {
-    check_hresult(shim()->put_SpeedRatio(value));
+    check_hresult(WINRT_SHIM(ITimeline)->put_SpeedRatio(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::FillBehavior impl_ITimeline<D>::FillBehavior() const
 {
     Windows::UI::Xaml::Media::Animation::FillBehavior value {};
-    check_hresult(shim()->get_FillBehavior(&value));
+    check_hresult(WINRT_SHIM(ITimeline)->get_FillBehavior(&value));
     return value;
 }
 
 template <typename D> void impl_ITimeline<D>::FillBehavior(Windows::UI::Xaml::Media::Animation::FillBehavior value) const
 {
-    check_hresult(shim()->put_FillBehavior(value));
+    check_hresult(WINRT_SHIM(ITimeline)->put_FillBehavior(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::RepeatBehavior impl_ITimeline<D>::RepeatBehavior() const
 {
     Windows::UI::Xaml::Media::Animation::RepeatBehavior value {};
-    check_hresult(shim()->get_RepeatBehavior(put(value)));
+    check_hresult(WINRT_SHIM(ITimeline)->get_RepeatBehavior(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ITimeline<D>::RepeatBehavior(const Windows::UI::Xaml::Media::Animation::RepeatBehavior & value) const
 {
-    check_hresult(shim()->put_RepeatBehavior(get(value)));
+    check_hresult(WINRT_SHIM(ITimeline)->put_RepeatBehavior(get_abi(value)));
 }
 
-template <typename D> event_token impl_ITimeline<D>::Completed(const Windows::Foundation::EventHandler<Windows::IInspectable> & value) const
+template <typename D> event_token impl_ITimeline<D>::Completed(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & value) const
 {
     event_token token {};
-    check_hresult(shim()->add_Completed(get(value), &token));
+    check_hresult(WINRT_SHIM(ITimeline)->add_Completed(get_abi(value), &token));
     return token;
 }
 
-template <typename D> event_revoker<ITimeline> impl_ITimeline<D>::Completed(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & value) const
+template <typename D> event_revoker<ITimeline> impl_ITimeline<D>::Completed(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & value) const
 {
     return impl::make_event_revoker<D, ITimeline>(this, &ABI::Windows::UI::Xaml::Media::Animation::ITimeline::remove_Completed, Completed(value));
 }
 
 template <typename D> void impl_ITimeline<D>::Completed(event_token token) const
 {
-    check_hresult(shim()->remove_Completed(token));
+    check_hresult(WINRT_SHIM(ITimeline)->remove_Completed(token));
 }
 
 template <typename D> bool impl_ITimelineStatics<D>::AllowDependentAnimations() const
 {
     bool value {};
-    check_hresult(shim()->get_AllowDependentAnimations(&value));
+    check_hresult(WINRT_SHIM(ITimelineStatics)->get_AllowDependentAnimations(&value));
     return value;
 }
 
 template <typename D> void impl_ITimelineStatics<D>::AllowDependentAnimations(bool value) const
 {
-    check_hresult(shim()->put_AllowDependentAnimations(value));
+    check_hresult(WINRT_SHIM(ITimelineStatics)->put_AllowDependentAnimations(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ITimelineStatics<D>::AutoReverseProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_AutoReverseProperty(put(value)));
+    check_hresult(WINRT_SHIM(ITimelineStatics)->get_AutoReverseProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ITimelineStatics<D>::BeginTimeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_BeginTimeProperty(put(value)));
+    check_hresult(WINRT_SHIM(ITimelineStatics)->get_BeginTimeProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ITimelineStatics<D>::DurationProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_DurationProperty(put(value)));
+    check_hresult(WINRT_SHIM(ITimelineStatics)->get_DurationProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ITimelineStatics<D>::SpeedRatioProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_SpeedRatioProperty(put(value)));
+    check_hresult(WINRT_SHIM(ITimelineStatics)->get_SpeedRatioProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ITimelineStatics<D>::FillBehaviorProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FillBehaviorProperty(put(value)));
+    check_hresult(WINRT_SHIM(ITimelineStatics)->get_FillBehaviorProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ITimelineStatics<D>::RepeatBehaviorProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_RepeatBehaviorProperty(put(value)));
+    check_hresult(WINRT_SHIM(ITimelineStatics)->get_RepeatBehaviorProperty(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::UI::Xaml::Media::Animation::Timeline impl_ITimelineFactory<D>::CreateInstance(const Windows::IInspectable & outer, Windows::IInspectable & inner) const
+template <typename D> Windows::UI::Xaml::Media::Animation::Timeline impl_ITimelineFactory<D>::CreateInstance(const Windows::Foundation::IInspectable & outer, Windows::Foundation::IInspectable & inner) const
 {
     Windows::UI::Xaml::Media::Animation::Timeline instance { nullptr };
-    check_hresult(shim()->abi_CreateInstance(get(outer), put(inner), put(instance)));
+    check_hresult(WINRT_SHIM(ITimelineFactory)->abi_CreateInstance(get_abi(outer), put_abi(inner), put_abi(instance)));
     return instance;
 }
 
 template <typename D> double impl_IBackEase<D>::Amplitude() const
 {
     double value {};
-    check_hresult(shim()->get_Amplitude(&value));
+    check_hresult(WINRT_SHIM(IBackEase)->get_Amplitude(&value));
     return value;
 }
 
 template <typename D> void impl_IBackEase<D>::Amplitude(double value) const
 {
-    check_hresult(shim()->put_Amplitude(value));
+    check_hresult(WINRT_SHIM(IBackEase)->put_Amplitude(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IBackEaseStatics<D>::AmplitudeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_AmplitudeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IBackEaseStatics)->get_AmplitudeProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::Storyboard impl_IBeginStoryboard<D>::Storyboard() const
 {
     Windows::UI::Xaml::Media::Animation::Storyboard value { nullptr };
-    check_hresult(shim()->get_Storyboard(put(value)));
+    check_hresult(WINRT_SHIM(IBeginStoryboard)->get_Storyboard(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IBeginStoryboard<D>::Storyboard(const Windows::UI::Xaml::Media::Animation::Storyboard & value) const
 {
-    check_hresult(shim()->put_Storyboard(get(value)));
+    check_hresult(WINRT_SHIM(IBeginStoryboard)->put_Storyboard(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IBeginStoryboardStatics<D>::StoryboardProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StoryboardProperty(put(value)));
+    check_hresult(WINRT_SHIM(IBeginStoryboardStatics)->get_StoryboardProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> int32_t impl_IBounceEase<D>::Bounces() const
 {
     int32_t value {};
-    check_hresult(shim()->get_Bounces(&value));
+    check_hresult(WINRT_SHIM(IBounceEase)->get_Bounces(&value));
     return value;
 }
 
 template <typename D> void impl_IBounceEase<D>::Bounces(int32_t value) const
 {
-    check_hresult(shim()->put_Bounces(value));
+    check_hresult(WINRT_SHIM(IBounceEase)->put_Bounces(value));
 }
 
 template <typename D> double impl_IBounceEase<D>::Bounciness() const
 {
     double value {};
-    check_hresult(shim()->get_Bounciness(&value));
+    check_hresult(WINRT_SHIM(IBounceEase)->get_Bounciness(&value));
     return value;
 }
 
 template <typename D> void impl_IBounceEase<D>::Bounciness(double value) const
 {
-    check_hresult(shim()->put_Bounciness(value));
+    check_hresult(WINRT_SHIM(IBounceEase)->put_Bounciness(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IBounceEaseStatics<D>::BouncesProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_BouncesProperty(put(value)));
+    check_hresult(WINRT_SHIM(IBounceEaseStatics)->get_BouncesProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IBounceEaseStatics<D>::BouncinessProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_BouncinessProperty(put(value)));
+    check_hresult(WINRT_SHIM(IBounceEaseStatics)->get_BouncinessProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::UI::Color> impl_IColorAnimation<D>::From() const
 {
     Windows::Foundation::IReference<Windows::UI::Color> value;
-    check_hresult(shim()->get_From(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimation)->get_From(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IColorAnimation<D>::From(const Windows::Foundation::IReference<Windows::UI::Color> & value) const
+template <typename D> void impl_IColorAnimation<D>::From(const optional<Windows::UI::Color> & value) const
 {
-    check_hresult(shim()->put_From(get(value)));
+    check_hresult(WINRT_SHIM(IColorAnimation)->put_From(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::UI::Color> impl_IColorAnimation<D>::To() const
 {
     Windows::Foundation::IReference<Windows::UI::Color> value;
-    check_hresult(shim()->get_To(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimation)->get_To(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IColorAnimation<D>::To(const Windows::Foundation::IReference<Windows::UI::Color> & value) const
+template <typename D> void impl_IColorAnimation<D>::To(const optional<Windows::UI::Color> & value) const
 {
-    check_hresult(shim()->put_To(get(value)));
+    check_hresult(WINRT_SHIM(IColorAnimation)->put_To(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::UI::Color> impl_IColorAnimation<D>::By() const
 {
     Windows::Foundation::IReference<Windows::UI::Color> value;
-    check_hresult(shim()->get_By(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimation)->get_By(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IColorAnimation<D>::By(const Windows::Foundation::IReference<Windows::UI::Color> & value) const
+template <typename D> void impl_IColorAnimation<D>::By(const optional<Windows::UI::Color> & value) const
 {
-    check_hresult(shim()->put_By(get(value)));
+    check_hresult(WINRT_SHIM(IColorAnimation)->put_By(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::EasingFunctionBase impl_IColorAnimation<D>::EasingFunction() const
 {
     Windows::UI::Xaml::Media::Animation::EasingFunctionBase value { nullptr };
-    check_hresult(shim()->get_EasingFunction(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimation)->get_EasingFunction(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IColorAnimation<D>::EasingFunction(const Windows::UI::Xaml::Media::Animation::EasingFunctionBase & value) const
 {
-    check_hresult(shim()->put_EasingFunction(get(value)));
+    check_hresult(WINRT_SHIM(IColorAnimation)->put_EasingFunction(get_abi(value)));
 }
 
 template <typename D> bool impl_IColorAnimation<D>::EnableDependentAnimation() const
 {
     bool value {};
-    check_hresult(shim()->get_EnableDependentAnimation(&value));
+    check_hresult(WINRT_SHIM(IColorAnimation)->get_EnableDependentAnimation(&value));
     return value;
 }
 
 template <typename D> void impl_IColorAnimation<D>::EnableDependentAnimation(bool value) const
 {
-    check_hresult(shim()->put_EnableDependentAnimation(value));
+    check_hresult(WINRT_SHIM(IColorAnimation)->put_EnableDependentAnimation(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IColorAnimationStatics<D>::FromProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromProperty(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimationStatics)->get_FromProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IColorAnimationStatics<D>::ToProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ToProperty(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimationStatics)->get_ToProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IColorAnimationStatics<D>::ByProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ByProperty(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimationStatics)->get_ByProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IColorAnimationStatics<D>::EasingFunctionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EasingFunctionProperty(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimationStatics)->get_EasingFunctionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IColorAnimationStatics<D>::EnableDependentAnimationProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EnableDependentAnimationProperty(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimationStatics)->get_EnableDependentAnimationProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::ColorKeyFrameCollection impl_IColorAnimationUsingKeyFrames<D>::KeyFrames() const
 {
     Windows::UI::Xaml::Media::Animation::ColorKeyFrameCollection value { nullptr };
-    check_hresult(shim()->get_KeyFrames(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimationUsingKeyFrames)->get_KeyFrames(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IColorAnimationUsingKeyFrames<D>::EnableDependentAnimation() const
 {
     bool value {};
-    check_hresult(shim()->get_EnableDependentAnimation(&value));
+    check_hresult(WINRT_SHIM(IColorAnimationUsingKeyFrames)->get_EnableDependentAnimation(&value));
     return value;
 }
 
 template <typename D> void impl_IColorAnimationUsingKeyFrames<D>::EnableDependentAnimation(bool value) const
 {
-    check_hresult(shim()->put_EnableDependentAnimation(value));
+    check_hresult(WINRT_SHIM(IColorAnimationUsingKeyFrames)->put_EnableDependentAnimation(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IColorAnimationUsingKeyFramesStatics<D>::EnableDependentAnimationProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EnableDependentAnimationProperty(put(value)));
+    check_hresult(WINRT_SHIM(IColorAnimationUsingKeyFramesStatics)->get_EnableDependentAnimationProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> double impl_IContentThemeTransition<D>::HorizontalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_HorizontalOffset(&value));
+    check_hresult(WINRT_SHIM(IContentThemeTransition)->get_HorizontalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IContentThemeTransition<D>::HorizontalOffset(double value) const
 {
-    check_hresult(shim()->put_HorizontalOffset(value));
+    check_hresult(WINRT_SHIM(IContentThemeTransition)->put_HorizontalOffset(value));
 }
 
 template <typename D> double impl_IContentThemeTransition<D>::VerticalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_VerticalOffset(&value));
+    check_hresult(WINRT_SHIM(IContentThemeTransition)->get_VerticalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IContentThemeTransition<D>::VerticalOffset(double value) const
 {
-    check_hresult(shim()->put_VerticalOffset(value));
+    check_hresult(WINRT_SHIM(IContentThemeTransition)->put_VerticalOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IContentThemeTransitionStatics<D>::HorizontalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_HorizontalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IContentThemeTransitionStatics)->get_HorizontalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IContentThemeTransitionStatics<D>::VerticalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_VerticalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IContentThemeTransitionStatics)->get_VerticalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IReference<double> impl_IDoubleAnimation<D>::From() const
 {
     Windows::Foundation::IReference<double> value;
-    check_hresult(shim()->get_From(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->get_From(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDoubleAnimation<D>::From(const Windows::Foundation::IReference<double> & value) const
+template <typename D> void impl_IDoubleAnimation<D>::From(const optional<double> & value) const
 {
-    check_hresult(shim()->put_From(get(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->put_From(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IReference<double> impl_IDoubleAnimation<D>::To() const
 {
     Windows::Foundation::IReference<double> value;
-    check_hresult(shim()->get_To(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->get_To(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDoubleAnimation<D>::To(const Windows::Foundation::IReference<double> & value) const
+template <typename D> void impl_IDoubleAnimation<D>::To(const optional<double> & value) const
 {
-    check_hresult(shim()->put_To(get(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->put_To(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IReference<double> impl_IDoubleAnimation<D>::By() const
 {
     Windows::Foundation::IReference<double> value;
-    check_hresult(shim()->get_By(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->get_By(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDoubleAnimation<D>::By(const Windows::Foundation::IReference<double> & value) const
+template <typename D> void impl_IDoubleAnimation<D>::By(const optional<double> & value) const
 {
-    check_hresult(shim()->put_By(get(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->put_By(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::EasingFunctionBase impl_IDoubleAnimation<D>::EasingFunction() const
 {
     Windows::UI::Xaml::Media::Animation::EasingFunctionBase value { nullptr };
-    check_hresult(shim()->get_EasingFunction(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->get_EasingFunction(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IDoubleAnimation<D>::EasingFunction(const Windows::UI::Xaml::Media::Animation::EasingFunctionBase & value) const
 {
-    check_hresult(shim()->put_EasingFunction(get(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->put_EasingFunction(get_abi(value)));
 }
 
 template <typename D> bool impl_IDoubleAnimation<D>::EnableDependentAnimation() const
 {
     bool value {};
-    check_hresult(shim()->get_EnableDependentAnimation(&value));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->get_EnableDependentAnimation(&value));
     return value;
 }
 
 template <typename D> void impl_IDoubleAnimation<D>::EnableDependentAnimation(bool value) const
 {
-    check_hresult(shim()->put_EnableDependentAnimation(value));
+    check_hresult(WINRT_SHIM(IDoubleAnimation)->put_EnableDependentAnimation(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDoubleAnimationStatics<D>::FromProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimationStatics)->get_FromProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDoubleAnimationStatics<D>::ToProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ToProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimationStatics)->get_ToProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDoubleAnimationStatics<D>::ByProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ByProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimationStatics)->get_ByProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDoubleAnimationStatics<D>::EasingFunctionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EasingFunctionProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimationStatics)->get_EasingFunctionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDoubleAnimationStatics<D>::EnableDependentAnimationProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EnableDependentAnimationProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimationStatics)->get_EnableDependentAnimationProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::DoubleKeyFrameCollection impl_IDoubleAnimationUsingKeyFrames<D>::KeyFrames() const
 {
     Windows::UI::Xaml::Media::Animation::DoubleKeyFrameCollection value { nullptr };
-    check_hresult(shim()->get_KeyFrames(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimationUsingKeyFrames)->get_KeyFrames(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IDoubleAnimationUsingKeyFrames<D>::EnableDependentAnimation() const
 {
     bool value {};
-    check_hresult(shim()->get_EnableDependentAnimation(&value));
+    check_hresult(WINRT_SHIM(IDoubleAnimationUsingKeyFrames)->get_EnableDependentAnimation(&value));
     return value;
 }
 
 template <typename D> void impl_IDoubleAnimationUsingKeyFrames<D>::EnableDependentAnimation(bool value) const
 {
-    check_hresult(shim()->put_EnableDependentAnimation(value));
+    check_hresult(WINRT_SHIM(IDoubleAnimationUsingKeyFrames)->put_EnableDependentAnimation(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDoubleAnimationUsingKeyFramesStatics<D>::EnableDependentAnimationProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EnableDependentAnimationProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDoubleAnimationUsingKeyFramesStatics)->get_EnableDependentAnimationProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IDragItemThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IDragItemThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDragItemThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IDragItemThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IDragItemThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDragItemThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDragItemThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IDragOverThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDragOverThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IDragOverThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> double impl_IDragOverThemeAnimation<D>::ToOffset() const
 {
     double value {};
-    check_hresult(shim()->get_ToOffset(&value));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimation)->get_ToOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IDragOverThemeAnimation<D>::ToOffset(double value) const
 {
-    check_hresult(shim()->put_ToOffset(value));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimation)->put_ToOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::Controls::Primitives::AnimationDirection impl_IDragOverThemeAnimation<D>::Direction() const
 {
     Windows::UI::Xaml::Controls::Primitives::AnimationDirection value {};
-    check_hresult(shim()->get_Direction(&value));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimation)->get_Direction(&value));
     return value;
 }
 
 template <typename D> void impl_IDragOverThemeAnimation<D>::Direction(Windows::UI::Xaml::Controls::Primitives::AnimationDirection value) const
 {
-    check_hresult(shim()->put_Direction(value));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimation)->put_Direction(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDragOverThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDragOverThemeAnimationStatics<D>::ToOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ToOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimationStatics)->get_ToOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDragOverThemeAnimationStatics<D>::DirectionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_DirectionProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDragOverThemeAnimationStatics)->get_DirectionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IDrillInThemeAnimation<D>::EntranceTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_EntranceTargetName(put(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimation)->get_EntranceTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDrillInThemeAnimation<D>::EntranceTargetName(hstring_ref value) const
+template <typename D> void impl_IDrillInThemeAnimation<D>::EntranceTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_EntranceTargetName(get(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimation)->put_EntranceTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_IDrillInThemeAnimation<D>::EntranceTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_EntranceTarget(put(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimation)->get_EntranceTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IDrillInThemeAnimation<D>::EntranceTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_EntranceTarget(get(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimation)->put_EntranceTarget(get_abi(value)));
 }
 
 template <typename D> hstring impl_IDrillInThemeAnimation<D>::ExitTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_ExitTargetName(put(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimation)->get_ExitTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDrillInThemeAnimation<D>::ExitTargetName(hstring_ref value) const
+template <typename D> void impl_IDrillInThemeAnimation<D>::ExitTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_ExitTargetName(get(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimation)->put_ExitTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_IDrillInThemeAnimation<D>::ExitTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_ExitTarget(put(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimation)->get_ExitTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IDrillInThemeAnimation<D>::ExitTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_ExitTarget(get(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimation)->put_ExitTarget(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDrillInThemeAnimationStatics<D>::EntranceTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EntranceTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimationStatics)->get_EntranceTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDrillInThemeAnimationStatics<D>::EntranceTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EntranceTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimationStatics)->get_EntranceTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDrillInThemeAnimationStatics<D>::ExitTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ExitTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimationStatics)->get_ExitTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDrillInThemeAnimationStatics<D>::ExitTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ExitTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDrillInThemeAnimationStatics)->get_ExitTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IDrillOutThemeAnimation<D>::EntranceTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_EntranceTargetName(put(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimation)->get_EntranceTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDrillOutThemeAnimation<D>::EntranceTargetName(hstring_ref value) const
+template <typename D> void impl_IDrillOutThemeAnimation<D>::EntranceTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_EntranceTargetName(get(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimation)->put_EntranceTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_IDrillOutThemeAnimation<D>::EntranceTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_EntranceTarget(put(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimation)->get_EntranceTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IDrillOutThemeAnimation<D>::EntranceTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_EntranceTarget(get(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimation)->put_EntranceTarget(get_abi(value)));
 }
 
 template <typename D> hstring impl_IDrillOutThemeAnimation<D>::ExitTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_ExitTargetName(put(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimation)->get_ExitTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDrillOutThemeAnimation<D>::ExitTargetName(hstring_ref value) const
+template <typename D> void impl_IDrillOutThemeAnimation<D>::ExitTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_ExitTargetName(get(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimation)->put_ExitTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_IDrillOutThemeAnimation<D>::ExitTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_ExitTarget(put(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimation)->get_ExitTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IDrillOutThemeAnimation<D>::ExitTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_ExitTarget(get(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimation)->put_ExitTarget(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDrillOutThemeAnimationStatics<D>::EntranceTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EntranceTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimationStatics)->get_EntranceTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDrillOutThemeAnimationStatics<D>::EntranceTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EntranceTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimationStatics)->get_EntranceTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDrillOutThemeAnimationStatics<D>::ExitTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ExitTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimationStatics)->get_ExitTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDrillOutThemeAnimationStatics<D>::ExitTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ExitTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDrillOutThemeAnimationStatics)->get_ExitTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IDropTargetItemThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IDropTargetItemThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IDropTargetItemThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IDropTargetItemThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IDropTargetItemThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IDropTargetItemThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IDropTargetItemThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::EasingFunctionBase impl_IEasingColorKeyFrame<D>::EasingFunction() const
 {
     Windows::UI::Xaml::Media::Animation::EasingFunctionBase value { nullptr };
-    check_hresult(shim()->get_EasingFunction(put(value)));
+    check_hresult(WINRT_SHIM(IEasingColorKeyFrame)->get_EasingFunction(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IEasingColorKeyFrame<D>::EasingFunction(const Windows::UI::Xaml::Media::Animation::EasingFunctionBase & value) const
 {
-    check_hresult(shim()->put_EasingFunction(get(value)));
+    check_hresult(WINRT_SHIM(IEasingColorKeyFrame)->put_EasingFunction(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEasingColorKeyFrameStatics<D>::EasingFunctionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EasingFunctionProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEasingColorKeyFrameStatics)->get_EasingFunctionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::EasingFunctionBase impl_IEasingDoubleKeyFrame<D>::EasingFunction() const
 {
     Windows::UI::Xaml::Media::Animation::EasingFunctionBase value { nullptr };
-    check_hresult(shim()->get_EasingFunction(put(value)));
+    check_hresult(WINRT_SHIM(IEasingDoubleKeyFrame)->get_EasingFunction(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IEasingDoubleKeyFrame<D>::EasingFunction(const Windows::UI::Xaml::Media::Animation::EasingFunctionBase & value) const
 {
-    check_hresult(shim()->put_EasingFunction(get(value)));
+    check_hresult(WINRT_SHIM(IEasingDoubleKeyFrame)->put_EasingFunction(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEasingDoubleKeyFrameStatics<D>::EasingFunctionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EasingFunctionProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEasingDoubleKeyFrameStatics)->get_EasingFunctionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::EasingFunctionBase impl_IEasingPointKeyFrame<D>::EasingFunction() const
 {
     Windows::UI::Xaml::Media::Animation::EasingFunctionBase value { nullptr };
-    check_hresult(shim()->get_EasingFunction(put(value)));
+    check_hresult(WINRT_SHIM(IEasingPointKeyFrame)->get_EasingFunction(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IEasingPointKeyFrame<D>::EasingFunction(const Windows::UI::Xaml::Media::Animation::EasingFunctionBase & value) const
 {
-    check_hresult(shim()->put_EasingFunction(get(value)));
+    check_hresult(WINRT_SHIM(IEasingPointKeyFrame)->put_EasingFunction(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEasingPointKeyFrameStatics<D>::EasingFunctionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EasingFunctionProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEasingPointKeyFrameStatics)->get_EasingFunctionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Controls::Primitives::EdgeTransitionLocation impl_IEdgeUIThemeTransition<D>::Edge() const
 {
     Windows::UI::Xaml::Controls::Primitives::EdgeTransitionLocation value {};
-    check_hresult(shim()->get_Edge(&value));
+    check_hresult(WINRT_SHIM(IEdgeUIThemeTransition)->get_Edge(&value));
     return value;
 }
 
 template <typename D> void impl_IEdgeUIThemeTransition<D>::Edge(Windows::UI::Xaml::Controls::Primitives::EdgeTransitionLocation value) const
 {
-    check_hresult(shim()->put_Edge(value));
+    check_hresult(WINRT_SHIM(IEdgeUIThemeTransition)->put_Edge(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEdgeUIThemeTransitionStatics<D>::EdgeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EdgeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEdgeUIThemeTransitionStatics)->get_EdgeProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> int32_t impl_IElasticEase<D>::Oscillations() const
 {
     int32_t value {};
-    check_hresult(shim()->get_Oscillations(&value));
+    check_hresult(WINRT_SHIM(IElasticEase)->get_Oscillations(&value));
     return value;
 }
 
 template <typename D> void impl_IElasticEase<D>::Oscillations(int32_t value) const
 {
-    check_hresult(shim()->put_Oscillations(value));
+    check_hresult(WINRT_SHIM(IElasticEase)->put_Oscillations(value));
 }
 
 template <typename D> double impl_IElasticEase<D>::Springiness() const
 {
     double value {};
-    check_hresult(shim()->get_Springiness(&value));
+    check_hresult(WINRT_SHIM(IElasticEase)->get_Springiness(&value));
     return value;
 }
 
 template <typename D> void impl_IElasticEase<D>::Springiness(double value) const
 {
-    check_hresult(shim()->put_Springiness(value));
+    check_hresult(WINRT_SHIM(IElasticEase)->put_Springiness(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IElasticEaseStatics<D>::OscillationsProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OscillationsProperty(put(value)));
+    check_hresult(WINRT_SHIM(IElasticEaseStatics)->get_OscillationsProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IElasticEaseStatics<D>::SpringinessProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_SpringinessProperty(put(value)));
+    check_hresult(WINRT_SHIM(IElasticEaseStatics)->get_SpringinessProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> double impl_IEntranceThemeTransition<D>::FromHorizontalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromHorizontalOffset(&value));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransition)->get_FromHorizontalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IEntranceThemeTransition<D>::FromHorizontalOffset(double value) const
 {
-    check_hresult(shim()->put_FromHorizontalOffset(value));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransition)->put_FromHorizontalOffset(value));
 }
 
 template <typename D> double impl_IEntranceThemeTransition<D>::FromVerticalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromVerticalOffset(&value));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransition)->get_FromVerticalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IEntranceThemeTransition<D>::FromVerticalOffset(double value) const
 {
-    check_hresult(shim()->put_FromVerticalOffset(value));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransition)->put_FromVerticalOffset(value));
 }
 
 template <typename D> bool impl_IEntranceThemeTransition<D>::IsStaggeringEnabled() const
 {
     bool value {};
-    check_hresult(shim()->get_IsStaggeringEnabled(&value));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransition)->get_IsStaggeringEnabled(&value));
     return value;
 }
 
 template <typename D> void impl_IEntranceThemeTransition<D>::IsStaggeringEnabled(bool value) const
 {
-    check_hresult(shim()->put_IsStaggeringEnabled(value));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransition)->put_IsStaggeringEnabled(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEntranceThemeTransitionStatics<D>::FromHorizontalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromHorizontalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransitionStatics)->get_FromHorizontalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEntranceThemeTransitionStatics<D>::FromVerticalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromVerticalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransitionStatics)->get_FromVerticalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEntranceThemeTransitionStatics<D>::IsStaggeringEnabledProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_IsStaggeringEnabledProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEntranceThemeTransitionStatics)->get_IsStaggeringEnabledProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> double impl_IExponentialEase<D>::Exponent() const
 {
     double value {};
-    check_hresult(shim()->get_Exponent(&value));
+    check_hresult(WINRT_SHIM(IExponentialEase)->get_Exponent(&value));
     return value;
 }
 
 template <typename D> void impl_IExponentialEase<D>::Exponent(double value) const
 {
-    check_hresult(shim()->put_Exponent(value));
+    check_hresult(WINRT_SHIM(IExponentialEase)->put_Exponent(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IExponentialEaseStatics<D>::ExponentProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ExponentProperty(put(value)));
+    check_hresult(WINRT_SHIM(IExponentialEaseStatics)->get_ExponentProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IFadeInThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IFadeInThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IFadeInThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IFadeInThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IFadeInThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IFadeInThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IFadeInThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IFadeOutThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IFadeOutThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IFadeOutThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IFadeOutThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IFadeOutThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IFadeOutThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IFadeOutThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::ObjectKeyFrameCollection impl_IObjectAnimationUsingKeyFrames<D>::KeyFrames() const
 {
     Windows::UI::Xaml::Media::Animation::ObjectKeyFrameCollection value { nullptr };
-    check_hresult(shim()->get_KeyFrames(put(value)));
+    check_hresult(WINRT_SHIM(IObjectAnimationUsingKeyFrames)->get_KeyFrames(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IObjectAnimationUsingKeyFrames<D>::EnableDependentAnimation() const
 {
     bool value {};
-    check_hresult(shim()->get_EnableDependentAnimation(&value));
+    check_hresult(WINRT_SHIM(IObjectAnimationUsingKeyFrames)->get_EnableDependentAnimation(&value));
     return value;
 }
 
 template <typename D> void impl_IObjectAnimationUsingKeyFrames<D>::EnableDependentAnimation(bool value) const
 {
-    check_hresult(shim()->put_EnableDependentAnimation(value));
+    check_hresult(WINRT_SHIM(IObjectAnimationUsingKeyFrames)->put_EnableDependentAnimation(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IObjectAnimationUsingKeyFramesStatics<D>::EnableDependentAnimationProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EnableDependentAnimationProperty(put(value)));
+    check_hresult(WINRT_SHIM(IObjectAnimationUsingKeyFramesStatics)->get_EnableDependentAnimationProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Controls::Primitives::EdgeTransitionLocation impl_IPaneThemeTransition<D>::Edge() const
 {
     Windows::UI::Xaml::Controls::Primitives::EdgeTransitionLocation value {};
-    check_hresult(shim()->get_Edge(&value));
+    check_hresult(WINRT_SHIM(IPaneThemeTransition)->get_Edge(&value));
     return value;
 }
 
 template <typename D> void impl_IPaneThemeTransition<D>::Edge(Windows::UI::Xaml::Controls::Primitives::EdgeTransitionLocation value) const
 {
-    check_hresult(shim()->put_Edge(value));
+    check_hresult(WINRT_SHIM(IPaneThemeTransition)->put_Edge(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPaneThemeTransitionStatics<D>::EdgeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EdgeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPaneThemeTransitionStatics)->get_EdgeProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::Foundation::Point> impl_IPointAnimation<D>::From() const
 {
     Windows::Foundation::IReference<Windows::Foundation::Point> value;
-    check_hresult(shim()->get_From(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimation)->get_From(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IPointAnimation<D>::From(const Windows::Foundation::IReference<Windows::Foundation::Point> & value) const
+template <typename D> void impl_IPointAnimation<D>::From(const optional<Windows::Foundation::Point> & value) const
 {
-    check_hresult(shim()->put_From(get(value)));
+    check_hresult(WINRT_SHIM(IPointAnimation)->put_From(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::Foundation::Point> impl_IPointAnimation<D>::To() const
 {
     Windows::Foundation::IReference<Windows::Foundation::Point> value;
-    check_hresult(shim()->get_To(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimation)->get_To(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IPointAnimation<D>::To(const Windows::Foundation::IReference<Windows::Foundation::Point> & value) const
+template <typename D> void impl_IPointAnimation<D>::To(const optional<Windows::Foundation::Point> & value) const
 {
-    check_hresult(shim()->put_To(get(value)));
+    check_hresult(WINRT_SHIM(IPointAnimation)->put_To(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::Foundation::Point> impl_IPointAnimation<D>::By() const
 {
     Windows::Foundation::IReference<Windows::Foundation::Point> value;
-    check_hresult(shim()->get_By(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimation)->get_By(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IPointAnimation<D>::By(const Windows::Foundation::IReference<Windows::Foundation::Point> & value) const
+template <typename D> void impl_IPointAnimation<D>::By(const optional<Windows::Foundation::Point> & value) const
 {
-    check_hresult(shim()->put_By(get(value)));
+    check_hresult(WINRT_SHIM(IPointAnimation)->put_By(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::EasingFunctionBase impl_IPointAnimation<D>::EasingFunction() const
 {
     Windows::UI::Xaml::Media::Animation::EasingFunctionBase value { nullptr };
-    check_hresult(shim()->get_EasingFunction(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimation)->get_EasingFunction(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IPointAnimation<D>::EasingFunction(const Windows::UI::Xaml::Media::Animation::EasingFunctionBase & value) const
 {
-    check_hresult(shim()->put_EasingFunction(get(value)));
+    check_hresult(WINRT_SHIM(IPointAnimation)->put_EasingFunction(get_abi(value)));
 }
 
 template <typename D> bool impl_IPointAnimation<D>::EnableDependentAnimation() const
 {
     bool value {};
-    check_hresult(shim()->get_EnableDependentAnimation(&value));
+    check_hresult(WINRT_SHIM(IPointAnimation)->get_EnableDependentAnimation(&value));
     return value;
 }
 
 template <typename D> void impl_IPointAnimation<D>::EnableDependentAnimation(bool value) const
 {
-    check_hresult(shim()->put_EnableDependentAnimation(value));
+    check_hresult(WINRT_SHIM(IPointAnimation)->put_EnableDependentAnimation(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointAnimationStatics<D>::FromProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimationStatics)->get_FromProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointAnimationStatics<D>::ToProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ToProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimationStatics)->get_ToProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointAnimationStatics<D>::ByProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ByProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimationStatics)->get_ByProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointAnimationStatics<D>::EasingFunctionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EasingFunctionProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimationStatics)->get_EasingFunctionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointAnimationStatics<D>::EnableDependentAnimationProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EnableDependentAnimationProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimationStatics)->get_EnableDependentAnimationProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::PointKeyFrameCollection impl_IPointAnimationUsingKeyFrames<D>::KeyFrames() const
 {
     Windows::UI::Xaml::Media::Animation::PointKeyFrameCollection value { nullptr };
-    check_hresult(shim()->get_KeyFrames(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimationUsingKeyFrames)->get_KeyFrames(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IPointAnimationUsingKeyFrames<D>::EnableDependentAnimation() const
 {
     bool value {};
-    check_hresult(shim()->get_EnableDependentAnimation(&value));
+    check_hresult(WINRT_SHIM(IPointAnimationUsingKeyFrames)->get_EnableDependentAnimation(&value));
     return value;
 }
 
 template <typename D> void impl_IPointAnimationUsingKeyFrames<D>::EnableDependentAnimation(bool value) const
 {
-    check_hresult(shim()->put_EnableDependentAnimation(value));
+    check_hresult(WINRT_SHIM(IPointAnimationUsingKeyFrames)->put_EnableDependentAnimation(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointAnimationUsingKeyFramesStatics<D>::EnableDependentAnimationProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_EnableDependentAnimationProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointAnimationUsingKeyFramesStatics)->get_EnableDependentAnimationProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IPointerDownThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IPointerDownThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IPointerDownThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IPointerDownThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IPointerDownThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointerDownThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointerDownThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IPointerUpThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IPointerUpThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IPointerUpThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IPointerUpThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IPointerUpThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPointerUpThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPointerUpThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IPopInThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IPopInThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IPopInThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> double impl_IPopInThemeAnimation<D>::FromHorizontalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromHorizontalOffset(&value));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimation)->get_FromHorizontalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IPopInThemeAnimation<D>::FromHorizontalOffset(double value) const
 {
-    check_hresult(shim()->put_FromHorizontalOffset(value));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimation)->put_FromHorizontalOffset(value));
 }
 
 template <typename D> double impl_IPopInThemeAnimation<D>::FromVerticalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromVerticalOffset(&value));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimation)->get_FromVerticalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IPopInThemeAnimation<D>::FromVerticalOffset(double value) const
 {
-    check_hresult(shim()->put_FromVerticalOffset(value));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimation)->put_FromVerticalOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPopInThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPopInThemeAnimationStatics<D>::FromHorizontalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromHorizontalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimationStatics)->get_FromHorizontalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPopInThemeAnimationStatics<D>::FromVerticalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromVerticalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPopInThemeAnimationStatics)->get_FromVerticalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IPopOutThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IPopOutThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IPopOutThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IPopOutThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IPopOutThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPopOutThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPopOutThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> double impl_IPopupThemeTransition<D>::FromHorizontalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromHorizontalOffset(&value));
+    check_hresult(WINRT_SHIM(IPopupThemeTransition)->get_FromHorizontalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IPopupThemeTransition<D>::FromHorizontalOffset(double value) const
 {
-    check_hresult(shim()->put_FromHorizontalOffset(value));
+    check_hresult(WINRT_SHIM(IPopupThemeTransition)->put_FromHorizontalOffset(value));
 }
 
 template <typename D> double impl_IPopupThemeTransition<D>::FromVerticalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromVerticalOffset(&value));
+    check_hresult(WINRT_SHIM(IPopupThemeTransition)->get_FromVerticalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IPopupThemeTransition<D>::FromVerticalOffset(double value) const
 {
-    check_hresult(shim()->put_FromVerticalOffset(value));
+    check_hresult(WINRT_SHIM(IPopupThemeTransition)->put_FromVerticalOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPopupThemeTransitionStatics<D>::FromHorizontalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromHorizontalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPopupThemeTransitionStatics)->get_FromHorizontalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPopupThemeTransitionStatics<D>::FromVerticalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromVerticalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPopupThemeTransitionStatics)->get_FromVerticalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> double impl_IPowerEase<D>::Power() const
 {
     double value {};
-    check_hresult(shim()->get_Power(&value));
+    check_hresult(WINRT_SHIM(IPowerEase)->get_Power(&value));
     return value;
 }
 
 template <typename D> void impl_IPowerEase<D>::Power(double value) const
 {
-    check_hresult(shim()->put_Power(value));
+    check_hresult(WINRT_SHIM(IPowerEase)->put_Power(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPowerEaseStatics<D>::PowerProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_PowerProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPowerEaseStatics)->get_PowerProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IRepositionThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IRepositionThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_IRepositionThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> double impl_IRepositionThemeAnimation<D>::FromHorizontalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromHorizontalOffset(&value));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimation)->get_FromHorizontalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IRepositionThemeAnimation<D>::FromHorizontalOffset(double value) const
 {
-    check_hresult(shim()->put_FromHorizontalOffset(value));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimation)->put_FromHorizontalOffset(value));
 }
 
 template <typename D> double impl_IRepositionThemeAnimation<D>::FromVerticalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromVerticalOffset(&value));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimation)->get_FromVerticalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IRepositionThemeAnimation<D>::FromVerticalOffset(double value) const
 {
-    check_hresult(shim()->put_FromVerticalOffset(value));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimation)->put_FromVerticalOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IRepositionThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IRepositionThemeAnimationStatics<D>::FromHorizontalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromHorizontalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimationStatics)->get_FromHorizontalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IRepositionThemeAnimationStatics<D>::FromVerticalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromVerticalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IRepositionThemeAnimationStatics)->get_FromVerticalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IRepositionThemeTransition2<D>::IsStaggeringEnabled() const
 {
     bool value {};
-    check_hresult(shim()->get_IsStaggeringEnabled(&value));
+    check_hresult(WINRT_SHIM(IRepositionThemeTransition2)->get_IsStaggeringEnabled(&value));
     return value;
 }
 
 template <typename D> void impl_IRepositionThemeTransition2<D>::IsStaggeringEnabled(bool value) const
 {
-    check_hresult(shim()->put_IsStaggeringEnabled(value));
+    check_hresult(WINRT_SHIM(IRepositionThemeTransition2)->put_IsStaggeringEnabled(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IRepositionThemeTransitionStatics2<D>::IsStaggeringEnabledProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_IsStaggeringEnabledProperty(put(value)));
+    check_hresult(WINRT_SHIM(IRepositionThemeTransitionStatics2)->get_IsStaggeringEnabledProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::KeySpline impl_ISplineColorKeyFrame<D>::KeySpline() const
 {
     Windows::UI::Xaml::Media::Animation::KeySpline value { nullptr };
-    check_hresult(shim()->get_KeySpline(put(value)));
+    check_hresult(WINRT_SHIM(ISplineColorKeyFrame)->get_KeySpline(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplineColorKeyFrame<D>::KeySpline(const Windows::UI::Xaml::Media::Animation::KeySpline & value) const
 {
-    check_hresult(shim()->put_KeySpline(get(value)));
+    check_hresult(WINRT_SHIM(ISplineColorKeyFrame)->put_KeySpline(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplineColorKeyFrameStatics<D>::KeySplineProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_KeySplineProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplineColorKeyFrameStatics)->get_KeySplineProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::KeySpline impl_ISplineDoubleKeyFrame<D>::KeySpline() const
 {
     Windows::UI::Xaml::Media::Animation::KeySpline value { nullptr };
-    check_hresult(shim()->get_KeySpline(put(value)));
+    check_hresult(WINRT_SHIM(ISplineDoubleKeyFrame)->get_KeySpline(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplineDoubleKeyFrame<D>::KeySpline(const Windows::UI::Xaml::Media::Animation::KeySpline & value) const
 {
-    check_hresult(shim()->put_KeySpline(get(value)));
+    check_hresult(WINRT_SHIM(ISplineDoubleKeyFrame)->put_KeySpline(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplineDoubleKeyFrameStatics<D>::KeySplineProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_KeySplineProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplineDoubleKeyFrameStatics)->get_KeySplineProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::KeySpline impl_ISplinePointKeyFrame<D>::KeySpline() const
 {
     Windows::UI::Xaml::Media::Animation::KeySpline value { nullptr };
-    check_hresult(shim()->get_KeySpline(put(value)));
+    check_hresult(WINRT_SHIM(ISplinePointKeyFrame)->get_KeySpline(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplinePointKeyFrame<D>::KeySpline(const Windows::UI::Xaml::Media::Animation::KeySpline & value) const
 {
-    check_hresult(shim()->put_KeySpline(get(value)));
+    check_hresult(WINRT_SHIM(ISplinePointKeyFrame)->put_KeySpline(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplinePointKeyFrameStatics<D>::KeySplineProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_KeySplineProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplinePointKeyFrameStatics)->get_KeySplineProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_ISplitCloseThemeAnimation<D>::OpenedTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_OpenedTargetName(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_OpenedTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISplitCloseThemeAnimation<D>::OpenedTargetName(hstring_ref value) const
+template <typename D> void impl_ISplitCloseThemeAnimation<D>::OpenedTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_OpenedTargetName(get(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_OpenedTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_ISplitCloseThemeAnimation<D>::OpenedTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_OpenedTarget(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_OpenedTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplitCloseThemeAnimation<D>::OpenedTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_OpenedTarget(get(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_OpenedTarget(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISplitCloseThemeAnimation<D>::ClosedTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_ClosedTargetName(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_ClosedTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISplitCloseThemeAnimation<D>::ClosedTargetName(hstring_ref value) const
+template <typename D> void impl_ISplitCloseThemeAnimation<D>::ClosedTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_ClosedTargetName(get(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_ClosedTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_ISplitCloseThemeAnimation<D>::ClosedTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_ClosedTarget(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_ClosedTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplitCloseThemeAnimation<D>::ClosedTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_ClosedTarget(get(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_ClosedTarget(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISplitCloseThemeAnimation<D>::ContentTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_ContentTargetName(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_ContentTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISplitCloseThemeAnimation<D>::ContentTargetName(hstring_ref value) const
+template <typename D> void impl_ISplitCloseThemeAnimation<D>::ContentTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_ContentTargetName(get(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_ContentTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_ISplitCloseThemeAnimation<D>::ContentTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_ContentTarget(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_ContentTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplitCloseThemeAnimation<D>::ContentTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_ContentTarget(get(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_ContentTarget(get_abi(value)));
 }
 
 template <typename D> double impl_ISplitCloseThemeAnimation<D>::OpenedLength() const
 {
     double value {};
-    check_hresult(shim()->get_OpenedLength(&value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_OpenedLength(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitCloseThemeAnimation<D>::OpenedLength(double value) const
 {
-    check_hresult(shim()->put_OpenedLength(value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_OpenedLength(value));
 }
 
 template <typename D> double impl_ISplitCloseThemeAnimation<D>::ClosedLength() const
 {
     double value {};
-    check_hresult(shim()->get_ClosedLength(&value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_ClosedLength(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitCloseThemeAnimation<D>::ClosedLength(double value) const
 {
-    check_hresult(shim()->put_ClosedLength(value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_ClosedLength(value));
 }
 
 template <typename D> double impl_ISplitCloseThemeAnimation<D>::OffsetFromCenter() const
 {
     double value {};
-    check_hresult(shim()->get_OffsetFromCenter(&value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_OffsetFromCenter(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitCloseThemeAnimation<D>::OffsetFromCenter(double value) const
 {
-    check_hresult(shim()->put_OffsetFromCenter(value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_OffsetFromCenter(value));
 }
 
 template <typename D> Windows::UI::Xaml::Controls::Primitives::AnimationDirection impl_ISplitCloseThemeAnimation<D>::ContentTranslationDirection() const
 {
     Windows::UI::Xaml::Controls::Primitives::AnimationDirection value {};
-    check_hresult(shim()->get_ContentTranslationDirection(&value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_ContentTranslationDirection(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitCloseThemeAnimation<D>::ContentTranslationDirection(Windows::UI::Xaml::Controls::Primitives::AnimationDirection value) const
 {
-    check_hresult(shim()->put_ContentTranslationDirection(value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_ContentTranslationDirection(value));
 }
 
 template <typename D> double impl_ISplitCloseThemeAnimation<D>::ContentTranslationOffset() const
 {
     double value {};
-    check_hresult(shim()->get_ContentTranslationOffset(&value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->get_ContentTranslationOffset(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitCloseThemeAnimation<D>::ContentTranslationOffset(double value) const
 {
-    check_hresult(shim()->put_ContentTranslationOffset(value));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimation)->put_ContentTranslationOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::OpenedTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OpenedTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_OpenedTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::OpenedTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OpenedTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_OpenedTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::ClosedTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ClosedTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_ClosedTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::ClosedTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ClosedTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_ClosedTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::ContentTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ContentTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_ContentTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::ContentTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ContentTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_ContentTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::OpenedLengthProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OpenedLengthProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_OpenedLengthProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::ClosedLengthProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ClosedLengthProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_ClosedLengthProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::OffsetFromCenterProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OffsetFromCenterProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_OffsetFromCenterProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::ContentTranslationDirectionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ContentTranslationDirectionProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_ContentTranslationDirectionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitCloseThemeAnimationStatics<D>::ContentTranslationOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ContentTranslationOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitCloseThemeAnimationStatics)->get_ContentTranslationOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_ISplitOpenThemeAnimation<D>::OpenedTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_OpenedTargetName(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_OpenedTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISplitOpenThemeAnimation<D>::OpenedTargetName(hstring_ref value) const
+template <typename D> void impl_ISplitOpenThemeAnimation<D>::OpenedTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_OpenedTargetName(get(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_OpenedTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_ISplitOpenThemeAnimation<D>::OpenedTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_OpenedTarget(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_OpenedTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplitOpenThemeAnimation<D>::OpenedTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_OpenedTarget(get(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_OpenedTarget(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISplitOpenThemeAnimation<D>::ClosedTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_ClosedTargetName(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_ClosedTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISplitOpenThemeAnimation<D>::ClosedTargetName(hstring_ref value) const
+template <typename D> void impl_ISplitOpenThemeAnimation<D>::ClosedTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_ClosedTargetName(get(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_ClosedTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_ISplitOpenThemeAnimation<D>::ClosedTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_ClosedTarget(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_ClosedTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplitOpenThemeAnimation<D>::ClosedTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_ClosedTarget(get(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_ClosedTarget(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISplitOpenThemeAnimation<D>::ContentTargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_ContentTargetName(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_ContentTargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISplitOpenThemeAnimation<D>::ContentTargetName(hstring_ref value) const
+template <typename D> void impl_ISplitOpenThemeAnimation<D>::ContentTargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_ContentTargetName(get(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_ContentTargetName(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyObject impl_ISplitOpenThemeAnimation<D>::ContentTarget() const
 {
     Windows::UI::Xaml::DependencyObject value { nullptr };
-    check_hresult(shim()->get_ContentTarget(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_ContentTarget(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISplitOpenThemeAnimation<D>::ContentTarget(const Windows::UI::Xaml::DependencyObject & value) const
 {
-    check_hresult(shim()->put_ContentTarget(get(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_ContentTarget(get_abi(value)));
 }
 
 template <typename D> double impl_ISplitOpenThemeAnimation<D>::OpenedLength() const
 {
     double value {};
-    check_hresult(shim()->get_OpenedLength(&value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_OpenedLength(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitOpenThemeAnimation<D>::OpenedLength(double value) const
 {
-    check_hresult(shim()->put_OpenedLength(value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_OpenedLength(value));
 }
 
 template <typename D> double impl_ISplitOpenThemeAnimation<D>::ClosedLength() const
 {
     double value {};
-    check_hresult(shim()->get_ClosedLength(&value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_ClosedLength(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitOpenThemeAnimation<D>::ClosedLength(double value) const
 {
-    check_hresult(shim()->put_ClosedLength(value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_ClosedLength(value));
 }
 
 template <typename D> double impl_ISplitOpenThemeAnimation<D>::OffsetFromCenter() const
 {
     double value {};
-    check_hresult(shim()->get_OffsetFromCenter(&value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_OffsetFromCenter(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitOpenThemeAnimation<D>::OffsetFromCenter(double value) const
 {
-    check_hresult(shim()->put_OffsetFromCenter(value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_OffsetFromCenter(value));
 }
 
 template <typename D> Windows::UI::Xaml::Controls::Primitives::AnimationDirection impl_ISplitOpenThemeAnimation<D>::ContentTranslationDirection() const
 {
     Windows::UI::Xaml::Controls::Primitives::AnimationDirection value {};
-    check_hresult(shim()->get_ContentTranslationDirection(&value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_ContentTranslationDirection(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitOpenThemeAnimation<D>::ContentTranslationDirection(Windows::UI::Xaml::Controls::Primitives::AnimationDirection value) const
 {
-    check_hresult(shim()->put_ContentTranslationDirection(value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_ContentTranslationDirection(value));
 }
 
 template <typename D> double impl_ISplitOpenThemeAnimation<D>::ContentTranslationOffset() const
 {
     double value {};
-    check_hresult(shim()->get_ContentTranslationOffset(&value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->get_ContentTranslationOffset(&value));
     return value;
 }
 
 template <typename D> void impl_ISplitOpenThemeAnimation<D>::ContentTranslationOffset(double value) const
 {
-    check_hresult(shim()->put_ContentTranslationOffset(value));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimation)->put_ContentTranslationOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::OpenedTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OpenedTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_OpenedTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::OpenedTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OpenedTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_OpenedTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::ClosedTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ClosedTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_ClosedTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::ClosedTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ClosedTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_ClosedTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::ContentTargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ContentTargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_ContentTargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::ContentTargetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ContentTargetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_ContentTargetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::OpenedLengthProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OpenedLengthProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_OpenedLengthProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::ClosedLengthProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ClosedLengthProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_ClosedLengthProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::OffsetFromCenterProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_OffsetFromCenterProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_OffsetFromCenterProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::ContentTranslationDirectionProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ContentTranslationDirectionProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_ContentTranslationDirectionProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISplitOpenThemeAnimationStatics<D>::ContentTranslationOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ContentTranslationOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISplitOpenThemeAnimationStatics)->get_ContentTranslationOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::TimelineCollection impl_IStoryboard<D>::Children() const
 {
     Windows::UI::Xaml::Media::Animation::TimelineCollection value { nullptr };
-    check_hresult(shim()->get_Children(put(value)));
+    check_hresult(WINRT_SHIM(IStoryboard)->get_Children(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IStoryboard<D>::Seek(const Windows::Foundation::TimeSpan & offset) const
 {
-    check_hresult(shim()->abi_Seek(get(offset)));
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_Seek(get_abi(offset)));
 }
 
 template <typename D> void impl_IStoryboard<D>::Stop() const
 {
-    check_hresult(shim()->abi_Stop());
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_Stop());
 }
 
 template <typename D> void impl_IStoryboard<D>::Begin() const
 {
-    check_hresult(shim()->abi_Begin());
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_Begin());
 }
 
 template <typename D> void impl_IStoryboard<D>::Pause() const
 {
-    check_hresult(shim()->abi_Pause());
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_Pause());
 }
 
 template <typename D> void impl_IStoryboard<D>::Resume() const
 {
-    check_hresult(shim()->abi_Resume());
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_Resume());
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::ClockState impl_IStoryboard<D>::GetCurrentState() const
 {
     Windows::UI::Xaml::Media::Animation::ClockState returnValue {};
-    check_hresult(shim()->abi_GetCurrentState(&returnValue));
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_GetCurrentState(&returnValue));
     return returnValue;
 }
 
 template <typename D> Windows::Foundation::TimeSpan impl_IStoryboard<D>::GetCurrentTime() const
 {
     Windows::Foundation::TimeSpan returnValue {};
-    check_hresult(shim()->abi_GetCurrentTime(put(returnValue)));
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_GetCurrentTime(put_abi(returnValue)));
     return returnValue;
 }
 
 template <typename D> void impl_IStoryboard<D>::SeekAlignedToLastTick(const Windows::Foundation::TimeSpan & offset) const
 {
-    check_hresult(shim()->abi_SeekAlignedToLastTick(get(offset)));
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_SeekAlignedToLastTick(get_abi(offset)));
 }
 
 template <typename D> void impl_IStoryboard<D>::SkipToFill() const
 {
-    check_hresult(shim()->abi_SkipToFill());
+    check_hresult(WINRT_SHIM(IStoryboard)->abi_SkipToFill());
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IStoryboardStatics<D>::TargetPropertyProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetPropertyProperty(put(value)));
+    check_hresult(WINRT_SHIM(IStoryboardStatics)->get_TargetPropertyProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IStoryboardStatics<D>::GetTargetProperty(const Windows::UI::Xaml::Media::Animation::Timeline & element) const
 {
     hstring path;
-    check_hresult(shim()->abi_GetTargetProperty(get(element), put(path)));
+    check_hresult(WINRT_SHIM(IStoryboardStatics)->abi_GetTargetProperty(get_abi(element), put_abi(path)));
     return path;
 }
 
-template <typename D> void impl_IStoryboardStatics<D>::SetTargetProperty(const Windows::UI::Xaml::Media::Animation::Timeline & element, hstring_ref path) const
+template <typename D> void impl_IStoryboardStatics<D>::SetTargetProperty(const Windows::UI::Xaml::Media::Animation::Timeline & element, hstring_view path) const
 {
-    check_hresult(shim()->abi_SetTargetProperty(get(element), get(path)));
+    check_hresult(WINRT_SHIM(IStoryboardStatics)->abi_SetTargetProperty(get_abi(element), get_abi(path)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IStoryboardStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(IStoryboardStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IStoryboardStatics<D>::GetTargetName(const Windows::UI::Xaml::Media::Animation::Timeline & element) const
 {
     hstring name;
-    check_hresult(shim()->abi_GetTargetName(get(element), put(name)));
+    check_hresult(WINRT_SHIM(IStoryboardStatics)->abi_GetTargetName(get_abi(element), put_abi(name)));
     return name;
 }
 
-template <typename D> void impl_IStoryboardStatics<D>::SetTargetName(const Windows::UI::Xaml::Media::Animation::Timeline & element, hstring_ref name) const
+template <typename D> void impl_IStoryboardStatics<D>::SetTargetName(const Windows::UI::Xaml::Media::Animation::Timeline & element, hstring_view name) const
 {
-    check_hresult(shim()->abi_SetTargetName(get(element), get(name)));
+    check_hresult(WINRT_SHIM(IStoryboardStatics)->abi_SetTargetName(get_abi(element), get_abi(name)));
 }
 
 template <typename D> void impl_IStoryboardStatics<D>::SetTarget(const Windows::UI::Xaml::Media::Animation::Timeline & timeline, const Windows::UI::Xaml::DependencyObject & target) const
 {
-    check_hresult(shim()->abi_SetTarget(get(timeline), get(target)));
+    check_hresult(WINRT_SHIM(IStoryboardStatics)->abi_SetTarget(get_abi(timeline), get_abi(target)));
 }
 
 template <typename D> hstring impl_ISwipeBackThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISwipeBackThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_ISwipeBackThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> double impl_ISwipeBackThemeAnimation<D>::FromHorizontalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromHorizontalOffset(&value));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimation)->get_FromHorizontalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_ISwipeBackThemeAnimation<D>::FromHorizontalOffset(double value) const
 {
-    check_hresult(shim()->put_FromHorizontalOffset(value));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimation)->put_FromHorizontalOffset(value));
 }
 
 template <typename D> double impl_ISwipeBackThemeAnimation<D>::FromVerticalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_FromVerticalOffset(&value));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimation)->get_FromVerticalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_ISwipeBackThemeAnimation<D>::FromVerticalOffset(double value) const
 {
-    check_hresult(shim()->put_FromVerticalOffset(value));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimation)->put_FromVerticalOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISwipeBackThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISwipeBackThemeAnimationStatics<D>::FromHorizontalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromHorizontalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimationStatics)->get_FromHorizontalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISwipeBackThemeAnimationStatics<D>::FromVerticalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FromVerticalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISwipeBackThemeAnimationStatics)->get_FromVerticalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_ISwipeHintThemeAnimation<D>::TargetName() const
 {
     hstring value;
-    check_hresult(shim()->get_TargetName(put(value)));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimation)->get_TargetName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISwipeHintThemeAnimation<D>::TargetName(hstring_ref value) const
+template <typename D> void impl_ISwipeHintThemeAnimation<D>::TargetName(hstring_view value) const
 {
-    check_hresult(shim()->put_TargetName(get(value)));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimation)->put_TargetName(get_abi(value)));
 }
 
 template <typename D> double impl_ISwipeHintThemeAnimation<D>::ToHorizontalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_ToHorizontalOffset(&value));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimation)->get_ToHorizontalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_ISwipeHintThemeAnimation<D>::ToHorizontalOffset(double value) const
 {
-    check_hresult(shim()->put_ToHorizontalOffset(value));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimation)->put_ToHorizontalOffset(value));
 }
 
 template <typename D> double impl_ISwipeHintThemeAnimation<D>::ToVerticalOffset() const
 {
     double value {};
-    check_hresult(shim()->get_ToVerticalOffset(&value));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimation)->get_ToVerticalOffset(&value));
     return value;
 }
 
 template <typename D> void impl_ISwipeHintThemeAnimation<D>::ToVerticalOffset(double value) const
 {
-    check_hresult(shim()->put_ToVerticalOffset(value));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimation)->put_ToVerticalOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISwipeHintThemeAnimationStatics<D>::TargetNameProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_TargetNameProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimationStatics)->get_TargetNameProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISwipeHintThemeAnimationStatics<D>::ToHorizontalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ToHorizontalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimationStatics)->get_ToHorizontalOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ISwipeHintThemeAnimationStatics<D>::ToVerticalOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ToVerticalOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(ISwipeHintThemeAnimationStatics)->get_ToVerticalOffsetProperty(put_abi(value)));
     return value;
 }
 
-template <typename D> event_token impl_IConnectedAnimation<D>::Completed(const Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Media::Animation::ConnectedAnimation, Windows::IInspectable> & value) const
+template <typename D> event_token impl_IConnectedAnimation<D>::Completed(const Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Media::Animation::ConnectedAnimation, Windows::Foundation::IInspectable> & value) const
 {
     event_token token {};
-    check_hresult(shim()->add_Completed(get(value), &token));
+    check_hresult(WINRT_SHIM(IConnectedAnimation)->add_Completed(get_abi(value), &token));
     return token;
 }
 
-template <typename D> event_revoker<IConnectedAnimation> impl_IConnectedAnimation<D>::Completed(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Media::Animation::ConnectedAnimation, Windows::IInspectable> & value) const
+template <typename D> event_revoker<IConnectedAnimation> impl_IConnectedAnimation<D>::Completed(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::UI::Xaml::Media::Animation::ConnectedAnimation, Windows::Foundation::IInspectable> & value) const
 {
     return impl::make_event_revoker<D, IConnectedAnimation>(this, &ABI::Windows::UI::Xaml::Media::Animation::IConnectedAnimation::remove_Completed, Completed(value));
 }
 
 template <typename D> void impl_IConnectedAnimation<D>::Completed(event_token token) const
 {
-    check_hresult(shim()->remove_Completed(token));
+    check_hresult(WINRT_SHIM(IConnectedAnimation)->remove_Completed(token));
 }
 
 template <typename D> bool impl_IConnectedAnimation<D>::TryStart(const Windows::UI::Xaml::UIElement & destination) const
 {
     bool returnValue {};
-    check_hresult(shim()->abi_TryStart(get(destination), &returnValue));
+    check_hresult(WINRT_SHIM(IConnectedAnimation)->abi_TryStart(get_abi(destination), &returnValue));
     return returnValue;
 }
 
 template <typename D> void impl_IConnectedAnimation<D>::Cancel() const
 {
-    check_hresult(shim()->abi_Cancel());
+    check_hresult(WINRT_SHIM(IConnectedAnimation)->abi_Cancel());
 }
 
 template <typename D> Windows::Foundation::TimeSpan impl_IConnectedAnimationService<D>::DefaultDuration() const
 {
     Windows::Foundation::TimeSpan value {};
-    check_hresult(shim()->get_DefaultDuration(put(value)));
+    check_hresult(WINRT_SHIM(IConnectedAnimationService)->get_DefaultDuration(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IConnectedAnimationService<D>::DefaultDuration(const Windows::Foundation::TimeSpan & value) const
 {
-    check_hresult(shim()->put_DefaultDuration(get(value)));
+    check_hresult(WINRT_SHIM(IConnectedAnimationService)->put_DefaultDuration(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Composition::CompositionEasingFunction impl_IConnectedAnimationService<D>::DefaultEasingFunction() const
 {
     Windows::UI::Composition::CompositionEasingFunction value { nullptr };
-    check_hresult(shim()->get_DefaultEasingFunction(put(value)));
+    check_hresult(WINRT_SHIM(IConnectedAnimationService)->get_DefaultEasingFunction(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IConnectedAnimationService<D>::DefaultEasingFunction(const Windows::UI::Composition::CompositionEasingFunction & value) const
 {
-    check_hresult(shim()->put_DefaultEasingFunction(get(value)));
+    check_hresult(WINRT_SHIM(IConnectedAnimationService)->put_DefaultEasingFunction(get_abi(value)));
 }
 
-template <typename D> Windows::UI::Xaml::Media::Animation::ConnectedAnimation impl_IConnectedAnimationService<D>::PrepareToAnimate(hstring_ref key, const Windows::UI::Xaml::UIElement & source) const
+template <typename D> Windows::UI::Xaml::Media::Animation::ConnectedAnimation impl_IConnectedAnimationService<D>::PrepareToAnimate(hstring_view key, const Windows::UI::Xaml::UIElement & source) const
 {
     Windows::UI::Xaml::Media::Animation::ConnectedAnimation returnValue { nullptr };
-    check_hresult(shim()->abi_PrepareToAnimate(get(key), get(source), put(returnValue)));
+    check_hresult(WINRT_SHIM(IConnectedAnimationService)->abi_PrepareToAnimate(get_abi(key), get_abi(source), put_abi(returnValue)));
     return returnValue;
 }
 
-template <typename D> Windows::UI::Xaml::Media::Animation::ConnectedAnimation impl_IConnectedAnimationService<D>::GetAnimation(hstring_ref key) const
+template <typename D> Windows::UI::Xaml::Media::Animation::ConnectedAnimation impl_IConnectedAnimationService<D>::GetAnimation(hstring_view key) const
 {
     Windows::UI::Xaml::Media::Animation::ConnectedAnimation returnValue { nullptr };
-    check_hresult(shim()->abi_GetAnimation(get(key), put(returnValue)));
+    check_hresult(WINRT_SHIM(IConnectedAnimationService)->abi_GetAnimation(get_abi(key), put_abi(returnValue)));
     return returnValue;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::ConnectedAnimationService impl_IConnectedAnimationServiceStatics<D>::GetForCurrentView() const
 {
     Windows::UI::Xaml::Media::Animation::ConnectedAnimationService returnValue { nullptr };
-    check_hresult(shim()->abi_GetForCurrentView(put(returnValue)));
+    check_hresult(WINRT_SHIM(IConnectedAnimationServiceStatics)->abi_GetForCurrentView(put_abi(returnValue)));
     return returnValue;
 }
 
 template <typename D> bool impl_ICommonNavigationTransitionInfo<D>::IsStaggeringEnabled() const
 {
     bool value {};
-    check_hresult(shim()->get_IsStaggeringEnabled(&value));
+    check_hresult(WINRT_SHIM(ICommonNavigationTransitionInfo)->get_IsStaggeringEnabled(&value));
     return value;
 }
 
 template <typename D> void impl_ICommonNavigationTransitionInfo<D>::IsStaggeringEnabled(bool value) const
 {
-    check_hresult(shim()->put_IsStaggeringEnabled(value));
+    check_hresult(WINRT_SHIM(ICommonNavigationTransitionInfo)->put_IsStaggeringEnabled(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ICommonNavigationTransitionInfoStatics<D>::IsStaggeringEnabledProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_IsStaggeringEnabledProperty(put(value)));
+    check_hresult(WINRT_SHIM(ICommonNavigationTransitionInfoStatics)->get_IsStaggeringEnabledProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ICommonNavigationTransitionInfoStatics<D>::IsStaggerElementProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_IsStaggerElementProperty(put(value)));
+    check_hresult(WINRT_SHIM(ICommonNavigationTransitionInfoStatics)->get_IsStaggerElementProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_ICommonNavigationTransitionInfoStatics<D>::GetIsStaggerElement(const Windows::UI::Xaml::UIElement & element) const
 {
     bool value {};
-    check_hresult(shim()->abi_GetIsStaggerElement(get(element), &value));
+    check_hresult(WINRT_SHIM(ICommonNavigationTransitionInfoStatics)->abi_GetIsStaggerElement(get_abi(element), &value));
     return value;
 }
 
 template <typename D> void impl_ICommonNavigationTransitionInfoStatics<D>::SetIsStaggerElement(const Windows::UI::Xaml::UIElement & element, bool value) const
 {
-    check_hresult(shim()->abi_SetIsStaggerElement(get(element), value));
+    check_hresult(WINRT_SHIM(ICommonNavigationTransitionInfoStatics)->abi_SetIsStaggerElement(get_abi(element), value));
 }
 
 template <typename D> Windows::UI::Xaml::UIElement impl_IContinuumNavigationTransitionInfo<D>::ExitElement() const
 {
     Windows::UI::Xaml::UIElement value { nullptr };
-    check_hresult(shim()->get_ExitElement(put(value)));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfo)->get_ExitElement(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IContinuumNavigationTransitionInfo<D>::ExitElement(const Windows::UI::Xaml::UIElement & value) const
 {
-    check_hresult(shim()->put_ExitElement(get(value)));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfo)->put_ExitElement(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IContinuumNavigationTransitionInfoStatics<D>::ExitElementProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ExitElementProperty(put(value)));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->get_ExitElementProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IContinuumNavigationTransitionInfoStatics<D>::IsEntranceElementProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_IsEntranceElementProperty(put(value)));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->get_IsEntranceElementProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IContinuumNavigationTransitionInfoStatics<D>::GetIsEntranceElement(const Windows::UI::Xaml::UIElement & element) const
 {
     bool value {};
-    check_hresult(shim()->abi_GetIsEntranceElement(get(element), &value));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->abi_GetIsEntranceElement(get_abi(element), &value));
     return value;
 }
 
 template <typename D> void impl_IContinuumNavigationTransitionInfoStatics<D>::SetIsEntranceElement(const Windows::UI::Xaml::UIElement & element, bool value) const
 {
-    check_hresult(shim()->abi_SetIsEntranceElement(get(element), value));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->abi_SetIsEntranceElement(get_abi(element), value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IContinuumNavigationTransitionInfoStatics<D>::IsExitElementProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_IsExitElementProperty(put(value)));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->get_IsExitElementProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IContinuumNavigationTransitionInfoStatics<D>::GetIsExitElement(const Windows::UI::Xaml::UIElement & element) const
 {
     bool value {};
-    check_hresult(shim()->abi_GetIsExitElement(get(element), &value));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->abi_GetIsExitElement(get_abi(element), &value));
     return value;
 }
 
 template <typename D> void impl_IContinuumNavigationTransitionInfoStatics<D>::SetIsExitElement(const Windows::UI::Xaml::UIElement & element, bool value) const
 {
-    check_hresult(shim()->abi_SetIsExitElement(get(element), value));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->abi_SetIsExitElement(get_abi(element), value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IContinuumNavigationTransitionInfoStatics<D>::ExitElementContainerProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_ExitElementContainerProperty(put(value)));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->get_ExitElementContainerProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IContinuumNavigationTransitionInfoStatics<D>::GetExitElementContainer(const Windows::UI::Xaml::Controls::ListViewBase & element) const
 {
     bool value {};
-    check_hresult(shim()->abi_GetExitElementContainer(get(element), &value));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->abi_GetExitElementContainer(get_abi(element), &value));
     return value;
 }
 
 template <typename D> void impl_IContinuumNavigationTransitionInfoStatics<D>::SetExitElementContainer(const Windows::UI::Xaml::Controls::ListViewBase & element, bool value) const
 {
-    check_hresult(shim()->abi_SetExitElementContainer(get(element), value));
+    check_hresult(WINRT_SHIM(IContinuumNavigationTransitionInfoStatics)->abi_SetExitElementContainer(get_abi(element), value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IEntranceNavigationTransitionInfoStatics<D>::IsTargetElementProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_IsTargetElementProperty(put(value)));
+    check_hresult(WINRT_SHIM(IEntranceNavigationTransitionInfoStatics)->get_IsTargetElementProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IEntranceNavigationTransitionInfoStatics<D>::GetIsTargetElement(const Windows::UI::Xaml::UIElement & element) const
 {
     bool value {};
-    check_hresult(shim()->abi_GetIsTargetElement(get(element), &value));
+    check_hresult(WINRT_SHIM(IEntranceNavigationTransitionInfoStatics)->abi_GetIsTargetElement(get_abi(element), &value));
     return value;
 }
 
 template <typename D> void impl_IEntranceNavigationTransitionInfoStatics<D>::SetIsTargetElement(const Windows::UI::Xaml::UIElement & element, bool value) const
 {
-    check_hresult(shim()->abi_SetIsTargetElement(get(element), value));
+    check_hresult(WINRT_SHIM(IEntranceNavigationTransitionInfoStatics)->abi_SetIsTargetElement(get_abi(element), value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo impl_INavigationThemeTransition<D>::DefaultNavigationTransitionInfo() const
 {
     Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo value { nullptr };
-    check_hresult(shim()->get_DefaultNavigationTransitionInfo(put(value)));
+    check_hresult(WINRT_SHIM(INavigationThemeTransition)->get_DefaultNavigationTransitionInfo(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_INavigationThemeTransition<D>::DefaultNavigationTransitionInfo(const Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo & value) const
 {
-    check_hresult(shim()->put_DefaultNavigationTransitionInfo(get(value)));
+    check_hresult(WINRT_SHIM(INavigationThemeTransition)->put_DefaultNavigationTransitionInfo(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_INavigationThemeTransitionStatics<D>::DefaultNavigationTransitionInfoProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_DefaultNavigationTransitionInfoProperty(put(value)));
+    check_hresult(WINRT_SHIM(INavigationThemeTransitionStatics)->get_DefaultNavigationTransitionInfoProperty(put_abi(value)));
     return value;
 }
 
@@ -9621,7 +10034,7 @@ inline hstring Storyboard::GetTargetProperty(const Windows::UI::Xaml::Media::Ani
     return get_activation_factory<Storyboard, IStoryboardStatics>().GetTargetProperty(element);
 }
 
-inline void Storyboard::SetTargetProperty(const Windows::UI::Xaml::Media::Animation::Timeline & element, hstring_ref path)
+inline void Storyboard::SetTargetProperty(const Windows::UI::Xaml::Media::Animation::Timeline & element, hstring_view path)
 {
     get_activation_factory<Storyboard, IStoryboardStatics>().SetTargetProperty(element, path);
 }
@@ -9636,7 +10049,7 @@ inline hstring Storyboard::GetTargetName(const Windows::UI::Xaml::Media::Animati
     return get_activation_factory<Storyboard, IStoryboardStatics>().GetTargetName(element);
 }
 
-inline void Storyboard::SetTargetName(const Windows::UI::Xaml::Media::Animation::Timeline & element, hstring_ref name)
+inline void Storyboard::SetTargetName(const Windows::UI::Xaml::Media::Animation::Timeline & element, hstring_view name)
 {
     get_activation_factory<Storyboard, IStoryboardStatics>().SetTargetName(element, name);
 }
@@ -9739,3 +10152,2030 @@ inline TransitionCollection::TransitionCollection() :
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IAddDeleteThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IAddDeleteThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IBackEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IBackEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IBackEaseStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IBackEaseStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IBeginStoryboard>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IBeginStoryboard & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IBeginStoryboardStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IBeginStoryboardStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IBounceEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IBounceEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IBounceEaseStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IBounceEaseStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ICircleEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ICircleEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IColorAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IColorAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IColorAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IColorAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFrames>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFrames & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFramesStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IColorAnimationUsingKeyFramesStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IColorKeyFrameFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IColorKeyFrameFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IColorKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IColorKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ICommonNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ICommonNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ICommonNavigationTransitionInfoStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ICommonNavigationTransitionInfoStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IConnectedAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IConnectedAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IConnectedAnimationService>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IConnectedAnimationService & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IConnectedAnimationServiceStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IConnectedAnimationServiceStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IContentThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IContentThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IContentThemeTransitionStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IContentThemeTransitionStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IContinuumNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IContinuumNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IContinuumNavigationTransitionInfoStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IContinuumNavigationTransitionInfoStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ICubicEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ICubicEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDiscreteColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDiscreteColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDiscreteDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDiscreteDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDiscreteObjectKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDiscreteObjectKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDiscretePointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDiscretePointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDoubleAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDoubleAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDoubleAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyFrames>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyFrames & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyFramesStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDoubleAnimationUsingKeyFramesStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDoubleKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDragItemThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDragOverThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDrillInNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDrillInNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDrillInThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDrillOutThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IDropTargetItemThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingColorKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingDoubleKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingFunctionBase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingFunctionBase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingFunctionBaseFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingFunctionBaseFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingFunctionBaseStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingFunctionBaseStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEasingPointKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransitionStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEdgeUIThemeTransitionStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IElasticEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IElasticEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IElasticEaseStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IElasticEaseStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransitionInfoStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEntranceNavigationTransitionInfoStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEntranceThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IEntranceThemeTransitionStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IEntranceThemeTransitionStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IExponentialEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IExponentialEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IExponentialEaseStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IExponentialEaseStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IFadeInThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IFadeOutThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IKeySpline>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IKeySpline & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IKeyTimeHelper>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IKeyTimeHelper & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IKeyTimeHelperStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IKeyTimeHelperStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ILinearColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ILinearColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ILinearDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ILinearDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ILinearPointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ILinearPointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::INavigationThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::INavigationThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::INavigationThemeTransitionStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::INavigationThemeTransitionStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::INavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::INavigationTransitionInfoFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::INavigationTransitionInfoFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::INavigationTransitionInfoOverrides>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::INavigationTransitionInfoOverrides & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyFrames>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyFrames & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyFramesStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IObjectAnimationUsingKeyFramesStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IObjectKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IObjectKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IObjectKeyFrameFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IObjectKeyFrameFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IObjectKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IObjectKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPaneThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPaneThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPaneThemeTransitionStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPaneThemeTransitionStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFrames>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFrames & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFramesStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointAnimationUsingKeyFramesStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointKeyFrameFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointKeyFrameFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointerDownThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPointerUpThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPopInThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPopInThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPopInThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPopOutThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPopupThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPopupThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPopupThemeTransitionStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPopupThemeTransitionStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPowerEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPowerEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IPowerEaseStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IPowerEaseStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IQuadraticEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IQuadraticEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IQuarticEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IQuarticEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IQuinticEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IQuinticEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IReorderThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IReorderThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelper>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelper & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IRepeatBehaviorHelperStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeTransition2>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeTransition2 & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeTransitionStatics2>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IRepositionThemeTransitionStatics2 & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISineEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISineEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISlideNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISlideNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplineColorKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplineDoubleKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrameStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplinePointKeyFrameStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplitCloseThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISplitOpenThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IStoryboard>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IStoryboard & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::IStoryboardStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::IStoryboardStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISuppressNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISuppressNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISwipeBackThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimationStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ISwipeHintThemeAnimationStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ITimeline>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ITimeline & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ITimelineFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ITimelineFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ITimelineStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ITimelineStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ITransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ITransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ITransitionFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ITransitionFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::AddDeleteThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::AddDeleteThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::BackEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::BackEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::BeginStoryboard>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::BeginStoryboard & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::BounceEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::BounceEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::CircleEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::CircleEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ColorAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ColorAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ColorAnimationUsingKeyFrames>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ColorAnimationUsingKeyFrames & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ColorKeyFrameCollection>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ColorKeyFrameCollection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::CommonNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::CommonNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ConnectedAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ConnectedAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ConnectedAnimationService>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ConnectedAnimationService & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ContentThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ContentThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ContinuumNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ContinuumNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::CubicEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::CubicEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DiscreteColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DiscreteColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DiscreteDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DiscreteDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DiscreteObjectKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DiscreteObjectKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DiscretePointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DiscretePointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DoubleAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DoubleAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DoubleAnimationUsingKeyFrames>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DoubleAnimationUsingKeyFrames & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DoubleKeyFrameCollection>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DoubleKeyFrameCollection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DragItemThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DragItemThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DragOverThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DragOverThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DrillInNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DrillInNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DrillInThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DrillInThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DrillOutThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DrillOutThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::DropTargetItemThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::DropTargetItemThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::EasingColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::EasingColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::EasingDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::EasingDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::EasingFunctionBase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::EasingFunctionBase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::EasingPointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::EasingPointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::EdgeUIThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::EdgeUIThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ElasticEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ElasticEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::EntranceNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::EntranceNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::EntranceThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::EntranceThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ExponentialEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ExponentialEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::FadeInThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::FadeInThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::FadeOutThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::FadeOutThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::KeySpline>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::KeySpline & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::KeyTimeHelper>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::KeyTimeHelper & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::LinearColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::LinearColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::LinearDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::LinearDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::LinearPointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::LinearPointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::NavigationThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::NavigationThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::NavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ObjectAnimationUsingKeyFrames>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ObjectAnimationUsingKeyFrames & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ObjectKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ObjectKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ObjectKeyFrameCollection>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ObjectKeyFrameCollection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PaneThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PaneThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PointAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PointAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PointAnimationUsingKeyFrames>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PointAnimationUsingKeyFrames & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PointKeyFrameCollection>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PointKeyFrameCollection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PointerDownThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PointerDownThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PointerUpThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PointerUpThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PopInThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PopInThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PopOutThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PopOutThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PopupThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PopupThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::PowerEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::PowerEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::QuadraticEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::QuadraticEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::QuarticEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::QuarticEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::QuinticEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::QuinticEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::ReorderThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::ReorderThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::RepeatBehaviorHelper>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::RepeatBehaviorHelper & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::RepositionThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::RepositionThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::RepositionThemeTransition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::RepositionThemeTransition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SineEase>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SineEase & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SplineColorKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SplineColorKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SplineDoubleKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SplineDoubleKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SplinePointKeyFrame>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SplinePointKeyFrame & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SplitCloseThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SplitCloseThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SplitOpenThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SplitOpenThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::Storyboard>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::Storyboard & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SuppressNavigationTransitionInfo>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SuppressNavigationTransitionInfo & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SwipeBackThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SwipeBackThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::SwipeHintThemeAnimation>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::SwipeHintThemeAnimation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::Timeline>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::Timeline & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::TimelineCollection>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::TimelineCollection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::Transition>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::Transition & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Media::Animation::TransitionCollection>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Media::Animation::TransitionCollection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

@@ -1,16 +1,19 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.Storage.Streams.3.h"
-#include "internal\Windows.Devices.Bluetooth.Rfcomm.3.h"
-#include "internal\Windows.Devices.Bluetooth.3.h"
-#include "internal\Windows.Networking.Sockets.3.h"
-#include "internal\Windows.Devices.Bluetooth.GenericAttributeProfile.3.h"
-#include "internal\Windows.Foundation.Collections.3.h"
-#include "internal\Windows.Devices.Bluetooth.Advertisement.3.h"
-#include "internal\Windows.Devices.Bluetooth.Background.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.Storage.Streams.3.h"
+#include "internal/Windows.Devices.Bluetooth.Rfcomm.3.h"
+#include "internal/Windows.Devices.Bluetooth.3.h"
+#include "internal/Windows.Networking.Sockets.3.h"
+#include "internal/Windows.Devices.Bluetooth.GenericAttributeProfile.3.h"
+#include "internal/Windows.Foundation.Collections.3.h"
+#include "internal/Windows.Devices.Bluetooth.Advertisement.3.h"
+#include "internal/Windows.Devices.Bluetooth.Background.3.h"
 #include "Windows.Devices.Bluetooth.h"
 
 WINRT_EXPORT namespace winrt {
@@ -24,7 +27,8 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertise
     {
         try
         {
-            *value = detach(shim().Status());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Status());
             return S_OK;
         }
         catch (...)
@@ -37,7 +41,8 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertise
     {
         try
         {
-            *value = detach(shim().Error());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Error());
             return S_OK;
         }
         catch (...)
@@ -54,7 +59,8 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertise
     {
         try
         {
-            *value = detach(shim().Error());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Error());
             return S_OK;
         }
         catch (...)
@@ -63,11 +69,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertise
         }
     }
 
-    HRESULT __stdcall get_Advertisements(abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Devices::Bluetooth::Advertisement::BluetoothLEAdvertisementReceivedEventArgs>> value) noexcept override
+    HRESULT __stdcall get_Advertisements(impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Devices::Bluetooth::Advertisement::BluetoothLEAdvertisementReceivedEventArgs>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Advertisements());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Advertisements());
             return S_OK;
         }
         catch (...)
@@ -77,11 +84,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertise
         }
     }
 
-    HRESULT __stdcall get_SignalStrengthFilter(abi_arg_out<Windows::Devices::Bluetooth::IBluetoothSignalStrengthFilter> value) noexcept override
+    HRESULT __stdcall get_SignalStrengthFilter(impl::abi_arg_out<Windows::Devices::Bluetooth::IBluetoothSignalStrengthFilter> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SignalStrengthFilter());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SignalStrengthFilter());
             return S_OK;
         }
         catch (...)
@@ -95,11 +103,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertise
 template <typename D>
 struct produce<D, Windows::Devices::Bluetooth::Background::IGattCharacteristicNotificationTriggerDetails> : produce_base<D, Windows::Devices::Bluetooth::Background::IGattCharacteristicNotificationTriggerDetails>
 {
-    HRESULT __stdcall get_Characteristic(abi_arg_out<Windows::Devices::Bluetooth::GenericAttributeProfile::IGattCharacteristic> value) noexcept override
+    HRESULT __stdcall get_Characteristic(impl::abi_arg_out<Windows::Devices::Bluetooth::GenericAttributeProfile::IGattCharacteristic> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Characteristic());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Characteristic());
             return S_OK;
         }
         catch (...)
@@ -109,11 +118,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IGattCharacteristicNo
         }
     }
 
-    HRESULT __stdcall get_Value(abi_arg_out<Windows::Storage::Streams::IBuffer> value) noexcept override
+    HRESULT __stdcall get_Value(impl::abi_arg_out<Windows::Storage::Streams::IBuffer> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Value());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Value());
             return S_OK;
         }
         catch (...)
@@ -127,11 +137,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IGattCharacteristicNo
 template <typename D>
 struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommConnectionTriggerDetails> : produce_base<D, Windows::Devices::Bluetooth::Background::IRfcommConnectionTriggerDetails>
 {
-    HRESULT __stdcall get_Socket(abi_arg_out<Windows::Networking::Sockets::IStreamSocket> value) noexcept override
+    HRESULT __stdcall get_Socket(impl::abi_arg_out<Windows::Networking::Sockets::IStreamSocket> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Socket());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Socket());
             return S_OK;
         }
         catch (...)
@@ -145,7 +156,8 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommConnectionTrig
     {
         try
         {
-            *value = detach(shim().Incoming());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Incoming());
             return S_OK;
         }
         catch (...)
@@ -154,11 +166,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommConnectionTrig
         }
     }
 
-    HRESULT __stdcall get_RemoteDevice(abi_arg_out<Windows::Devices::Bluetooth::IBluetoothDevice> value) noexcept override
+    HRESULT __stdcall get_RemoteDevice(impl::abi_arg_out<Windows::Devices::Bluetooth::IBluetoothDevice> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RemoteDevice());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RemoteDevice());
             return S_OK;
         }
         catch (...)
@@ -172,11 +185,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommConnectionTrig
 template <typename D>
 struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommInboundConnectionInformation> : produce_base<D, Windows::Devices::Bluetooth::Background::IRfcommInboundConnectionInformation>
 {
-    HRESULT __stdcall get_SdpRecord(abi_arg_out<Windows::Storage::Streams::IBuffer> value) noexcept override
+    HRESULT __stdcall get_SdpRecord(impl::abi_arg_out<Windows::Storage::Streams::IBuffer> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SdpRecord());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SdpRecord());
             return S_OK;
         }
         catch (...)
@@ -186,11 +200,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommInboundConnect
         }
     }
 
-    HRESULT __stdcall put_SdpRecord(abi_arg_in<Windows::Storage::Streams::IBuffer> value) noexcept override
+    HRESULT __stdcall put_SdpRecord(impl::abi_arg_in<Windows::Storage::Streams::IBuffer> value) noexcept override
     {
         try
         {
-            shim().SdpRecord(*reinterpret_cast<const Windows::Storage::Streams::IBuffer *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().SdpRecord(*reinterpret_cast<const Windows::Storage::Streams::IBuffer *>(&value));
             return S_OK;
         }
         catch (...)
@@ -199,11 +214,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommInboundConnect
         }
     }
 
-    HRESULT __stdcall get_LocalServiceId(abi_arg_out<Windows::Devices::Bluetooth::Rfcomm::IRfcommServiceId> value) noexcept override
+    HRESULT __stdcall get_LocalServiceId(impl::abi_arg_out<Windows::Devices::Bluetooth::Rfcomm::IRfcommServiceId> value) noexcept override
     {
         try
         {
-            *value = detach(shim().LocalServiceId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().LocalServiceId());
             return S_OK;
         }
         catch (...)
@@ -213,11 +229,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommInboundConnect
         }
     }
 
-    HRESULT __stdcall put_LocalServiceId(abi_arg_in<Windows::Devices::Bluetooth::Rfcomm::IRfcommServiceId> value) noexcept override
+    HRESULT __stdcall put_LocalServiceId(impl::abi_arg_in<Windows::Devices::Bluetooth::Rfcomm::IRfcommServiceId> value) noexcept override
     {
         try
         {
-            shim().LocalServiceId(*reinterpret_cast<const Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().LocalServiceId(*reinterpret_cast<const Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId *>(&value));
             return S_OK;
         }
         catch (...)
@@ -230,7 +247,8 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommInboundConnect
     {
         try
         {
-            *value = detach(shim().ServiceCapabilities());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ServiceCapabilities());
             return S_OK;
         }
         catch (...)
@@ -243,7 +261,8 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommInboundConnect
     {
         try
         {
-            shim().ServiceCapabilities(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ServiceCapabilities(value);
             return S_OK;
         }
         catch (...)
@@ -256,11 +275,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommInboundConnect
 template <typename D>
 struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommOutboundConnectionInformation> : produce_base<D, Windows::Devices::Bluetooth::Background::IRfcommOutboundConnectionInformation>
 {
-    HRESULT __stdcall get_RemoteServiceId(abi_arg_out<Windows::Devices::Bluetooth::Rfcomm::IRfcommServiceId> value) noexcept override
+    HRESULT __stdcall get_RemoteServiceId(impl::abi_arg_out<Windows::Devices::Bluetooth::Rfcomm::IRfcommServiceId> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RemoteServiceId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RemoteServiceId());
             return S_OK;
         }
         catch (...)
@@ -270,11 +290,12 @@ struct produce<D, Windows::Devices::Bluetooth::Background::IRfcommOutboundConnec
         }
     }
 
-    HRESULT __stdcall put_RemoteServiceId(abi_arg_in<Windows::Devices::Bluetooth::Rfcomm::IRfcommServiceId> value) noexcept override
+    HRESULT __stdcall put_RemoteServiceId(impl::abi_arg_in<Windows::Devices::Bluetooth::Rfcomm::IRfcommServiceId> value) noexcept override
     {
         try
         {
-            shim().RemoteServiceId(*reinterpret_cast<const Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemoteServiceId(*reinterpret_cast<const Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId *>(&value));
             return S_OK;
         }
         catch (...)
@@ -291,121 +312,231 @@ namespace Windows::Devices::Bluetooth::Background {
 template <typename D> Windows::Storage::Streams::IBuffer impl_IRfcommInboundConnectionInformation<D>::SdpRecord() const
 {
     Windows::Storage::Streams::IBuffer value;
-    check_hresult(shim()->get_SdpRecord(put(value)));
+    check_hresult(WINRT_SHIM(IRfcommInboundConnectionInformation)->get_SdpRecord(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IRfcommInboundConnectionInformation<D>::SdpRecord(const Windows::Storage::Streams::IBuffer & value) const
 {
-    check_hresult(shim()->put_SdpRecord(get(value)));
+    check_hresult(WINRT_SHIM(IRfcommInboundConnectionInformation)->put_SdpRecord(get_abi(value)));
 }
 
 template <typename D> Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId impl_IRfcommInboundConnectionInformation<D>::LocalServiceId() const
 {
     Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId value { nullptr };
-    check_hresult(shim()->get_LocalServiceId(put(value)));
+    check_hresult(WINRT_SHIM(IRfcommInboundConnectionInformation)->get_LocalServiceId(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IRfcommInboundConnectionInformation<D>::LocalServiceId(const Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId & value) const
 {
-    check_hresult(shim()->put_LocalServiceId(get(value)));
+    check_hresult(WINRT_SHIM(IRfcommInboundConnectionInformation)->put_LocalServiceId(get_abi(value)));
 }
 
 template <typename D> Windows::Devices::Bluetooth::BluetoothServiceCapabilities impl_IRfcommInboundConnectionInformation<D>::ServiceCapabilities() const
 {
     Windows::Devices::Bluetooth::BluetoothServiceCapabilities value {};
-    check_hresult(shim()->get_ServiceCapabilities(&value));
+    check_hresult(WINRT_SHIM(IRfcommInboundConnectionInformation)->get_ServiceCapabilities(&value));
     return value;
 }
 
 template <typename D> void impl_IRfcommInboundConnectionInformation<D>::ServiceCapabilities(Windows::Devices::Bluetooth::BluetoothServiceCapabilities value) const
 {
-    check_hresult(shim()->put_ServiceCapabilities(value));
+    check_hresult(WINRT_SHIM(IRfcommInboundConnectionInformation)->put_ServiceCapabilities(value));
 }
 
 template <typename D> Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId impl_IRfcommOutboundConnectionInformation<D>::RemoteServiceId() const
 {
     Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId value { nullptr };
-    check_hresult(shim()->get_RemoteServiceId(put(value)));
+    check_hresult(WINRT_SHIM(IRfcommOutboundConnectionInformation)->get_RemoteServiceId(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IRfcommOutboundConnectionInformation<D>::RemoteServiceId(const Windows::Devices::Bluetooth::Rfcomm::RfcommServiceId & value) const
 {
-    check_hresult(shim()->put_RemoteServiceId(get(value)));
+    check_hresult(WINRT_SHIM(IRfcommOutboundConnectionInformation)->put_RemoteServiceId(get_abi(value)));
 }
 
 template <typename D> Windows::Networking::Sockets::StreamSocket impl_IRfcommConnectionTriggerDetails<D>::Socket() const
 {
     Windows::Networking::Sockets::StreamSocket value { nullptr };
-    check_hresult(shim()->get_Socket(put(value)));
+    check_hresult(WINRT_SHIM(IRfcommConnectionTriggerDetails)->get_Socket(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IRfcommConnectionTriggerDetails<D>::Incoming() const
 {
     bool value {};
-    check_hresult(shim()->get_Incoming(&value));
+    check_hresult(WINRT_SHIM(IRfcommConnectionTriggerDetails)->get_Incoming(&value));
     return value;
 }
 
 template <typename D> Windows::Devices::Bluetooth::BluetoothDevice impl_IRfcommConnectionTriggerDetails<D>::RemoteDevice() const
 {
     Windows::Devices::Bluetooth::BluetoothDevice value { nullptr };
-    check_hresult(shim()->get_RemoteDevice(put(value)));
+    check_hresult(WINRT_SHIM(IRfcommConnectionTriggerDetails)->get_RemoteDevice(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Devices::Bluetooth::GenericAttributeProfile::GattCharacteristic impl_IGattCharacteristicNotificationTriggerDetails<D>::Characteristic() const
 {
     Windows::Devices::Bluetooth::GenericAttributeProfile::GattCharacteristic value { nullptr };
-    check_hresult(shim()->get_Characteristic(put(value)));
+    check_hresult(WINRT_SHIM(IGattCharacteristicNotificationTriggerDetails)->get_Characteristic(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Storage::Streams::IBuffer impl_IGattCharacteristicNotificationTriggerDetails<D>::Value() const
 {
     Windows::Storage::Streams::IBuffer value;
-    check_hresult(shim()->get_Value(put(value)));
+    check_hresult(WINRT_SHIM(IGattCharacteristicNotificationTriggerDetails)->get_Value(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Devices::Bluetooth::BluetoothError impl_IBluetoothLEAdvertisementWatcherTriggerDetails<D>::Error() const
 {
     Windows::Devices::Bluetooth::BluetoothError value {};
-    check_hresult(shim()->get_Error(&value));
+    check_hresult(WINRT_SHIM(IBluetoothLEAdvertisementWatcherTriggerDetails)->get_Error(&value));
     return value;
 }
 
 template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Devices::Bluetooth::Advertisement::BluetoothLEAdvertisementReceivedEventArgs> impl_IBluetoothLEAdvertisementWatcherTriggerDetails<D>::Advertisements() const
 {
     Windows::Foundation::Collections::IVectorView<Windows::Devices::Bluetooth::Advertisement::BluetoothLEAdvertisementReceivedEventArgs> value;
-    check_hresult(shim()->get_Advertisements(put(value)));
+    check_hresult(WINRT_SHIM(IBluetoothLEAdvertisementWatcherTriggerDetails)->get_Advertisements(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Devices::Bluetooth::BluetoothSignalStrengthFilter impl_IBluetoothLEAdvertisementWatcherTriggerDetails<D>::SignalStrengthFilter() const
 {
     Windows::Devices::Bluetooth::BluetoothSignalStrengthFilter value { nullptr };
-    check_hresult(shim()->get_SignalStrengthFilter(put(value)));
+    check_hresult(WINRT_SHIM(IBluetoothLEAdvertisementWatcherTriggerDetails)->get_SignalStrengthFilter(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Devices::Bluetooth::Advertisement::BluetoothLEAdvertisementPublisherStatus impl_IBluetoothLEAdvertisementPublisherTriggerDetails<D>::Status() const
 {
     Windows::Devices::Bluetooth::Advertisement::BluetoothLEAdvertisementPublisherStatus value {};
-    check_hresult(shim()->get_Status(&value));
+    check_hresult(WINRT_SHIM(IBluetoothLEAdvertisementPublisherTriggerDetails)->get_Status(&value));
     return value;
 }
 
 template <typename D> Windows::Devices::Bluetooth::BluetoothError impl_IBluetoothLEAdvertisementPublisherTriggerDetails<D>::Error() const
 {
     Windows::Devices::Bluetooth::BluetoothError value {};
-    check_hresult(shim()->get_Error(&value));
+    check_hresult(WINRT_SHIM(IBluetoothLEAdvertisementPublisherTriggerDetails)->get_Error(&value));
     return value;
 }
 
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertisementPublisherTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertisementPublisherTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertisementWatcherTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertisementWatcherTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::IGattCharacteristicNotificationTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::IGattCharacteristicNotificationTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::IRfcommConnectionTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::IRfcommConnectionTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::IRfcommInboundConnectionInformation>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::IRfcommInboundConnectionInformation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::IRfcommOutboundConnectionInformation>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::IRfcommOutboundConnectionInformation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::BluetoothLEAdvertisementPublisherTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::BluetoothLEAdvertisementPublisherTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::BluetoothLEAdvertisementWatcherTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::BluetoothLEAdvertisementWatcherTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::GattCharacteristicNotificationTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::GattCharacteristicNotificationTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::RfcommConnectionTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::RfcommConnectionTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::RfcommInboundConnectionInformation>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::RfcommInboundConnectionInformation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Devices::Bluetooth::Background::RfcommOutboundConnectionInformation>
+{
+    size_t operator()(const winrt::Windows::Devices::Bluetooth::Background::RfcommOutboundConnectionInformation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

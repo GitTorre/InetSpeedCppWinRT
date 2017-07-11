@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -57,6 +57,27 @@ struct BluetoothLEAppearanceCategories;
 struct BluetoothLEAppearanceSubcategories;
 struct BluetoothLEDevice;
 struct BluetoothSignalStrengthFilter;
+
+}
+
+namespace Windows::Devices::Bluetooth {
+
+template <typename T> struct impl_IBluetoothClassOfDevice;
+template <typename T> struct impl_IBluetoothClassOfDeviceStatics;
+template <typename T> struct impl_IBluetoothDevice;
+template <typename T> struct impl_IBluetoothDevice2;
+template <typename T> struct impl_IBluetoothDevice3;
+template <typename T> struct impl_IBluetoothDeviceStatics;
+template <typename T> struct impl_IBluetoothDeviceStatics2;
+template <typename T> struct impl_IBluetoothLEAppearance;
+template <typename T> struct impl_IBluetoothLEAppearanceCategoriesStatics;
+template <typename T> struct impl_IBluetoothLEAppearanceStatics;
+template <typename T> struct impl_IBluetoothLEAppearanceSubcategoriesStatics;
+template <typename T> struct impl_IBluetoothLEDevice;
+template <typename T> struct impl_IBluetoothLEDevice2;
+template <typename T> struct impl_IBluetoothLEDeviceStatics;
+template <typename T> struct impl_IBluetoothLEDeviceStatics2;
+template <typename T> struct impl_IBluetoothSignalStrengthFilter;
 
 }
 

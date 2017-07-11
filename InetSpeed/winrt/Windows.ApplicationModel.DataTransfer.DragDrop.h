@@ -1,9 +1,12 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.ApplicationModel.DataTransfer.DragDrop.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.ApplicationModel.DataTransfer.DragDrop.3.h"
 #include "Windows.ApplicationModel.DataTransfer.h"
 
 WINRT_EXPORT namespace winrt {
@@ -13,3 +16,5 @@ namespace impl {
 }
 
 }
+
+WINRT_WARNING_POP

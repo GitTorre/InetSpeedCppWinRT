@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -22,11 +22,12 @@ public:
         return shim().as<IFlyoutBaseOverrides>().CreatePresenter();
     }
 
-    HRESULT __stdcall abi_CreatePresenter(abi_arg_out<Windows::UI::Xaml::Controls::IControl> returnValue) noexcept override
+    HRESULT __stdcall abi_CreatePresenter(impl::abi_arg_out<Windows::UI::Xaml::Controls::IControl> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().CreatePresenter());
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().CreatePresenter());
             return S_OK;
         }
         catch (...)
@@ -60,7 +61,8 @@ public:
     {
         try
         {
-            shim().OnConfirmed();
+            typename D::abi_guard guard(this->shim());
+            this->shim().OnConfirmed();
             return S_OK;
         }
         catch (...)
@@ -73,7 +75,8 @@ public:
     {
         try
         {
-            *returnValue = detach(shim().ShouldShowConfirmationButtons());
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().ShouldShowConfirmationButtons());
             return S_OK;
         }
         catch (...)
@@ -111,7 +114,8 @@ public:
     {
         try
         {
-            shim().OnMinimumChanged(oldMinimum, newMinimum);
+            typename D::abi_guard guard(this->shim());
+            this->shim().OnMinimumChanged(oldMinimum, newMinimum);
             return S_OK;
         }
         catch (...)
@@ -124,7 +128,8 @@ public:
     {
         try
         {
-            shim().OnMaximumChanged(oldMaximum, newMaximum);
+            typename D::abi_guard guard(this->shim());
+            this->shim().OnMaximumChanged(oldMaximum, newMaximum);
             return S_OK;
         }
         catch (...)
@@ -137,7 +142,8 @@ public:
     {
         try
         {
-            shim().OnValueChanged(oldValue, newValue);
+            typename D::abi_guard guard(this->shim());
+            this->shim().OnValueChanged(oldValue, newValue);
             return S_OK;
         }
         catch (...)
@@ -165,7 +171,8 @@ public:
     {
         try
         {
-            shim().OnToggle();
+            typename D::abi_guard guard(this->shim());
+            this->shim().OnToggle();
             return S_OK;
         }
         catch (...)

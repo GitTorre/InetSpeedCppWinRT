@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -20,15 +20,17 @@ struct WINRT_EBO SearchPane :
     Windows::ApplicationModel::Search::ISearchPane
 {
     SearchPane(std::nullptr_t) noexcept {}
-    static Windows::ApplicationModel::Search::SearchPane GetForCurrentView();
-    static void HideThisApplication();
+    [[deprecated("ISearchPaneStatics may be altered or unavailable for releases after Windows 10.")]] static Windows::ApplicationModel::Search::SearchPane GetForCurrentView();
+    [[deprecated("ISearchPaneStaticsWithHideThisApplication may be altered or unavailable for releases after Windows 10.")]] static void HideThisApplication();
 };
+struct [[deprecated("ISearchPaneStaticsWithHideThisApplication may be altered or unavailable for releases after Windows 10.")]] SearchPane;
 
 struct WINRT_EBO SearchPaneQueryChangedEventArgs :
     Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs
 {
     SearchPaneQueryChangedEventArgs(std::nullptr_t) noexcept {}
 };
+struct [[deprecated("SearchPaneQueryChangedEventArgs may be altered or unavailable for releases after Windows 10.")]] SearchPaneQueryChangedEventArgs;
 
 struct WINRT_EBO SearchPaneQueryLinguisticDetails :
     Windows::ApplicationModel::Search::ISearchPaneQueryLinguisticDetails
@@ -42,42 +44,48 @@ struct WINRT_EBO SearchPaneQuerySubmittedEventArgs :
 {
     SearchPaneQuerySubmittedEventArgs(std::nullptr_t) noexcept {}
 };
+struct [[deprecated("SearchPaneQuerySubmittedEventArgs may be altered or unavailable for releases after Windows 10.")]] SearchPaneQuerySubmittedEventArgs;
 
 struct WINRT_EBO SearchPaneResultSuggestionChosenEventArgs :
     Windows::ApplicationModel::Search::ISearchPaneResultSuggestionChosenEventArgs
 {
     SearchPaneResultSuggestionChosenEventArgs(std::nullptr_t) noexcept {}
 };
+struct [[deprecated("SearchPaneResultSuggestionChosenEventArgs may be altered or unavailable for releases after Windows 10.")]] SearchPaneResultSuggestionChosenEventArgs;
 
 struct WINRT_EBO SearchPaneSuggestionsRequest :
     Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequest
 {
     SearchPaneSuggestionsRequest(std::nullptr_t) noexcept {}
 };
+struct [[deprecated("SearchPaneSuggestionsRequest may be altered or unavailable for releases after Windows 10.")]] SearchPaneSuggestionsRequest;
 
 struct WINRT_EBO SearchPaneSuggestionsRequestDeferral :
     Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequestDeferral
 {
     SearchPaneSuggestionsRequestDeferral(std::nullptr_t) noexcept {}
 };
+struct [[deprecated("SearchPaneSuggestionsRequestDeferral may be altered or unavailable for releases after Windows 10.")]] SearchPaneSuggestionsRequestDeferral;
 
 struct WINRT_EBO SearchPaneSuggestionsRequestedEventArgs :
     Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequestedEventArgs
 {
     SearchPaneSuggestionsRequestedEventArgs(std::nullptr_t) noexcept {}
 };
+struct [[deprecated("SearchPaneSuggestionsRequestedEventArgs may be altered or unavailable for releases after Windows 10.")]] SearchPaneSuggestionsRequestedEventArgs;
 
 struct WINRT_EBO SearchPaneVisibilityChangedEventArgs :
     Windows::ApplicationModel::Search::ISearchPaneVisibilityChangedEventArgs
 {
     SearchPaneVisibilityChangedEventArgs(std::nullptr_t) noexcept {}
 };
+struct [[deprecated("SearchPaneVisibilityChangedEventArgs may be altered or unavailable for releases after Windows 10.")]] SearchPaneVisibilityChangedEventArgs;
 
 struct WINRT_EBO SearchQueryLinguisticDetails :
     Windows::ApplicationModel::Search::ISearchQueryLinguisticDetails
 {
     SearchQueryLinguisticDetails(std::nullptr_t) noexcept {}
-    SearchQueryLinguisticDetails(const Windows::Foundation::Collections::IIterable<hstring> & queryTextAlternatives, uint32_t queryTextCompositionStart, uint32_t queryTextCompositionLength);
+    SearchQueryLinguisticDetails(iterable<hstring> queryTextAlternatives, uint32_t queryTextCompositionStart, uint32_t queryTextCompositionLength);
 };
 
 struct WINRT_EBO SearchSuggestionCollection :

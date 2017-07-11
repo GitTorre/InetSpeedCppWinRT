@@ -1,9 +1,9 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.Gaming.Preview.GamesEnumeration.0.h"
 #include "Windows.ApplicationModel.0.h"
 #include "Windows.Foundation.0.h"
@@ -24,16 +24,16 @@ struct __declspec(uuid("10c5648f-6c8f-4712-9b38-474bc22e76d8")) __declspec(novta
     virtual HRESULT __stdcall abi_Invoke(hstring identifier) = 0;
 };
 
-struct __declspec(uuid("735924d3-811f-4494-b69c-c641a0c61543")) __declspec(novtable) IGameListEntry : Windows::IInspectable
+struct __declspec(uuid("735924d3-811f-4494-b69c-c641a0c61543")) __declspec(novtable) IGameListEntry : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_DisplayInfo(Windows::ApplicationModel::IAppDisplayInfo ** value) = 0;
     virtual HRESULT __stdcall abi_LaunchAsync(Windows::Foundation::IAsyncOperation<bool> ** operation) = 0;
     virtual HRESULT __stdcall get_Category(winrt::Windows::Gaming::Preview::GamesEnumeration::GameListCategory * value) = 0;
-    virtual HRESULT __stdcall get_Properties(Windows::Foundation::Collections::IMapView<hstring, Windows::IInspectable> ** value) = 0;
+    virtual HRESULT __stdcall get_Properties(Windows::Foundation::Collections::IMapView<hstring, Windows::Foundation::IInspectable> ** value) = 0;
     virtual HRESULT __stdcall abi_SetCategoryAsync(winrt::Windows::Gaming::Preview::GamesEnumeration::GameListCategory value, Windows::Foundation::IAsyncAction ** action) = 0;
 };
 
-struct __declspec(uuid("2ddd0f6f-9c66-4b05-945c-d6ed78491b8c")) __declspec(novtable) IGameListStatics : Windows::IInspectable
+struct __declspec(uuid("2ddd0f6f-9c66-4b05-945c-d6ed78491b8c")) __declspec(novtable) IGameListStatics : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall abi_FindAllAsync(Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Gaming::Preview::GamesEnumeration::GameListEntry>> ** operation) = 0;
     virtual HRESULT __stdcall abi_FindAllAsyncPackageFamilyName(hstring packageFamilyName, Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Gaming::Preview::GamesEnumeration::GameListEntry>> ** operation) = 0;
@@ -55,10 +55,34 @@ template <> struct traits<Windows::Gaming::Preview::GamesEnumeration::GameListEn
 
 namespace Windows::Gaming::Preview::GamesEnumeration {
 
-template <typename T> class impl_IGameListEntry;
-template <typename T> class impl_IGameListStatics;
-template <typename T> struct impl_GameListChangedEventHandler;
-template <typename T> struct impl_GameListRemovedEventHandler;
+template <typename D>
+struct WINRT_EBO impl_IGameListEntry
+{
+    Windows::ApplicationModel::AppDisplayInfo DisplayInfo() const;
+    Windows::Foundation::IAsyncOperation<bool> LaunchAsync() const;
+    Windows::Gaming::Preview::GamesEnumeration::GameListCategory Category() const;
+    Windows::Foundation::Collections::IMapView<hstring, Windows::Foundation::IInspectable> Properties() const;
+    Windows::Foundation::IAsyncAction SetCategoryAsync(Windows::Gaming::Preview::GamesEnumeration::GameListCategory value) const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IGameListStatics
+{
+    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Gaming::Preview::GamesEnumeration::GameListEntry>> FindAllAsync() const;
+    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Gaming::Preview::GamesEnumeration::GameListEntry>> FindAllAsync(hstring_view packageFamilyName) const;
+    event_token GameAdded(const Windows::Gaming::Preview::GamesEnumeration::GameListChangedEventHandler & handler) const;
+    using GameAdded_revoker = event_revoker<IGameListStatics>;
+    GameAdded_revoker GameAdded(auto_revoke_t, const Windows::Gaming::Preview::GamesEnumeration::GameListChangedEventHandler & handler) const;
+    void GameAdded(event_token token) const;
+    event_token GameRemoved(const Windows::Gaming::Preview::GamesEnumeration::GameListRemovedEventHandler & handler) const;
+    using GameRemoved_revoker = event_revoker<IGameListStatics>;
+    GameRemoved_revoker GameRemoved(auto_revoke_t, const Windows::Gaming::Preview::GamesEnumeration::GameListRemovedEventHandler & handler) const;
+    void GameRemoved(event_token token) const;
+    event_token GameUpdated(const Windows::Gaming::Preview::GamesEnumeration::GameListChangedEventHandler & handler) const;
+    using GameUpdated_revoker = event_revoker<IGameListStatics>;
+    GameUpdated_revoker GameUpdated(auto_revoke_t, const Windows::Gaming::Preview::GamesEnumeration::GameListChangedEventHandler & handler) const;
+    void GameUpdated(event_token token) const;
+};
 
 }
 
@@ -94,7 +118,6 @@ template <> struct traits<Windows::Gaming::Preview::GamesEnumeration::GameList>
 template <> struct traits<Windows::Gaming::Preview::GamesEnumeration::GameListEntry>
 {
     using abi = ABI::Windows::Gaming::Preview::GamesEnumeration::GameListEntry;
-    using default_interface = Windows::Gaming::Preview::GamesEnumeration::IGameListEntry;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Gaming.Preview.GamesEnumeration.GameListEntry"; }
 };
 

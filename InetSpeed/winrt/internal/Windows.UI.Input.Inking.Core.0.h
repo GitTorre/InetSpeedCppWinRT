@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -29,6 +29,16 @@ struct ICoreWetStrokeUpdateSourceStatics;
 struct CoreInkIndependentInputSource;
 struct CoreWetStrokeUpdateEventArgs;
 struct CoreWetStrokeUpdateSource;
+
+}
+
+namespace Windows::UI::Input::Inking::Core {
+
+template <typename T> struct impl_ICoreInkIndependentInputSource;
+template <typename T> struct impl_ICoreInkIndependentInputSourceStatics;
+template <typename T> struct impl_ICoreWetStrokeUpdateEventArgs;
+template <typename T> struct impl_ICoreWetStrokeUpdateSource;
+template <typename T> struct impl_ICoreWetStrokeUpdateSourceStatics;
 
 }
 

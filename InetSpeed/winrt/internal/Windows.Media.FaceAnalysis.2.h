@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -44,6 +44,31 @@ namespace ABI::Windows::Foundation {
 template <> struct __declspec(uuid("7f32c680-e37e-539a-8993-2abbea71afda")) __declspec(novtable) IAsyncOperation<Windows::Media::FaceAnalysis::FaceTracker> : impl_IAsyncOperation<Windows::Media::FaceAnalysis::FaceTracker> {};
 #endif
 
+
+}
+
+namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_39ef4411_0618_5b8d_8ea2_81c637f823f8
+#define WINRT_GENERIC_39ef4411_0618_5b8d_8ea2_81c637f823f8
+template <> struct __declspec(uuid("39ef4411-0618-5b8d-8ea2-81c637f823f8")) __declspec(novtable) IVectorView<Windows::Media::FaceAnalysis::DetectedFace> : impl_IVectorView<Windows::Media::FaceAnalysis::DetectedFace> {};
+#endif
+
+#ifndef WINRT_GENERIC_a0cf090e_0340_531f_898b_c21eafb9f4ae
+#define WINRT_GENERIC_a0cf090e_0340_531f_898b_c21eafb9f4ae
+template <> struct __declspec(uuid("a0cf090e-0340-531f-898b-c21eafb9f4ae")) __declspec(novtable) IIterator<Windows::Media::FaceAnalysis::DetectedFace> : impl_IIterator<Windows::Media::FaceAnalysis::DetectedFace> {};
+#endif
+
+#ifndef WINRT_GENERIC_25347323_3556_5cbb_9855_2b5856437f4d
+#define WINRT_GENERIC_25347323_3556_5cbb_9855_2b5856437f4d
+template <> struct __declspec(uuid("25347323-3556-5cbb-9855-2b5856437f4d")) __declspec(novtable) IIterable<Windows::Media::FaceAnalysis::DetectedFace> : impl_IIterable<Windows::Media::FaceAnalysis::DetectedFace> {};
+#endif
+
+
+}
+
+namespace ABI::Windows::Foundation {
+
 #ifndef WINRT_GENERIC_3224aec6_e785_5066_976f_79dd081b75a9
 #define WINRT_GENERIC_3224aec6_e785_5066_976f_79dd081b75a9
 template <> struct __declspec(uuid("3224aec6-e785-5066-976f-79dd081b75a9")) __declspec(novtable) AsyncOperationCompletedHandler<Windows::Media::FaceAnalysis::FaceDetector> : impl_AsyncOperationCompletedHandler<Windows::Media::FaceAnalysis::FaceDetector> {};
@@ -53,6 +78,11 @@ template <> struct __declspec(uuid("3224aec6-e785-5066-976f-79dd081b75a9")) __de
 }
 
 namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_5732f426_2911_5e1d_9219_ca1157dfcd50
+#define WINRT_GENERIC_5732f426_2911_5e1d_9219_ca1157dfcd50
+template <> struct __declspec(uuid("5732f426-2911-5e1d-9219-ca1157dfcd50")) __declspec(novtable) IVector<winrt::Windows::Graphics::Imaging::BitmapPixelFormat> : impl_IVector<winrt::Windows::Graphics::Imaging::BitmapPixelFormat> {};
+#endif
 
 #ifndef WINRT_GENERIC_7fc2e293_1084_5d45_b8b8_93e10692bcc8
 #define WINRT_GENERIC_7fc2e293_1084_5d45_b8b8_93e10692bcc8
@@ -89,109 +119,39 @@ template <> struct __declspec(uuid("b0a53153-2015-58b3-9dd0-bdf291b856b2")) __de
 
 namespace Windows::Media::FaceAnalysis {
 
-template <typename D>
-class WINRT_EBO impl_IDetectedFace
-{
-    auto shim() const { return impl::shim<D, IDetectedFace>(this); }
-
-public:
-
-    Windows::Graphics::Imaging::BitmapBounds FaceBox() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IFaceDetector
-{
-    auto shim() const { return impl::shim<D, IFaceDetector>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVector<Windows::Media::FaceAnalysis::DetectedFace>> DetectFacesAsync(const Windows::Graphics::Imaging::SoftwareBitmap & image) const;
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVector<Windows::Media::FaceAnalysis::DetectedFace>> DetectFacesAsync(const Windows::Graphics::Imaging::SoftwareBitmap & image, const Windows::Graphics::Imaging::BitmapBounds & searchArea) const;
-    Windows::Graphics::Imaging::BitmapSize MinDetectableFaceSize() const;
-    void MinDetectableFaceSize(const Windows::Graphics::Imaging::BitmapSize & value) const;
-    Windows::Graphics::Imaging::BitmapSize MaxDetectableFaceSize() const;
-    void MaxDetectableFaceSize(const Windows::Graphics::Imaging::BitmapSize & value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IFaceDetectorStatics
-{
-    auto shim() const { return impl::shim<D, IFaceDetectorStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Media::FaceAnalysis::FaceDetector> CreateAsync() const;
-    Windows::Foundation::Collections::IVectorView<winrt::Windows::Graphics::Imaging::BitmapPixelFormat> GetSupportedBitmapPixelFormats() const;
-    bool IsBitmapPixelFormatSupported(Windows::Graphics::Imaging::BitmapPixelFormat bitmapPixelFormat) const;
-    bool IsSupported() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IFaceTracker
-{
-    auto shim() const { return impl::shim<D, IFaceTracker>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVector<Windows::Media::FaceAnalysis::DetectedFace>> ProcessNextFrameAsync(const Windows::Media::VideoFrame & videoFrame) const;
-    Windows::Graphics::Imaging::BitmapSize MinDetectableFaceSize() const;
-    void MinDetectableFaceSize(const Windows::Graphics::Imaging::BitmapSize & value) const;
-    Windows::Graphics::Imaging::BitmapSize MaxDetectableFaceSize() const;
-    void MaxDetectableFaceSize(const Windows::Graphics::Imaging::BitmapSize & value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IFaceTrackerStatics
-{
-    auto shim() const { return impl::shim<D, IFaceTrackerStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Media::FaceAnalysis::FaceTracker> CreateAsync() const;
-    Windows::Foundation::Collections::IVectorView<winrt::Windows::Graphics::Imaging::BitmapPixelFormat> GetSupportedBitmapPixelFormats() const;
-    bool IsBitmapPixelFormatSupported(Windows::Graphics::Imaging::BitmapPixelFormat bitmapPixelFormat) const;
-    bool IsSupported() const;
-};
-
 struct IDetectedFace :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IDetectedFace>
 {
     IDetectedFace(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IDetectedFace>(m_ptr); }
 };
 
 struct IFaceDetector :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IFaceDetector>
 {
     IFaceDetector(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IFaceDetector>(m_ptr); }
 };
 
 struct IFaceDetectorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IFaceDetectorStatics>
 {
     IFaceDetectorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IFaceDetectorStatics>(m_ptr); }
 };
 
 struct IFaceTracker :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IFaceTracker>
 {
     IFaceTracker(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IFaceTracker>(m_ptr); }
 };
 
 struct IFaceTrackerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IFaceTrackerStatics>
 {
     IFaceTrackerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IFaceTrackerStatics>(m_ptr); }
 };
 
 }

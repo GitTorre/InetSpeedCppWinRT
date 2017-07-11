@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -23,6 +23,14 @@ struct IBatteryReport;
 struct IBatteryStatics;
 struct Battery;
 struct BatteryReport;
+
+}
+
+namespace Windows::Devices::Power {
+
+template <typename T> struct impl_IBattery;
+template <typename T> struct impl_IBatteryReport;
+template <typename T> struct impl_IBatteryStatics;
 
 }
 

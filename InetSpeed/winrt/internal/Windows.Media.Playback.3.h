@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -167,9 +167,9 @@ struct WINRT_EBO MediaPlaybackItem :
     impl::require<MediaPlaybackItem, Windows::Media::Playback::IMediaPlaybackItem2>
 {
     MediaPlaybackItem(std::nullptr_t) noexcept {}
+    MediaPlaybackItem(const Windows::Media::Core::MediaSource & source);
     MediaPlaybackItem(const Windows::Media::Core::MediaSource & source, const Windows::Foundation::TimeSpan & startTime);
     MediaPlaybackItem(const Windows::Media::Core::MediaSource & source, const Windows::Foundation::TimeSpan & startTime, const Windows::Foundation::TimeSpan & durationLimit);
-    MediaPlaybackItem(const Windows::Media::Core::MediaSource & source);
     static Windows::Media::Playback::MediaPlaybackItem FindFromMediaSource(const Windows::Media::Core::MediaSource & source);
 };
 
@@ -257,7 +257,7 @@ struct WINRT_EBO PlaybackMediaMarker :
 {
     PlaybackMediaMarker(std::nullptr_t) noexcept {}
     PlaybackMediaMarker(const Windows::Foundation::TimeSpan & value);
-    PlaybackMediaMarker(const Windows::Foundation::TimeSpan & value, hstring_ref mediaMarketType, hstring_ref text);
+    PlaybackMediaMarker(const Windows::Foundation::TimeSpan & value, hstring_view mediaMarketType, hstring_view text);
 };
 
 struct WINRT_EBO PlaybackMediaMarkerReachedEventArgs :

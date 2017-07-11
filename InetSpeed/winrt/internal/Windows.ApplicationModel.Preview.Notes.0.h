@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -27,6 +27,15 @@ struct INotesWindowManagerPreviewStatics;
 struct NotePlacementChangedPreviewEventArgs;
 struct NoteVisibilityChangedPreviewEventArgs;
 struct NotesWindowManagerPreview;
+
+}
+
+namespace Windows::ApplicationModel::Preview::Notes {
+
+template <typename T> struct impl_INotePlacementChangedPreviewEventArgs;
+template <typename T> struct impl_INoteVisibilityChangedPreviewEventArgs;
+template <typename T> struct impl_INotesWindowManagerPreview;
+template <typename T> struct impl_INotesWindowManagerPreviewStatics;
 
 }
 

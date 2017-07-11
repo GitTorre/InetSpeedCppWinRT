@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -19,7 +19,7 @@ struct WINRT_EBO AppExtensionCatalog :
     Windows::ApplicationModel::AppExtensions::IAppExtensionCatalog
 {
     AppExtensionCatalog(std::nullptr_t) noexcept {}
-    static Windows::ApplicationModel::AppExtensions::AppExtensionCatalog Open(hstring_ref appExtensionName);
+    static Windows::ApplicationModel::AppExtensions::AppExtensionCatalog Open(hstring_view appExtensionName);
 };
 
 struct WINRT_EBO AppExtensionPackageInstalledEventArgs :

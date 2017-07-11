@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -31,7 +31,7 @@ template <> struct __declspec(uuid("f8c75a3a-739a-57aa-986d-1f7604d7e386")) __de
 
 #ifndef WINRT_GENERIC_f6c02d1b_43e8_5fc8_8e8e_ee7b8094b683
 #define WINRT_GENERIC_f6c02d1b_43e8_5fc8_8e8e_ee7b8094b683
-template <> struct __declspec(uuid("f6c02d1b-43e8-5fc8-8e8e-ee7b8094b683")) __declspec(novtable) TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::IInspectable> : impl_TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::IInspectable> {};
+template <> struct __declspec(uuid("f6c02d1b-43e8-5fc8-8e8e-ee7b8094b683")) __declspec(novtable) TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable> : impl_TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable> {};
 #endif
 
 #ifndef WINRT_GENERIC_ffa41f49_4c30_50d3_9549_e4f055b417b4
@@ -47,6 +47,21 @@ namespace ABI::Windows::Foundation::Collections {
 #ifndef WINRT_GENERIC_7c65d286_7285_5d63_bdea_5ef951bdf618
 #define WINRT_GENERIC_7c65d286_7285_5d63_bdea_5ef951bdf618
 template <> struct __declspec(uuid("7c65d286-7285-5d63-bdea-5ef951bdf618")) __declspec(novtable) IVectorView<Windows::Devices::WiFi::WiFiAvailableNetwork> : impl_IVectorView<Windows::Devices::WiFi::WiFiAvailableNetwork> {};
+#endif
+
+#ifndef WINRT_GENERIC_703a2e06_1dd6_55f9_9b7c_88a231c75fe2
+#define WINRT_GENERIC_703a2e06_1dd6_55f9_9b7c_88a231c75fe2
+template <> struct __declspec(uuid("703a2e06-1dd6-55f9-9b7c-88a231c75fe2")) __declspec(novtable) IVector<Windows::Devices::WiFi::WiFiAdapter> : impl_IVector<Windows::Devices::WiFi::WiFiAdapter> {};
+#endif
+
+#ifndef WINRT_GENERIC_144136c6_b502_5a52_90fc_22a09318f932
+#define WINRT_GENERIC_144136c6_b502_5a52_90fc_22a09318f932
+template <> struct __declspec(uuid("144136c6-b502-5a52-90fc-22a09318f932")) __declspec(novtable) IIterator<Windows::Devices::WiFi::WiFiAdapter> : impl_IIterator<Windows::Devices::WiFi::WiFiAdapter> {};
+#endif
+
+#ifndef WINRT_GENERIC_e0bc76c4_8d0c_53fc_bcd4_228f47210ace
+#define WINRT_GENERIC_e0bc76c4_8d0c_53fc_bcd4_228f47210ace
+template <> struct __declspec(uuid("e0bc76c4-8d0c-53fc-bcd4-228f47210ace")) __declspec(novtable) IIterable<Windows::Devices::WiFi::WiFiAdapter> : impl_IIterable<Windows::Devices::WiFi::WiFiAdapter> {};
 #endif
 
 
@@ -73,6 +88,11 @@ template <> struct __declspec(uuid("f380eb8d-1e52-5350-a288-861c963a84f0")) __de
 }
 
 namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_627fff07_05e6_5d9f_9457_82f0a657000e
+#define WINRT_GENERIC_627fff07_05e6_5d9f_9457_82f0a657000e
+template <> struct __declspec(uuid("627fff07-05e6-5d9f-9457-82f0a657000e")) __declspec(novtable) IVector<Windows::Devices::WiFi::WiFiAvailableNetwork> : impl_IVector<Windows::Devices::WiFi::WiFiAvailableNetwork> {};
+#endif
 
 #ifndef WINRT_GENERIC_468677c4_ebb9_5196_836d_72faa9fe673e
 #define WINRT_GENERIC_468677c4_ebb9_5196_836d_72faa9fe673e
@@ -104,118 +124,39 @@ template <> struct __declspec(uuid("92902a07-2f18-56e9-87fb-24fe19f70688")) __de
 
 namespace Windows::Devices::WiFi {
 
-template <typename D>
-class WINRT_EBO impl_IWiFiAdapter
-{
-    auto shim() const { return impl::shim<D, IWiFiAdapter>(this); }
-
-public:
-
-    Windows::Networking::Connectivity::NetworkAdapter NetworkAdapter() const;
-    Windows::Foundation::IAsyncAction ScanAsync() const;
-    Windows::Devices::WiFi::WiFiNetworkReport NetworkReport() const;
-    event_token AvailableNetworksChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::IInspectable> & args) const;
-    using AvailableNetworksChanged_revoker = event_revoker<IWiFiAdapter>;
-    AvailableNetworksChanged_revoker AvailableNetworksChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::IInspectable> & args) const;
-    void AvailableNetworksChanged(event_token eventCookie) const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> ConnectAsync(const Windows::Devices::WiFi::WiFiAvailableNetwork & availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind) const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> ConnectAsync(const Windows::Devices::WiFi::WiFiAvailableNetwork & availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind, const Windows::Security::Credentials::PasswordCredential & passwordCredential) const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> ConnectAsync(const Windows::Devices::WiFi::WiFiAvailableNetwork & availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind, const Windows::Security::Credentials::PasswordCredential & passwordCredential, hstring_ref ssid) const;
-    void Disconnect() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IWiFiAdapterStatics
-{
-    auto shim() const { return impl::shim<D, IWiFiAdapterStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAdapter>> FindAllAdaptersAsync() const;
-    hstring GetDeviceSelector() const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAdapter> FromIdAsync(hstring_ref deviceId) const;
-    Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::WiFi::WiFiAccessStatus> RequestAccessAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IWiFiAvailableNetwork
-{
-    auto shim() const { return impl::shim<D, IWiFiAvailableNetwork>(this); }
-
-public:
-
-    Windows::Foundation::TimeSpan Uptime() const;
-    hstring Ssid() const;
-    hstring Bssid() const;
-    int32_t ChannelCenterFrequencyInKilohertz() const;
-    double NetworkRssiInDecibelMilliwatts() const;
-    uint8_t SignalBars() const;
-    Windows::Devices::WiFi::WiFiNetworkKind NetworkKind() const;
-    Windows::Devices::WiFi::WiFiPhyKind PhyKind() const;
-    Windows::Networking::Connectivity::NetworkSecuritySettings SecuritySettings() const;
-    Windows::Foundation::TimeSpan BeaconInterval() const;
-    bool IsWiFiDirect() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IWiFiConnectionResult
-{
-    auto shim() const { return impl::shim<D, IWiFiConnectionResult>(this); }
-
-public:
-
-    Windows::Devices::WiFi::WiFiConnectionStatus ConnectionStatus() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IWiFiNetworkReport
-{
-    auto shim() const { return impl::shim<D, IWiFiNetworkReport>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAvailableNetwork> AvailableNetworks() const;
-};
-
 struct IWiFiAdapter :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWiFiAdapter>
 {
     IWiFiAdapter(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWiFiAdapter>(m_ptr); }
 };
 
 struct IWiFiAdapterStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWiFiAdapterStatics>
 {
     IWiFiAdapterStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWiFiAdapterStatics>(m_ptr); }
 };
 
 struct IWiFiAvailableNetwork :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWiFiAvailableNetwork>
 {
     IWiFiAvailableNetwork(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWiFiAvailableNetwork>(m_ptr); }
 };
 
 struct IWiFiConnectionResult :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWiFiConnectionResult>
 {
     IWiFiConnectionResult(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWiFiConnectionResult>(m_ptr); }
 };
 
 struct IWiFiNetworkReport :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWiFiNetworkReport>
 {
     IWiFiNetworkReport(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWiFiNetworkReport>(m_ptr); }
 };
 
 }

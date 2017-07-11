@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -28,6 +28,16 @@ struct IKnownDeviceTypesStatics;
 struct CustomDevice;
 struct IOControlCode;
 struct KnownDeviceTypes;
+
+}
+
+namespace Windows::Devices::Custom {
+
+template <typename T> struct impl_ICustomDevice;
+template <typename T> struct impl_ICustomDeviceStatics;
+template <typename T> struct impl_IIOControlCode;
+template <typename T> struct impl_IIOControlCodeFactory;
+template <typename T> struct impl_IKnownDeviceTypesStatics;
 
 }
 

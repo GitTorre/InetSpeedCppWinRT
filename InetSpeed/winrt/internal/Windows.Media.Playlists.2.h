@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -24,6 +24,11 @@ namespace ABI::Windows::Foundation::Collections {
 template <> struct __declspec(uuid("80646519-5e2a-595d-a8cd-2a24b4067f1b")) __declspec(novtable) IVectorView<Windows::Storage::StorageFile> : impl_IVectorView<Windows::Storage::StorageFile> {};
 #endif
 
+#ifndef WINRT_GENERIC_9ac00304_83ea_5688_87b6_ae38aab65d0b
+#define WINRT_GENERIC_9ac00304_83ea_5688_87b6_ae38aab65d0b
+template <> struct __declspec(uuid("9ac00304-83ea-5688-87b6-ae38aab65d0b")) __declspec(novtable) IIterable<Windows::Storage::StorageFile> : impl_IIterable<Windows::Storage::StorageFile> {};
+#endif
+
 #ifndef WINRT_GENERIC_fcbc8b8b_6103_5b4e_ba00_4bc2cedb6a35
 #define WINRT_GENERIC_fcbc8b8b_6103_5b4e_ba00_4bc2cedb6a35
 template <> struct __declspec(uuid("fcbc8b8b-6103-5b4e-ba00-4bc2cedb6a35")) __declspec(novtable) IVector<Windows::Storage::StorageFile> : impl_IVector<Windows::Storage::StorageFile> {};
@@ -38,21 +43,6 @@ namespace ABI::Windows::Foundation {
 #define WINRT_GENERIC_8ffb74ab_912f_5bc1_87fa_2865f673cbfc
 template <> struct __declspec(uuid("8ffb74ab-912f-5bc1-87fa-2865f673cbfc")) __declspec(novtable) IAsyncOperation<Windows::Media::Playlists::Playlist> : impl_IAsyncOperation<Windows::Media::Playlists::Playlist> {};
 #endif
-
-
-}
-
-namespace ABI::Windows::Foundation::Collections {
-
-#ifndef WINRT_GENERIC_9ac00304_83ea_5688_87b6_ae38aab65d0b
-#define WINRT_GENERIC_9ac00304_83ea_5688_87b6_ae38aab65d0b
-template <> struct __declspec(uuid("9ac00304-83ea-5688-87b6-ae38aab65d0b")) __declspec(novtable) IIterable<Windows::Storage::StorageFile> : impl_IIterable<Windows::Storage::StorageFile> {};
-#endif
-
-
-}
-
-namespace ABI::Windows::Foundation {
 
 #ifndef WINRT_GENERIC_e521c894_2c26_5946_9e61_2b5e188d01ed
 #define WINRT_GENERIC_e521c894_2c26_5946_9e61_2b5e188d01ed
@@ -84,43 +74,18 @@ template <> struct __declspec(uuid("427deafd-b226-5ef0-9320-c9f325e37474")) __de
 
 namespace Windows::Media::Playlists {
 
-template <typename D>
-class WINRT_EBO impl_IPlaylist
-{
-    auto shim() const { return impl::shim<D, IPlaylist>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVector<Windows::Storage::StorageFile> Files() const;
-    Windows::Foundation::IAsyncAction SaveAsync() const;
-    Windows::Foundation::IAsyncOperation<Windows::Storage::StorageFile> SaveAsAsync(const Windows::Storage::IStorageFolder & saveLocation, hstring_ref desiredName, Windows::Storage::NameCollisionOption option) const;
-    Windows::Foundation::IAsyncOperation<Windows::Storage::StorageFile> SaveAsAsync(const Windows::Storage::IStorageFolder & saveLocation, hstring_ref desiredName, Windows::Storage::NameCollisionOption option, Windows::Media::Playlists::PlaylistFormat playlistFormat) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPlaylistStatics
-{
-    auto shim() const { return impl::shim<D, IPlaylistStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Media::Playlists::Playlist> LoadAsync(const Windows::Storage::IStorageFile & file) const;
-};
-
 struct IPlaylist :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPlaylist>
 {
     IPlaylist(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPlaylist>(m_ptr); }
 };
 
 struct IPlaylistStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPlaylistStatics>
 {
     IPlaylistStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPlaylistStatics>(m_ptr); }
 };
 
 }

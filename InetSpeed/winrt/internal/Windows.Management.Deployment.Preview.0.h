@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -20,6 +20,13 @@ struct IClassicAppManagerStatics;
 struct IInstalledClassicAppInfo;
 struct ClassicAppManager;
 struct InstalledClassicAppInfo;
+
+}
+
+namespace Windows::Management::Deployment::Preview {
+
+template <typename T> struct impl_IClassicAppManagerStatics;
+template <typename T> struct impl_IInstalledClassicAppInfo;
 
 }
 

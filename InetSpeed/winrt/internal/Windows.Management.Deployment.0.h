@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -49,6 +49,19 @@ struct DeploymentResult;
 struct PackageManager;
 struct PackageUserInformation;
 struct PackageVolume;
+
+}
+
+namespace Windows::Management::Deployment {
+
+template <typename T> struct impl_IDeploymentResult;
+template <typename T> struct impl_IPackageManager;
+template <typename T> struct impl_IPackageManager2;
+template <typename T> struct impl_IPackageManager3;
+template <typename T> struct impl_IPackageManager4;
+template <typename T> struct impl_IPackageUserInformation;
+template <typename T> struct impl_IPackageVolume;
+template <typename T> struct impl_IPackageVolume2;
 
 }
 

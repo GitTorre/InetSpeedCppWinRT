@@ -1,9 +1,9 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.Perception.Automation.Core.0.h"
 #include "Windows.Foundation.0.h"
 
@@ -11,7 +11,7 @@ WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::Perception::Automation::Core {
 
-struct __declspec(uuid("0bb04541-4ce2-4923-9a76-8187ecc59112")) __declspec(novtable) ICorePerceptionAutomationStatics : Windows::IInspectable
+struct __declspec(uuid("0bb04541-4ce2-4923-9a76-8187ecc59112")) __declspec(novtable) ICorePerceptionAutomationStatics : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall abi_SetActivationFactoryProvider(Windows::Foundation::IGetActivationFactory * provider) = 0;
 };
@@ -25,7 +25,11 @@ namespace ABI {
 
 namespace Windows::Perception::Automation::Core {
 
-template <typename T> class impl_ICorePerceptionAutomationStatics;
+template <typename D>
+struct WINRT_EBO impl_ICorePerceptionAutomationStatics
+{
+    void SetActivationFactoryProvider(const Windows::Foundation::IGetActivationFactory & provider) const;
+};
 
 }
 

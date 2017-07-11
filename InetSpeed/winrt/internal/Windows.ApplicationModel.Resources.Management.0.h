@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -29,6 +29,16 @@ struct IResourceIndexerFactory2;
 struct IndexedResourceCandidate;
 struct IndexedResourceQualifier;
 struct ResourceIndexer;
+
+}
+
+namespace Windows::ApplicationModel::Resources::Management {
+
+template <typename T> struct impl_IIndexedResourceCandidate;
+template <typename T> struct impl_IIndexedResourceQualifier;
+template <typename T> struct impl_IResourceIndexer;
+template <typename T> struct impl_IResourceIndexerFactory;
+template <typename T> struct impl_IResourceIndexerFactory2;
 
 }
 

@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -25,6 +25,15 @@ struct IDecompressor;
 struct IDecompressorFactory;
 struct Compressor;
 struct Decompressor;
+
+}
+
+namespace Windows::Storage::Compression {
+
+template <typename T> struct impl_ICompressor;
+template <typename T> struct impl_ICompressorFactory;
+template <typename T> struct impl_IDecompressor;
+template <typename T> struct impl_IDecompressorFactory;
 
 }
 

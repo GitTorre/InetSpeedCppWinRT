@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -46,6 +46,20 @@ struct MusicProperties;
 struct StorageItemContentProperties;
 struct StorageItemThumbnail;
 struct VideoProperties;
+
+}
+
+namespace Windows::Storage::FileProperties {
+
+template <typename T> struct impl_IBasicProperties;
+template <typename T> struct impl_IDocumentProperties;
+template <typename T> struct impl_IGeotagHelperStatics;
+template <typename T> struct impl_IImageProperties;
+template <typename T> struct impl_IMusicProperties;
+template <typename T> struct impl_IStorageItemContentProperties;
+template <typename T> struct impl_IStorageItemExtraProperties;
+template <typename T> struct impl_IThumbnailProperties;
+template <typename T> struct impl_IVideoProperties;
 
 }
 

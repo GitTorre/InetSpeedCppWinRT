@@ -1,13 +1,16 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.System.RemoteSystems.3.h"
-#include "internal\Windows.Foundation.3.h"
-#include "internal\Windows.System.3.h"
-#include "internal\Windows.Foundation.Collections.3.h"
-#include "internal\Windows.ApplicationModel.AppService.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.System.RemoteSystems.3.h"
+#include "internal/Windows.Foundation.3.h"
+#include "internal/Windows.System.3.h"
+#include "internal/Windows.Foundation.Collections.3.h"
+#include "internal/Windows.ApplicationModel.AppService.3.h"
 #include "Windows.ApplicationModel.h"
 #include "Windows.Foundation.h"
 
@@ -18,11 +21,12 @@ namespace impl {
 template <typename D>
 struct produce<D, Windows::ApplicationModel::AppService::IAppServiceCatalogStatics> : produce_base<D, Windows::ApplicationModel::AppService::IAppServiceCatalogStatics>
 {
-    HRESULT __stdcall abi_FindAppServiceProvidersAsync(abi_arg_in<hstring> appServiceName, abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::AppInfo>>> operation) noexcept override
+    HRESULT __stdcall abi_FindAppServiceProvidersAsync(impl::abi_arg_in<hstring> appServiceName, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::AppInfo>>> operation) noexcept override
     {
         try
         {
-            *operation = detach(shim().FindAppServiceProvidersAsync(*reinterpret_cast<const hstring *>(&appServiceName)));
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().FindAppServiceProvidersAsync(*reinterpret_cast<const hstring *>(&appServiceName)));
             return S_OK;
         }
         catch (...)
@@ -40,7 +44,8 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceClosedEventA
     {
         try
         {
-            *value = detach(shim().Status());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Status());
             return S_OK;
         }
         catch (...)
@@ -53,11 +58,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceClosedEventA
 template <typename D>
 struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> : produce_base<D, Windows::ApplicationModel::AppService::IAppServiceConnection>
 {
-    HRESULT __stdcall get_AppServiceName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_AppServiceName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().AppServiceName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().AppServiceName());
             return S_OK;
         }
         catch (...)
@@ -67,11 +73,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
         }
     }
 
-    HRESULT __stdcall put_AppServiceName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_AppServiceName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().AppServiceName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().AppServiceName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -80,11 +87,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
         }
     }
 
-    HRESULT __stdcall get_PackageFamilyName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_PackageFamilyName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PackageFamilyName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PackageFamilyName());
             return S_OK;
         }
         catch (...)
@@ -94,11 +102,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
         }
     }
 
-    HRESULT __stdcall put_PackageFamilyName(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_PackageFamilyName(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().PackageFamilyName(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().PackageFamilyName(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -107,25 +116,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
         }
     }
 
-    HRESULT __stdcall abi_OpenAsync(abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceConnectionStatus>> operation) noexcept override
+    HRESULT __stdcall abi_OpenAsync(impl::abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceConnectionStatus>> operation) noexcept override
     {
         try
         {
-            *operation = detach(shim().OpenAsync());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *operation = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall abi_SendMessageAsync(abi_arg_in<Windows::Foundation::Collections::IPropertySet> message, abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::AppService::AppServiceResponse>> operation) noexcept override
-    {
-        try
-        {
-            *operation = detach(shim().SendMessageAsync(*reinterpret_cast<const Windows::Foundation::Collections::ValueSet *>(&message)));
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().OpenAsync());
             return S_OK;
         }
         catch (...)
@@ -135,11 +131,27 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
         }
     }
 
-    HRESULT __stdcall add_RequestReceived(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceRequestReceivedEventArgs>> handler, event_token * token) noexcept override
+    HRESULT __stdcall abi_SendMessageAsync(impl::abi_arg_in<Windows::Foundation::Collections::IPropertySet> message, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::AppService::AppServiceResponse>> operation) noexcept override
     {
         try
         {
-            *token = detach(shim().RequestReceived(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceRequestReceivedEventArgs> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().SendMessageAsync(*reinterpret_cast<const Windows::Foundation::Collections::ValueSet *>(&message)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            *operation = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall add_RequestReceived(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceRequestReceivedEventArgs>> handler, event_token * token) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().RequestReceived(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceRequestReceivedEventArgs> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -152,7 +164,8 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
     {
         try
         {
-            shim().RequestReceived(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RequestReceived(token);
             return S_OK;
         }
         catch (...)
@@ -161,11 +174,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
         }
     }
 
-    HRESULT __stdcall add_ServiceClosed(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceClosedEventArgs>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_ServiceClosed(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceClosedEventArgs>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().ServiceClosed(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceClosedEventArgs> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().ServiceClosed(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceClosedEventArgs> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -178,7 +192,8 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
     {
         try
         {
-            shim().ServiceClosed(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ServiceClosed(token);
             return S_OK;
         }
         catch (...)
@@ -191,11 +206,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection> 
 template <typename D>
 struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection2> : produce_base<D, Windows::ApplicationModel::AppService::IAppServiceConnection2>
 {
-    HRESULT __stdcall abi_OpenRemoteAsync(abi_arg_in<Windows::System::RemoteSystems::IRemoteSystemConnectionRequest> remoteSystemConnectionRequest, abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceConnectionStatus>> operation) noexcept override
+    HRESULT __stdcall abi_OpenRemoteAsync(impl::abi_arg_in<Windows::System::RemoteSystems::IRemoteSystemConnectionRequest> remoteSystemConnectionRequest, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceConnectionStatus>> operation) noexcept override
     {
         try
         {
-            *operation = detach(shim().OpenRemoteAsync(*reinterpret_cast<const Windows::System::RemoteSystems::RemoteSystemConnectionRequest *>(&remoteSystemConnectionRequest)));
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().OpenRemoteAsync(*reinterpret_cast<const Windows::System::RemoteSystems::RemoteSystemConnectionRequest *>(&remoteSystemConnectionRequest)));
             return S_OK;
         }
         catch (...)
@@ -205,11 +221,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection2>
         }
     }
 
-    HRESULT __stdcall get_User(abi_arg_out<Windows::System::IUser> value) noexcept override
+    HRESULT __stdcall get_User(impl::abi_arg_out<Windows::System::IUser> value) noexcept override
     {
         try
         {
-            *value = detach(shim().User());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().User());
             return S_OK;
         }
         catch (...)
@@ -219,11 +236,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceConnection2>
         }
     }
 
-    HRESULT __stdcall put_User(abi_arg_in<Windows::System::IUser> value) noexcept override
+    HRESULT __stdcall put_User(impl::abi_arg_in<Windows::System::IUser> value) noexcept override
     {
         try
         {
-            shim().User(*reinterpret_cast<const Windows::System::User *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().User(*reinterpret_cast<const Windows::System::User *>(&value));
             return S_OK;
         }
         catch (...)
@@ -240,7 +258,8 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceDeferral> : 
     {
         try
         {
-            shim().Complete();
+            typename D::abi_guard guard(this->shim());
+            this->shim().Complete();
             return S_OK;
         }
         catch (...)
@@ -253,11 +272,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceDeferral> : 
 template <typename D>
 struct produce<D, Windows::ApplicationModel::AppService::IAppServiceRequest> : produce_base<D, Windows::ApplicationModel::AppService::IAppServiceRequest>
 {
-    HRESULT __stdcall get_Message(abi_arg_out<Windows::Foundation::Collections::IPropertySet> value) noexcept override
+    HRESULT __stdcall get_Message(impl::abi_arg_out<Windows::Foundation::Collections::IPropertySet> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Message());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Message());
             return S_OK;
         }
         catch (...)
@@ -267,11 +287,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceRequest> : p
         }
     }
 
-    HRESULT __stdcall abi_SendResponseAsync(abi_arg_in<Windows::Foundation::Collections::IPropertySet> message, abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceResponseStatus>> operation) noexcept override
+    HRESULT __stdcall abi_SendResponseAsync(impl::abi_arg_in<Windows::Foundation::Collections::IPropertySet> message, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceResponseStatus>> operation) noexcept override
     {
         try
         {
-            *operation = detach(shim().SendResponseAsync(*reinterpret_cast<const Windows::Foundation::Collections::ValueSet *>(&message)));
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().SendResponseAsync(*reinterpret_cast<const Windows::Foundation::Collections::ValueSet *>(&message)));
             return S_OK;
         }
         catch (...)
@@ -285,11 +306,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceRequest> : p
 template <typename D>
 struct produce<D, Windows::ApplicationModel::AppService::IAppServiceRequestReceivedEventArgs> : produce_base<D, Windows::ApplicationModel::AppService::IAppServiceRequestReceivedEventArgs>
 {
-    HRESULT __stdcall get_Request(abi_arg_out<Windows::ApplicationModel::AppService::IAppServiceRequest> value) noexcept override
+    HRESULT __stdcall get_Request(impl::abi_arg_out<Windows::ApplicationModel::AppService::IAppServiceRequest> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Request());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Request());
             return S_OK;
         }
         catch (...)
@@ -299,11 +321,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceRequestRecei
         }
     }
 
-    HRESULT __stdcall abi_GetDeferral(abi_arg_out<Windows::ApplicationModel::AppService::IAppServiceDeferral> value) noexcept override
+    HRESULT __stdcall abi_GetDeferral(impl::abi_arg_out<Windows::ApplicationModel::AppService::IAppServiceDeferral> value) noexcept override
     {
         try
         {
-            *value = detach(shim().GetDeferral());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GetDeferral());
             return S_OK;
         }
         catch (...)
@@ -317,11 +340,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceRequestRecei
 template <typename D>
 struct produce<D, Windows::ApplicationModel::AppService::IAppServiceResponse> : produce_base<D, Windows::ApplicationModel::AppService::IAppServiceResponse>
 {
-    HRESULT __stdcall get_Message(abi_arg_out<Windows::Foundation::Collections::IPropertySet> value) noexcept override
+    HRESULT __stdcall get_Message(impl::abi_arg_out<Windows::Foundation::Collections::IPropertySet> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Message());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Message());
             return S_OK;
         }
         catch (...)
@@ -335,7 +359,8 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceResponse> : 
     {
         try
         {
-            *value = detach(shim().Status());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Status());
             return S_OK;
         }
         catch (...)
@@ -348,11 +373,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceResponse> : 
 template <typename D>
 struct produce<D, Windows::ApplicationModel::AppService::IAppServiceTriggerDetails> : produce_base<D, Windows::ApplicationModel::AppService::IAppServiceTriggerDetails>
 {
-    HRESULT __stdcall get_Name(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Name(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Name());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Name());
             return S_OK;
         }
         catch (...)
@@ -362,11 +388,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceTriggerDetai
         }
     }
 
-    HRESULT __stdcall get_CallerPackageFamilyName(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_CallerPackageFamilyName(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().CallerPackageFamilyName());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().CallerPackageFamilyName());
             return S_OK;
         }
         catch (...)
@@ -376,11 +403,12 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceTriggerDetai
         }
     }
 
-    HRESULT __stdcall get_AppServiceConnection(abi_arg_out<Windows::ApplicationModel::AppService::IAppServiceConnection> value) noexcept override
+    HRESULT __stdcall get_AppServiceConnection(impl::abi_arg_out<Windows::ApplicationModel::AppService::IAppServiceConnection> value) noexcept override
     {
         try
         {
-            *value = detach(shim().AppServiceConnection());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().AppServiceConnection());
             return S_OK;
         }
         catch (...)
@@ -398,7 +426,8 @@ struct produce<D, Windows::ApplicationModel::AppService::IAppServiceTriggerDetai
     {
         try
         {
-            *value = detach(shim().IsRemoteSystemConnection());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsRemoteSystemConnection());
             return S_OK;
         }
         catch (...)
@@ -414,154 +443,154 @@ namespace Windows::ApplicationModel::AppService {
 
 template <typename D> void impl_IAppServiceDeferral<D>::Complete() const
 {
-    check_hresult(shim()->abi_Complete());
+    check_hresult(WINRT_SHIM(IAppServiceDeferral)->abi_Complete());
 }
 
 template <typename D> Windows::ApplicationModel::AppService::AppServiceClosedStatus impl_IAppServiceClosedEventArgs<D>::Status() const
 {
     Windows::ApplicationModel::AppService::AppServiceClosedStatus value {};
-    check_hresult(shim()->get_Status(&value));
+    check_hresult(WINRT_SHIM(IAppServiceClosedEventArgs)->get_Status(&value));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::AppService::AppServiceRequest impl_IAppServiceRequestReceivedEventArgs<D>::Request() const
 {
     Windows::ApplicationModel::AppService::AppServiceRequest value { nullptr };
-    check_hresult(shim()->get_Request(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceRequestReceivedEventArgs)->get_Request(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::AppService::AppServiceDeferral impl_IAppServiceRequestReceivedEventArgs<D>::GetDeferral() const
 {
     Windows::ApplicationModel::AppService::AppServiceDeferral value { nullptr };
-    check_hresult(shim()->abi_GetDeferral(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceRequestReceivedEventArgs)->abi_GetDeferral(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceConnectionStatus> impl_IAppServiceConnection2<D>::OpenRemoteAsync(const Windows::System::RemoteSystems::RemoteSystemConnectionRequest & remoteSystemConnectionRequest) const
 {
     Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceConnectionStatus> operation;
-    check_hresult(shim()->abi_OpenRemoteAsync(get(remoteSystemConnectionRequest), put(operation)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection2)->abi_OpenRemoteAsync(get_abi(remoteSystemConnectionRequest), put_abi(operation)));
     return operation;
 }
 
 template <typename D> Windows::System::User impl_IAppServiceConnection2<D>::User() const
 {
     Windows::System::User value { nullptr };
-    check_hresult(shim()->get_User(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection2)->get_User(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IAppServiceConnection2<D>::User(const Windows::System::User & value) const
 {
-    check_hresult(shim()->put_User(get(value)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection2)->put_User(get_abi(value)));
 }
 
 template <typename D> hstring impl_IAppServiceTriggerDetails<D>::Name() const
 {
     hstring value;
-    check_hresult(shim()->get_Name(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceTriggerDetails)->get_Name(put_abi(value)));
     return value;
 }
 
 template <typename D> hstring impl_IAppServiceTriggerDetails<D>::CallerPackageFamilyName() const
 {
     hstring value;
-    check_hresult(shim()->get_CallerPackageFamilyName(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceTriggerDetails)->get_CallerPackageFamilyName(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::AppService::AppServiceConnection impl_IAppServiceTriggerDetails<D>::AppServiceConnection() const
 {
     Windows::ApplicationModel::AppService::AppServiceConnection value { nullptr };
-    check_hresult(shim()->get_AppServiceConnection(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceTriggerDetails)->get_AppServiceConnection(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IAppServiceTriggerDetails2<D>::IsRemoteSystemConnection() const
 {
     bool value {};
-    check_hresult(shim()->get_IsRemoteSystemConnection(&value));
+    check_hresult(WINRT_SHIM(IAppServiceTriggerDetails2)->get_IsRemoteSystemConnection(&value));
     return value;
 }
 
 template <typename D> Windows::Foundation::Collections::ValueSet impl_IAppServiceRequest<D>::Message() const
 {
     Windows::Foundation::Collections::ValueSet value { nullptr };
-    check_hresult(shim()->get_Message(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceRequest)->get_Message(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceResponseStatus> impl_IAppServiceRequest<D>::SendResponseAsync(const Windows::Foundation::Collections::ValueSet & message) const
 {
     Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceResponseStatus> operation;
-    check_hresult(shim()->abi_SendResponseAsync(get(message), put(operation)));
+    check_hresult(WINRT_SHIM(IAppServiceRequest)->abi_SendResponseAsync(get_abi(message), put_abi(operation)));
     return operation;
 }
 
 template <typename D> Windows::Foundation::Collections::ValueSet impl_IAppServiceResponse<D>::Message() const
 {
     Windows::Foundation::Collections::ValueSet value { nullptr };
-    check_hresult(shim()->get_Message(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceResponse)->get_Message(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::AppService::AppServiceResponseStatus impl_IAppServiceResponse<D>::Status() const
 {
     Windows::ApplicationModel::AppService::AppServiceResponseStatus value {};
-    check_hresult(shim()->get_Status(&value));
+    check_hresult(WINRT_SHIM(IAppServiceResponse)->get_Status(&value));
     return value;
 }
 
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::AppInfo>> impl_IAppServiceCatalogStatics<D>::FindAppServiceProvidersAsync(hstring_ref appServiceName) const
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::AppInfo>> impl_IAppServiceCatalogStatics<D>::FindAppServiceProvidersAsync(hstring_view appServiceName) const
 {
     Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::AppInfo>> operation;
-    check_hresult(shim()->abi_FindAppServiceProvidersAsync(get(appServiceName), put(operation)));
+    check_hresult(WINRT_SHIM(IAppServiceCatalogStatics)->abi_FindAppServiceProvidersAsync(get_abi(appServiceName), put_abi(operation)));
     return operation;
 }
 
 template <typename D> hstring impl_IAppServiceConnection<D>::AppServiceName() const
 {
     hstring value;
-    check_hresult(shim()->get_AppServiceName(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->get_AppServiceName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IAppServiceConnection<D>::AppServiceName(hstring_ref value) const
+template <typename D> void impl_IAppServiceConnection<D>::AppServiceName(hstring_view value) const
 {
-    check_hresult(shim()->put_AppServiceName(get(value)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->put_AppServiceName(get_abi(value)));
 }
 
 template <typename D> hstring impl_IAppServiceConnection<D>::PackageFamilyName() const
 {
     hstring value;
-    check_hresult(shim()->get_PackageFamilyName(put(value)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->get_PackageFamilyName(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IAppServiceConnection<D>::PackageFamilyName(hstring_ref value) const
+template <typename D> void impl_IAppServiceConnection<D>::PackageFamilyName(hstring_view value) const
 {
-    check_hresult(shim()->put_PackageFamilyName(get(value)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->put_PackageFamilyName(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceConnectionStatus> impl_IAppServiceConnection<D>::OpenAsync() const
 {
     Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::AppService::AppServiceConnectionStatus> operation;
-    check_hresult(shim()->abi_OpenAsync(put(operation)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->abi_OpenAsync(put_abi(operation)));
     return operation;
 }
 
 template <typename D> Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::AppService::AppServiceResponse> impl_IAppServiceConnection<D>::SendMessageAsync(const Windows::Foundation::Collections::ValueSet & message) const
 {
     Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::AppService::AppServiceResponse> operation;
-    check_hresult(shim()->abi_SendMessageAsync(get(message), put(operation)));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->abi_SendMessageAsync(get_abi(message), put_abi(operation)));
     return operation;
 }
 
 template <typename D> event_token impl_IAppServiceConnection<D>::RequestReceived(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceRequestReceivedEventArgs> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_RequestReceived(get(handler), &token));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->add_RequestReceived(get_abi(handler), &token));
     return token;
 }
 
@@ -572,13 +601,13 @@ template <typename D> event_revoker<IAppServiceConnection> impl_IAppServiceConne
 
 template <typename D> void impl_IAppServiceConnection<D>::RequestReceived(event_token token) const
 {
-    check_hresult(shim()->remove_RequestReceived(token));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->remove_RequestReceived(token));
 }
 
 template <typename D> event_token impl_IAppServiceConnection<D>::ServiceClosed(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::AppService::AppServiceConnection, Windows::ApplicationModel::AppService::AppServiceClosedEventArgs> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_ServiceClosed(get(handler), &token));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->add_ServiceClosed(get_abi(handler), &token));
     return token;
 }
 
@@ -589,10 +618,10 @@ template <typename D> event_revoker<IAppServiceConnection> impl_IAppServiceConne
 
 template <typename D> void impl_IAppServiceConnection<D>::ServiceClosed(event_token token) const
 {
-    check_hresult(shim()->remove_ServiceClosed(token));
+    check_hresult(WINRT_SHIM(IAppServiceConnection)->remove_ServiceClosed(token));
 }
 
-inline Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::AppInfo>> AppServiceCatalog::FindAppServiceProvidersAsync(hstring_ref appServiceName)
+inline Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::AppInfo>> AppServiceCatalog::FindAppServiceProvidersAsync(hstring_view appServiceName)
 {
     return get_activation_factory<AppServiceCatalog, IAppServiceCatalogStatics>().FindAppServiceProvidersAsync(appServiceName);
 }
@@ -604,3 +633,158 @@ inline AppServiceConnection::AppServiceConnection() :
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceCatalogStatics>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceCatalogStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceClosedEventArgs>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceClosedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceConnection>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceConnection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceConnection2>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceConnection2 & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceDeferral>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceDeferral & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceRequest>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceRequest & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceRequestReceivedEventArgs>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceRequestReceivedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceResponse>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceResponse & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::IAppServiceTriggerDetails2>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::IAppServiceTriggerDetails2 & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::AppServiceClosedEventArgs>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::AppServiceClosedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::AppServiceConnection>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::AppServiceConnection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::AppServiceDeferral>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::AppServiceDeferral & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::AppServiceRequest>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::AppServiceRequest & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::AppServiceRequestReceivedEventArgs>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::AppServiceRequestReceivedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::AppServiceResponse>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::AppServiceResponse & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::AppService::AppServiceTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::AppService::AppServiceTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

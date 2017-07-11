@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -24,43 +24,18 @@ template <> struct __declspec(uuid("51c3d2fd-b8a1-5620-b746-7ee6d533aca3")) __de
 
 namespace Windows::Security::Cryptography::DataProtection {
 
-template <typename D>
-class WINRT_EBO impl_IDataProtectionProvider
-{
-    auto shim() const { return impl::shim<D, IDataProtectionProvider>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> ProtectAsync(const Windows::Storage::Streams::IBuffer & data) const;
-    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> UnprotectAsync(const Windows::Storage::Streams::IBuffer & data) const;
-    Windows::Foundation::IAsyncAction ProtectStreamAsync(const Windows::Storage::Streams::IInputStream & src, const Windows::Storage::Streams::IOutputStream & dest) const;
-    Windows::Foundation::IAsyncAction UnprotectStreamAsync(const Windows::Storage::Streams::IInputStream & src, const Windows::Storage::Streams::IOutputStream & dest) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IDataProtectionProviderFactory
-{
-    auto shim() const { return impl::shim<D, IDataProtectionProviderFactory>(this); }
-
-public:
-
-    Windows::Security::Cryptography::DataProtection::DataProtectionProvider CreateOverloadExplicit(hstring_ref protectionDescriptor) const;
-};
-
 struct IDataProtectionProvider :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IDataProtectionProvider>
 {
     IDataProtectionProvider(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IDataProtectionProvider>(m_ptr); }
 };
 
 struct IDataProtectionProviderFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IDataProtectionProviderFactory>
 {
     IDataProtectionProviderFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IDataProtectionProviderFactory>(m_ptr); }
 };
 
 }

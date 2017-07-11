@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -24,66 +24,25 @@ template <> struct __declspec(uuid("3c1ec44c-e942-54e5-bcd3-e329c951f595")) __de
 
 namespace Windows::Security::Authentication::Web {
 
-template <typename D>
-class WINRT_EBO impl_IWebAuthenticationBrokerStatics
-{
-    auto shim() const { return impl::shim<D, IWebAuthenticationBrokerStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Security::Authentication::Web::WebAuthenticationResult> AuthenticateAsync(Windows::Security::Authentication::Web::WebAuthenticationOptions options, const Windows::Foundation::Uri & requestUri, const Windows::Foundation::Uri & callbackUri) const;
-    Windows::Foundation::IAsyncOperation<Windows::Security::Authentication::Web::WebAuthenticationResult> AuthenticateAsync(Windows::Security::Authentication::Web::WebAuthenticationOptions options, const Windows::Foundation::Uri & requestUri) const;
-    Windows::Foundation::Uri GetCurrentApplicationCallbackUri() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IWebAuthenticationBrokerStatics2
-{
-    auto shim() const { return impl::shim<D, IWebAuthenticationBrokerStatics2>(this); }
-
-public:
-
-    void AuthenticateAndContinue(const Windows::Foundation::Uri & requestUri) const;
-    void AuthenticateAndContinue(const Windows::Foundation::Uri & requestUri, const Windows::Foundation::Uri & callbackUri) const;
-    void AuthenticateAndContinue(const Windows::Foundation::Uri & requestUri, const Windows::Foundation::Uri & callbackUri, const Windows::Foundation::Collections::ValueSet & continuationData, Windows::Security::Authentication::Web::WebAuthenticationOptions options) const;
-    Windows::Foundation::IAsyncOperation<Windows::Security::Authentication::Web::WebAuthenticationResult> AuthenticateSilentlyAsync(const Windows::Foundation::Uri & requestUri) const;
-    Windows::Foundation::IAsyncOperation<Windows::Security::Authentication::Web::WebAuthenticationResult> AuthenticateSilentlyAsync(const Windows::Foundation::Uri & requestUri, Windows::Security::Authentication::Web::WebAuthenticationOptions options) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IWebAuthenticationResult
-{
-    auto shim() const { return impl::shim<D, IWebAuthenticationResult>(this); }
-
-public:
-
-    hstring ResponseData() const;
-    Windows::Security::Authentication::Web::WebAuthenticationStatus ResponseStatus() const;
-    uint32_t ResponseErrorDetail() const;
-};
-
 struct IWebAuthenticationBrokerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWebAuthenticationBrokerStatics>
 {
     IWebAuthenticationBrokerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWebAuthenticationBrokerStatics>(m_ptr); }
 };
 
 struct IWebAuthenticationBrokerStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWebAuthenticationBrokerStatics2>
 {
     IWebAuthenticationBrokerStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWebAuthenticationBrokerStatics2>(m_ptr); }
 };
 
 struct IWebAuthenticationResult :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWebAuthenticationResult>
 {
     IWebAuthenticationResult(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWebAuthenticationResult>(m_ptr); }
 };
 
 }

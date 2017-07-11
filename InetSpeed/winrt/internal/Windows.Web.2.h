@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -24,40 +24,18 @@ template <> struct __declspec(uuid("d0bd0125-9049-57a3-bd66-e2525d98c814")) __de
 
 namespace Windows::Web {
 
-template <typename D>
-class WINRT_EBO impl_IUriToStreamResolver
-{
-    auto shim() const { return impl::shim<D, IUriToStreamResolver>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IInputStream> UriToStreamAsync(const Windows::Foundation::Uri & uri) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IWebErrorStatics
-{
-    auto shim() const { return impl::shim<D, IWebErrorStatics>(this); }
-
-public:
-
-    Windows::Web::WebErrorStatus GetStatus(int32_t hresult) const;
-};
-
 struct IUriToStreamResolver :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IUriToStreamResolver>
 {
     IUriToStreamResolver(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IUriToStreamResolver>(m_ptr); }
 };
 
 struct IWebErrorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IWebErrorStatics>
 {
     IWebErrorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IWebErrorStatics>(m_ptr); }
 };
 
 }

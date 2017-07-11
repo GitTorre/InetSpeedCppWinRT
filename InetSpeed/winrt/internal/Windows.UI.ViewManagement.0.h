@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -33,6 +33,9 @@ struct IInputPaneStatics;
 struct IInputPaneVisibilityEventArgs;
 struct IProjectionManagerStatics;
 struct IProjectionManagerStatics2;
+struct IStatusBar;
+struct IStatusBarProgressIndicator;
+struct IStatusBarStatics;
 struct IUISettings;
 struct IUISettings2;
 struct IUISettings3;
@@ -47,6 +50,8 @@ struct ApplicationViewTitleBar;
 struct ApplicationViewTransferContext;
 struct InputPane;
 struct InputPaneVisibilityEventArgs;
+struct StatusBar;
+struct StatusBarProgressIndicator;
 struct UISettings;
 struct UIViewSettings;
 
@@ -79,6 +84,9 @@ struct IInputPaneStatics;
 struct IInputPaneVisibilityEventArgs;
 struct IProjectionManagerStatics;
 struct IProjectionManagerStatics2;
+struct IStatusBar;
+struct IStatusBarProgressIndicator;
+struct IStatusBarStatics;
 struct IUISettings;
 struct IUISettings2;
 struct IUISettings3;
@@ -95,8 +103,48 @@ struct ApplicationViewTransferContext;
 struct InputPane;
 struct InputPaneVisibilityEventArgs;
 struct ProjectionManager;
+struct StatusBar;
+struct StatusBarProgressIndicator;
 struct UISettings;
 struct UIViewSettings;
+
+}
+
+namespace Windows::UI::ViewManagement {
+
+template <typename T> struct impl_IAccessibilitySettings;
+template <typename T> struct impl_IActivationViewSwitcher;
+template <typename T> struct impl_IApplicationView;
+template <typename T> struct impl_IApplicationView2;
+template <typename T> struct impl_IApplicationView3;
+template <typename T> struct impl_IApplicationViewConsolidatedEventArgs;
+template <typename T> struct impl_IApplicationViewFullscreenStatics;
+template <typename T> struct impl_IApplicationViewInteropStatics;
+template <typename T> struct impl_IApplicationViewScaling;
+template <typename T> struct impl_IApplicationViewScalingStatics;
+template <typename T> struct impl_IApplicationViewStatics;
+template <typename T> struct impl_IApplicationViewStatics2;
+template <typename T> struct impl_IApplicationViewStatics3;
+template <typename T> struct impl_IApplicationViewSwitcherStatics;
+template <typename T> struct impl_IApplicationViewSwitcherStatics2;
+template <typename T> struct impl_IApplicationViewTitleBar;
+template <typename T> struct impl_IApplicationViewTransferContext;
+template <typename T> struct impl_IApplicationViewTransferContextStatics;
+template <typename T> struct impl_IInputPane;
+template <typename T> struct impl_IInputPane2;
+template <typename T> struct impl_IInputPaneControl;
+template <typename T> struct impl_IInputPaneStatics;
+template <typename T> struct impl_IInputPaneVisibilityEventArgs;
+template <typename T> struct impl_IProjectionManagerStatics;
+template <typename T> struct impl_IProjectionManagerStatics2;
+template <typename T> struct impl_IStatusBar;
+template <typename T> struct impl_IStatusBarProgressIndicator;
+template <typename T> struct impl_IStatusBarStatics;
+template <typename T> struct impl_IUISettings;
+template <typename T> struct impl_IUISettings2;
+template <typename T> struct impl_IUISettings3;
+template <typename T> struct impl_IUIViewSettings;
+template <typename T> struct impl_IUIViewSettingsStatics;
 
 }
 
@@ -114,7 +162,7 @@ enum class ApplicationViewOrientation
     Portrait = 1,
 };
 
-enum class ApplicationViewState
+enum class [[deprecated("ApplicationViewState may be altered or unavailable for releases after Windows 8.1. Instead, query for window layout sizes directly.")]] ApplicationViewState
 {
     FullScreenLandscape = 0,
     Filled = 1,

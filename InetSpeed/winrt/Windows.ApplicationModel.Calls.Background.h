@@ -1,9 +1,12 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.ApplicationModel.Calls.Background.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.ApplicationModel.Calls.Background.3.h"
 #include "Windows.ApplicationModel.Calls.h"
 
 WINRT_EXPORT namespace winrt {
@@ -13,11 +16,12 @@ namespace impl {
 template <typename D>
 struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneCallBlockedTriggerDetails> : produce_base<D, Windows::ApplicationModel::Calls::Background::IPhoneCallBlockedTriggerDetails>
 {
-    HRESULT __stdcall get_PhoneNumber(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_PhoneNumber(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PhoneNumber());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PhoneNumber());
             return S_OK;
         }
         catch (...)
@@ -31,7 +35,8 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneCallBlocke
     {
         try
         {
-            *value = detach(shim().LineId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().LineId());
             return S_OK;
         }
         catch (...)
@@ -44,7 +49,8 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneCallBlocke
     {
         try
         {
-            *value = detach(shim().CallBlockedReason());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().CallBlockedReason());
             return S_OK;
         }
         catch (...)
@@ -61,7 +67,8 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneCallOrigin
     {
         try
         {
-            *result = detach(shim().RequestId());
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().RequestId());
             return S_OK;
         }
         catch (...)
@@ -70,11 +77,12 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneCallOrigin
         }
     }
 
-    HRESULT __stdcall get_PhoneNumber(abi_arg_out<hstring> result) noexcept override
+    HRESULT __stdcall get_PhoneNumber(impl::abi_arg_out<hstring> result) noexcept override
     {
         try
         {
-            *result = detach(shim().PhoneNumber());
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().PhoneNumber());
             return S_OK;
         }
         catch (...)
@@ -92,7 +100,8 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneLineChange
     {
         try
         {
-            *result = detach(shim().LineId());
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().LineId());
             return S_OK;
         }
         catch (...)
@@ -105,7 +114,8 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneLineChange
     {
         try
         {
-            *result = detach(shim().ChangeType());
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().ChangeType());
             return S_OK;
         }
         catch (...)
@@ -118,7 +128,8 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneLineChange
     {
         try
         {
-            *result = detach(shim().HasLinePropertyChanged(lineProperty));
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().HasLinePropertyChanged(lineProperty));
             return S_OK;
         }
         catch (...)
@@ -135,7 +146,8 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneNewVoicema
     {
         try
         {
-            *result = detach(shim().LineId());
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().LineId());
             return S_OK;
         }
         catch (...)
@@ -148,7 +160,8 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneNewVoicema
     {
         try
         {
-            *result = detach(shim().VoicemailCount());
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().VoicemailCount());
             return S_OK;
         }
         catch (...)
@@ -157,11 +170,12 @@ struct produce<D, Windows::ApplicationModel::Calls::Background::IPhoneNewVoicema
         }
     }
 
-    HRESULT __stdcall get_OperatorMessage(abi_arg_out<hstring> result) noexcept override
+    HRESULT __stdcall get_OperatorMessage(impl::abi_arg_out<hstring> result) noexcept override
     {
         try
         {
-            *result = detach(shim().OperatorMessage());
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().OperatorMessage());
             return S_OK;
         }
         catch (...)
@@ -179,80 +193,154 @@ namespace Windows::ApplicationModel::Calls::Background {
 template <typename D> hstring impl_IPhoneCallBlockedTriggerDetails<D>::PhoneNumber() const
 {
     hstring value;
-    check_hresult(shim()->get_PhoneNumber(put(value)));
+    check_hresult(WINRT_SHIM(IPhoneCallBlockedTriggerDetails)->get_PhoneNumber(put_abi(value)));
     return value;
 }
 
 template <typename D> GUID impl_IPhoneCallBlockedTriggerDetails<D>::LineId() const
 {
     GUID value {};
-    check_hresult(shim()->get_LineId(&value));
+    check_hresult(WINRT_SHIM(IPhoneCallBlockedTriggerDetails)->get_LineId(&value));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::Calls::Background::PhoneCallBlockedReason impl_IPhoneCallBlockedTriggerDetails<D>::CallBlockedReason() const
 {
     Windows::ApplicationModel::Calls::Background::PhoneCallBlockedReason value {};
-    check_hresult(shim()->get_CallBlockedReason(&value));
+    check_hresult(WINRT_SHIM(IPhoneCallBlockedTriggerDetails)->get_CallBlockedReason(&value));
     return value;
 }
 
 template <typename D> GUID impl_IPhoneCallOriginDataRequestTriggerDetails<D>::RequestId() const
 {
     GUID result {};
-    check_hresult(shim()->get_RequestId(&result));
+    check_hresult(WINRT_SHIM(IPhoneCallOriginDataRequestTriggerDetails)->get_RequestId(&result));
     return result;
 }
 
 template <typename D> hstring impl_IPhoneCallOriginDataRequestTriggerDetails<D>::PhoneNumber() const
 {
     hstring result;
-    check_hresult(shim()->get_PhoneNumber(put(result)));
+    check_hresult(WINRT_SHIM(IPhoneCallOriginDataRequestTriggerDetails)->get_PhoneNumber(put_abi(result)));
     return result;
 }
 
 template <typename D> GUID impl_IPhoneNewVoicemailMessageTriggerDetails<D>::LineId() const
 {
     GUID result {};
-    check_hresult(shim()->get_LineId(&result));
+    check_hresult(WINRT_SHIM(IPhoneNewVoicemailMessageTriggerDetails)->get_LineId(&result));
     return result;
 }
 
 template <typename D> int32_t impl_IPhoneNewVoicemailMessageTriggerDetails<D>::VoicemailCount() const
 {
     int32_t result {};
-    check_hresult(shim()->get_VoicemailCount(&result));
+    check_hresult(WINRT_SHIM(IPhoneNewVoicemailMessageTriggerDetails)->get_VoicemailCount(&result));
     return result;
 }
 
 template <typename D> hstring impl_IPhoneNewVoicemailMessageTriggerDetails<D>::OperatorMessage() const
 {
     hstring result;
-    check_hresult(shim()->get_OperatorMessage(put(result)));
+    check_hresult(WINRT_SHIM(IPhoneNewVoicemailMessageTriggerDetails)->get_OperatorMessage(put_abi(result)));
     return result;
 }
 
 template <typename D> GUID impl_IPhoneLineChangedTriggerDetails<D>::LineId() const
 {
     GUID result {};
-    check_hresult(shim()->get_LineId(&result));
+    check_hresult(WINRT_SHIM(IPhoneLineChangedTriggerDetails)->get_LineId(&result));
     return result;
 }
 
 template <typename D> Windows::ApplicationModel::Calls::Background::PhoneLineChangeKind impl_IPhoneLineChangedTriggerDetails<D>::ChangeType() const
 {
     Windows::ApplicationModel::Calls::Background::PhoneLineChangeKind result {};
-    check_hresult(shim()->get_ChangeType(&result));
+    check_hresult(WINRT_SHIM(IPhoneLineChangedTriggerDetails)->get_ChangeType(&result));
     return result;
 }
 
 template <typename D> bool impl_IPhoneLineChangedTriggerDetails<D>::HasLinePropertyChanged(Windows::ApplicationModel::Calls::Background::PhoneLineProperties lineProperty) const
 {
     bool result {};
-    check_hresult(shim()->abi_HasLinePropertyChanged(lineProperty, &result));
+    check_hresult(WINRT_SHIM(IPhoneLineChangedTriggerDetails)->abi_HasLinePropertyChanged(lineProperty, &result));
     return result;
 }
 
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::Calls::Background::IPhoneCallBlockedTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::Calls::Background::IPhoneCallBlockedTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::Calls::Background::IPhoneCallOriginDataRequestTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::Calls::Background::IPhoneCallOriginDataRequestTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::Calls::Background::IPhoneLineChangedTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::Calls::Background::IPhoneLineChangedTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::Calls::Background::IPhoneNewVoicemailMessageTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::Calls::Background::IPhoneNewVoicemailMessageTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::Calls::Background::PhoneCallBlockedTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::Calls::Background::PhoneCallBlockedTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::Calls::Background::PhoneCallOriginDataRequestTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::Calls::Background::PhoneCallOriginDataRequestTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::Calls::Background::PhoneLineChangedTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::Calls::Background::PhoneLineChangedTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::Calls::Background::PhoneNewVoicemailMessageTriggerDetails>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::Calls::Background::PhoneNewVoicemailMessageTriggerDetails & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

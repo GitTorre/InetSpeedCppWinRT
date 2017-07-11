@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -35,6 +35,15 @@ struct II2cDeviceProvider;
 struct II2cProvider;
 struct IProviderI2cConnectionSettings;
 struct ProviderI2cConnectionSettings;
+
+}
+
+namespace Windows::Devices::I2c::Provider {
+
+template <typename T> struct impl_II2cControllerProvider;
+template <typename T> struct impl_II2cDeviceProvider;
+template <typename T> struct impl_II2cProvider;
+template <typename T> struct impl_IProviderI2cConnectionSettings;
 
 }
 

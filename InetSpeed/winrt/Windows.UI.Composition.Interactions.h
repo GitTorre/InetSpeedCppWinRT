@@ -1,13 +1,16 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.UI.Composition.3.h"
-#include "internal\Windows.Foundation.3.h"
-#include "internal\Windows.Foundation.Collections.3.h"
-#include "internal\Windows.UI.Input.3.h"
-#include "internal\Windows.UI.Composition.Interactions.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.UI.Composition.3.h"
+#include "internal/Windows.Foundation.3.h"
+#include "internal/Windows.Foundation.Collections.3.h"
+#include "internal/Windows.UI.Input.3.h"
+#include "internal/Windows.UI.Composition.Interactions.3.h"
 #include "Windows.UI.Composition.h"
 #include "Windows.Foundation.h"
 #include "Windows.Foundation.Collections.h"
@@ -27,7 +30,8 @@ struct produce<D, Windows::UI::Composition::Interactions::ICompositionInteractio
     {
         try
         {
-            *value = detach(shim().Count());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Count());
             return S_OK;
         }
         catch (...)
@@ -36,11 +40,12 @@ struct produce<D, Windows::UI::Composition::Interactions::ICompositionInteractio
         }
     }
 
-    HRESULT __stdcall abi_Add(abi_arg_in<Windows::UI::Composition::Interactions::ICompositionInteractionSource> value) noexcept override
+    HRESULT __stdcall abi_Add(impl::abi_arg_in<Windows::UI::Composition::Interactions::ICompositionInteractionSource> value) noexcept override
     {
         try
         {
-            shim().Add(*reinterpret_cast<const Windows::UI::Composition::Interactions::ICompositionInteractionSource *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Add(*reinterpret_cast<const Windows::UI::Composition::Interactions::ICompositionInteractionSource *>(&value));
             return S_OK;
         }
         catch (...)
@@ -49,11 +54,12 @@ struct produce<D, Windows::UI::Composition::Interactions::ICompositionInteractio
         }
     }
 
-    HRESULT __stdcall abi_Remove(abi_arg_in<Windows::UI::Composition::Interactions::ICompositionInteractionSource> value) noexcept override
+    HRESULT __stdcall abi_Remove(impl::abi_arg_in<Windows::UI::Composition::Interactions::ICompositionInteractionSource> value) noexcept override
     {
         try
         {
-            shim().Remove(*reinterpret_cast<const Windows::UI::Composition::Interactions::ICompositionInteractionSource *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Remove(*reinterpret_cast<const Windows::UI::Composition::Interactions::ICompositionInteractionSource *>(&value));
             return S_OK;
         }
         catch (...)
@@ -66,7 +72,8 @@ struct produce<D, Windows::UI::Composition::Interactions::ICompositionInteractio
     {
         try
         {
-            shim().RemoveAll();
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemoveAll();
             return S_OK;
         }
         catch (...)
@@ -79,11 +86,12 @@ struct produce<D, Windows::UI::Composition::Interactions::ICompositionInteractio
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTracker>
 {
-    HRESULT __stdcall get_InteractionSources(abi_arg_out<Windows::UI::Composition::Interactions::ICompositionInteractionSourceCollection> value) noexcept override
+    HRESULT __stdcall get_InteractionSources(impl::abi_arg_out<Windows::UI::Composition::Interactions::ICompositionInteractionSourceCollection> value) noexcept override
     {
         try
         {
-            *value = detach(shim().InteractionSources());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().InteractionSources());
             return S_OK;
         }
         catch (...)
@@ -97,7 +105,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            *value = detach(shim().IsPositionRoundingSuggested());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsPositionRoundingSuggested());
             return S_OK;
         }
         catch (...)
@@ -106,11 +115,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall get_MaxPosition(abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_MaxPosition(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            *value = detach(shim().MaxPosition());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().MaxPosition());
             return S_OK;
         }
         catch (...)
@@ -119,11 +129,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall put_MaxPosition(abi_arg_in<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall put_MaxPosition(impl::abi_arg_in<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            shim().MaxPosition(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().MaxPosition(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&value));
             return S_OK;
         }
         catch (...)
@@ -136,7 +147,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            *value = detach(shim().MaxScale());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().MaxScale());
             return S_OK;
         }
         catch (...)
@@ -149,7 +161,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            shim().MaxScale(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().MaxScale(value);
             return S_OK;
         }
         catch (...)
@@ -158,11 +171,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall get_MinPosition(abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_MinPosition(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            *value = detach(shim().MinPosition());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().MinPosition());
             return S_OK;
         }
         catch (...)
@@ -171,11 +185,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall put_MinPosition(abi_arg_in<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall put_MinPosition(impl::abi_arg_in<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            shim().MinPosition(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().MinPosition(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&value));
             return S_OK;
         }
         catch (...)
@@ -188,7 +203,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            *value = detach(shim().MinScale());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().MinScale());
             return S_OK;
         }
         catch (...)
@@ -201,7 +217,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            shim().MinScale(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().MinScale(value);
             return S_OK;
         }
         catch (...)
@@ -210,11 +227,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall get_NaturalRestingPosition(abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_NaturalRestingPosition(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            *value = detach(shim().NaturalRestingPosition());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().NaturalRestingPosition());
             return S_OK;
         }
         catch (...)
@@ -227,7 +245,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            *value = detach(shim().NaturalRestingScale());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().NaturalRestingScale());
             return S_OK;
         }
         catch (...)
@@ -236,38 +255,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall get_Owner(abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTrackerOwner> value) noexcept override
+    HRESULT __stdcall get_Owner(impl::abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTrackerOwner> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Owner());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_Position(abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().Position());
-            return S_OK;
-        }
-        catch (...)
-        {
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall get_PositionInertiaDecayRate(abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Numerics::float3>> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().PositionInertiaDecayRate());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Owner());
             return S_OK;
         }
         catch (...)
@@ -277,11 +270,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall put_PositionInertiaDecayRate(abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::Numerics::float3>> value) noexcept override
+    HRESULT __stdcall get_Position(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            shim().PositionInertiaDecayRate(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::Numerics::float3> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Position());
             return S_OK;
         }
         catch (...)
@@ -290,11 +284,41 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall get_PositionVelocityInPixelsPerSecond(abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_PositionInertiaDecayRate(impl::abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Numerics::float3>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PositionVelocityInPixelsPerSecond());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PositionInertiaDecayRate());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall put_PositionInertiaDecayRate(impl::abi_arg_in<Windows::Foundation::IReference<Windows::Foundation::Numerics::float3>> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PositionInertiaDecayRate(*reinterpret_cast<const Windows::Foundation::IReference<Windows::Foundation::Numerics::float3> *>(&value));
+            return S_OK;
+        }
+        catch (...)
+        {
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_PositionVelocityInPixelsPerSecond(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PositionVelocityInPixelsPerSecond());
             return S_OK;
         }
         catch (...)
@@ -307,7 +331,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            *value = detach(shim().Scale());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Scale());
             return S_OK;
         }
         catch (...)
@@ -316,11 +341,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall get_ScaleInertiaDecayRate(abi_arg_out<Windows::Foundation::IReference<float>> value) noexcept override
+    HRESULT __stdcall get_ScaleInertiaDecayRate(impl::abi_arg_out<Windows::Foundation::IReference<float>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ScaleInertiaDecayRate());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ScaleInertiaDecayRate());
             return S_OK;
         }
         catch (...)
@@ -330,11 +356,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall put_ScaleInertiaDecayRate(abi_arg_in<Windows::Foundation::IReference<float>> value) noexcept override
+    HRESULT __stdcall put_ScaleInertiaDecayRate(impl::abi_arg_in<Windows::Foundation::IReference<float>> value) noexcept override
     {
         try
         {
-            shim().ScaleInertiaDecayRate(*reinterpret_cast<const Windows::Foundation::IReference<float> *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ScaleInertiaDecayRate(*reinterpret_cast<const Windows::Foundation::IReference<float> *>(&value));
             return S_OK;
         }
         catch (...)
@@ -347,7 +374,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            *value = detach(shim().ScaleVelocityInPercentPerSecond());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ScaleVelocityInPercentPerSecond());
             return S_OK;
         }
         catch (...)
@@ -360,7 +388,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            shim().AdjustPositionXIfGreaterThanThreshold(adjustment, positionThreshold);
+            typename D::abi_guard guard(this->shim());
+            this->shim().AdjustPositionXIfGreaterThanThreshold(adjustment, positionThreshold);
             return S_OK;
         }
         catch (...)
@@ -373,7 +402,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
     {
         try
         {
-            shim().AdjustPositionYIfGreaterThanThreshold(adjustment, positionThreshold);
+            typename D::abi_guard guard(this->shim());
+            this->shim().AdjustPositionYIfGreaterThanThreshold(adjustment, positionThreshold);
             return S_OK;
         }
         catch (...)
@@ -382,11 +412,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_ConfigurePositionXInertiaModifiers(abi_arg_in<Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier>> modifiers) noexcept override
+    HRESULT __stdcall abi_ConfigurePositionXInertiaModifiers(impl::abi_arg_in<Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier>> modifiers) noexcept override
     {
         try
         {
-            shim().ConfigurePositionXInertiaModifiers(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> *>(&modifiers));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ConfigurePositionXInertiaModifiers(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> *>(&modifiers));
             return S_OK;
         }
         catch (...)
@@ -395,11 +426,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_ConfigurePositionYInertiaModifiers(abi_arg_in<Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier>> modifiers) noexcept override
+    HRESULT __stdcall abi_ConfigurePositionYInertiaModifiers(impl::abi_arg_in<Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier>> modifiers) noexcept override
     {
         try
         {
-            shim().ConfigurePositionYInertiaModifiers(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> *>(&modifiers));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ConfigurePositionYInertiaModifiers(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> *>(&modifiers));
             return S_OK;
         }
         catch (...)
@@ -408,11 +440,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_ConfigureScaleInertiaModifiers(abi_arg_in<Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier>> modifiers) noexcept override
+    HRESULT __stdcall abi_ConfigureScaleInertiaModifiers(impl::abi_arg_in<Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier>> modifiers) noexcept override
     {
         try
         {
-            shim().ConfigureScaleInertiaModifiers(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> *>(&modifiers));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ConfigureScaleInertiaModifiers(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> *>(&modifiers));
             return S_OK;
         }
         catch (...)
@@ -421,11 +454,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_TryUpdatePosition(abi_arg_in<Windows::Foundation::Numerics::float3> value, int32_t * requestId) noexcept override
+    HRESULT __stdcall abi_TryUpdatePosition(impl::abi_arg_in<Windows::Foundation::Numerics::float3> value, int32_t * requestId) noexcept override
     {
         try
         {
-            *requestId = detach(shim().TryUpdatePosition(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&value)));
+            typename D::abi_guard guard(this->shim());
+            *requestId = detach_abi(this->shim().TryUpdatePosition(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&value)));
             return S_OK;
         }
         catch (...)
@@ -434,11 +468,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_TryUpdatePositionBy(abi_arg_in<Windows::Foundation::Numerics::float3> amount, int32_t * requestId) noexcept override
+    HRESULT __stdcall abi_TryUpdatePositionBy(impl::abi_arg_in<Windows::Foundation::Numerics::float3> amount, int32_t * requestId) noexcept override
     {
         try
         {
-            *requestId = detach(shim().TryUpdatePositionBy(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&amount)));
+            typename D::abi_guard guard(this->shim());
+            *requestId = detach_abi(this->shim().TryUpdatePositionBy(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&amount)));
             return S_OK;
         }
         catch (...)
@@ -447,11 +482,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_TryUpdatePositionWithAnimation(abi_arg_in<Windows::UI::Composition::ICompositionAnimation> animation, int32_t * requestId) noexcept override
+    HRESULT __stdcall abi_TryUpdatePositionWithAnimation(impl::abi_arg_in<Windows::UI::Composition::ICompositionAnimation> animation, int32_t * requestId) noexcept override
     {
         try
         {
-            *requestId = detach(shim().TryUpdatePositionWithAnimation(*reinterpret_cast<const Windows::UI::Composition::CompositionAnimation *>(&animation)));
+            typename D::abi_guard guard(this->shim());
+            *requestId = detach_abi(this->shim().TryUpdatePositionWithAnimation(*reinterpret_cast<const Windows::UI::Composition::CompositionAnimation *>(&animation)));
             return S_OK;
         }
         catch (...)
@@ -460,11 +496,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_TryUpdatePositionWithAdditionalVelocity(abi_arg_in<Windows::Foundation::Numerics::float3> velocityInPixelsPerSecond, int32_t * requestId) noexcept override
+    HRESULT __stdcall abi_TryUpdatePositionWithAdditionalVelocity(impl::abi_arg_in<Windows::Foundation::Numerics::float3> velocityInPixelsPerSecond, int32_t * requestId) noexcept override
     {
         try
         {
-            *requestId = detach(shim().TryUpdatePositionWithAdditionalVelocity(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&velocityInPixelsPerSecond)));
+            typename D::abi_guard guard(this->shim());
+            *requestId = detach_abi(this->shim().TryUpdatePositionWithAdditionalVelocity(*reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&velocityInPixelsPerSecond)));
             return S_OK;
         }
         catch (...)
@@ -473,11 +510,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_TryUpdateScale(float value, abi_arg_in<Windows::Foundation::Numerics::float3> centerPoint, int32_t * requestId) noexcept override
+    HRESULT __stdcall abi_TryUpdateScale(float value, impl::abi_arg_in<Windows::Foundation::Numerics::float3> centerPoint, int32_t * requestId) noexcept override
     {
         try
         {
-            *requestId = detach(shim().TryUpdateScale(value, *reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&centerPoint)));
+            typename D::abi_guard guard(this->shim());
+            *requestId = detach_abi(this->shim().TryUpdateScale(value, *reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&centerPoint)));
             return S_OK;
         }
         catch (...)
@@ -486,11 +524,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_TryUpdateScaleWithAnimation(abi_arg_in<Windows::UI::Composition::ICompositionAnimation> animation, abi_arg_in<Windows::Foundation::Numerics::float3> centerPoint, int32_t * requestId) noexcept override
+    HRESULT __stdcall abi_TryUpdateScaleWithAnimation(impl::abi_arg_in<Windows::UI::Composition::ICompositionAnimation> animation, impl::abi_arg_in<Windows::Foundation::Numerics::float3> centerPoint, int32_t * requestId) noexcept override
     {
         try
         {
-            *requestId = detach(shim().TryUpdateScaleWithAnimation(*reinterpret_cast<const Windows::UI::Composition::CompositionAnimation *>(&animation), *reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&centerPoint)));
+            typename D::abi_guard guard(this->shim());
+            *requestId = detach_abi(this->shim().TryUpdateScaleWithAnimation(*reinterpret_cast<const Windows::UI::Composition::CompositionAnimation *>(&animation), *reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&centerPoint)));
             return S_OK;
         }
         catch (...)
@@ -499,11 +538,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTracker> :
         }
     }
 
-    HRESULT __stdcall abi_TryUpdateScaleWithAdditionalVelocity(float velocityInPercentPerSecond, abi_arg_in<Windows::Foundation::Numerics::float3> centerPoint, int32_t * requestId) noexcept override
+    HRESULT __stdcall abi_TryUpdateScaleWithAdditionalVelocity(float velocityInPercentPerSecond, impl::abi_arg_in<Windows::Foundation::Numerics::float3> centerPoint, int32_t * requestId) noexcept override
     {
         try
         {
-            *requestId = detach(shim().TryUpdateScaleWithAdditionalVelocity(velocityInPercentPerSecond, *reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&centerPoint)));
+            typename D::abi_guard guard(this->shim());
+            *requestId = detach_abi(this->shim().TryUpdateScaleWithAdditionalVelocity(velocityInPercentPerSecond, *reinterpret_cast<const Windows::Foundation::Numerics::float3 *>(&centerPoint)));
             return S_OK;
         }
         catch (...)
@@ -520,7 +560,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerCus
     {
         try
         {
-            *value = detach(shim().RequestId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RequestId());
             return S_OK;
         }
         catch (...)
@@ -537,7 +578,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIdl
     {
         try
         {
-            *value = detach(shim().RequestId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RequestId());
             return S_OK;
         }
         catch (...)
@@ -558,11 +600,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotion> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotion>
 {
-    HRESULT __stdcall get_Condition(abi_arg_out<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
+    HRESULT __stdcall get_Condition(impl::abi_arg_out<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Condition());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Condition());
             return S_OK;
         }
         catch (...)
@@ -572,11 +615,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall put_Condition(abi_arg_in<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
+    HRESULT __stdcall put_Condition(impl::abi_arg_in<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
     {
         try
         {
-            shim().Condition(*reinterpret_cast<const Windows::UI::Composition::ExpressionAnimation *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Condition(*reinterpret_cast<const Windows::UI::Composition::ExpressionAnimation *>(&value));
             return S_OK;
         }
         catch (...)
@@ -585,11 +629,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall get_Motion(abi_arg_out<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
+    HRESULT __stdcall get_Motion(impl::abi_arg_out<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Motion());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Motion());
             return S_OK;
         }
         catch (...)
@@ -599,11 +644,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall put_Motion(abi_arg_in<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
+    HRESULT __stdcall put_Motion(impl::abi_arg_in<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
     {
         try
         {
-            shim().Motion(*reinterpret_cast<const Windows::UI::Composition::ExpressionAnimation *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Motion(*reinterpret_cast<const Windows::UI::Composition::ExpressionAnimation *>(&value));
             return S_OK;
         }
         catch (...)
@@ -616,11 +662,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotionStatics> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotionStatics>
 {
-    HRESULT __stdcall abi_Create(abi_arg_in<Windows::UI::Composition::ICompositor> compositor, abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotion> result) noexcept override
+    HRESULT __stdcall abi_Create(impl::abi_arg_in<Windows::UI::Composition::ICompositor> compositor, impl::abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotion> result) noexcept override
     {
         try
         {
-            *result = detach(shim().Create(*reinterpret_cast<const Windows::UI::Composition::Compositor *>(&compositor)));
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().Create(*reinterpret_cast<const Windows::UI::Composition::Compositor *>(&compositor)));
             return S_OK;
         }
         catch (...)
@@ -634,11 +681,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValue> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValue>
 {
-    HRESULT __stdcall get_Condition(abi_arg_out<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
+    HRESULT __stdcall get_Condition(impl::abi_arg_out<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Condition());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Condition());
             return S_OK;
         }
         catch (...)
@@ -648,11 +696,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall put_Condition(abi_arg_in<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
+    HRESULT __stdcall put_Condition(impl::abi_arg_in<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
     {
         try
         {
-            shim().Condition(*reinterpret_cast<const Windows::UI::Composition::ExpressionAnimation *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Condition(*reinterpret_cast<const Windows::UI::Composition::ExpressionAnimation *>(&value));
             return S_OK;
         }
         catch (...)
@@ -661,11 +710,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall get_RestingValue(abi_arg_out<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
+    HRESULT __stdcall get_RestingValue(impl::abi_arg_out<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RestingValue());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RestingValue());
             return S_OK;
         }
         catch (...)
@@ -675,11 +725,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall put_RestingValue(abi_arg_in<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
+    HRESULT __stdcall put_RestingValue(impl::abi_arg_in<Windows::UI::Composition::IExpressionAnimation> value) noexcept override
     {
         try
         {
-            shim().RestingValue(*reinterpret_cast<const Windows::UI::Composition::ExpressionAnimation *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().RestingValue(*reinterpret_cast<const Windows::UI::Composition::ExpressionAnimation *>(&value));
             return S_OK;
         }
         catch (...)
@@ -692,11 +743,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValueStatics> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValueStatics>
 {
-    HRESULT __stdcall abi_Create(abi_arg_in<Windows::UI::Composition::ICompositor> compositor, abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValue> result) noexcept override
+    HRESULT __stdcall abi_Create(impl::abi_arg_in<Windows::UI::Composition::ICompositor> compositor, impl::abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValue> result) noexcept override
     {
         try
         {
-            *result = detach(shim().Create(*reinterpret_cast<const Windows::UI::Composition::Compositor *>(&compositor)));
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().Create(*reinterpret_cast<const Windows::UI::Composition::Compositor *>(&compositor)));
             return S_OK;
         }
         catch (...)
@@ -710,11 +762,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaStateEnteredArgs> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTrackerInertiaStateEnteredArgs>
 {
-    HRESULT __stdcall get_ModifiedRestingPosition(abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Numerics::float3>> value) noexcept override
+    HRESULT __stdcall get_ModifiedRestingPosition(impl::abi_arg_out<Windows::Foundation::IReference<Windows::Foundation::Numerics::float3>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ModifiedRestingPosition());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ModifiedRestingPosition());
             return S_OK;
         }
         catch (...)
@@ -724,11 +777,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall get_ModifiedRestingScale(abi_arg_out<Windows::Foundation::IReference<float>> value) noexcept override
+    HRESULT __stdcall get_ModifiedRestingScale(impl::abi_arg_out<Windows::Foundation::IReference<float>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ModifiedRestingScale());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ModifiedRestingScale());
             return S_OK;
         }
         catch (...)
@@ -738,11 +792,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall get_NaturalRestingPosition(abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_NaturalRestingPosition(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            *value = detach(shim().NaturalRestingPosition());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().NaturalRestingPosition());
             return S_OK;
         }
         catch (...)
@@ -755,7 +810,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
     {
         try
         {
-            *value = detach(shim().NaturalRestingScale());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().NaturalRestingScale());
             return S_OK;
         }
         catch (...)
@@ -764,11 +820,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
         }
     }
 
-    HRESULT __stdcall get_PositionVelocityInPixelsPerSecond(abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_PositionVelocityInPixelsPerSecond(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PositionVelocityInPixelsPerSecond());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PositionVelocityInPixelsPerSecond());
             return S_OK;
         }
         catch (...)
@@ -781,7 +838,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
     {
         try
         {
-            *value = detach(shim().RequestId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RequestId());
             return S_OK;
         }
         catch (...)
@@ -794,7 +852,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerIne
     {
         try
         {
-            *value = detach(shim().ScaleVelocityInPercentPerSecond());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ScaleVelocityInPercentPerSecond());
             return S_OK;
         }
         catch (...)
@@ -811,7 +870,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerInt
     {
         try
         {
-            *value = detach(shim().RequestId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RequestId());
             return S_OK;
         }
         catch (...)
@@ -824,11 +884,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerInt
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerOwner> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTrackerOwner>
 {
-    HRESULT __stdcall abi_CustomAnimationStateEntered(abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs> args) noexcept override
+    HRESULT __stdcall abi_CustomAnimationStateEntered(impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs> args) noexcept override
     {
         try
         {
-            shim().CustomAnimationStateEntered(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerCustomAnimationStateEnteredArgs *>(&args));
+            typename D::abi_guard guard(this->shim());
+            this->shim().CustomAnimationStateEntered(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerCustomAnimationStateEnteredArgs *>(&args));
             return S_OK;
         }
         catch (...)
@@ -837,11 +898,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerOwn
         }
     }
 
-    HRESULT __stdcall abi_IdleStateEntered(abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerIdleStateEnteredArgs> args) noexcept override
+    HRESULT __stdcall abi_IdleStateEntered(impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerIdleStateEnteredArgs> args) noexcept override
     {
         try
         {
-            shim().IdleStateEntered(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerIdleStateEnteredArgs *>(&args));
+            typename D::abi_guard guard(this->shim());
+            this->shim().IdleStateEntered(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerIdleStateEnteredArgs *>(&args));
             return S_OK;
         }
         catch (...)
@@ -850,11 +912,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerOwn
         }
     }
 
-    HRESULT __stdcall abi_InertiaStateEntered(abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerInertiaStateEnteredArgs> args) noexcept override
+    HRESULT __stdcall abi_InertiaStateEntered(impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerInertiaStateEnteredArgs> args) noexcept override
     {
         try
         {
-            shim().InertiaStateEntered(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerInertiaStateEnteredArgs *>(&args));
+            typename D::abi_guard guard(this->shim());
+            this->shim().InertiaStateEntered(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerInertiaStateEnteredArgs *>(&args));
             return S_OK;
         }
         catch (...)
@@ -863,11 +926,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerOwn
         }
     }
 
-    HRESULT __stdcall abi_InteractingStateEntered(abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerInteractingStateEnteredArgs> args) noexcept override
+    HRESULT __stdcall abi_InteractingStateEntered(impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerInteractingStateEnteredArgs> args) noexcept override
     {
         try
         {
-            shim().InteractingStateEntered(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerInteractingStateEnteredArgs *>(&args));
+            typename D::abi_guard guard(this->shim());
+            this->shim().InteractingStateEntered(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerInteractingStateEnteredArgs *>(&args));
             return S_OK;
         }
         catch (...)
@@ -876,11 +940,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerOwn
         }
     }
 
-    HRESULT __stdcall abi_RequestIgnored(abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerRequestIgnoredArgs> args) noexcept override
+    HRESULT __stdcall abi_RequestIgnored(impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerRequestIgnoredArgs> args) noexcept override
     {
         try
         {
-            shim().RequestIgnored(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerRequestIgnoredArgs *>(&args));
+            typename D::abi_guard guard(this->shim());
+            this->shim().RequestIgnored(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerRequestIgnoredArgs *>(&args));
             return S_OK;
         }
         catch (...)
@@ -889,11 +954,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerOwn
         }
     }
 
-    HRESULT __stdcall abi_ValuesChanged(abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerValuesChangedArgs> args) noexcept override
+    HRESULT __stdcall abi_ValuesChanged(impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTracker> sender, impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerValuesChangedArgs> args) noexcept override
     {
         try
         {
-            shim().ValuesChanged(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerValuesChangedArgs *>(&args));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ValuesChanged(*reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTracker *>(&sender), *reinterpret_cast<const Windows::UI::Composition::Interactions::InteractionTrackerValuesChangedArgs *>(&args));
             return S_OK;
         }
         catch (...)
@@ -910,7 +976,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerReq
     {
         try
         {
-            *value = detach(shim().RequestId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RequestId());
             return S_OK;
         }
         catch (...)
@@ -923,11 +990,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerReq
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerStatics> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTrackerStatics>
 {
-    HRESULT __stdcall abi_Create(abi_arg_in<Windows::UI::Composition::ICompositor> compositor, abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTracker> result) noexcept override
+    HRESULT __stdcall abi_Create(impl::abi_arg_in<Windows::UI::Composition::ICompositor> compositor, impl::abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTracker> result) noexcept override
     {
         try
         {
-            *result = detach(shim().Create(*reinterpret_cast<const Windows::UI::Composition::Compositor *>(&compositor)));
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().Create(*reinterpret_cast<const Windows::UI::Composition::Compositor *>(&compositor)));
             return S_OK;
         }
         catch (...)
@@ -937,11 +1005,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerSta
         }
     }
 
-    HRESULT __stdcall abi_CreateWithOwner(abi_arg_in<Windows::UI::Composition::ICompositor> compositor, abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerOwner> owner, abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTracker> result) noexcept override
+    HRESULT __stdcall abi_CreateWithOwner(impl::abi_arg_in<Windows::UI::Composition::ICompositor> compositor, impl::abi_arg_in<Windows::UI::Composition::Interactions::IInteractionTrackerOwner> owner, impl::abi_arg_out<Windows::UI::Composition::Interactions::IInteractionTracker> result) noexcept override
     {
         try
         {
-            *result = detach(shim().CreateWithOwner(*reinterpret_cast<const Windows::UI::Composition::Compositor *>(&compositor), *reinterpret_cast<const Windows::UI::Composition::Interactions::IInteractionTrackerOwner *>(&owner)));
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().CreateWithOwner(*reinterpret_cast<const Windows::UI::Composition::Compositor *>(&compositor), *reinterpret_cast<const Windows::UI::Composition::Interactions::IInteractionTrackerOwner *>(&owner)));
             return S_OK;
         }
         catch (...)
@@ -955,11 +1024,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerSta
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerValuesChangedArgs> : produce_base<D, Windows::UI::Composition::Interactions::IInteractionTrackerValuesChangedArgs>
 {
-    HRESULT __stdcall get_Position(abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_Position(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Position());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Position());
             return S_OK;
         }
         catch (...)
@@ -972,7 +1042,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerVal
     {
         try
         {
-            *value = detach(shim().RequestId());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RequestId());
             return S_OK;
         }
         catch (...)
@@ -985,7 +1056,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IInteractionTrackerVal
     {
         try
         {
-            *value = detach(shim().Scale());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Scale());
             return S_OK;
         }
         catch (...)
@@ -1002,7 +1074,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().IsPositionXRailsEnabled());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsPositionXRailsEnabled());
             return S_OK;
         }
         catch (...)
@@ -1015,7 +1088,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().IsPositionXRailsEnabled(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsPositionXRailsEnabled(value);
             return S_OK;
         }
         catch (...)
@@ -1028,7 +1102,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().IsPositionYRailsEnabled());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsPositionYRailsEnabled());
             return S_OK;
         }
         catch (...)
@@ -1041,7 +1116,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().IsPositionYRailsEnabled(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsPositionYRailsEnabled(value);
             return S_OK;
         }
         catch (...)
@@ -1054,7 +1130,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().ManipulationRedirectionMode());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ManipulationRedirectionMode());
             return S_OK;
         }
         catch (...)
@@ -1067,7 +1144,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().ManipulationRedirectionMode(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ManipulationRedirectionMode(value);
             return S_OK;
         }
         catch (...)
@@ -1080,7 +1158,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().PositionXChainingMode());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PositionXChainingMode());
             return S_OK;
         }
         catch (...)
@@ -1093,7 +1172,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().PositionXChainingMode(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().PositionXChainingMode(value);
             return S_OK;
         }
         catch (...)
@@ -1106,7 +1186,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().PositionXSourceMode());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PositionXSourceMode());
             return S_OK;
         }
         catch (...)
@@ -1119,7 +1200,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().PositionXSourceMode(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().PositionXSourceMode(value);
             return S_OK;
         }
         catch (...)
@@ -1132,7 +1214,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().PositionYChainingMode());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PositionYChainingMode());
             return S_OK;
         }
         catch (...)
@@ -1145,7 +1228,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().PositionYChainingMode(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().PositionYChainingMode(value);
             return S_OK;
         }
         catch (...)
@@ -1158,7 +1242,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().PositionYSourceMode());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PositionYSourceMode());
             return S_OK;
         }
         catch (...)
@@ -1171,7 +1256,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().PositionYSourceMode(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().PositionYSourceMode(value);
             return S_OK;
         }
         catch (...)
@@ -1184,7 +1270,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().ScaleChainingMode());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ScaleChainingMode());
             return S_OK;
         }
         catch (...)
@@ -1197,7 +1284,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().ScaleChainingMode(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ScaleChainingMode(value);
             return S_OK;
         }
         catch (...)
@@ -1210,7 +1298,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            *value = detach(shim().ScaleSourceMode());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ScaleSourceMode());
             return S_OK;
         }
         catch (...)
@@ -1223,7 +1312,8 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
     {
         try
         {
-            shim().ScaleSourceMode(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ScaleSourceMode(value);
             return S_OK;
         }
         catch (...)
@@ -1232,11 +1322,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
         }
     }
 
-    HRESULT __stdcall get_Source(abi_arg_out<Windows::UI::Composition::IVisual> value) noexcept override
+    HRESULT __stdcall get_Source(impl::abi_arg_out<Windows::UI::Composition::IVisual> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Source());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Source());
             return S_OK;
         }
         catch (...)
@@ -1246,11 +1337,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
         }
     }
 
-    HRESULT __stdcall abi_TryRedirectForManipulation(abi_arg_in<Windows::UI::Input::IPointerPoint> pointerPoint) noexcept override
+    HRESULT __stdcall abi_TryRedirectForManipulation(impl::abi_arg_in<Windows::UI::Input::IPointerPoint> pointerPoint) noexcept override
     {
         try
         {
-            shim().TryRedirectForManipulation(*reinterpret_cast<const Windows::UI::Input::PointerPoint *>(&pointerPoint));
+            typename D::abi_guard guard(this->shim());
+            this->shim().TryRedirectForManipulation(*reinterpret_cast<const Windows::UI::Input::PointerPoint *>(&pointerPoint));
             return S_OK;
         }
         catch (...)
@@ -1263,11 +1355,12 @@ struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSour
 template <typename D>
 struct produce<D, Windows::UI::Composition::Interactions::IVisualInteractionSourceStatics> : produce_base<D, Windows::UI::Composition::Interactions::IVisualInteractionSourceStatics>
 {
-    HRESULT __stdcall abi_Create(abi_arg_in<Windows::UI::Composition::IVisual> source, abi_arg_out<Windows::UI::Composition::Interactions::IVisualInteractionSource> result) noexcept override
+    HRESULT __stdcall abi_Create(impl::abi_arg_in<Windows::UI::Composition::IVisual> source, impl::abi_arg_out<Windows::UI::Composition::Interactions::IVisualInteractionSource> result) noexcept override
     {
         try
         {
-            *result = detach(shim().Create(*reinterpret_cast<const Windows::UI::Composition::Visual *>(&source)));
+            typename D::abi_guard guard(this->shim());
+            *result = detach_abi(this->shim().Create(*reinterpret_cast<const Windows::UI::Composition::Visual *>(&source)));
             return S_OK;
         }
         catch (...)
@@ -1285,563 +1378,563 @@ namespace Windows::UI::Composition::Interactions {
 template <typename D> int32_t impl_ICompositionInteractionSourceCollection<D>::Count() const
 {
     int32_t value {};
-    check_hresult(shim()->get_Count(&value));
+    check_hresult(WINRT_SHIM(ICompositionInteractionSourceCollection)->get_Count(&value));
     return value;
 }
 
 template <typename D> void impl_ICompositionInteractionSourceCollection<D>::Add(const Windows::UI::Composition::Interactions::ICompositionInteractionSource & value) const
 {
-    check_hresult(shim()->abi_Add(get(value)));
+    check_hresult(WINRT_SHIM(ICompositionInteractionSourceCollection)->abi_Add(get_abi(value)));
 }
 
 template <typename D> void impl_ICompositionInteractionSourceCollection<D>::Remove(const Windows::UI::Composition::Interactions::ICompositionInteractionSource & value) const
 {
-    check_hresult(shim()->abi_Remove(get(value)));
+    check_hresult(WINRT_SHIM(ICompositionInteractionSourceCollection)->abi_Remove(get_abi(value)));
 }
 
 template <typename D> void impl_ICompositionInteractionSourceCollection<D>::RemoveAll() const
 {
-    check_hresult(shim()->abi_RemoveAll());
+    check_hresult(WINRT_SHIM(ICompositionInteractionSourceCollection)->abi_RemoveAll());
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionTracker impl_IInteractionTrackerStatics<D>::Create(const Windows::UI::Composition::Compositor & compositor) const
 {
     Windows::UI::Composition::Interactions::InteractionTracker result { nullptr };
-    check_hresult(shim()->abi_Create(get(compositor), put(result)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerStatics)->abi_Create(get_abi(compositor), put_abi(result)));
     return result;
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionTracker impl_IInteractionTrackerStatics<D>::CreateWithOwner(const Windows::UI::Composition::Compositor & compositor, const Windows::UI::Composition::Interactions::IInteractionTrackerOwner & owner) const
 {
     Windows::UI::Composition::Interactions::InteractionTracker result { nullptr };
-    check_hresult(shim()->abi_CreateWithOwner(get(compositor), get(owner), put(result)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerStatics)->abi_CreateWithOwner(get_abi(compositor), get_abi(owner), put_abi(result)));
     return result;
 }
 
 template <typename D> void impl_IInteractionTrackerOwner<D>::CustomAnimationStateEntered(const Windows::UI::Composition::Interactions::InteractionTracker & sender, const Windows::UI::Composition::Interactions::InteractionTrackerCustomAnimationStateEnteredArgs & args) const
 {
-    check_hresult(shim()->abi_CustomAnimationStateEntered(get(sender), get(args)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerOwner)->abi_CustomAnimationStateEntered(get_abi(sender), get_abi(args)));
 }
 
 template <typename D> void impl_IInteractionTrackerOwner<D>::IdleStateEntered(const Windows::UI::Composition::Interactions::InteractionTracker & sender, const Windows::UI::Composition::Interactions::InteractionTrackerIdleStateEnteredArgs & args) const
 {
-    check_hresult(shim()->abi_IdleStateEntered(get(sender), get(args)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerOwner)->abi_IdleStateEntered(get_abi(sender), get_abi(args)));
 }
 
 template <typename D> void impl_IInteractionTrackerOwner<D>::InertiaStateEntered(const Windows::UI::Composition::Interactions::InteractionTracker & sender, const Windows::UI::Composition::Interactions::InteractionTrackerInertiaStateEnteredArgs & args) const
 {
-    check_hresult(shim()->abi_InertiaStateEntered(get(sender), get(args)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerOwner)->abi_InertiaStateEntered(get_abi(sender), get_abi(args)));
 }
 
 template <typename D> void impl_IInteractionTrackerOwner<D>::InteractingStateEntered(const Windows::UI::Composition::Interactions::InteractionTracker & sender, const Windows::UI::Composition::Interactions::InteractionTrackerInteractingStateEnteredArgs & args) const
 {
-    check_hresult(shim()->abi_InteractingStateEntered(get(sender), get(args)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerOwner)->abi_InteractingStateEntered(get_abi(sender), get_abi(args)));
 }
 
 template <typename D> void impl_IInteractionTrackerOwner<D>::RequestIgnored(const Windows::UI::Composition::Interactions::InteractionTracker & sender, const Windows::UI::Composition::Interactions::InteractionTrackerRequestIgnoredArgs & args) const
 {
-    check_hresult(shim()->abi_RequestIgnored(get(sender), get(args)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerOwner)->abi_RequestIgnored(get_abi(sender), get_abi(args)));
 }
 
 template <typename D> void impl_IInteractionTrackerOwner<D>::ValuesChanged(const Windows::UI::Composition::Interactions::InteractionTracker & sender, const Windows::UI::Composition::Interactions::InteractionTrackerValuesChangedArgs & args) const
 {
-    check_hresult(shim()->abi_ValuesChanged(get(sender), get(args)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerOwner)->abi_ValuesChanged(get_abi(sender), get_abi(args)));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::CompositionInteractionSourceCollection impl_IInteractionTracker<D>::InteractionSources() const
 {
     Windows::UI::Composition::Interactions::CompositionInteractionSourceCollection value { nullptr };
-    check_hresult(shim()->get_InteractionSources(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_InteractionSources(put_abi(value)));
     return value;
 }
 
 template <typename D> bool impl_IInteractionTracker<D>::IsPositionRoundingSuggested() const
 {
     bool value {};
-    check_hresult(shim()->get_IsPositionRoundingSuggested(&value));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_IsPositionRoundingSuggested(&value));
     return value;
 }
 
 template <typename D> Windows::Foundation::Numerics::float3 impl_IInteractionTracker<D>::MaxPosition() const
 {
     Windows::Foundation::Numerics::float3 value {};
-    check_hresult(shim()->get_MaxPosition(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_MaxPosition(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IInteractionTracker<D>::MaxPosition(const Windows::Foundation::Numerics::float3 & value) const
 {
-    check_hresult(shim()->put_MaxPosition(get(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->put_MaxPosition(get_abi(value)));
 }
 
 template <typename D> float impl_IInteractionTracker<D>::MaxScale() const
 {
     float value {};
-    check_hresult(shim()->get_MaxScale(&value));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_MaxScale(&value));
     return value;
 }
 
 template <typename D> void impl_IInteractionTracker<D>::MaxScale(float value) const
 {
-    check_hresult(shim()->put_MaxScale(value));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->put_MaxScale(value));
 }
 
 template <typename D> Windows::Foundation::Numerics::float3 impl_IInteractionTracker<D>::MinPosition() const
 {
     Windows::Foundation::Numerics::float3 value {};
-    check_hresult(shim()->get_MinPosition(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_MinPosition(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IInteractionTracker<D>::MinPosition(const Windows::Foundation::Numerics::float3 & value) const
 {
-    check_hresult(shim()->put_MinPosition(get(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->put_MinPosition(get_abi(value)));
 }
 
 template <typename D> float impl_IInteractionTracker<D>::MinScale() const
 {
     float value {};
-    check_hresult(shim()->get_MinScale(&value));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_MinScale(&value));
     return value;
 }
 
 template <typename D> void impl_IInteractionTracker<D>::MinScale(float value) const
 {
-    check_hresult(shim()->put_MinScale(value));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->put_MinScale(value));
 }
 
 template <typename D> Windows::Foundation::Numerics::float3 impl_IInteractionTracker<D>::NaturalRestingPosition() const
 {
     Windows::Foundation::Numerics::float3 value {};
-    check_hresult(shim()->get_NaturalRestingPosition(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_NaturalRestingPosition(put_abi(value)));
     return value;
 }
 
 template <typename D> float impl_IInteractionTracker<D>::NaturalRestingScale() const
 {
     float value {};
-    check_hresult(shim()->get_NaturalRestingScale(&value));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_NaturalRestingScale(&value));
     return value;
 }
 
 template <typename D> Windows::UI::Composition::Interactions::IInteractionTrackerOwner impl_IInteractionTracker<D>::Owner() const
 {
     Windows::UI::Composition::Interactions::IInteractionTrackerOwner value;
-    check_hresult(shim()->get_Owner(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_Owner(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::Numerics::float3 impl_IInteractionTracker<D>::Position() const
 {
     Windows::Foundation::Numerics::float3 value {};
-    check_hresult(shim()->get_Position(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_Position(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::Foundation::Numerics::float3> impl_IInteractionTracker<D>::PositionInertiaDecayRate() const
 {
     Windows::Foundation::IReference<Windows::Foundation::Numerics::float3> value;
-    check_hresult(shim()->get_PositionInertiaDecayRate(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_PositionInertiaDecayRate(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IInteractionTracker<D>::PositionInertiaDecayRate(const Windows::Foundation::IReference<Windows::Foundation::Numerics::float3> & value) const
+template <typename D> void impl_IInteractionTracker<D>::PositionInertiaDecayRate(const optional<Windows::Foundation::Numerics::float3> & value) const
 {
-    check_hresult(shim()->put_PositionInertiaDecayRate(get(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->put_PositionInertiaDecayRate(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::Numerics::float3 impl_IInteractionTracker<D>::PositionVelocityInPixelsPerSecond() const
 {
     Windows::Foundation::Numerics::float3 value {};
-    check_hresult(shim()->get_PositionVelocityInPixelsPerSecond(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_PositionVelocityInPixelsPerSecond(put_abi(value)));
     return value;
 }
 
 template <typename D> float impl_IInteractionTracker<D>::Scale() const
 {
     float value {};
-    check_hresult(shim()->get_Scale(&value));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_Scale(&value));
     return value;
 }
 
 template <typename D> Windows::Foundation::IReference<float> impl_IInteractionTracker<D>::ScaleInertiaDecayRate() const
 {
     Windows::Foundation::IReference<float> value;
-    check_hresult(shim()->get_ScaleInertiaDecayRate(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_ScaleInertiaDecayRate(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IInteractionTracker<D>::ScaleInertiaDecayRate(const Windows::Foundation::IReference<float> & value) const
+template <typename D> void impl_IInteractionTracker<D>::ScaleInertiaDecayRate(const optional<float> & value) const
 {
-    check_hresult(shim()->put_ScaleInertiaDecayRate(get(value)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->put_ScaleInertiaDecayRate(get_abi(value)));
 }
 
 template <typename D> float impl_IInteractionTracker<D>::ScaleVelocityInPercentPerSecond() const
 {
     float value {};
-    check_hresult(shim()->get_ScaleVelocityInPercentPerSecond(&value));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->get_ScaleVelocityInPercentPerSecond(&value));
     return value;
 }
 
 template <typename D> void impl_IInteractionTracker<D>::AdjustPositionXIfGreaterThanThreshold(float adjustment, float positionThreshold) const
 {
-    check_hresult(shim()->abi_AdjustPositionXIfGreaterThanThreshold(adjustment, positionThreshold));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_AdjustPositionXIfGreaterThanThreshold(adjustment, positionThreshold));
 }
 
 template <typename D> void impl_IInteractionTracker<D>::AdjustPositionYIfGreaterThanThreshold(float adjustment, float positionThreshold) const
 {
-    check_hresult(shim()->abi_AdjustPositionYIfGreaterThanThreshold(adjustment, positionThreshold));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_AdjustPositionYIfGreaterThanThreshold(adjustment, positionThreshold));
 }
 
-template <typename D> void impl_IInteractionTracker<D>::ConfigurePositionXInertiaModifiers(const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> & modifiers) const
+template <typename D> void impl_IInteractionTracker<D>::ConfigurePositionXInertiaModifiers(iterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> modifiers) const
 {
-    check_hresult(shim()->abi_ConfigurePositionXInertiaModifiers(get(modifiers)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_ConfigurePositionXInertiaModifiers(get_abi(modifiers)));
 }
 
-template <typename D> void impl_IInteractionTracker<D>::ConfigurePositionYInertiaModifiers(const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> & modifiers) const
+template <typename D> void impl_IInteractionTracker<D>::ConfigurePositionYInertiaModifiers(iterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> modifiers) const
 {
-    check_hresult(shim()->abi_ConfigurePositionYInertiaModifiers(get(modifiers)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_ConfigurePositionYInertiaModifiers(get_abi(modifiers)));
 }
 
-template <typename D> void impl_IInteractionTracker<D>::ConfigureScaleInertiaModifiers(const Windows::Foundation::Collections::IIterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> & modifiers) const
+template <typename D> void impl_IInteractionTracker<D>::ConfigureScaleInertiaModifiers(iterable<Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier> modifiers) const
 {
-    check_hresult(shim()->abi_ConfigureScaleInertiaModifiers(get(modifiers)));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_ConfigureScaleInertiaModifiers(get_abi(modifiers)));
 }
 
 template <typename D> int32_t impl_IInteractionTracker<D>::TryUpdatePosition(const Windows::Foundation::Numerics::float3 & value) const
 {
     int32_t requestId {};
-    check_hresult(shim()->abi_TryUpdatePosition(get(value), &requestId));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_TryUpdatePosition(get_abi(value), &requestId));
     return requestId;
 }
 
 template <typename D> int32_t impl_IInteractionTracker<D>::TryUpdatePositionBy(const Windows::Foundation::Numerics::float3 & amount) const
 {
     int32_t requestId {};
-    check_hresult(shim()->abi_TryUpdatePositionBy(get(amount), &requestId));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_TryUpdatePositionBy(get_abi(amount), &requestId));
     return requestId;
 }
 
 template <typename D> int32_t impl_IInteractionTracker<D>::TryUpdatePositionWithAnimation(const Windows::UI::Composition::CompositionAnimation & animation) const
 {
     int32_t requestId {};
-    check_hresult(shim()->abi_TryUpdatePositionWithAnimation(get(animation), &requestId));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_TryUpdatePositionWithAnimation(get_abi(animation), &requestId));
     return requestId;
 }
 
 template <typename D> int32_t impl_IInteractionTracker<D>::TryUpdatePositionWithAdditionalVelocity(const Windows::Foundation::Numerics::float3 & velocityInPixelsPerSecond) const
 {
     int32_t requestId {};
-    check_hresult(shim()->abi_TryUpdatePositionWithAdditionalVelocity(get(velocityInPixelsPerSecond), &requestId));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_TryUpdatePositionWithAdditionalVelocity(get_abi(velocityInPixelsPerSecond), &requestId));
     return requestId;
 }
 
 template <typename D> int32_t impl_IInteractionTracker<D>::TryUpdateScale(float value, const Windows::Foundation::Numerics::float3 & centerPoint) const
 {
     int32_t requestId {};
-    check_hresult(shim()->abi_TryUpdateScale(value, get(centerPoint), &requestId));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_TryUpdateScale(value, get_abi(centerPoint), &requestId));
     return requestId;
 }
 
 template <typename D> int32_t impl_IInteractionTracker<D>::TryUpdateScaleWithAnimation(const Windows::UI::Composition::CompositionAnimation & animation, const Windows::Foundation::Numerics::float3 & centerPoint) const
 {
     int32_t requestId {};
-    check_hresult(shim()->abi_TryUpdateScaleWithAnimation(get(animation), get(centerPoint), &requestId));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_TryUpdateScaleWithAnimation(get_abi(animation), get_abi(centerPoint), &requestId));
     return requestId;
 }
 
 template <typename D> int32_t impl_IInteractionTracker<D>::TryUpdateScaleWithAdditionalVelocity(float velocityInPercentPerSecond, const Windows::Foundation::Numerics::float3 & centerPoint) const
 {
     int32_t requestId {};
-    check_hresult(shim()->abi_TryUpdateScaleWithAdditionalVelocity(velocityInPercentPerSecond, get(centerPoint), &requestId));
+    check_hresult(WINRT_SHIM(IInteractionTracker)->abi_TryUpdateScaleWithAdditionalVelocity(velocityInPercentPerSecond, get_abi(centerPoint), &requestId));
     return requestId;
 }
 
 template <typename D> int32_t impl_IInteractionTrackerCustomAnimationStateEnteredArgs<D>::RequestId() const
 {
     int32_t value {};
-    check_hresult(shim()->get_RequestId(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerCustomAnimationStateEnteredArgs)->get_RequestId(&value));
     return value;
 }
 
 template <typename D> int32_t impl_IInteractionTrackerIdleStateEnteredArgs<D>::RequestId() const
 {
     int32_t value {};
-    check_hresult(shim()->get_RequestId(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerIdleStateEnteredArgs)->get_RequestId(&value));
     return value;
 }
 
 template <typename D> int32_t impl_IInteractionTrackerInteractingStateEnteredArgs<D>::RequestId() const
 {
     int32_t value {};
-    check_hresult(shim()->get_RequestId(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInteractingStateEnteredArgs)->get_RequestId(&value));
     return value;
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionTrackerInertiaRestingValue impl_IInteractionTrackerInertiaRestingValueStatics<D>::Create(const Windows::UI::Composition::Compositor & compositor) const
 {
     Windows::UI::Composition::Interactions::InteractionTrackerInertiaRestingValue result { nullptr };
-    check_hresult(shim()->abi_Create(get(compositor), put(result)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaRestingValueStatics)->abi_Create(get_abi(compositor), put_abi(result)));
     return result;
 }
 
 template <typename D> Windows::UI::Composition::ExpressionAnimation impl_IInteractionTrackerInertiaRestingValue<D>::Condition() const
 {
     Windows::UI::Composition::ExpressionAnimation value { nullptr };
-    check_hresult(shim()->get_Condition(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaRestingValue)->get_Condition(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IInteractionTrackerInertiaRestingValue<D>::Condition(const Windows::UI::Composition::ExpressionAnimation & value) const
 {
-    check_hresult(shim()->put_Condition(get(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaRestingValue)->put_Condition(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Composition::ExpressionAnimation impl_IInteractionTrackerInertiaRestingValue<D>::RestingValue() const
 {
     Windows::UI::Composition::ExpressionAnimation value { nullptr };
-    check_hresult(shim()->get_RestingValue(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaRestingValue)->get_RestingValue(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IInteractionTrackerInertiaRestingValue<D>::RestingValue(const Windows::UI::Composition::ExpressionAnimation & value) const
 {
-    check_hresult(shim()->put_RestingValue(get(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaRestingValue)->put_RestingValue(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionTrackerInertiaMotion impl_IInteractionTrackerInertiaMotionStatics<D>::Create(const Windows::UI::Composition::Compositor & compositor) const
 {
     Windows::UI::Composition::Interactions::InteractionTrackerInertiaMotion result { nullptr };
-    check_hresult(shim()->abi_Create(get(compositor), put(result)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaMotionStatics)->abi_Create(get_abi(compositor), put_abi(result)));
     return result;
 }
 
 template <typename D> Windows::UI::Composition::ExpressionAnimation impl_IInteractionTrackerInertiaMotion<D>::Condition() const
 {
     Windows::UI::Composition::ExpressionAnimation value { nullptr };
-    check_hresult(shim()->get_Condition(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaMotion)->get_Condition(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IInteractionTrackerInertiaMotion<D>::Condition(const Windows::UI::Composition::ExpressionAnimation & value) const
 {
-    check_hresult(shim()->put_Condition(get(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaMotion)->put_Condition(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Composition::ExpressionAnimation impl_IInteractionTrackerInertiaMotion<D>::Motion() const
 {
     Windows::UI::Composition::ExpressionAnimation value { nullptr };
-    check_hresult(shim()->get_Motion(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaMotion)->get_Motion(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IInteractionTrackerInertiaMotion<D>::Motion(const Windows::UI::Composition::ExpressionAnimation & value) const
 {
-    check_hresult(shim()->put_Motion(get(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaMotion)->put_Motion(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IReference<Windows::Foundation::Numerics::float3> impl_IInteractionTrackerInertiaStateEnteredArgs<D>::ModifiedRestingPosition() const
 {
     Windows::Foundation::IReference<Windows::Foundation::Numerics::float3> value;
-    check_hresult(shim()->get_ModifiedRestingPosition(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaStateEnteredArgs)->get_ModifiedRestingPosition(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IReference<float> impl_IInteractionTrackerInertiaStateEnteredArgs<D>::ModifiedRestingScale() const
 {
     Windows::Foundation::IReference<float> value;
-    check_hresult(shim()->get_ModifiedRestingScale(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaStateEnteredArgs)->get_ModifiedRestingScale(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::Numerics::float3 impl_IInteractionTrackerInertiaStateEnteredArgs<D>::NaturalRestingPosition() const
 {
     Windows::Foundation::Numerics::float3 value {};
-    check_hresult(shim()->get_NaturalRestingPosition(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaStateEnteredArgs)->get_NaturalRestingPosition(put_abi(value)));
     return value;
 }
 
 template <typename D> float impl_IInteractionTrackerInertiaStateEnteredArgs<D>::NaturalRestingScale() const
 {
     float value {};
-    check_hresult(shim()->get_NaturalRestingScale(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaStateEnteredArgs)->get_NaturalRestingScale(&value));
     return value;
 }
 
 template <typename D> Windows::Foundation::Numerics::float3 impl_IInteractionTrackerInertiaStateEnteredArgs<D>::PositionVelocityInPixelsPerSecond() const
 {
     Windows::Foundation::Numerics::float3 value {};
-    check_hresult(shim()->get_PositionVelocityInPixelsPerSecond(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaStateEnteredArgs)->get_PositionVelocityInPixelsPerSecond(put_abi(value)));
     return value;
 }
 
 template <typename D> int32_t impl_IInteractionTrackerInertiaStateEnteredArgs<D>::RequestId() const
 {
     int32_t value {};
-    check_hresult(shim()->get_RequestId(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaStateEnteredArgs)->get_RequestId(&value));
     return value;
 }
 
 template <typename D> float impl_IInteractionTrackerInertiaStateEnteredArgs<D>::ScaleVelocityInPercentPerSecond() const
 {
     float value {};
-    check_hresult(shim()->get_ScaleVelocityInPercentPerSecond(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerInertiaStateEnteredArgs)->get_ScaleVelocityInPercentPerSecond(&value));
     return value;
 }
 
 template <typename D> int32_t impl_IInteractionTrackerRequestIgnoredArgs<D>::RequestId() const
 {
     int32_t value {};
-    check_hresult(shim()->get_RequestId(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerRequestIgnoredArgs)->get_RequestId(&value));
     return value;
 }
 
 template <typename D> Windows::Foundation::Numerics::float3 impl_IInteractionTrackerValuesChangedArgs<D>::Position() const
 {
     Windows::Foundation::Numerics::float3 value {};
-    check_hresult(shim()->get_Position(put(value)));
+    check_hresult(WINRT_SHIM(IInteractionTrackerValuesChangedArgs)->get_Position(put_abi(value)));
     return value;
 }
 
 template <typename D> int32_t impl_IInteractionTrackerValuesChangedArgs<D>::RequestId() const
 {
     int32_t value {};
-    check_hresult(shim()->get_RequestId(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerValuesChangedArgs)->get_RequestId(&value));
     return value;
 }
 
 template <typename D> float impl_IInteractionTrackerValuesChangedArgs<D>::Scale() const
 {
     float value {};
-    check_hresult(shim()->get_Scale(&value));
+    check_hresult(WINRT_SHIM(IInteractionTrackerValuesChangedArgs)->get_Scale(&value));
     return value;
 }
 
 template <typename D> Windows::UI::Composition::Interactions::VisualInteractionSource impl_IVisualInteractionSourceStatics<D>::Create(const Windows::UI::Composition::Visual & source) const
 {
     Windows::UI::Composition::Interactions::VisualInteractionSource result { nullptr };
-    check_hresult(shim()->abi_Create(get(source), put(result)));
+    check_hresult(WINRT_SHIM(IVisualInteractionSourceStatics)->abi_Create(get_abi(source), put_abi(result)));
     return result;
 }
 
 template <typename D> bool impl_IVisualInteractionSource<D>::IsPositionXRailsEnabled() const
 {
     bool value {};
-    check_hresult(shim()->get_IsPositionXRailsEnabled(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_IsPositionXRailsEnabled(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::IsPositionXRailsEnabled(bool value) const
 {
-    check_hresult(shim()->put_IsPositionXRailsEnabled(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_IsPositionXRailsEnabled(value));
 }
 
 template <typename D> bool impl_IVisualInteractionSource<D>::IsPositionYRailsEnabled() const
 {
     bool value {};
-    check_hresult(shim()->get_IsPositionYRailsEnabled(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_IsPositionYRailsEnabled(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::IsPositionYRailsEnabled(bool value) const
 {
-    check_hresult(shim()->put_IsPositionYRailsEnabled(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_IsPositionYRailsEnabled(value));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::VisualInteractionSourceRedirectionMode impl_IVisualInteractionSource<D>::ManipulationRedirectionMode() const
 {
     Windows::UI::Composition::Interactions::VisualInteractionSourceRedirectionMode value {};
-    check_hresult(shim()->get_ManipulationRedirectionMode(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_ManipulationRedirectionMode(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::ManipulationRedirectionMode(Windows::UI::Composition::Interactions::VisualInteractionSourceRedirectionMode value) const
 {
-    check_hresult(shim()->put_ManipulationRedirectionMode(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_ManipulationRedirectionMode(value));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionChainingMode impl_IVisualInteractionSource<D>::PositionXChainingMode() const
 {
     Windows::UI::Composition::Interactions::InteractionChainingMode value {};
-    check_hresult(shim()->get_PositionXChainingMode(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_PositionXChainingMode(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::PositionXChainingMode(Windows::UI::Composition::Interactions::InteractionChainingMode value) const
 {
-    check_hresult(shim()->put_PositionXChainingMode(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_PositionXChainingMode(value));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionSourceMode impl_IVisualInteractionSource<D>::PositionXSourceMode() const
 {
     Windows::UI::Composition::Interactions::InteractionSourceMode value {};
-    check_hresult(shim()->get_PositionXSourceMode(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_PositionXSourceMode(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::PositionXSourceMode(Windows::UI::Composition::Interactions::InteractionSourceMode value) const
 {
-    check_hresult(shim()->put_PositionXSourceMode(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_PositionXSourceMode(value));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionChainingMode impl_IVisualInteractionSource<D>::PositionYChainingMode() const
 {
     Windows::UI::Composition::Interactions::InteractionChainingMode value {};
-    check_hresult(shim()->get_PositionYChainingMode(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_PositionYChainingMode(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::PositionYChainingMode(Windows::UI::Composition::Interactions::InteractionChainingMode value) const
 {
-    check_hresult(shim()->put_PositionYChainingMode(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_PositionYChainingMode(value));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionSourceMode impl_IVisualInteractionSource<D>::PositionYSourceMode() const
 {
     Windows::UI::Composition::Interactions::InteractionSourceMode value {};
-    check_hresult(shim()->get_PositionYSourceMode(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_PositionYSourceMode(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::PositionYSourceMode(Windows::UI::Composition::Interactions::InteractionSourceMode value) const
 {
-    check_hresult(shim()->put_PositionYSourceMode(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_PositionYSourceMode(value));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionChainingMode impl_IVisualInteractionSource<D>::ScaleChainingMode() const
 {
     Windows::UI::Composition::Interactions::InteractionChainingMode value {};
-    check_hresult(shim()->get_ScaleChainingMode(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_ScaleChainingMode(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::ScaleChainingMode(Windows::UI::Composition::Interactions::InteractionChainingMode value) const
 {
-    check_hresult(shim()->put_ScaleChainingMode(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_ScaleChainingMode(value));
 }
 
 template <typename D> Windows::UI::Composition::Interactions::InteractionSourceMode impl_IVisualInteractionSource<D>::ScaleSourceMode() const
 {
     Windows::UI::Composition::Interactions::InteractionSourceMode value {};
-    check_hresult(shim()->get_ScaleSourceMode(&value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_ScaleSourceMode(&value));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::ScaleSourceMode(Windows::UI::Composition::Interactions::InteractionSourceMode value) const
 {
-    check_hresult(shim()->put_ScaleSourceMode(value));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->put_ScaleSourceMode(value));
 }
 
 template <typename D> Windows::UI::Composition::Visual impl_IVisualInteractionSource<D>::Source() const
 {
     Windows::UI::Composition::Visual value { nullptr };
-    check_hresult(shim()->get_Source(put(value)));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->get_Source(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IVisualInteractionSource<D>::TryRedirectForManipulation(const Windows::UI::Input::PointerPoint & pointerPoint) const
 {
-    check_hresult(shim()->abi_TryRedirectForManipulation(get(pointerPoint)));
+    check_hresult(WINRT_SHIM(IVisualInteractionSource)->abi_TryRedirectForManipulation(get_abi(pointerPoint)));
 }
 
 inline Windows::UI::Composition::Interactions::InteractionTracker InteractionTracker::Create(const Windows::UI::Composition::Compositor & compositor)
@@ -1872,3 +1965,284 @@ inline Windows::UI::Composition::Interactions::VisualInteractionSource VisualInt
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSource>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSource & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSourceCollection>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSourceCollection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTracker>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTracker & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerIdleStateEnteredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerIdleStateEnteredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifierFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifierFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotion>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotion & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotionStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotionStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValue>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValue & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValueStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValueStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaStateEnteredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaStateEnteredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInteractingStateEnteredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInteractingStateEnteredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerOwner>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerOwner & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerRequestIgnoredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerRequestIgnoredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerValuesChangedArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IInteractionTrackerValuesChangedArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IVisualInteractionSource>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IVisualInteractionSource & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::IVisualInteractionSourceStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::IVisualInteractionSourceStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::CompositionInteractionSourceCollection>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::CompositionInteractionSourceCollection & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTracker>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTracker & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerCustomAnimationStateEnteredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerCustomAnimationStateEnteredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerIdleStateEnteredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerIdleStateEnteredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaMotion>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaMotion & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaRestingValue>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaRestingValue & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaStateEnteredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaStateEnteredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerInteractingStateEnteredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerInteractingStateEnteredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerRequestIgnoredArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerRequestIgnoredArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::InteractionTrackerValuesChangedArgs>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::InteractionTrackerValuesChangedArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Composition::Interactions::VisualInteractionSource>
+{
+    size_t operator()(const winrt::Windows::UI::Composition::Interactions::VisualInteractionSource & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

@@ -1,9 +1,9 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.Media.Transcoding.0.h"
 #include "Windows.Foundation.0.h"
 #include "Windows.Foundation.Collections.0.h"
@@ -17,7 +17,7 @@ WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::Media::Transcoding {
 
-struct __declspec(uuid("190c99d2-a0aa-4d34-86bc-eed1b12c2f5b")) __declspec(novtable) IMediaTranscoder : Windows::IInspectable
+struct __declspec(uuid("190c99d2-a0aa-4d34-86bc-eed1b12c2f5b")) __declspec(novtable) IMediaTranscoder : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall put_TrimStartTime(Windows::Foundation::TimeSpan value) = 0;
     virtual HRESULT __stdcall get_TrimStartTime(Windows::Foundation::TimeSpan * value) = 0;
@@ -36,14 +36,14 @@ struct __declspec(uuid("190c99d2-a0aa-4d34-86bc-eed1b12c2f5b")) __declspec(novta
     virtual HRESULT __stdcall abi_PrepareStreamTranscodeAsync(Windows::Storage::Streams::IRandomAccessStream * source, Windows::Storage::Streams::IRandomAccessStream * destination, Windows::Media::MediaProperties::IMediaEncodingProfile * profile, Windows::Foundation::IAsyncOperation<Windows::Media::Transcoding::PrepareTranscodeResult> ** operation) = 0;
 };
 
-struct __declspec(uuid("40531d74-35e0-4f04-8574-ca8bc4e5a082")) __declspec(novtable) IMediaTranscoder2 : Windows::IInspectable
+struct __declspec(uuid("40531d74-35e0-4f04-8574-ca8bc4e5a082")) __declspec(novtable) IMediaTranscoder2 : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall abi_PrepareMediaStreamSourceTranscodeAsync(Windows::Media::Core::IMediaSource * source, Windows::Storage::Streams::IRandomAccessStream * destination, Windows::Media::MediaProperties::IMediaEncodingProfile * profile, Windows::Foundation::IAsyncOperation<Windows::Media::Transcoding::PrepareTranscodeResult> ** operation) = 0;
     virtual HRESULT __stdcall put_VideoProcessingAlgorithm(winrt::Windows::Media::Transcoding::MediaVideoProcessingAlgorithm value) = 0;
     virtual HRESULT __stdcall get_VideoProcessingAlgorithm(winrt::Windows::Media::Transcoding::MediaVideoProcessingAlgorithm * value) = 0;
 };
 
-struct __declspec(uuid("05f25dce-994f-4a34-9d68-97ccce1730d6")) __declspec(novtable) IPrepareTranscodeResult : Windows::IInspectable
+struct __declspec(uuid("05f25dce-994f-4a34-9d68-97ccce1730d6")) __declspec(novtable) IPrepareTranscodeResult : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_CanTranscode(bool * value) = 0;
     virtual HRESULT __stdcall get_FailureReason(winrt::Windows::Media::Transcoding::TranscodeFailureReason * value) = 0;
@@ -61,9 +61,41 @@ template <> struct traits<Windows::Media::Transcoding::PrepareTranscodeResult> {
 
 namespace Windows::Media::Transcoding {
 
-template <typename T> class impl_IMediaTranscoder;
-template <typename T> class impl_IMediaTranscoder2;
-template <typename T> class impl_IPrepareTranscodeResult;
+template <typename D>
+struct WINRT_EBO impl_IMediaTranscoder
+{
+    void TrimStartTime(const Windows::Foundation::TimeSpan & value) const;
+    Windows::Foundation::TimeSpan TrimStartTime() const;
+    void TrimStopTime(const Windows::Foundation::TimeSpan & value) const;
+    Windows::Foundation::TimeSpan TrimStopTime() const;
+    void AlwaysReencode(bool value) const;
+    bool AlwaysReencode() const;
+    void HardwareAccelerationEnabled(bool value) const;
+    bool HardwareAccelerationEnabled() const;
+    void AddAudioEffect(hstring_view activatableClassId) const;
+    void AddAudioEffect(hstring_view activatableClassId, bool effectRequired, const Windows::Foundation::Collections::IPropertySet & configuration) const;
+    void AddVideoEffect(hstring_view activatableClassId) const;
+    void AddVideoEffect(hstring_view activatableClassId, bool effectRequired, const Windows::Foundation::Collections::IPropertySet & configuration) const;
+    void ClearEffects() const;
+    Windows::Foundation::IAsyncOperation<Windows::Media::Transcoding::PrepareTranscodeResult> PrepareFileTranscodeAsync(const Windows::Storage::IStorageFile & source, const Windows::Storage::IStorageFile & destination, const Windows::Media::MediaProperties::MediaEncodingProfile & profile) const;
+    Windows::Foundation::IAsyncOperation<Windows::Media::Transcoding::PrepareTranscodeResult> PrepareStreamTranscodeAsync(const Windows::Storage::Streams::IRandomAccessStream & source, const Windows::Storage::Streams::IRandomAccessStream & destination, const Windows::Media::MediaProperties::MediaEncodingProfile & profile) const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IMediaTranscoder2
+{
+    Windows::Foundation::IAsyncOperation<Windows::Media::Transcoding::PrepareTranscodeResult> PrepareMediaStreamSourceTranscodeAsync(const Windows::Media::Core::IMediaSource & source, const Windows::Storage::Streams::IRandomAccessStream & destination, const Windows::Media::MediaProperties::MediaEncodingProfile & profile) const;
+    void VideoProcessingAlgorithm(Windows::Media::Transcoding::MediaVideoProcessingAlgorithm value) const;
+    Windows::Media::Transcoding::MediaVideoProcessingAlgorithm VideoProcessingAlgorithm() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IPrepareTranscodeResult
+{
+    bool CanTranscode() const;
+    Windows::Media::Transcoding::TranscodeFailureReason FailureReason() const;
+    Windows::Foundation::IAsyncActionWithProgress<double> TranscodeAsync() const;
+};
 
 }
 
@@ -90,14 +122,12 @@ template <> struct traits<Windows::Media::Transcoding::IPrepareTranscodeResult>
 template <> struct traits<Windows::Media::Transcoding::MediaTranscoder>
 {
     using abi = ABI::Windows::Media::Transcoding::MediaTranscoder;
-    using default_interface = Windows::Media::Transcoding::IMediaTranscoder;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Media.Transcoding.MediaTranscoder"; }
 };
 
 template <> struct traits<Windows::Media::Transcoding::PrepareTranscodeResult>
 {
     using abi = ABI::Windows::Media::Transcoding::PrepareTranscodeResult;
-    using default_interface = Windows::Media::Transcoding::IPrepareTranscodeResult;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Media.Transcoding.PrepareTranscodeResult"; }
 };
 

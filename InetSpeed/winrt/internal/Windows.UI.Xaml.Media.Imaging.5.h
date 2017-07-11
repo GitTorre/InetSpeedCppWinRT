@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -9,7 +9,7 @@ WINRT_EXPORT namespace winrt {
 namespace Windows::UI::Xaml::Media::Imaging {
 
 template <typename D, typename ... Interfaces> struct BitmapSourceT :
-    overrides<D, Windows::IInspectable, Interfaces ...>,
+    overrides<D, Windows::Foundation::IInspectable, Interfaces ...>,
     impl::require<D, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IDependencyObject2, Windows::UI::Xaml::Media::IImageSource, Windows::UI::Xaml::Media::Imaging::IBitmapSource>
 {
     using composable = BitmapSource;
@@ -18,12 +18,12 @@ protected:
 
     BitmapSourceT()
     {
-        get_activation_factory<BitmapSource, IBitmapSourceFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<BitmapSource, IBitmapSourceFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
 template <typename D, typename ... Interfaces> struct SurfaceImageSourceT :
-    overrides<D, Windows::IInspectable, Interfaces ...>,
+    overrides<D, Windows::Foundation::IInspectable, Interfaces ...>,
     impl::require<D, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IDependencyObject2, Windows::UI::Xaml::Media::IImageSource, Windows::UI::Xaml::Media::Imaging::ISurfaceImageSource>
 {
     using composable = SurfaceImageSource;
@@ -32,12 +32,12 @@ protected:
 
     SurfaceImageSourceT(int32_t pixelWidth, int32_t pixelHeight)
     {
-        get_activation_factory<SurfaceImageSource, ISurfaceImageSourceFactory>().CreateInstanceWithDimensions(pixelWidth, pixelHeight, *this, m_inner);
+        get_activation_factory<SurfaceImageSource, ISurfaceImageSourceFactory>().CreateInstanceWithDimensions(pixelWidth, pixelHeight, *this, this->m_inner);
     }
 
     SurfaceImageSourceT(int32_t pixelWidth, int32_t pixelHeight, bool isOpaque)
     {
-        get_activation_factory<SurfaceImageSource, ISurfaceImageSourceFactory>().CreateInstanceWithDimensionsAndOpacity(pixelWidth, pixelHeight, isOpaque, *this, m_inner);
+        get_activation_factory<SurfaceImageSource, ISurfaceImageSourceFactory>().CreateInstanceWithDimensionsAndOpacity(pixelWidth, pixelHeight, isOpaque, *this, this->m_inner);
     }
 };
 
@@ -51,7 +51,7 @@ protected:
 
     XamlRenderingBackgroundTaskT()
     {
-        get_activation_factory<XamlRenderingBackgroundTask, IXamlRenderingBackgroundTaskFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<XamlRenderingBackgroundTask, IXamlRenderingBackgroundTaskFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 

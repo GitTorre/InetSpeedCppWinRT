@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -29,6 +29,15 @@ struct RequestingFocusOnKeyboardInputEventArgs;
 struct SearchSuggestion;
 struct SearchSuggestionManager;
 struct SearchSuggestionsRequestedEventArgs;
+
+}
+
+namespace Windows::ApplicationModel::Search::Core {
+
+template <typename T> struct impl_IRequestingFocusOnKeyboardInputEventArgs;
+template <typename T> struct impl_ISearchSuggestion;
+template <typename T> struct impl_ISearchSuggestionManager;
+template <typename T> struct impl_ISearchSuggestionsRequestedEventArgs;
 
 }
 

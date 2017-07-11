@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -24,6 +24,14 @@ struct ILicenseSatisfactionResult;
 struct LicenseManager;
 struct LicenseSatisfactionInfo;
 struct LicenseSatisfactionResult;
+
+}
+
+namespace Windows::ApplicationModel::Store::LicenseManagement {
+
+template <typename T> struct impl_ILicenseManagerStatics;
+template <typename T> struct impl_ILicenseSatisfactionInfo;
+template <typename T> struct impl_ILicenseSatisfactionResult;
 
 }
 

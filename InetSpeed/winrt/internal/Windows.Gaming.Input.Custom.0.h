@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -52,6 +52,20 @@ struct GameControllerFactoryManager;
 struct GipFirmwareUpdateResult;
 struct GipGameControllerProvider;
 struct XusbGameControllerProvider;
+
+}
+
+namespace Windows::Gaming::Input::Custom {
+
+template <typename T> struct impl_ICustomGameControllerFactory;
+template <typename T> struct impl_IGameControllerFactoryManagerStatics;
+template <typename T> struct impl_IGameControllerInputSink;
+template <typename T> struct impl_IGameControllerProvider;
+template <typename T> struct impl_IGipFirmwareUpdateResult;
+template <typename T> struct impl_IGipGameControllerInputSink;
+template <typename T> struct impl_IGipGameControllerProvider;
+template <typename T> struct impl_IXusbGameControllerInputSink;
+template <typename T> struct impl_IXusbGameControllerProvider;
 
 }
 

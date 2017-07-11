@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -17,6 +17,11 @@ template <> struct __declspec(uuid("513ef3af-e784-5325-a91e-97c2b8111cf3")) __de
 #ifndef WINRT_GENERIC_5541d8a7_497c_5aa4_86fc_7713adbf2a2c
 #define WINRT_GENERIC_5541d8a7_497c_5aa4_86fc_7713adbf2a2c
 template <> struct __declspec(uuid("5541d8a7-497c-5aa4-86fc-7713adbf2a2c")) __declspec(novtable) IReference<Windows::Foundation::DateTime> : impl_IReference<Windows::Foundation::DateTime> {};
+#endif
+
+#ifndef WINRT_GENERIC_2f2d6c29_5473_5f3e_92e7_96572bb990e2
+#define WINRT_GENERIC_2f2d6c29_5473_5f3e_92e7_96572bb990e2
+template <> struct __declspec(uuid("2f2d6c29-5473-5f3e-92e7-96572bb990e2")) __declspec(novtable) IReference<double> : impl_IReference<double> {};
 #endif
 
 
@@ -38,11 +43,6 @@ template <> struct __declspec(uuid("922399a8-0093-5009-a8d2-f87b0eae75f5")) __de
 }
 
 namespace ABI::Windows::Foundation {
-
-#ifndef WINRT_GENERIC_2f2d6c29_5473_5f3e_92e7_96572bb990e2
-#define WINRT_GENERIC_2f2d6c29_5473_5f3e_92e7_96572bb990e2
-template <> struct __declspec(uuid("2f2d6c29-5473-5f3e-92e7-96572bb990e2")) __declspec(novtable) IReference<double> : impl_IReference<double> {};
-#endif
 
 #ifndef WINRT_GENERIC_ee73ecf0_099d_57e5_8407_5b32e5af1cc4
 #define WINRT_GENERIC_ee73ecf0_099d_57e5_8407_5b32e5af1cc4
@@ -89,6 +89,11 @@ template <> struct __declspec(uuid("e4d5dda6-f57c-57cc-b67f-2939a901dabe")) __de
 
 namespace ABI::Windows::Foundation::Collections {
 
+#ifndef WINRT_GENERIC_7ac34493_4a92_5e4b_84be_652731a1879b
+#define WINRT_GENERIC_7ac34493_4a92_5e4b_84be_652731a1879b
+template <> struct __declspec(uuid("7ac34493-4a92-5e4b-84be-652731a1879b")) __declspec(novtable) IVector<Windows::Devices::Geolocation::BasicGeoposition> : impl_IVector<Windows::Devices::Geolocation::BasicGeoposition> {};
+#endif
+
 #ifndef WINRT_GENERIC_1b4e26a1_88e4_5872_bb2d_4f31700828b2
 #define WINRT_GENERIC_1b4e26a1_88e4_5872_bb2d_4f31700828b2
 template <> struct __declspec(uuid("1b4e26a1-88e4-5872-bb2d-4f31700828b2")) __declspec(novtable) IIterator<Windows::Devices::Geolocation::BasicGeoposition> : impl_IIterator<Windows::Devices::Geolocation::BasicGeoposition> {};
@@ -109,6 +114,31 @@ template <> struct __declspec(uuid("7668a704-244e-5e12-8dcb-92a3299eba26")) __de
 template <> struct __declspec(uuid("f3524c93-e5c7-5b88-bedb-d3e637cff271")) __declspec(novtable) AsyncOperationCompletedHandler<winrt::Windows::Devices::Geolocation::GeolocationAccessStatus> : impl_AsyncOperationCompletedHandler<winrt::Windows::Devices::Geolocation::GeolocationAccessStatus> {};
 #endif
 
+
+}
+
+namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_abd0b37a_0021_559e_962b_a141ded1a9e2
+#define WINRT_GENERIC_abd0b37a_0021_559e_962b_a141ded1a9e2
+template <> struct __declspec(uuid("abd0b37a-0021-559e-962b-a141ded1a9e2")) __declspec(novtable) IVector<Windows::Devices::Geolocation::Geoposition> : impl_IVector<Windows::Devices::Geolocation::Geoposition> {};
+#endif
+
+#ifndef WINRT_GENERIC_a99b4206_263e_5308_82f2_31315c65135c
+#define WINRT_GENERIC_a99b4206_263e_5308_82f2_31315c65135c
+template <> struct __declspec(uuid("a99b4206-263e-5308-82f2-31315c65135c")) __declspec(novtable) IIterator<Windows::Devices::Geolocation::Geoposition> : impl_IIterator<Windows::Devices::Geolocation::Geoposition> {};
+#endif
+
+#ifndef WINRT_GENERIC_135ed72d_75b1_5881_be41_6ffeaa202044
+#define WINRT_GENERIC_135ed72d_75b1_5881_be41_6ffeaa202044
+template <> struct __declspec(uuid("135ed72d-75b1-5881-be41-6ffeaa202044")) __declspec(novtable) IIterable<Windows::Devices::Geolocation::Geoposition> : impl_IIterable<Windows::Devices::Geolocation::Geoposition> {};
+#endif
+
+
+}
+
+namespace ABI::Windows::Foundation {
+
 #ifndef WINRT_GENERIC_9454b533_efb4_5385_8d3a_437fabc32d91
 #define WINRT_GENERIC_9454b533_efb4_5385_8d3a_437fabc32d91
 template <> struct __declspec(uuid("9454b533-efb4-5385-8d3a-437fabc32d91")) __declspec(novtable) IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Geolocation::Geoposition>> : impl_IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Geolocation::Geoposition>> {};
@@ -124,533 +154,193 @@ template <> struct __declspec(uuid("6c67a1d1-9441-5aee-b625-e3c1b5676a6d")) __de
 
 namespace Windows::Devices::Geolocation {
 
-template <typename D>
-class WINRT_EBO impl_ICivicAddress
-{
-    auto shim() const { return impl::shim<D, ICivicAddress>(this); }
-
-public:
-
-    hstring Country() const;
-    hstring State() const;
-    hstring City() const;
-    hstring PostalCode() const;
-    Windows::Foundation::DateTime Timestamp() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeoboundingBox
-{
-    auto shim() const { return impl::shim<D, IGeoboundingBox>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::BasicGeoposition NorthwestCorner() const;
-    Windows::Devices::Geolocation::BasicGeoposition SoutheastCorner() const;
-    Windows::Devices::Geolocation::BasicGeoposition Center() const;
-    double MinAltitude() const;
-    double MaxAltitude() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeoboundingBoxFactory
-{
-    auto shim() const { return impl::shim<D, IGeoboundingBoxFactory>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::GeoboundingBox Create(const Windows::Devices::Geolocation::BasicGeoposition & northwestCorner, const Windows::Devices::Geolocation::BasicGeoposition & southeastCorner) const;
-    Windows::Devices::Geolocation::GeoboundingBox CreateWithAltitudeReference(const Windows::Devices::Geolocation::BasicGeoposition & northwestCorner, const Windows::Devices::Geolocation::BasicGeoposition & southeastCorner, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeReferenceSystem) const;
-    Windows::Devices::Geolocation::GeoboundingBox CreateWithAltitudeReferenceAndSpatialReference(const Windows::Devices::Geolocation::BasicGeoposition & northwestCorner, const Windows::Devices::Geolocation::BasicGeoposition & southeastCorner, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeReferenceSystem, uint32_t spatialReferenceId) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeoboundingBoxStatics
-{
-    auto shim() const { return impl::shim<D, IGeoboundingBoxStatics>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::GeoboundingBox TryCompute(const Windows::Foundation::Collections::IIterable<Windows::Devices::Geolocation::BasicGeoposition> & positions) const;
-    Windows::Devices::Geolocation::GeoboundingBox TryCompute(const Windows::Foundation::Collections::IIterable<Windows::Devices::Geolocation::BasicGeoposition> & positions, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeRefSystem) const;
-    Windows::Devices::Geolocation::GeoboundingBox TryCompute(const Windows::Foundation::Collections::IIterable<Windows::Devices::Geolocation::BasicGeoposition> & positions, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeRefSystem, uint32_t spatialReferenceId) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeocircle
-{
-    auto shim() const { return impl::shim<D, IGeocircle>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::BasicGeoposition Center() const;
-    double Radius() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeocircleFactory
-{
-    auto shim() const { return impl::shim<D, IGeocircleFactory>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::Geocircle Create(const Windows::Devices::Geolocation::BasicGeoposition & position, double radius) const;
-    Windows::Devices::Geolocation::Geocircle CreateWithAltitudeReferenceSystem(const Windows::Devices::Geolocation::BasicGeoposition & position, double radius, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeReferenceSystem) const;
-    Windows::Devices::Geolocation::Geocircle CreateWithAltitudeReferenceSystemAndSpatialReferenceId(const Windows::Devices::Geolocation::BasicGeoposition & position, double radius, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeReferenceSystem, uint32_t spatialReferenceId) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeocoordinate
-{
-    auto shim() const { return impl::shim<D, IGeocoordinate>(this); }
-
-public:
-
-    double Latitude() const;
-    double Longitude() const;
-    Windows::Foundation::IReference<double> Altitude() const;
-    double Accuracy() const;
-    Windows::Foundation::IReference<double> AltitudeAccuracy() const;
-    Windows::Foundation::IReference<double> Heading() const;
-    Windows::Foundation::IReference<double> Speed() const;
-    Windows::Foundation::DateTime Timestamp() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeocoordinateSatelliteData
-{
-    auto shim() const { return impl::shim<D, IGeocoordinateSatelliteData>(this); }
-
-public:
-
-    Windows::Foundation::IReference<double> PositionDilutionOfPrecision() const;
-    Windows::Foundation::IReference<double> HorizontalDilutionOfPrecision() const;
-    Windows::Foundation::IReference<double> VerticalDilutionOfPrecision() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeocoordinateWithPoint
-{
-    auto shim() const { return impl::shim<D, IGeocoordinateWithPoint>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::Geopoint Point() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeocoordinateWithPositionData
-{
-    auto shim() const { return impl::shim<D, IGeocoordinateWithPositionData>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::PositionSource PositionSource() const;
-    Windows::Devices::Geolocation::GeocoordinateSatelliteData SatelliteData() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeocoordinateWithPositionSourceTimestamp
-{
-    auto shim() const { return impl::shim<D, IGeocoordinateWithPositionSourceTimestamp>(this); }
-
-public:
-
-    Windows::Foundation::IReference<Windows::Foundation::DateTime> PositionSourceTimestamp() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeolocator
-{
-    auto shim() const { return impl::shim<D, IGeolocator>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::PositionAccuracy DesiredAccuracy() const;
-    void DesiredAccuracy(Windows::Devices::Geolocation::PositionAccuracy value) const;
-    double MovementThreshold() const;
-    void MovementThreshold(double value) const;
-    uint32_t ReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    Windows::Devices::Geolocation::PositionStatus LocationStatus() const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Geolocation::Geoposition> GetGeopositionAsync() const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Geolocation::Geoposition> GetGeopositionAsync(const Windows::Foundation::TimeSpan & maximumAge, const Windows::Foundation::TimeSpan & timeout) const;
-    event_token PositionChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Geolocation::Geolocator, Windows::Devices::Geolocation::PositionChangedEventArgs> & handler) const;
-    using PositionChanged_revoker = event_revoker<IGeolocator>;
-    PositionChanged_revoker PositionChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Geolocation::Geolocator, Windows::Devices::Geolocation::PositionChangedEventArgs> & handler) const;
-    void PositionChanged(event_token token) const;
-    event_token StatusChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Geolocation::Geolocator, Windows::Devices::Geolocation::StatusChangedEventArgs> & handler) const;
-    using StatusChanged_revoker = event_revoker<IGeolocator>;
-    StatusChanged_revoker StatusChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Geolocation::Geolocator, Windows::Devices::Geolocation::StatusChangedEventArgs> & handler) const;
-    void StatusChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeolocator2
-{
-    auto shim() const { return impl::shim<D, IGeolocator2>(this); }
-
-public:
-
-    void AllowFallbackToConsentlessPositions() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeolocatorStatics
-{
-    auto shim() const { return impl::shim<D, IGeolocatorStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::Geolocation::GeolocationAccessStatus> RequestAccessAsync() const;
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Geolocation::Geoposition>> GetGeopositionHistoryAsync(const Windows::Foundation::DateTime & startTime) const;
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Geolocation::Geoposition>> GetGeopositionHistoryAsync(const Windows::Foundation::DateTime & startTime, const Windows::Foundation::TimeSpan & duration) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeolocatorStatics2
-{
-    auto shim() const { return impl::shim<D, IGeolocatorStatics2>(this); }
-
-public:
-
-    bool IsDefaultGeopositionRecommended() const;
-    void DefaultGeoposition(const Windows::Foundation::IReference<Windows::Devices::Geolocation::BasicGeoposition> & value) const;
-    Windows::Foundation::IReference<Windows::Devices::Geolocation::BasicGeoposition> DefaultGeoposition() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeolocatorWithScalarAccuracy
-{
-    auto shim() const { return impl::shim<D, IGeolocatorWithScalarAccuracy>(this); }
-
-public:
-
-    Windows::Foundation::IReference<uint32_t> DesiredAccuracyInMeters() const;
-    void DesiredAccuracyInMeters(const Windows::Foundation::IReference<uint32_t> & value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeopath
-{
-    auto shim() const { return impl::shim<D, IGeopath>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<Windows::Devices::Geolocation::BasicGeoposition> Positions() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeopathFactory
-{
-    auto shim() const { return impl::shim<D, IGeopathFactory>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::Geopath Create(const Windows::Foundation::Collections::IIterable<Windows::Devices::Geolocation::BasicGeoposition> & positions) const;
-    Windows::Devices::Geolocation::Geopath CreateWithAltitudeReference(const Windows::Foundation::Collections::IIterable<Windows::Devices::Geolocation::BasicGeoposition> & positions, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeReferenceSystem) const;
-    Windows::Devices::Geolocation::Geopath CreateWithAltitudeReferenceAndSpatialReference(const Windows::Foundation::Collections::IIterable<Windows::Devices::Geolocation::BasicGeoposition> & positions, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeReferenceSystem, uint32_t spatialReferenceId) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeopoint
-{
-    auto shim() const { return impl::shim<D, IGeopoint>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::BasicGeoposition Position() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeopointFactory
-{
-    auto shim() const { return impl::shim<D, IGeopointFactory>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::Geopoint Create(const Windows::Devices::Geolocation::BasicGeoposition & position) const;
-    Windows::Devices::Geolocation::Geopoint CreateWithAltitudeReferenceSystem(const Windows::Devices::Geolocation::BasicGeoposition & position, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeReferenceSystem) const;
-    Windows::Devices::Geolocation::Geopoint CreateWithAltitudeReferenceSystemAndSpatialReferenceId(const Windows::Devices::Geolocation::BasicGeoposition & position, Windows::Devices::Geolocation::AltitudeReferenceSystem altitudeReferenceSystem, uint32_t spatialReferenceId) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeoposition
-{
-    auto shim() const { return impl::shim<D, IGeoposition>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::Geocoordinate Coordinate() const;
-    Windows::Devices::Geolocation::CivicAddress CivicAddress() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeoposition2
-{
-    auto shim() const { return impl::shim<D, IGeoposition2>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::VenueData VenueData() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGeoshape
-{
-    auto shim() const { return impl::shim<D, IGeoshape>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::GeoshapeType GeoshapeType() const;
-    uint32_t SpatialReferenceId() const;
-    Windows::Devices::Geolocation::AltitudeReferenceSystem AltitudeReferenceSystem() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPositionChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IPositionChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::Geoposition Position() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IStatusChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IStatusChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Geolocation::PositionStatus Status() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IVenueData
-{
-    auto shim() const { return impl::shim<D, IVenueData>(this); }
-
-public:
-
-    hstring Id() const;
-    hstring Level() const;
-};
-
 struct ICivicAddress :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ICivicAddress>
 {
     ICivicAddress(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ICivicAddress>(m_ptr); }
 };
 
 struct IGeoboundingBox :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeoboundingBox>,
     impl::require<IGeoboundingBox, Windows::Devices::Geolocation::IGeoshape>
 {
     IGeoboundingBox(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeoboundingBox>(m_ptr); }
 };
 
 struct IGeoboundingBoxFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeoboundingBoxFactory>
 {
     IGeoboundingBoxFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeoboundingBoxFactory>(m_ptr); }
 };
 
 struct IGeoboundingBoxStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeoboundingBoxStatics>
 {
     IGeoboundingBoxStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeoboundingBoxStatics>(m_ptr); }
 };
 
 struct IGeocircle :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeocircle>,
     impl::require<IGeocircle, Windows::Devices::Geolocation::IGeoshape>
 {
     IGeocircle(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeocircle>(m_ptr); }
 };
 
 struct IGeocircleFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeocircleFactory>
 {
     IGeocircleFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeocircleFactory>(m_ptr); }
 };
 
 struct IGeocoordinate :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeocoordinate>
 {
     IGeocoordinate(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeocoordinate>(m_ptr); }
 };
 
 struct IGeocoordinateSatelliteData :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeocoordinateSatelliteData>
 {
     IGeocoordinateSatelliteData(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeocoordinateSatelliteData>(m_ptr); }
 };
 
 struct IGeocoordinateWithPoint :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeocoordinateWithPoint>
 {
     IGeocoordinateWithPoint(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeocoordinateWithPoint>(m_ptr); }
 };
 
 struct IGeocoordinateWithPositionData :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeocoordinateWithPositionData>,
     impl::require<IGeocoordinateWithPositionData, Windows::Devices::Geolocation::IGeocoordinate>
 {
     IGeocoordinateWithPositionData(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeocoordinateWithPositionData>(m_ptr); }
 };
 
 struct IGeocoordinateWithPositionSourceTimestamp :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeocoordinateWithPositionSourceTimestamp>
 {
     IGeocoordinateWithPositionSourceTimestamp(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeocoordinateWithPositionSourceTimestamp>(m_ptr); }
 };
 
 struct IGeolocator :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeolocator>
 {
     IGeolocator(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeolocator>(m_ptr); }
 };
 
 struct IGeolocator2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeolocator2>
 {
     IGeolocator2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeolocator2>(m_ptr); }
 };
 
 struct IGeolocatorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeolocatorStatics>
 {
     IGeolocatorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeolocatorStatics>(m_ptr); }
 };
 
 struct IGeolocatorStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeolocatorStatics2>
 {
     IGeolocatorStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeolocatorStatics2>(m_ptr); }
 };
 
 struct IGeolocatorWithScalarAccuracy :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeolocatorWithScalarAccuracy>,
     impl::require<IGeolocatorWithScalarAccuracy, Windows::Devices::Geolocation::IGeolocator>
 {
     IGeolocatorWithScalarAccuracy(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeolocatorWithScalarAccuracy>(m_ptr); }
 };
 
 struct IGeopath :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeopath>,
     impl::require<IGeopath, Windows::Devices::Geolocation::IGeoshape>
 {
     IGeopath(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeopath>(m_ptr); }
 };
 
 struct IGeopathFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeopathFactory>
 {
     IGeopathFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeopathFactory>(m_ptr); }
 };
 
 struct IGeopoint :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeopoint>,
     impl::require<IGeopoint, Windows::Devices::Geolocation::IGeoshape>
 {
     IGeopoint(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeopoint>(m_ptr); }
 };
 
 struct IGeopointFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeopointFactory>
 {
     IGeopointFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeopointFactory>(m_ptr); }
 };
 
 struct IGeoposition :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeoposition>
 {
     IGeoposition(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeoposition>(m_ptr); }
 };
 
 struct IGeoposition2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeoposition2>,
     impl::require<IGeoposition2, Windows::Devices::Geolocation::IGeoposition>
 {
     IGeoposition2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeoposition2>(m_ptr); }
 };
 
 struct IGeoshape :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGeoshape>
 {
     IGeoshape(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGeoshape>(m_ptr); }
 };
 
 struct IPositionChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPositionChangedEventArgs>
 {
     IPositionChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPositionChangedEventArgs>(m_ptr); }
 };
 
 struct IStatusChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IStatusChangedEventArgs>
 {
     IStatusChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IStatusChangedEventArgs>(m_ptr); }
 };
 
 struct IVenueData :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IVenueData>
 {
     IVenueData(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IVenueData>(m_ptr); }
 };
 
 }

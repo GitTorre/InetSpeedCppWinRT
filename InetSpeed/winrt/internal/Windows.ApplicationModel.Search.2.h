@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -27,6 +27,11 @@ template <> struct __declspec(uuid("e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e")) __de
 #ifndef WINRT_GENERIC_6c26b7be_5f01_5a60_9dd7_fd17be3a9dd6
 #define WINRT_GENERIC_6c26b7be_5f01_5a60_9dd7_fd17be3a9dd6
 template <> struct __declspec(uuid("6c26b7be-5f01-5a60-9dd7-fd17be3a9dd6")) __declspec(novtable) IVector<Windows::Storage::StorageFolder> : impl_IVector<Windows::Storage::StorageFolder> {};
+#endif
+
+#ifndef WINRT_GENERIC_e20debc6_dc4e_542e_a2e7_a24d19c8dd62
+#define WINRT_GENERIC_e20debc6_dc4e_542e_a2e7_a24d19c8dd62
+template <> struct __declspec(uuid("e20debc6-dc4e-542e-a2e7-a24d19c8dd62")) __declspec(novtable) IVectorView<Windows::Storage::StorageFolder> : impl_IVectorView<Windows::Storage::StorageFolder> {};
 #endif
 
 
@@ -64,11 +69,6 @@ template <> struct __declspec(uuid("ec31e5d4-3b8c-5757-96bf-14096be946cd")) __de
 
 namespace ABI::Windows::Foundation::Collections {
 
-#ifndef WINRT_GENERIC_e20debc6_dc4e_542e_a2e7_a24d19c8dd62
-#define WINRT_GENERIC_e20debc6_dc4e_542e_a2e7_a24d19c8dd62
-template <> struct __declspec(uuid("e20debc6-dc4e-542e-a2e7-a24d19c8dd62")) __declspec(novtable) IVectorView<Windows::Storage::StorageFolder> : impl_IVectorView<Windows::Storage::StorageFolder> {};
-#endif
-
 #ifndef WINRT_GENERIC_8c304ebb_6615_50a4_8829_879ecd443236
 #define WINRT_GENERIC_8c304ebb_6615_50a4_8829_879ecd443236
 template <> struct __declspec(uuid("8c304ebb-6615-50a4-8829-879ecd443236")) __declspec(novtable) IIterator<hstring> : impl_IIterator<hstring> {};
@@ -89,383 +89,142 @@ template <> struct __declspec(uuid("4669befc-ae5c-52b1-8a97-5466ce61e94e")) __de
 
 namespace Windows::ApplicationModel::Search {
 
-template <typename D>
-class WINRT_EBO impl_ILocalContentSuggestionSettings
-{
-    auto shim() const { return impl::shim<D, ILocalContentSuggestionSettings>(this); }
-
-public:
-
-    void Enabled(bool value) const;
-    bool Enabled() const;
-    Windows::Foundation::Collections::IVector<Windows::Storage::StorageFolder> Locations() const;
-    void AqsFilter(hstring_ref value) const;
-    hstring AqsFilter() const;
-    Windows::Foundation::Collections::IVector<hstring> PropertiesToMatch() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPane
-{
-    auto shim() const { return impl::shim<D, ISearchPane>(this); }
-
-public:
-
-    void SearchHistoryEnabled(bool value) const;
-    bool SearchHistoryEnabled() const;
-    void SearchHistoryContext(hstring_ref value) const;
-    hstring SearchHistoryContext() const;
-    void PlaceholderText(hstring_ref value) const;
-    hstring PlaceholderText() const;
-    hstring QueryText() const;
-    hstring Language() const;
-    bool Visible() const;
-    event_token VisibilityChanged(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs> & handler) const;
-    using VisibilityChanged_revoker = event_revoker<ISearchPane>;
-    VisibilityChanged_revoker VisibilityChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs> & handler) const;
-    void VisibilityChanged(event_token token) const;
-    event_token QueryChanged(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs> & handler) const;
-    using QueryChanged_revoker = event_revoker<ISearchPane>;
-    QueryChanged_revoker QueryChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs> & handler) const;
-    void QueryChanged(event_token token) const;
-    event_token SuggestionsRequested(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs> & handler) const;
-    using SuggestionsRequested_revoker = event_revoker<ISearchPane>;
-    SuggestionsRequested_revoker SuggestionsRequested(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs> & handler) const;
-    void SuggestionsRequested(event_token token) const;
-    event_token QuerySubmitted(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs> & handler) const;
-    using QuerySubmitted_revoker = event_revoker<ISearchPane>;
-    QuerySubmitted_revoker QuerySubmitted(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs> & handler) const;
-    void QuerySubmitted(event_token token) const;
-    event_token ResultSuggestionChosen(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs> & handler) const;
-    using ResultSuggestionChosen_revoker = event_revoker<ISearchPane>;
-    ResultSuggestionChosen_revoker ResultSuggestionChosen(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Search::SearchPane, Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs> & handler) const;
-    void ResultSuggestionChosen(event_token token) const;
-    void SetLocalContentSuggestionSettings(const Windows::ApplicationModel::Search::LocalContentSuggestionSettings & settings) const;
-    void Show() const;
-    void Show(hstring_ref query) const;
-    void ShowOnKeyboardInput(bool value) const;
-    bool ShowOnKeyboardInput() const;
-    bool TrySetQueryText(hstring_ref query) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneQueryChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, ISearchPaneQueryChangedEventArgs>(this); }
-
-public:
-
-    hstring QueryText() const;
-    hstring Language() const;
-    Windows::ApplicationModel::Search::SearchPaneQueryLinguisticDetails LinguisticDetails() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneQueryLinguisticDetails
-{
-    auto shim() const { return impl::shim<D, ISearchPaneQueryLinguisticDetails>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<hstring> QueryTextAlternatives() const;
-    uint32_t QueryTextCompositionStart() const;
-    uint32_t QueryTextCompositionLength() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneQuerySubmittedEventArgs
-{
-    auto shim() const { return impl::shim<D, ISearchPaneQuerySubmittedEventArgs>(this); }
-
-public:
-
-    hstring QueryText() const;
-    hstring Language() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails
-{
-    auto shim() const { return impl::shim<D, ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails>(this); }
-
-public:
-
-    Windows::ApplicationModel::Search::SearchPaneQueryLinguisticDetails LinguisticDetails() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneResultSuggestionChosenEventArgs
-{
-    auto shim() const { return impl::shim<D, ISearchPaneResultSuggestionChosenEventArgs>(this); }
-
-public:
-
-    hstring Tag() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneStatics
-{
-    auto shim() const { return impl::shim<D, ISearchPaneStatics>(this); }
-
-public:
-
-    Windows::ApplicationModel::Search::SearchPane GetForCurrentView() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneStaticsWithHideThisApplication
-{
-    auto shim() const { return impl::shim<D, ISearchPaneStaticsWithHideThisApplication>(this); }
-
-public:
-
-    void HideThisApplication() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneSuggestionsRequest
-{
-    auto shim() const { return impl::shim<D, ISearchPaneSuggestionsRequest>(this); }
-
-public:
-
-    bool IsCanceled() const;
-    Windows::ApplicationModel::Search::SearchSuggestionCollection SearchSuggestionCollection() const;
-    Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestDeferral GetDeferral() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneSuggestionsRequestDeferral
-{
-    auto shim() const { return impl::shim<D, ISearchPaneSuggestionsRequestDeferral>(this); }
-
-public:
-
-    void Complete() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneSuggestionsRequestedEventArgs
-{
-    auto shim() const { return impl::shim<D, ISearchPaneSuggestionsRequestedEventArgs>(this); }
-
-public:
-
-    Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest Request() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchPaneVisibilityChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, ISearchPaneVisibilityChangedEventArgs>(this); }
-
-public:
-
-    bool Visible() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchQueryLinguisticDetails
-{
-    auto shim() const { return impl::shim<D, ISearchQueryLinguisticDetails>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<hstring> QueryTextAlternatives() const;
-    uint32_t QueryTextCompositionStart() const;
-    uint32_t QueryTextCompositionLength() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchQueryLinguisticDetailsFactory
-{
-    auto shim() const { return impl::shim<D, ISearchQueryLinguisticDetailsFactory>(this); }
-
-public:
-
-    Windows::ApplicationModel::Search::SearchQueryLinguisticDetails CreateInstance(const Windows::Foundation::Collections::IIterable<hstring> & queryTextAlternatives, uint32_t queryTextCompositionStart, uint32_t queryTextCompositionLength) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchSuggestionCollection
-{
-    auto shim() const { return impl::shim<D, ISearchSuggestionCollection>(this); }
-
-public:
-
-    uint32_t Size() const;
-    void AppendQuerySuggestion(hstring_ref text) const;
-    void AppendQuerySuggestions(const Windows::Foundation::Collections::IIterable<hstring> & suggestions) const;
-    void AppendResultSuggestion(hstring_ref text, hstring_ref detailText, hstring_ref tag, const Windows::Storage::Streams::IRandomAccessStreamReference & image, hstring_ref imageAlternateText) const;
-    void AppendSearchSeparator(hstring_ref label) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchSuggestionsRequest
-{
-    auto shim() const { return impl::shim<D, ISearchSuggestionsRequest>(this); }
-
-public:
-
-    bool IsCanceled() const;
-    Windows::ApplicationModel::Search::SearchSuggestionCollection SearchSuggestionCollection() const;
-    Windows::ApplicationModel::Search::SearchSuggestionsRequestDeferral GetDeferral() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISearchSuggestionsRequestDeferral
-{
-    auto shim() const { return impl::shim<D, ISearchSuggestionsRequestDeferral>(this); }
-
-public:
-
-    void Complete() const;
-};
-
 struct ILocalContentSuggestionSettings :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ILocalContentSuggestionSettings>
 {
     ILocalContentSuggestionSettings(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ILocalContentSuggestionSettings>(m_ptr); }
 };
 
 struct ISearchPane :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPane>
 {
     ISearchPane(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPane>(m_ptr); }
 };
+struct [[deprecated("ISearchPane may be altered or unavailable for releases after Windows 10.")]] ISearchPane;
 
 struct ISearchPaneQueryChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneQueryChangedEventArgs>
 {
     ISearchPaneQueryChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneQueryChangedEventArgs>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneQueryChangedEventArgs may be altered or unavailable for releases after Windows 10.")]] ISearchPaneQueryChangedEventArgs;
 
 struct ISearchPaneQueryLinguisticDetails :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneQueryLinguisticDetails>
 {
     ISearchPaneQueryLinguisticDetails(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneQueryLinguisticDetails>(m_ptr); }
 };
 
 struct ISearchPaneQuerySubmittedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneQuerySubmittedEventArgs>
 {
     ISearchPaneQuerySubmittedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneQuerySubmittedEventArgs>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneQuerySubmittedEventArgs may be altered or unavailable for releases after Windows 10.")]] ISearchPaneQuerySubmittedEventArgs;
 
 struct ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails>
 {
     ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails may be altered or unavailable for releases after Windows 10.")]] ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails;
 
 struct ISearchPaneResultSuggestionChosenEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneResultSuggestionChosenEventArgs>
 {
     ISearchPaneResultSuggestionChosenEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneResultSuggestionChosenEventArgs>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneResultSuggestionChosenEventArgs may be altered or unavailable for releases after Windows 10.")]] ISearchPaneResultSuggestionChosenEventArgs;
 
 struct ISearchPaneStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneStatics>
 {
     ISearchPaneStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneStatics>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneStatics may be altered or unavailable for releases after Windows 10.")]] ISearchPaneStatics;
 
 struct ISearchPaneStaticsWithHideThisApplication :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneStaticsWithHideThisApplication>
 {
     ISearchPaneStaticsWithHideThisApplication(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneStaticsWithHideThisApplication>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneStaticsWithHideThisApplication may be altered or unavailable for releases after Windows 10.")]] ISearchPaneStaticsWithHideThisApplication;
 
 struct ISearchPaneSuggestionsRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneSuggestionsRequest>
 {
     ISearchPaneSuggestionsRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneSuggestionsRequest>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneSuggestionsRequest may be altered or unavailable for releases after Windows 10.")]] ISearchPaneSuggestionsRequest;
 
 struct ISearchPaneSuggestionsRequestDeferral :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneSuggestionsRequestDeferral>
 {
     ISearchPaneSuggestionsRequestDeferral(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneSuggestionsRequestDeferral>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneSuggestionsRequestDeferral may be altered or unavailable for releases after Windows 10.")]] ISearchPaneSuggestionsRequestDeferral;
 
 struct ISearchPaneSuggestionsRequestedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneSuggestionsRequestedEventArgs>,
     impl::require<ISearchPaneSuggestionsRequestedEventArgs, Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs>
 {
     ISearchPaneSuggestionsRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneSuggestionsRequestedEventArgs>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneSuggestionsRequestedEventArgs may be altered or unavailable for releases after Windows 10.")]] ISearchPaneSuggestionsRequestedEventArgs;
 
 struct ISearchPaneVisibilityChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchPaneVisibilityChangedEventArgs>
 {
     ISearchPaneVisibilityChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchPaneVisibilityChangedEventArgs>(m_ptr); }
 };
+struct [[deprecated("ISearchPaneVisibilityChangedEventArgs may be altered or unavailable for releases after Windows 10.")]] ISearchPaneVisibilityChangedEventArgs;
 
 struct ISearchQueryLinguisticDetails :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchQueryLinguisticDetails>
 {
     ISearchQueryLinguisticDetails(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchQueryLinguisticDetails>(m_ptr); }
 };
 
 struct ISearchQueryLinguisticDetailsFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchQueryLinguisticDetailsFactory>
 {
     ISearchQueryLinguisticDetailsFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchQueryLinguisticDetailsFactory>(m_ptr); }
 };
 
 struct ISearchSuggestionCollection :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchSuggestionCollection>
 {
     ISearchSuggestionCollection(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchSuggestionCollection>(m_ptr); }
 };
 
 struct ISearchSuggestionsRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchSuggestionsRequest>
 {
     ISearchSuggestionsRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchSuggestionsRequest>(m_ptr); }
 };
 
 struct ISearchSuggestionsRequestDeferral :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISearchSuggestionsRequestDeferral>
 {
     ISearchSuggestionsRequestDeferral(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISearchSuggestionsRequestDeferral>(m_ptr); }
 };
 
 }

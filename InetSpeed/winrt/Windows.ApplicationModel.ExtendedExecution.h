@@ -1,10 +1,13 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.Foundation.3.h"
-#include "internal\Windows.ApplicationModel.ExtendedExecution.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.Foundation.3.h"
+#include "internal/Windows.ApplicationModel.ExtendedExecution.3.h"
 #include "Windows.ApplicationModel.h"
 #include "Windows.Foundation.h"
 
@@ -19,7 +22,8 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
     {
         try
         {
-            *value = detach(shim().Reason());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Reason());
             return S_OK;
         }
         catch (...)
@@ -36,7 +40,8 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
     {
         try
         {
-            *value = detach(shim().Reason());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Reason());
             return S_OK;
         }
         catch (...)
@@ -49,7 +54,8 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
     {
         try
         {
-            shim().Reason(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Reason(value);
             return S_OK;
         }
         catch (...)
@@ -58,11 +64,12 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
         }
     }
 
-    HRESULT __stdcall get_Description(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Description(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Description());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Description());
             return S_OK;
         }
         catch (...)
@@ -72,11 +79,12 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
         }
     }
 
-    HRESULT __stdcall put_Description(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_Description(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().Description(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Description(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -89,7 +97,8 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
     {
         try
         {
-            *value = detach(shim().PercentProgress());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PercentProgress());
             return S_OK;
         }
         catch (...)
@@ -102,7 +111,8 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
     {
         try
         {
-            shim().PercentProgress(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().PercentProgress(value);
             return S_OK;
         }
         catch (...)
@@ -111,11 +121,12 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
         }
     }
 
-    HRESULT __stdcall add_Revoked(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::IInspectable, Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_Revoked(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Foundation::IInspectable, Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().Revoked(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::IInspectable, Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().Revoked(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Foundation::IInspectable, Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -128,7 +139,8 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
     {
         try
         {
-            shim().Revoked(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Revoked(token);
             return S_OK;
         }
         catch (...)
@@ -137,11 +149,12 @@ struct produce<D, Windows::ApplicationModel::ExtendedExecution::IExtendedExecuti
         }
     }
 
-    HRESULT __stdcall abi_RequestExtensionAsync(abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionResult>> operation) noexcept override
+    HRESULT __stdcall abi_RequestExtensionAsync(impl::abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionResult>> operation) noexcept override
     {
         try
         {
-            *operation = detach(shim().RequestExtensionAsync());
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().RequestExtensionAsync());
             return S_OK;
         }
         catch (...)
@@ -159,67 +172,67 @@ namespace Windows::ApplicationModel::ExtendedExecution {
 template <typename D> Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedReason impl_IExtendedExecutionRevokedEventArgs<D>::Reason() const
 {
     Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedReason value {};
-    check_hresult(shim()->get_Reason(&value));
+    check_hresult(WINRT_SHIM(IExtendedExecutionRevokedEventArgs)->get_Reason(&value));
     return value;
 }
 
 template <typename D> Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionReason impl_IExtendedExecutionSession<D>::Reason() const
 {
     Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionReason value {};
-    check_hresult(shim()->get_Reason(&value));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->get_Reason(&value));
     return value;
 }
 
 template <typename D> void impl_IExtendedExecutionSession<D>::Reason(Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionReason value) const
 {
-    check_hresult(shim()->put_Reason(value));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->put_Reason(value));
 }
 
 template <typename D> hstring impl_IExtendedExecutionSession<D>::Description() const
 {
     hstring value;
-    check_hresult(shim()->get_Description(put(value)));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->get_Description(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_IExtendedExecutionSession<D>::Description(hstring_ref value) const
+template <typename D> void impl_IExtendedExecutionSession<D>::Description(hstring_view value) const
 {
-    check_hresult(shim()->put_Description(get(value)));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->put_Description(get_abi(value)));
 }
 
 template <typename D> uint32_t impl_IExtendedExecutionSession<D>::PercentProgress() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_PercentProgress(&value));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->get_PercentProgress(&value));
     return value;
 }
 
 template <typename D> void impl_IExtendedExecutionSession<D>::PercentProgress(uint32_t value) const
 {
-    check_hresult(shim()->put_PercentProgress(value));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->put_PercentProgress(value));
 }
 
-template <typename D> event_token impl_IExtendedExecutionSession<D>::Revoked(const Windows::Foundation::TypedEventHandler<Windows::IInspectable, Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs> & handler) const
+template <typename D> event_token impl_IExtendedExecutionSession<D>::Revoked(const Windows::Foundation::TypedEventHandler<Windows::Foundation::IInspectable, Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_Revoked(get(handler), &token));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->add_Revoked(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IExtendedExecutionSession> impl_IExtendedExecutionSession<D>::Revoked(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::IInspectable, Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs> & handler) const
+template <typename D> event_revoker<IExtendedExecutionSession> impl_IExtendedExecutionSession<D>::Revoked(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Foundation::IInspectable, Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs> & handler) const
 {
     return impl::make_event_revoker<D, IExtendedExecutionSession>(this, &ABI::Windows::ApplicationModel::ExtendedExecution::IExtendedExecutionSession::remove_Revoked, Revoked(handler));
 }
 
 template <typename D> void impl_IExtendedExecutionSession<D>::Revoked(event_token token) const
 {
-    check_hresult(shim()->remove_Revoked(token));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->remove_Revoked(token));
 }
 
 template <typename D> Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionResult> impl_IExtendedExecutionSession<D>::RequestExtensionAsync() const
 {
     Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionResult> operation;
-    check_hresult(shim()->abi_RequestExtensionAsync(put(operation)));
+    check_hresult(WINRT_SHIM(IExtendedExecutionSession)->abi_RequestExtensionAsync(put_abi(operation)));
     return operation;
 }
 
@@ -230,3 +243,41 @@ inline ExtendedExecutionSession::ExtendedExecutionSession() :
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::ExtendedExecution::IExtendedExecutionRevokedEventArgs>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::ExtendedExecution::IExtendedExecutionRevokedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::ExtendedExecution::IExtendedExecutionSession>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::ExtendedExecution::IExtendedExecutionSession & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionRevokedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionSession>
+{
+    size_t operator()(const winrt::Windows::ApplicationModel::ExtendedExecution::ExtendedExecutionSession & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

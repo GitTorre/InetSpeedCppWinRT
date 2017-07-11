@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -8,6 +8,11 @@
 WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_98b9acc1_4b56_532e_ac73_03d5291cca90
+#define WINRT_GENERIC_98b9acc1_4b56_532e_ac73_03d5291cca90
+template <> struct __declspec(uuid("98b9acc1-4b56-532e-ac73-03d5291cca90")) __declspec(novtable) IVector<hstring> : impl_IVector<hstring> {};
+#endif
 
 #ifndef WINRT_GENERIC_2f13c006_a03a_5f69_b090_75a43e33423e
 #define WINRT_GENERIC_2f13c006_a03a_5f69_b090_75a43e33423e
@@ -89,6 +94,16 @@ template <> struct __declspec(uuid("3a0b522d-98d0-5d34-ace6-2c7346613f1d")) __de
 
 namespace ABI::Windows::Foundation::Collections {
 
+#ifndef WINRT_GENERIC_6874a925_e651_5eae_88a7_63df5b999205
+#define WINRT_GENERIC_6874a925_e651_5eae_88a7_63df5b999205
+template <> struct __declspec(uuid("6874a925-e651-5eae-88a7-63df5b999205")) __declspec(novtable) IVector<Windows::System::RemoteSystems::IRemoteSystemFilter> : impl_IVector<Windows::System::RemoteSystems::IRemoteSystemFilter> {};
+#endif
+
+#ifndef WINRT_GENERIC_d2810ae1_cff2_5636_8feb_054c5d3a1ae2
+#define WINRT_GENERIC_d2810ae1_cff2_5636_8feb_054c5d3a1ae2
+template <> struct __declspec(uuid("d2810ae1-cff2-5636-8feb-054c5d3a1ae2")) __declspec(novtable) IVectorView<Windows::System::RemoteSystems::IRemoteSystemFilter> : impl_IVectorView<Windows::System::RemoteSystems::IRemoteSystemFilter> {};
+#endif
+
 #ifndef WINRT_GENERIC_6a2c5aef_9f30_58ae_a6cb_9ac9c8092a41
 #define WINRT_GENERIC_6a2c5aef_9f30_58ae_a6cb_9ac9c8092a41
 template <> struct __declspec(uuid("6a2c5aef-9f30-58ae-a6cb-9ac9c8092a41")) __declspec(novtable) IIterator<Windows::System::RemoteSystems::IRemoteSystemFilter> : impl_IIterator<Windows::System::RemoteSystems::IRemoteSystemFilter> {};
@@ -109,315 +124,116 @@ template <> struct __declspec(uuid("543a221d-ef39-57f5-9741-b052dbc29249")) __de
 
 namespace Windows::System::RemoteSystems {
 
-template <typename D>
-class WINRT_EBO impl_IRemoteSystem
-{
-    auto shim() const { return impl::shim<D, IRemoteSystem>(this); }
-
-public:
-
-    hstring DisplayName() const;
-    hstring Id() const;
-    hstring Kind() const;
-    Windows::System::RemoteSystems::RemoteSystemStatus Status() const;
-    bool IsAvailableByProximity() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemAddedEventArgs
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemAddedEventArgs>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystem RemoteSystem() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemConnectionRequest
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemConnectionRequest>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystem RemoteSystem() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemConnectionRequestFactory
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemConnectionRequestFactory>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystemConnectionRequest Create(const Windows::System::RemoteSystems::RemoteSystem & remoteSystem) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemDiscoveryTypeFilter
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemDiscoveryTypeFilter>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystemDiscoveryType RemoteSystemDiscoveryType() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemDiscoveryTypeFilterFactory
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemDiscoveryTypeFilterFactory>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystemDiscoveryTypeFilter Create(Windows::System::RemoteSystems::RemoteSystemDiscoveryType discoveryType) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemFilter
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemFilter>(this); }
-
-public:
-
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemKindFilter
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemKindFilter>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<hstring> RemoteSystemKinds() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemKindFilterFactory
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemKindFilterFactory>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystemKindFilter Create(const Windows::Foundation::Collections::IIterable<hstring> & remoteSystemKinds) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemKindStatics
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemKindStatics>(this); }
-
-public:
-
-    hstring Phone() const;
-    hstring Hub() const;
-    hstring Holographic() const;
-    hstring Desktop() const;
-    hstring Xbox() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemRemovedEventArgs
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemRemovedEventArgs>(this); }
-
-public:
-
-    hstring RemoteSystemId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemStatics
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::System::RemoteSystems::RemoteSystem> FindByHostNameAsync(const Windows::Networking::HostName & hostName) const;
-    Windows::System::RemoteSystems::RemoteSystemWatcher CreateWatcher() const;
-    Windows::System::RemoteSystems::RemoteSystemWatcher CreateWatcher(const Windows::Foundation::Collections::IIterable<Windows::System::RemoteSystems::IRemoteSystemFilter> & filters) const;
-    Windows::Foundation::IAsyncOperation<winrt::Windows::System::RemoteSystems::RemoteSystemAccessStatus> RequestAccessAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemStatusTypeFilter
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemStatusTypeFilter>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystemStatusType RemoteSystemStatusType() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemStatusTypeFilterFactory
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemStatusTypeFilterFactory>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystemStatusTypeFilter Create(Windows::System::RemoteSystems::RemoteSystemStatusType remoteSystemStatusType) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemUpdatedEventArgs
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemUpdatedEventArgs>(this); }
-
-public:
-
-    Windows::System::RemoteSystems::RemoteSystem RemoteSystem() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IRemoteSystemWatcher
-{
-    auto shim() const { return impl::shim<D, IRemoteSystemWatcher>(this); }
-
-public:
-
-    void Start() const;
-    void Stop() const;
-    event_token RemoteSystemAdded(const Windows::Foundation::TypedEventHandler<Windows::System::RemoteSystems::RemoteSystemWatcher, Windows::System::RemoteSystems::RemoteSystemAddedEventArgs> & handler) const;
-    using RemoteSystemAdded_revoker = event_revoker<IRemoteSystemWatcher>;
-    RemoteSystemAdded_revoker RemoteSystemAdded(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::System::RemoteSystems::RemoteSystemWatcher, Windows::System::RemoteSystems::RemoteSystemAddedEventArgs> & handler) const;
-    void RemoteSystemAdded(event_token token) const;
-    event_token RemoteSystemUpdated(const Windows::Foundation::TypedEventHandler<Windows::System::RemoteSystems::RemoteSystemWatcher, Windows::System::RemoteSystems::RemoteSystemUpdatedEventArgs> & handler) const;
-    using RemoteSystemUpdated_revoker = event_revoker<IRemoteSystemWatcher>;
-    RemoteSystemUpdated_revoker RemoteSystemUpdated(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::System::RemoteSystems::RemoteSystemWatcher, Windows::System::RemoteSystems::RemoteSystemUpdatedEventArgs> & handler) const;
-    void RemoteSystemUpdated(event_token token) const;
-    event_token RemoteSystemRemoved(const Windows::Foundation::TypedEventHandler<Windows::System::RemoteSystems::RemoteSystemWatcher, Windows::System::RemoteSystems::RemoteSystemRemovedEventArgs> & handler) const;
-    using RemoteSystemRemoved_revoker = event_revoker<IRemoteSystemWatcher>;
-    RemoteSystemRemoved_revoker RemoteSystemRemoved(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::System::RemoteSystems::RemoteSystemWatcher, Windows::System::RemoteSystems::RemoteSystemRemovedEventArgs> & handler) const;
-    void RemoteSystemRemoved(event_token token) const;
-};
-
 struct IRemoteSystem :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystem>
 {
     IRemoteSystem(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystem>(m_ptr); }
 };
 
 struct IRemoteSystemAddedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemAddedEventArgs>
 {
     IRemoteSystemAddedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemAddedEventArgs>(m_ptr); }
 };
 
 struct IRemoteSystemConnectionRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemConnectionRequest>
 {
     IRemoteSystemConnectionRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemConnectionRequest>(m_ptr); }
 };
 
 struct IRemoteSystemConnectionRequestFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemConnectionRequestFactory>
 {
     IRemoteSystemConnectionRequestFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemConnectionRequestFactory>(m_ptr); }
 };
 
 struct IRemoteSystemDiscoveryTypeFilter :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemDiscoveryTypeFilter>
 {
     IRemoteSystemDiscoveryTypeFilter(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemDiscoveryTypeFilter>(m_ptr); }
 };
 
 struct IRemoteSystemDiscoveryTypeFilterFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemDiscoveryTypeFilterFactory>
 {
     IRemoteSystemDiscoveryTypeFilterFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemDiscoveryTypeFilterFactory>(m_ptr); }
 };
 
 struct IRemoteSystemFilter :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemFilter>
 {
     IRemoteSystemFilter(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemFilter>(m_ptr); }
 };
 
 struct IRemoteSystemKindFilter :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemKindFilter>
 {
     IRemoteSystemKindFilter(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemKindFilter>(m_ptr); }
 };
 
 struct IRemoteSystemKindFilterFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemKindFilterFactory>
 {
     IRemoteSystemKindFilterFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemKindFilterFactory>(m_ptr); }
 };
 
 struct IRemoteSystemKindStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemKindStatics>
 {
     IRemoteSystemKindStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemKindStatics>(m_ptr); }
 };
 
 struct IRemoteSystemRemovedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemRemovedEventArgs>
 {
     IRemoteSystemRemovedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemRemovedEventArgs>(m_ptr); }
 };
 
 struct IRemoteSystemStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemStatics>
 {
     IRemoteSystemStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemStatics>(m_ptr); }
 };
 
 struct IRemoteSystemStatusTypeFilter :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemStatusTypeFilter>
 {
     IRemoteSystemStatusTypeFilter(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemStatusTypeFilter>(m_ptr); }
 };
 
 struct IRemoteSystemStatusTypeFilterFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemStatusTypeFilterFactory>
 {
     IRemoteSystemStatusTypeFilterFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemStatusTypeFilterFactory>(m_ptr); }
 };
 
 struct IRemoteSystemUpdatedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemUpdatedEventArgs>
 {
     IRemoteSystemUpdatedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemUpdatedEventArgs>(m_ptr); }
 };
 
 struct IRemoteSystemWatcher :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IRemoteSystemWatcher>
 {
     IRemoteSystemWatcher(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IRemoteSystemWatcher>(m_ptr); }
 };
 
 }

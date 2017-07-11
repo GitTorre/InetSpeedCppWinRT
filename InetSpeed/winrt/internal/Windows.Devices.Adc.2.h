@@ -1,10 +1,10 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
 #include "Windows.Devices.Adc.1.h"
-#include "Windows.Foundation.2.h"
+#include "Windows.Foundation.1.h"
 
 WINRT_EXPORT namespace winrt {
 
@@ -24,6 +24,31 @@ namespace ABI::Windows::Foundation {
 #define WINRT_GENERIC_69420262_35c9_583f_a40e_c2694562c9e2
 template <> struct __declspec(uuid("69420262-35c9-583f-a40e-c2694562c9e2")) __declspec(novtable) IAsyncOperation<Windows::Devices::Adc::AdcController> : impl_IAsyncOperation<Windows::Devices::Adc::AdcController> {};
 #endif
+
+
+}
+
+namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_afcfb828_0184_5a38_a1da_7cd5fb4fd4f7
+#define WINRT_GENERIC_afcfb828_0184_5a38_a1da_7cd5fb4fd4f7
+template <> struct __declspec(uuid("afcfb828-0184-5a38-a1da-7cd5fb4fd4f7")) __declspec(novtable) IVector<Windows::Devices::Adc::AdcController> : impl_IVector<Windows::Devices::Adc::AdcController> {};
+#endif
+
+#ifndef WINRT_GENERIC_a10b62c1_a014_5335_8867_747fcab16005
+#define WINRT_GENERIC_a10b62c1_a014_5335_8867_747fcab16005
+template <> struct __declspec(uuid("a10b62c1-a014-5335-8867-747fcab16005")) __declspec(novtable) IIterator<Windows::Devices::Adc::AdcController> : impl_IIterator<Windows::Devices::Adc::AdcController> {};
+#endif
+
+#ifndef WINRT_GENERIC_4e478aad_4861_5758_b64b_5b4f28d8f86e
+#define WINRT_GENERIC_4e478aad_4861_5758_b64b_5b4f28d8f86e
+template <> struct __declspec(uuid("4e478aad-4861-5758-b64b-5b4f28d8f86e")) __declspec(novtable) IIterable<Windows::Devices::Adc::AdcController> : impl_IIterable<Windows::Devices::Adc::AdcController> {};
+#endif
+
+
+}
+
+namespace ABI::Windows::Foundation {
 
 #ifndef WINRT_GENERIC_baf66488_202f_5d51_b05e_18606c46b808
 #define WINRT_GENERIC_baf66488_202f_5d51_b05e_18606c46b808
@@ -45,86 +70,33 @@ template <> struct __declspec(uuid("7c4038c8-d920-53c7-a5d6-a976070d7637")) __de
 
 namespace Windows::Devices::Adc {
 
-template <typename D>
-class WINRT_EBO impl_IAdcChannel
-{
-    auto shim() const { return impl::shim<D, IAdcChannel>(this); }
-
-public:
-
-    Windows::Devices::Adc::AdcController Controller() const;
-    int32_t ReadValue() const;
-    double ReadRatio() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAdcController
-{
-    auto shim() const { return impl::shim<D, IAdcController>(this); }
-
-public:
-
-    int32_t ChannelCount() const;
-    int32_t ResolutionInBits() const;
-    int32_t MinValue() const;
-    int32_t MaxValue() const;
-    Windows::Devices::Adc::AdcChannelMode ChannelMode() const;
-    void ChannelMode(Windows::Devices::Adc::AdcChannelMode value) const;
-    bool IsChannelModeSupported(Windows::Devices::Adc::AdcChannelMode channelMode) const;
-    Windows::Devices::Adc::AdcChannel OpenChannel(int32_t channelNumber) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAdcControllerStatics
-{
-    auto shim() const { return impl::shim<D, IAdcControllerStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Adc::AdcController>> GetControllersAsync(const Windows::Devices::Adc::Provider::IAdcProvider & provider) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAdcControllerStatics2
-{
-    auto shim() const { return impl::shim<D, IAdcControllerStatics2>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Adc::AdcController> GetDefaultAsync() const;
-};
-
 struct IAdcChannel :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAdcChannel>,
     impl::require<IAdcChannel, Windows::Foundation::IClosable>
 {
     IAdcChannel(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAdcChannel>(m_ptr); }
 };
 
 struct IAdcController :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAdcController>
 {
     IAdcController(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAdcController>(m_ptr); }
 };
 
 struct IAdcControllerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAdcControllerStatics>
 {
     IAdcControllerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAdcControllerStatics>(m_ptr); }
 };
 
 struct IAdcControllerStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAdcControllerStatics2>
 {
     IAdcControllerStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAdcControllerStatics2>(m_ptr); }
 };
 
 }

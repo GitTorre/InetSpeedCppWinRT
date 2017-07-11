@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -27,6 +27,15 @@ struct CredentialPicker;
 struct CredentialPickerOptions;
 struct CredentialPickerResults;
 struct UserConsentVerifier;
+
+}
+
+namespace Windows::Security::Credentials::UI {
+
+template <typename T> struct impl_ICredentialPickerOptions;
+template <typename T> struct impl_ICredentialPickerResults;
+template <typename T> struct impl_ICredentialPickerStatics;
+template <typename T> struct impl_IUserConsentVerifierStatics;
 
 }
 

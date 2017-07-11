@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -22,6 +22,7 @@ namespace ABI::Windows::ApplicationModel {
 
 struct IAppDisplayInfo;
 struct IAppInfo;
+struct ICameraApplicationManagerStatics;
 struct IDesignModeStatics;
 struct IEnteredBackgroundEventArgs;
 struct IFullTrustProcessLauncherStatics;
@@ -71,6 +72,7 @@ namespace Windows::ApplicationModel {
 
 struct IAppDisplayInfo;
 struct IAppInfo;
+struct ICameraApplicationManagerStatics;
 struct IDesignModeStatics;
 struct IEnteredBackgroundEventArgs;
 struct IFullTrustProcessLauncherStatics;
@@ -98,6 +100,7 @@ struct ISuspendingEventArgs;
 struct ISuspendingOperation;
 struct AppDisplayInfo;
 struct AppInfo;
+struct CameraApplicationManager;
 struct DesignMode;
 struct EnteredBackgroundEventArgs;
 struct FullTrustProcessLauncher;
@@ -115,6 +118,39 @@ struct StartupTask;
 struct SuspendingDeferral;
 struct SuspendingEventArgs;
 struct SuspendingOperation;
+
+}
+
+namespace Windows::ApplicationModel {
+
+template <typename T> struct impl_IAppDisplayInfo;
+template <typename T> struct impl_IAppInfo;
+template <typename T> struct impl_ICameraApplicationManagerStatics;
+template <typename T> struct impl_IDesignModeStatics;
+template <typename T> struct impl_IEnteredBackgroundEventArgs;
+template <typename T> struct impl_IFullTrustProcessLauncherStatics;
+template <typename T> struct impl_ILeavingBackgroundEventArgs;
+template <typename T> struct impl_IPackage;
+template <typename T> struct impl_IPackage2;
+template <typename T> struct impl_IPackage3;
+template <typename T> struct impl_IPackage4;
+template <typename T> struct impl_IPackageCatalog;
+template <typename T> struct impl_IPackageCatalogStatics;
+template <typename T> struct impl_IPackageId;
+template <typename T> struct impl_IPackageIdWithMetadata;
+template <typename T> struct impl_IPackageInstallingEventArgs;
+template <typename T> struct impl_IPackageStagingEventArgs;
+template <typename T> struct impl_IPackageStatics;
+template <typename T> struct impl_IPackageStatus;
+template <typename T> struct impl_IPackageStatusChangedEventArgs;
+template <typename T> struct impl_IPackageUninstallingEventArgs;
+template <typename T> struct impl_IPackageUpdatingEventArgs;
+template <typename T> struct impl_IPackageWithMetadata;
+template <typename T> struct impl_IStartupTask;
+template <typename T> struct impl_IStartupTaskStatics;
+template <typename T> struct impl_ISuspendingDeferral;
+template <typename T> struct impl_ISuspendingEventArgs;
+template <typename T> struct impl_ISuspendingOperation;
 
 }
 

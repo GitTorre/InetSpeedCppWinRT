@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -164,544 +164,172 @@ template <> struct __declspec(uuid("0e3d7f70-4e8c-5260-a7e5-786e05bded99")) __de
 
 namespace Windows::Web::Syndication {
 
-template <typename D>
-class WINRT_EBO impl_ISyndicationAttribute
-{
-    auto shim() const { return impl::shim<D, ISyndicationAttribute>(this); }
-
-public:
-
-    hstring Name() const;
-    void Name(hstring_ref value) const;
-    hstring Namespace() const;
-    void Namespace(hstring_ref value) const;
-    hstring Value() const;
-    void Value(hstring_ref value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationAttributeFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationAttributeFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationAttribute CreateSyndicationAttribute(hstring_ref attributeName, hstring_ref attributeNamespace, hstring_ref attributeValue) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationCategory
-{
-    auto shim() const { return impl::shim<D, ISyndicationCategory>(this); }
-
-public:
-
-    hstring Label() const;
-    void Label(hstring_ref value) const;
-    hstring Scheme() const;
-    void Scheme(hstring_ref value) const;
-    hstring Term() const;
-    void Term(hstring_ref value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationCategoryFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationCategoryFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationCategory CreateSyndicationCategory(hstring_ref term) const;
-    Windows::Web::Syndication::SyndicationCategory CreateSyndicationCategoryEx(hstring_ref term, hstring_ref scheme, hstring_ref label) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationClient
-{
-    auto shim() const { return impl::shim<D, ISyndicationClient>(this); }
-
-public:
-
-    Windows::Security::Credentials::PasswordCredential ServerCredential() const;
-    void ServerCredential(const Windows::Security::Credentials::PasswordCredential & value) const;
-    Windows::Security::Credentials::PasswordCredential ProxyCredential() const;
-    void ProxyCredential(const Windows::Security::Credentials::PasswordCredential & value) const;
-    uint32_t MaxResponseBufferSize() const;
-    void MaxResponseBufferSize(uint32_t value) const;
-    uint32_t Timeout() const;
-    void Timeout(uint32_t value) const;
-    bool BypassCacheOnRetrieve() const;
-    void BypassCacheOnRetrieve(bool value) const;
-    void SetRequestHeader(hstring_ref name, hstring_ref value) const;
-    Windows::Foundation::IAsyncOperationWithProgress<Windows::Web::Syndication::SyndicationFeed, Windows::Web::Syndication::RetrievalProgress> RetrieveFeedAsync(const Windows::Foundation::Uri & uri) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationClientFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationClientFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationClient CreateSyndicationClient(const Windows::Security::Credentials::PasswordCredential & serverCredential) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationContent
-{
-    auto shim() const { return impl::shim<D, ISyndicationContent>(this); }
-
-public:
-
-    Windows::Foundation::Uri SourceUri() const;
-    void SourceUri(const Windows::Foundation::Uri & value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationContentFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationContentFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationContent CreateSyndicationContent(hstring_ref text, Windows::Web::Syndication::SyndicationTextType type) const;
-    Windows::Web::Syndication::SyndicationContent CreateSyndicationContentWithSourceUri(const Windows::Foundation::Uri & sourceUri) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationErrorStatics
-{
-    auto shim() const { return impl::shim<D, ISyndicationErrorStatics>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationErrorStatus GetStatus(int32_t hresult) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationFeed
-{
-    auto shim() const { return impl::shim<D, ISyndicationFeed>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationPerson> Authors() const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationCategory> Categories() const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationPerson> Contributors() const;
-    Windows::Web::Syndication::SyndicationGenerator Generator() const;
-    void Generator(const Windows::Web::Syndication::SyndicationGenerator & value) const;
-    Windows::Foundation::Uri IconUri() const;
-    void IconUri(const Windows::Foundation::Uri & value) const;
-    hstring Id() const;
-    void Id(hstring_ref value) const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationItem> Items() const;
-    Windows::Foundation::DateTime LastUpdatedTime() const;
-    void LastUpdatedTime(const Windows::Foundation::DateTime & value) const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationLink> Links() const;
-    Windows::Foundation::Uri ImageUri() const;
-    void ImageUri(const Windows::Foundation::Uri & value) const;
-    Windows::Web::Syndication::ISyndicationText Rights() const;
-    void Rights(const Windows::Web::Syndication::ISyndicationText & value) const;
-    Windows::Web::Syndication::ISyndicationText Subtitle() const;
-    void Subtitle(const Windows::Web::Syndication::ISyndicationText & value) const;
-    Windows::Web::Syndication::ISyndicationText Title() const;
-    void Title(const Windows::Web::Syndication::ISyndicationText & value) const;
-    Windows::Foundation::Uri FirstUri() const;
-    Windows::Foundation::Uri LastUri() const;
-    Windows::Foundation::Uri NextUri() const;
-    Windows::Foundation::Uri PreviousUri() const;
-    Windows::Web::Syndication::SyndicationFormat SourceFormat() const;
-    void Load(hstring_ref feed) const;
-    void LoadFromXml(const Windows::Data::Xml::Dom::XmlDocument & feedDocument) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationFeedFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationFeedFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationFeed CreateSyndicationFeed(hstring_ref title, hstring_ref subtitle, const Windows::Foundation::Uri & uri) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationGenerator
-{
-    auto shim() const { return impl::shim<D, ISyndicationGenerator>(this); }
-
-public:
-
-    hstring Text() const;
-    void Text(hstring_ref value) const;
-    Windows::Foundation::Uri Uri() const;
-    void Uri(const Windows::Foundation::Uri & value) const;
-    hstring Version() const;
-    void Version(hstring_ref value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationGeneratorFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationGeneratorFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationGenerator CreateSyndicationGenerator(hstring_ref text) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationItem
-{
-    auto shim() const { return impl::shim<D, ISyndicationItem>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationPerson> Authors() const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationCategory> Categories() const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationPerson> Contributors() const;
-    Windows::Web::Syndication::SyndicationContent Content() const;
-    void Content(const Windows::Web::Syndication::SyndicationContent & value) const;
-    hstring Id() const;
-    void Id(hstring_ref value) const;
-    Windows::Foundation::DateTime LastUpdatedTime() const;
-    void LastUpdatedTime(const Windows::Foundation::DateTime & value) const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationLink> Links() const;
-    Windows::Foundation::DateTime PublishedDate() const;
-    void PublishedDate(const Windows::Foundation::DateTime & value) const;
-    Windows::Web::Syndication::ISyndicationText Rights() const;
-    void Rights(const Windows::Web::Syndication::ISyndicationText & value) const;
-    Windows::Web::Syndication::SyndicationFeed Source() const;
-    void Source(const Windows::Web::Syndication::SyndicationFeed & value) const;
-    Windows::Web::Syndication::ISyndicationText Summary() const;
-    void Summary(const Windows::Web::Syndication::ISyndicationText & value) const;
-    Windows::Web::Syndication::ISyndicationText Title() const;
-    void Title(const Windows::Web::Syndication::ISyndicationText & value) const;
-    Windows::Foundation::Uri CommentsUri() const;
-    void CommentsUri(const Windows::Foundation::Uri & value) const;
-    Windows::Foundation::Uri EditUri() const;
-    Windows::Foundation::Uri EditMediaUri() const;
-    hstring ETag() const;
-    Windows::Foundation::Uri ItemUri() const;
-    void Load(hstring_ref item) const;
-    void LoadFromXml(const Windows::Data::Xml::Dom::XmlDocument & itemDocument) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationItemFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationItemFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationItem CreateSyndicationItem(hstring_ref title, const Windows::Web::Syndication::SyndicationContent & content, const Windows::Foundation::Uri & uri) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationLink
-{
-    auto shim() const { return impl::shim<D, ISyndicationLink>(this); }
-
-public:
-
-    uint32_t Length() const;
-    void Length(uint32_t value) const;
-    hstring MediaType() const;
-    void MediaType(hstring_ref value) const;
-    hstring Relationship() const;
-    void Relationship(hstring_ref value) const;
-    hstring Title() const;
-    void Title(hstring_ref value) const;
-    Windows::Foundation::Uri Uri() const;
-    void Uri(const Windows::Foundation::Uri & value) const;
-    hstring ResourceLanguage() const;
-    void ResourceLanguage(hstring_ref value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationLinkFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationLinkFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationLink CreateSyndicationLink(const Windows::Foundation::Uri & uri) const;
-    Windows::Web::Syndication::SyndicationLink CreateSyndicationLinkEx(const Windows::Foundation::Uri & uri, hstring_ref relationship, hstring_ref title, hstring_ref mediaType, uint32_t length) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationNode
-{
-    auto shim() const { return impl::shim<D, ISyndicationNode>(this); }
-
-public:
-
-    hstring NodeName() const;
-    void NodeName(hstring_ref value) const;
-    hstring NodeNamespace() const;
-    void NodeNamespace(hstring_ref value) const;
-    hstring NodeValue() const;
-    void NodeValue(hstring_ref value) const;
-    hstring Language() const;
-    void Language(hstring_ref value) const;
-    Windows::Foundation::Uri BaseUri() const;
-    void BaseUri(const Windows::Foundation::Uri & value) const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::SyndicationAttribute> AttributeExtensions() const;
-    Windows::Foundation::Collections::IVector<Windows::Web::Syndication::ISyndicationNode> ElementExtensions() const;
-    Windows::Data::Xml::Dom::XmlDocument GetXmlDocument(Windows::Web::Syndication::SyndicationFormat format) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationNodeFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationNodeFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationNode CreateSyndicationNode(hstring_ref nodeName, hstring_ref nodeNamespace, hstring_ref nodeValue) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationPerson
-{
-    auto shim() const { return impl::shim<D, ISyndicationPerson>(this); }
-
-public:
-
-    hstring Email() const;
-    void Email(hstring_ref value) const;
-    hstring Name() const;
-    void Name(hstring_ref value) const;
-    Windows::Foundation::Uri Uri() const;
-    void Uri(const Windows::Foundation::Uri & value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationPersonFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationPersonFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationPerson CreateSyndicationPerson(hstring_ref name) const;
-    Windows::Web::Syndication::SyndicationPerson CreateSyndicationPersonEx(hstring_ref name, hstring_ref email, const Windows::Foundation::Uri & uri) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationText
-{
-    auto shim() const { return impl::shim<D, ISyndicationText>(this); }
-
-public:
-
-    hstring Text() const;
-    void Text(hstring_ref value) const;
-    hstring Type() const;
-    void Type(hstring_ref value) const;
-    Windows::Data::Xml::Dom::XmlDocument Xml() const;
-    void Xml(const Windows::Data::Xml::Dom::XmlDocument & value) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISyndicationTextFactory
-{
-    auto shim() const { return impl::shim<D, ISyndicationTextFactory>(this); }
-
-public:
-
-    Windows::Web::Syndication::SyndicationText CreateSyndicationText(hstring_ref text) const;
-    Windows::Web::Syndication::SyndicationText CreateSyndicationTextEx(hstring_ref text, Windows::Web::Syndication::SyndicationTextType type) const;
-};
-
 struct ISyndicationAttribute :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationAttribute>
 {
     ISyndicationAttribute(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationAttribute>(m_ptr); }
 };
 
 struct ISyndicationAttributeFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationAttributeFactory>
 {
     ISyndicationAttributeFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationAttributeFactory>(m_ptr); }
 };
 
 struct ISyndicationCategory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationCategory>,
     impl::require<ISyndicationCategory, Windows::Web::Syndication::ISyndicationNode>
 {
     ISyndicationCategory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationCategory>(m_ptr); }
 };
 
 struct ISyndicationCategoryFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationCategoryFactory>
 {
     ISyndicationCategoryFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationCategoryFactory>(m_ptr); }
 };
 
 struct ISyndicationClient :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationClient>
 {
     ISyndicationClient(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationClient>(m_ptr); }
 };
 
 struct ISyndicationClientFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationClientFactory>
 {
     ISyndicationClientFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationClientFactory>(m_ptr); }
 };
 
 struct ISyndicationContent :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationContent>,
     impl::require<ISyndicationContent, Windows::Web::Syndication::ISyndicationNode, Windows::Web::Syndication::ISyndicationText>
 {
     ISyndicationContent(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationContent>(m_ptr); }
 };
 
 struct ISyndicationContentFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationContentFactory>
 {
     ISyndicationContentFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationContentFactory>(m_ptr); }
 };
 
 struct ISyndicationErrorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationErrorStatics>
 {
     ISyndicationErrorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationErrorStatics>(m_ptr); }
 };
 
 struct ISyndicationFeed :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationFeed>,
     impl::require<ISyndicationFeed, Windows::Web::Syndication::ISyndicationNode>
 {
     ISyndicationFeed(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationFeed>(m_ptr); }
 };
 
 struct ISyndicationFeedFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationFeedFactory>
 {
     ISyndicationFeedFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationFeedFactory>(m_ptr); }
 };
 
 struct ISyndicationGenerator :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationGenerator>
 {
     ISyndicationGenerator(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationGenerator>(m_ptr); }
 };
 
 struct ISyndicationGeneratorFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationGeneratorFactory>
 {
     ISyndicationGeneratorFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationGeneratorFactory>(m_ptr); }
 };
 
 struct ISyndicationItem :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationItem>,
     impl::require<ISyndicationItem, Windows::Web::Syndication::ISyndicationNode>
 {
     ISyndicationItem(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationItem>(m_ptr); }
 };
 
 struct ISyndicationItemFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationItemFactory>
 {
     ISyndicationItemFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationItemFactory>(m_ptr); }
 };
 
 struct ISyndicationLink :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationLink>,
     impl::require<ISyndicationLink, Windows::Web::Syndication::ISyndicationNode>
 {
     ISyndicationLink(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationLink>(m_ptr); }
 };
 
 struct ISyndicationLinkFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationLinkFactory>
 {
     ISyndicationLinkFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationLinkFactory>(m_ptr); }
 };
 
 struct ISyndicationNode :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationNode>
 {
     ISyndicationNode(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationNode>(m_ptr); }
 };
 
 struct ISyndicationNodeFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationNodeFactory>
 {
     ISyndicationNodeFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationNodeFactory>(m_ptr); }
 };
 
 struct ISyndicationPerson :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationPerson>,
     impl::require<ISyndicationPerson, Windows::Web::Syndication::ISyndicationNode>
 {
     ISyndicationPerson(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationPerson>(m_ptr); }
 };
 
 struct ISyndicationPersonFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationPersonFactory>
 {
     ISyndicationPersonFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationPersonFactory>(m_ptr); }
 };
 
 struct ISyndicationText :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationText>,
     impl::require<ISyndicationText, Windows::Web::Syndication::ISyndicationNode>
 {
     ISyndicationText(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationText>(m_ptr); }
 };
 
 struct ISyndicationTextFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISyndicationTextFactory>
 {
     ISyndicationTextFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISyndicationTextFactory>(m_ptr); }
 };
 
 }

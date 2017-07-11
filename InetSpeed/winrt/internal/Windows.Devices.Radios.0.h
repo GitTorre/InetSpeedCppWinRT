@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -19,6 +19,13 @@ namespace Windows::Devices::Radios {
 struct IRadio;
 struct IRadioStatics;
 struct Radio;
+
+}
+
+namespace Windows::Devices::Radios {
+
+template <typename T> struct impl_IRadio;
+template <typename T> struct impl_IRadioStatics;
 
 }
 

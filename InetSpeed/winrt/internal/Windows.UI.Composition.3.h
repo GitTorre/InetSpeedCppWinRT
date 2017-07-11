@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -125,7 +125,7 @@ struct WINRT_EBO CompositionEffectSourceParameter :
     Windows::UI::Composition::ICompositionEffectSourceParameter
 {
     CompositionEffectSourceParameter(std::nullptr_t) noexcept {}
-    CompositionEffectSourceParameter(hstring_ref name);
+    CompositionEffectSourceParameter(hstring_view name);
 };
 
 struct WINRT_EBO CompositionGraphicsDevice :

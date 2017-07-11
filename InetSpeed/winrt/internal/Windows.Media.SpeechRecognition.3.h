@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -38,7 +38,7 @@ struct WINRT_EBO SpeechRecognitionGrammarFileConstraint :
 {
     SpeechRecognitionGrammarFileConstraint(std::nullptr_t) noexcept {}
     SpeechRecognitionGrammarFileConstraint(const Windows::Storage::StorageFile & file);
-    SpeechRecognitionGrammarFileConstraint(const Windows::Storage::StorageFile & file, hstring_ref tag);
+    SpeechRecognitionGrammarFileConstraint(const Windows::Storage::StorageFile & file, hstring_view tag);
 };
 
 struct WINRT_EBO SpeechRecognitionHypothesis :
@@ -57,8 +57,8 @@ struct WINRT_EBO SpeechRecognitionListConstraint :
     Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint
 {
     SpeechRecognitionListConstraint(std::nullptr_t) noexcept {}
-    SpeechRecognitionListConstraint(const Windows::Foundation::Collections::IIterable<hstring> & commands);
-    SpeechRecognitionListConstraint(const Windows::Foundation::Collections::IIterable<hstring> & commands, hstring_ref tag);
+    SpeechRecognitionListConstraint(iterable<hstring> commands);
+    SpeechRecognitionListConstraint(iterable<hstring> commands, hstring_view tag);
 };
 
 struct WINRT_EBO SpeechRecognitionQualityDegradingEventArgs :
@@ -84,8 +84,8 @@ struct WINRT_EBO SpeechRecognitionTopicConstraint :
     Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraint
 {
     SpeechRecognitionTopicConstraint(std::nullptr_t) noexcept {}
-    SpeechRecognitionTopicConstraint(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_ref topicHint);
-    SpeechRecognitionTopicConstraint(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_ref topicHint, hstring_ref tag);
+    SpeechRecognitionTopicConstraint(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_view topicHint);
+    SpeechRecognitionTopicConstraint(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_view topicHint, hstring_view tag);
 };
 
 struct WINRT_EBO SpeechRecognitionVoiceCommandDefinitionConstraint :
@@ -122,6 +122,19 @@ struct WINRT_EBO SpeechRecognizerUIOptions :
     Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions
 {
     SpeechRecognizerUIOptions(std::nullptr_t) noexcept {}
+};
+
+struct VoiceCommandManager
+{
+    VoiceCommandManager() = delete;
+    static Windows::Foundation::IAsyncAction InstallCommandSetsFromStorageFileAsync(const Windows::Storage::StorageFile & file);
+    static Windows::Foundation::Collections::IMapView<hstring, Windows::Media::SpeechRecognition::VoiceCommandSet> InstalledCommandSets();
+};
+
+struct WINRT_EBO VoiceCommandSet :
+    Windows::Media::SpeechRecognition::IVoiceCommandSet
+{
+    VoiceCommandSet(std::nullptr_t) noexcept {}
 };
 
 }

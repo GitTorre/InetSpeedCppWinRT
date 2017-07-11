@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -31,6 +31,16 @@ struct UserDataAccountPartnerAccountInfo;
 struct UserDataAccountProviderAddAccountOperation;
 struct UserDataAccountProviderResolveErrorsOperation;
 struct UserDataAccountProviderSettingsOperation;
+
+}
+
+namespace Windows::ApplicationModel::UserDataAccounts::Provider {
+
+template <typename T> struct impl_IUserDataAccountPartnerAccountInfo;
+template <typename T> struct impl_IUserDataAccountProviderAddAccountOperation;
+template <typename T> struct impl_IUserDataAccountProviderOperation;
+template <typename T> struct impl_IUserDataAccountProviderResolveErrorsOperation;
+template <typename T> struct impl_IUserDataAccountProviderSettingsOperation;
 
 }
 

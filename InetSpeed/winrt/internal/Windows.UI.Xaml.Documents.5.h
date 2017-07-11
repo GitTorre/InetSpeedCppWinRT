@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -18,7 +18,7 @@ protected:
 
     BlockT()
     {
-        get_activation_factory<Block, IBlockFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<Block, IBlockFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
@@ -32,7 +32,7 @@ protected:
 
     InlineT()
     {
-        get_activation_factory<Inline, IInlineFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<Inline, IInlineFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
@@ -46,7 +46,7 @@ protected:
 
     SpanT()
     {
-        get_activation_factory<Span, ISpanFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<Span, ISpanFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 

@@ -1,10 +1,10 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
 #include "Windows.Devices.Pwm.1.h"
-#include "Windows.Foundation.2.h"
+#include "Windows.Foundation.1.h"
 
 WINRT_EXPORT namespace winrt {
 
@@ -24,6 +24,31 @@ namespace ABI::Windows::Foundation {
 #define WINRT_GENERIC_0a288d41_1f20_5d16_85dd_52855b11569a
 template <> struct __declspec(uuid("0a288d41-1f20-5d16-85dd-52855b11569a")) __declspec(novtable) IAsyncOperation<Windows::Devices::Pwm::PwmController> : impl_IAsyncOperation<Windows::Devices::Pwm::PwmController> {};
 #endif
+
+
+}
+
+namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_37fa629e_a5d7_55ab_b2b5_b5014b31807e
+#define WINRT_GENERIC_37fa629e_a5d7_55ab_b2b5_b5014b31807e
+template <> struct __declspec(uuid("37fa629e-a5d7-55ab-b2b5-b5014b31807e")) __declspec(novtable) IVector<Windows::Devices::Pwm::PwmController> : impl_IVector<Windows::Devices::Pwm::PwmController> {};
+#endif
+
+#ifndef WINRT_GENERIC_599330bd_b0ca_533e_938f_5dd4242bf513
+#define WINRT_GENERIC_599330bd_b0ca_533e_938f_5dd4242bf513
+template <> struct __declspec(uuid("599330bd-b0ca-533e-938f-5dd4242bf513")) __declspec(novtable) IIterator<Windows::Devices::Pwm::PwmController> : impl_IIterator<Windows::Devices::Pwm::PwmController> {};
+#endif
+
+#ifndef WINRT_GENERIC_1403a6ab_73cb_5805_9bbc_a0dd39d476b0
+#define WINRT_GENERIC_1403a6ab_73cb_5805_9bbc_a0dd39d476b0
+template <> struct __declspec(uuid("1403a6ab-73cb-5805-9bbc-a0dd39d476b0")) __declspec(novtable) IIterable<Windows::Devices::Pwm::PwmController> : impl_IIterable<Windows::Devices::Pwm::PwmController> {};
+#endif
+
+
+}
+
+namespace ABI::Windows::Foundation {
 
 #ifndef WINRT_GENERIC_5fc68e9f_ffff_5d53_ba21_9c33ef56b240
 #define WINRT_GENERIC_5fc68e9f_ffff_5d53_ba21_9c33ef56b240
@@ -45,89 +70,33 @@ template <> struct __declspec(uuid("e72bd078-ce02-55ac-a7b9-abd01248d888")) __de
 
 namespace Windows::Devices::Pwm {
 
-template <typename D>
-class WINRT_EBO impl_IPwmController
-{
-    auto shim() const { return impl::shim<D, IPwmController>(this); }
-
-public:
-
-    int32_t PinCount() const;
-    double ActualFrequency() const;
-    double SetDesiredFrequency(double desiredFrequency) const;
-    double MinFrequency() const;
-    double MaxFrequency() const;
-    Windows::Devices::Pwm::PwmPin OpenPin(int32_t pinNumber) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPwmControllerStatics
-{
-    auto shim() const { return impl::shim<D, IPwmControllerStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Pwm::PwmController>> GetControllersAsync(const Windows::Devices::Pwm::Provider::IPwmProvider & provider) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPwmControllerStatics2
-{
-    auto shim() const { return impl::shim<D, IPwmControllerStatics2>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Pwm::PwmController> GetDefaultAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPwmPin
-{
-    auto shim() const { return impl::shim<D, IPwmPin>(this); }
-
-public:
-
-    Windows::Devices::Pwm::PwmController Controller() const;
-    double GetActiveDutyCyclePercentage() const;
-    void SetActiveDutyCyclePercentage(double dutyCyclePercentage) const;
-    Windows::Devices::Pwm::PwmPulsePolarity Polarity() const;
-    void Polarity(Windows::Devices::Pwm::PwmPulsePolarity value) const;
-    void Start() const;
-    void Stop() const;
-    bool IsStarted() const;
-};
-
 struct IPwmController :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPwmController>
 {
     IPwmController(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPwmController>(m_ptr); }
 };
 
 struct IPwmControllerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPwmControllerStatics>
 {
     IPwmControllerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPwmControllerStatics>(m_ptr); }
 };
 
 struct IPwmControllerStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPwmControllerStatics2>
 {
     IPwmControllerStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPwmControllerStatics2>(m_ptr); }
 };
 
 struct IPwmPin :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPwmPin>,
     impl::require<IPwmPin, Windows::Foundation::IClosable>
 {
     IPwmPin(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPwmPin>(m_ptr); }
 };
 
 }

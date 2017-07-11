@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -39,6 +39,20 @@ struct AddPagesEventArgs;
 struct GetPreviewPageEventArgs;
 struct PaginateEventArgs;
 struct PrintDocument;
+
+}
+
+namespace Windows::UI::Xaml::Printing {
+
+template <typename T> struct impl_IAddPagesEventArgs;
+template <typename T> struct impl_IGetPreviewPageEventArgs;
+template <typename T> struct impl_IPaginateEventArgs;
+template <typename T> struct impl_IPrintDocument;
+template <typename T> struct impl_IPrintDocumentFactory;
+template <typename T> struct impl_IPrintDocumentStatics;
+template <typename T> struct impl_AddPagesEventHandler;
+template <typename T> struct impl_GetPreviewPageEventHandler;
+template <typename T> struct impl_PaginateEventHandler;
 
 }
 

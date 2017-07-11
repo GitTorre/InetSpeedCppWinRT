@@ -1,13 +1,16 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.Foundation.3.h"
-#include "internal\Windows.Foundation.Collections.3.h"
-#include "internal\Windows.Storage.3.h"
-#include "internal\Windows.Globalization.3.h"
-#include "internal\Windows.Media.SpeechRecognition.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.Foundation.3.h"
+#include "internal/Windows.Foundation.Collections.3.h"
+#include "internal/Windows.Storage.3.h"
+#include "internal/Windows.Globalization.3.h"
+#include "internal/Windows.Media.SpeechRecognition.3.h"
 #include "Windows.Media.h"
 #include "Windows.Foundation.h"
 
@@ -22,7 +25,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
     {
         try
         {
-            *value = detach(shim().Status());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Status());
             return S_OK;
         }
         catch (...)
@@ -35,11 +39,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionResultGeneratedEventArgs> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionResultGeneratedEventArgs>
 {
-    HRESULT __stdcall get_Result(abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionResult> value) noexcept override
+    HRESULT __stdcall get_Result(impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionResult> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Result());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Result());
             return S_OK;
         }
         catch (...)
@@ -53,11 +58,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionSession> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionSession>
 {
-    HRESULT __stdcall get_AutoStopSilenceTimeout(abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_AutoStopSilenceTimeout(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            *value = detach(shim().AutoStopSilenceTimeout());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().AutoStopSilenceTimeout());
             return S_OK;
         }
         catch (...)
@@ -66,11 +72,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
         }
     }
 
-    HRESULT __stdcall put_AutoStopSilenceTimeout(abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall put_AutoStopSilenceTimeout(impl::abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            shim().AutoStopSilenceTimeout(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().AutoStopSilenceTimeout(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
             return S_OK;
         }
         catch (...)
@@ -79,25 +86,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
         }
     }
 
-    HRESULT __stdcall abi_StartAsync(abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
+    HRESULT __stdcall abi_StartAsync(impl::abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StartAsync());
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall abi_StartWithModeAsync(Windows::Media::SpeechRecognition::SpeechContinuousRecognitionMode mode, abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
-    {
-        try
-        {
-            *value = detach(shim().StartAsync(mode));
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StartAsync());
             return S_OK;
         }
         catch (...)
@@ -107,11 +101,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
         }
     }
 
-    HRESULT __stdcall abi_StopAsync(abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
+    HRESULT __stdcall abi_StartWithModeAsync(Windows::Media::SpeechRecognition::SpeechContinuousRecognitionMode mode, impl::abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StopAsync());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StartAsync(mode));
             return S_OK;
         }
         catch (...)
@@ -121,11 +116,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
         }
     }
 
-    HRESULT __stdcall abi_CancelAsync(abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
+    HRESULT __stdcall abi_StopAsync(impl::abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
     {
         try
         {
-            *value = detach(shim().CancelAsync());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StopAsync());
             return S_OK;
         }
         catch (...)
@@ -135,11 +131,27 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
         }
     }
 
-    HRESULT __stdcall abi_PauseAsync(abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
+    HRESULT __stdcall abi_CancelAsync(impl::abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PauseAsync());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().CancelAsync());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall abi_PauseAsync(impl::abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PauseAsync());
             return S_OK;
         }
         catch (...)
@@ -153,7 +165,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
     {
         try
         {
-            shim().Resume();
+            typename D::abi_guard guard(this->shim());
+            this->shim().Resume();
             return S_OK;
         }
         catch (...)
@@ -162,11 +175,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
         }
     }
 
-    HRESULT __stdcall add_Completed(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionCompletedEventArgs>> value, event_token * returnValue) noexcept override
+    HRESULT __stdcall add_Completed(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionCompletedEventArgs>> value, event_token * returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().Completed(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionCompletedEventArgs> *>(&value)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().Completed(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionCompletedEventArgs> *>(&value)));
             return S_OK;
         }
         catch (...)
@@ -179,7 +193,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
     {
         try
         {
-            shim().Completed(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Completed(value);
             return S_OK;
         }
         catch (...)
@@ -188,11 +203,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
         }
     }
 
-    HRESULT __stdcall add_ResultGenerated(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionResultGeneratedEventArgs>> value, event_token * returnValue) noexcept override
+    HRESULT __stdcall add_ResultGenerated(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionResultGeneratedEventArgs>> value, event_token * returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().ResultGenerated(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionResultGeneratedEventArgs> *>(&value)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().ResultGenerated(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionResultGeneratedEventArgs> *>(&value)));
             return S_OK;
         }
         catch (...)
@@ -205,7 +221,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechContinuousRecognitio
     {
         try
         {
-            shim().ResultGenerated(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ResultGenerated(value);
             return S_OK;
         }
         catch (...)
@@ -222,7 +239,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionCompilati
     {
         try
         {
-            *value = detach(shim().Status());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Status());
             return S_OK;
         }
         catch (...)
@@ -239,7 +257,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionConstrain
     {
         try
         {
-            *value = detach(shim().IsEnabled());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsEnabled());
             return S_OK;
         }
         catch (...)
@@ -252,7 +271,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionConstrain
     {
         try
         {
-            shim().IsEnabled(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsEnabled(value);
             return S_OK;
         }
         catch (...)
@@ -261,11 +281,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionConstrain
         }
     }
 
-    HRESULT __stdcall get_Tag(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Tag(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Tag());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Tag());
             return S_OK;
         }
         catch (...)
@@ -275,11 +296,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionConstrain
         }
     }
 
-    HRESULT __stdcall put_Tag(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_Tag(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().Tag(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Tag(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -292,7 +314,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionConstrain
     {
         try
         {
-            *value = detach(shim().Type());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Type());
             return S_OK;
         }
         catch (...)
@@ -305,7 +328,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionConstrain
     {
         try
         {
-            *value = detach(shim().Probability());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Probability());
             return S_OK;
         }
         catch (...)
@@ -318,7 +342,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionConstrain
     {
         try
         {
-            shim().Probability(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Probability(value);
             return S_OK;
         }
         catch (...)
@@ -331,11 +356,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionConstrain
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraint> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraint>
 {
-    HRESULT __stdcall get_GrammarFile(abi_arg_out<Windows::Storage::IStorageFile> value) noexcept override
+    HRESULT __stdcall get_GrammarFile(impl::abi_arg_out<Windows::Storage::IStorageFile> value) noexcept override
     {
         try
         {
-            *value = detach(shim().GrammarFile());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GrammarFile());
             return S_OK;
         }
         catch (...)
@@ -349,11 +375,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFi
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraintFactory> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraintFactory>
 {
-    HRESULT __stdcall abi_Create(abi_arg_in<Windows::Storage::IStorageFile> file, abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraint> constraint) noexcept override
+    HRESULT __stdcall abi_Create(impl::abi_arg_in<Windows::Storage::IStorageFile> file, impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraint> constraint) noexcept override
     {
         try
         {
-            *constraint = detach(shim().Create(*reinterpret_cast<const Windows::Storage::StorageFile *>(&file)));
+            typename D::abi_guard guard(this->shim());
+            *constraint = detach_abi(this->shim().Create(*reinterpret_cast<const Windows::Storage::StorageFile *>(&file)));
             return S_OK;
         }
         catch (...)
@@ -363,11 +390,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFi
         }
     }
 
-    HRESULT __stdcall abi_CreateWithTag(abi_arg_in<Windows::Storage::IStorageFile> file, abi_arg_in<hstring> tag, abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraint> constraint) noexcept override
+    HRESULT __stdcall abi_CreateWithTag(impl::abi_arg_in<Windows::Storage::IStorageFile> file, impl::abi_arg_in<hstring> tag, impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraint> constraint) noexcept override
     {
         try
         {
-            *constraint = detach(shim().CreateWithTag(*reinterpret_cast<const Windows::Storage::StorageFile *>(&file), *reinterpret_cast<const hstring *>(&tag)));
+            typename D::abi_guard guard(this->shim());
+            *constraint = detach_abi(this->shim().CreateWithTag(*reinterpret_cast<const Windows::Storage::StorageFile *>(&file), *reinterpret_cast<const hstring *>(&tag)));
             return S_OK;
         }
         catch (...)
@@ -381,11 +409,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFi
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesis> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesis>
 {
-    HRESULT __stdcall get_Text(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Text(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Text());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Text());
             return S_OK;
         }
         catch (...)
@@ -399,11 +428,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesi
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesisGeneratedEventArgs> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesisGeneratedEventArgs>
 {
-    HRESULT __stdcall get_Hypothesis(abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesis> value) noexcept override
+    HRESULT __stdcall get_Hypothesis(impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesis> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Hypothesis());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Hypothesis());
             return S_OK;
         }
         catch (...)
@@ -417,11 +447,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesi
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint>
 {
-    HRESULT __stdcall get_Commands(abi_arg_out<Windows::Foundation::Collections::IVector<hstring>> value) noexcept override
+    HRESULT __stdcall get_Commands(impl::abi_arg_out<Windows::Foundation::Collections::IVector<hstring>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Commands());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Commands());
             return S_OK;
         }
         catch (...)
@@ -435,11 +466,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionListConst
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraintFactory> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraintFactory>
 {
-    HRESULT __stdcall abi_Create(abi_arg_in<Windows::Foundation::Collections::IIterable<hstring>> commands, abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint> constraint) noexcept override
+    HRESULT __stdcall abi_Create(impl::abi_arg_in<Windows::Foundation::Collections::IIterable<hstring>> commands, impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint> constraint) noexcept override
     {
         try
         {
-            *constraint = detach(shim().Create(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<hstring> *>(&commands)));
+            typename D::abi_guard guard(this->shim());
+            *constraint = detach_abi(this->shim().Create(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<hstring> *>(&commands)));
             return S_OK;
         }
         catch (...)
@@ -449,11 +481,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionListConst
         }
     }
 
-    HRESULT __stdcall abi_CreateWithTag(abi_arg_in<Windows::Foundation::Collections::IIterable<hstring>> commands, abi_arg_in<hstring> tag, abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint> constraint) noexcept override
+    HRESULT __stdcall abi_CreateWithTag(impl::abi_arg_in<Windows::Foundation::Collections::IIterable<hstring>> commands, impl::abi_arg_in<hstring> tag, impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint> constraint) noexcept override
     {
         try
         {
-            *constraint = detach(shim().CreateWithTag(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<hstring> *>(&commands), *reinterpret_cast<const hstring *>(&tag)));
+            typename D::abi_guard guard(this->shim());
+            *constraint = detach_abi(this->shim().CreateWithTag(*reinterpret_cast<const Windows::Foundation::Collections::IIterable<hstring> *>(&commands), *reinterpret_cast<const hstring *>(&tag)));
             return S_OK;
         }
         catch (...)
@@ -471,7 +504,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionQualityDe
     {
         try
         {
-            *value = detach(shim().Problem());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Problem());
             return S_OK;
         }
         catch (...)
@@ -488,7 +522,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
     {
         try
         {
-            *value = detach(shim().Status());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Status());
             return S_OK;
         }
         catch (...)
@@ -497,11 +532,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
         }
     }
 
-    HRESULT __stdcall get_Text(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Text(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Text());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Text());
             return S_OK;
         }
         catch (...)
@@ -515,7 +551,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
     {
         try
         {
-            *value = detach(shim().Confidence());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Confidence());
             return S_OK;
         }
         catch (...)
@@ -524,11 +561,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
         }
     }
 
-    HRESULT __stdcall get_SemanticInterpretation(abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionSemanticInterpretation> value) noexcept override
+    HRESULT __stdcall get_SemanticInterpretation(impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionSemanticInterpretation> value) noexcept override
     {
         try
         {
-            *value = detach(shim().SemanticInterpretation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().SemanticInterpretation());
             return S_OK;
         }
         catch (...)
@@ -538,11 +576,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
         }
     }
 
-    HRESULT __stdcall abi_GetAlternates(uint32_t maxAlternates, abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Media::SpeechRecognition::SpeechRecognitionResult>> alternates) noexcept override
+    HRESULT __stdcall abi_GetAlternates(uint32_t maxAlternates, impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Media::SpeechRecognition::SpeechRecognitionResult>> alternates) noexcept override
     {
         try
         {
-            *alternates = detach(shim().GetAlternates(maxAlternates));
+            typename D::abi_guard guard(this->shim());
+            *alternates = detach_abi(this->shim().GetAlternates(maxAlternates));
             return S_OK;
         }
         catch (...)
@@ -552,11 +591,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
         }
     }
 
-    HRESULT __stdcall get_Constraint(abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint> value) noexcept override
+    HRESULT __stdcall get_Constraint(impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Constraint());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Constraint());
             return S_OK;
         }
         catch (...)
@@ -566,11 +606,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
         }
     }
 
-    HRESULT __stdcall get_RulePath(abi_arg_out<Windows::Foundation::Collections::IVectorView<hstring>> value) noexcept override
+    HRESULT __stdcall get_RulePath(impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<hstring>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RulePath());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RulePath());
             return S_OK;
         }
         catch (...)
@@ -584,7 +625,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
     {
         try
         {
-            *value = detach(shim().RawConfidence());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RawConfidence());
             return S_OK;
         }
         catch (...)
@@ -597,11 +639,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult> :
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult2> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult2>
 {
-    HRESULT __stdcall get_PhraseStartTime(abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
+    HRESULT __stdcall get_PhraseStartTime(impl::abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PhraseStartTime());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PhraseStartTime());
             return S_OK;
         }
         catch (...)
@@ -610,11 +653,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult2> 
         }
     }
 
-    HRESULT __stdcall get_PhraseDuration(abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_PhraseDuration(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PhraseDuration());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PhraseDuration());
             return S_OK;
         }
         catch (...)
@@ -627,11 +671,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionResult2> 
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionSemanticInterpretation> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionSemanticInterpretation>
 {
-    HRESULT __stdcall get_Properties(abi_arg_out<Windows::Foundation::Collections::IMapView<hstring, Windows::Foundation::Collections::IVectorView<hstring>>> value) noexcept override
+    HRESULT __stdcall get_Properties(impl::abi_arg_out<Windows::Foundation::Collections::IMapView<hstring, Windows::Foundation::Collections::IVectorView<hstring>>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Properties());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Properties());
             return S_OK;
         }
         catch (...)
@@ -649,7 +694,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionTopicCons
     {
         try
         {
-            *value = detach(shim().Scenario());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Scenario());
             return S_OK;
         }
         catch (...)
@@ -658,11 +704,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionTopicCons
         }
     }
 
-    HRESULT __stdcall get_TopicHint(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_TopicHint(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().TopicHint());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TopicHint());
             return S_OK;
         }
         catch (...)
@@ -676,11 +723,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionTopicCons
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraintFactory> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraintFactory>
 {
-    HRESULT __stdcall abi_Create(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, abi_arg_in<hstring> topicHint, abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraint> constraint) noexcept override
+    HRESULT __stdcall abi_Create(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, impl::abi_arg_in<hstring> topicHint, impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraint> constraint) noexcept override
     {
         try
         {
-            *constraint = detach(shim().Create(scenario, *reinterpret_cast<const hstring *>(&topicHint)));
+            typename D::abi_guard guard(this->shim());
+            *constraint = detach_abi(this->shim().Create(scenario, *reinterpret_cast<const hstring *>(&topicHint)));
             return S_OK;
         }
         catch (...)
@@ -690,11 +738,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionTopicCons
         }
     }
 
-    HRESULT __stdcall abi_CreateWithTag(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, abi_arg_in<hstring> topicHint, abi_arg_in<hstring> tag, abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraint> constraint) noexcept override
+    HRESULT __stdcall abi_CreateWithTag(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, impl::abi_arg_in<hstring> topicHint, impl::abi_arg_in<hstring> tag, impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraint> constraint) noexcept override
     {
         try
         {
-            *constraint = detach(shim().CreateWithTag(scenario, *reinterpret_cast<const hstring *>(&topicHint), *reinterpret_cast<const hstring *>(&tag)));
+            typename D::abi_guard guard(this->shim());
+            *constraint = detach_abi(this->shim().CreateWithTag(scenario, *reinterpret_cast<const hstring *>(&topicHint), *reinterpret_cast<const hstring *>(&tag)));
             return S_OK;
         }
         catch (...)
@@ -712,11 +761,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognitionVoiceComm
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognizer>
 {
-    HRESULT __stdcall get_CurrentLanguage(abi_arg_out<Windows::Globalization::ILanguage> language) noexcept override
+    HRESULT __stdcall get_CurrentLanguage(impl::abi_arg_out<Windows::Globalization::ILanguage> language) noexcept override
     {
         try
         {
-            *language = detach(shim().CurrentLanguage());
+            typename D::abi_guard guard(this->shim());
+            *language = detach_abi(this->shim().CurrentLanguage());
             return S_OK;
         }
         catch (...)
@@ -726,11 +776,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
         }
     }
 
-    HRESULT __stdcall get_Constraints(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint>> value) noexcept override
+    HRESULT __stdcall get_Constraints(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Constraints());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Constraints());
             return S_OK;
         }
         catch (...)
@@ -740,11 +791,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
         }
     }
 
-    HRESULT __stdcall get_Timeouts(abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> value) noexcept override
+    HRESULT __stdcall get_Timeouts(impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Timeouts());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Timeouts());
             return S_OK;
         }
         catch (...)
@@ -754,11 +806,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
         }
     }
 
-    HRESULT __stdcall get_UIOptions(abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions> value) noexcept override
+    HRESULT __stdcall get_UIOptions(impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions> value) noexcept override
     {
         try
         {
-            *value = detach(shim().UIOptions());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().UIOptions());
             return S_OK;
         }
         catch (...)
@@ -768,11 +821,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
         }
     }
 
-    HRESULT __stdcall abi_CompileConstraintsAsync(abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionCompilationResult>> asyncOperation) noexcept override
+    HRESULT __stdcall abi_CompileConstraintsAsync(impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionCompilationResult>> asyncOperation) noexcept override
     {
         try
         {
-            *asyncOperation = detach(shim().CompileConstraintsAsync());
+            typename D::abi_guard guard(this->shim());
+            *asyncOperation = detach_abi(this->shim().CompileConstraintsAsync());
             return S_OK;
         }
         catch (...)
@@ -782,11 +836,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
         }
     }
 
-    HRESULT __stdcall abi_RecognizeAsync(abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionResult>> asyncOperation) noexcept override
+    HRESULT __stdcall abi_RecognizeAsync(impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionResult>> asyncOperation) noexcept override
     {
         try
         {
-            *asyncOperation = detach(shim().RecognizeAsync());
+            typename D::abi_guard guard(this->shim());
+            *asyncOperation = detach_abi(this->shim().RecognizeAsync());
             return S_OK;
         }
         catch (...)
@@ -796,11 +851,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
         }
     }
 
-    HRESULT __stdcall abi_RecognizeWithUIAsync(abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionResult>> asyncOperation) noexcept override
+    HRESULT __stdcall abi_RecognizeWithUIAsync(impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionResult>> asyncOperation) noexcept override
     {
         try
         {
-            *asyncOperation = detach(shim().RecognizeWithUIAsync());
+            typename D::abi_guard guard(this->shim());
+            *asyncOperation = detach_abi(this->shim().RecognizeWithUIAsync());
             return S_OK;
         }
         catch (...)
@@ -810,11 +866,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
         }
     }
 
-    HRESULT __stdcall add_RecognitionQualityDegrading(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionQualityDegradingEventArgs>> speechRecognitionQualityDegradingHandler, event_token * cookie) noexcept override
+    HRESULT __stdcall add_RecognitionQualityDegrading(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionQualityDegradingEventArgs>> speechRecognitionQualityDegradingHandler, event_token * cookie) noexcept override
     {
         try
         {
-            *cookie = detach(shim().RecognitionQualityDegrading(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionQualityDegradingEventArgs> *>(&speechRecognitionQualityDegradingHandler)));
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_abi(this->shim().RecognitionQualityDegrading(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionQualityDegradingEventArgs> *>(&speechRecognitionQualityDegradingHandler)));
             return S_OK;
         }
         catch (...)
@@ -827,7 +884,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
     {
         try
         {
-            shim().RecognitionQualityDegrading(cookie);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RecognitionQualityDegrading(cookie);
             return S_OK;
         }
         catch (...)
@@ -836,11 +894,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
         }
     }
 
-    HRESULT __stdcall add_StateChanged(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognizerStateChangedEventArgs>> stateChangedHandler, event_token * cookie) noexcept override
+    HRESULT __stdcall add_StateChanged(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognizerStateChangedEventArgs>> stateChangedHandler, event_token * cookie) noexcept override
     {
         try
         {
-            *cookie = detach(shim().StateChanged(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognizerStateChangedEventArgs> *>(&stateChangedHandler)));
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_abi(this->shim().StateChanged(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognizerStateChangedEventArgs> *>(&stateChangedHandler)));
             return S_OK;
         }
         catch (...)
@@ -853,7 +912,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
     {
         try
         {
-            shim().StateChanged(cookie);
+            typename D::abi_guard guard(this->shim());
+            this->shim().StateChanged(cookie);
             return S_OK;
         }
         catch (...)
@@ -866,11 +926,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer> : produc
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer2> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognizer2>
 {
-    HRESULT __stdcall get_ContinuousRecognitionSession(abi_arg_out<Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionSession> value) noexcept override
+    HRESULT __stdcall get_ContinuousRecognitionSession(impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionSession> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ContinuousRecognitionSession());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ContinuousRecognitionSession());
             return S_OK;
         }
         catch (...)
@@ -884,7 +945,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer2> : produ
     {
         try
         {
-            *value = detach(shim().State());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().State());
             return S_OK;
         }
         catch (...)
@@ -893,11 +955,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer2> : produ
         }
     }
 
-    HRESULT __stdcall abi_StopRecognitionAsync(abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
+    HRESULT __stdcall abi_StopRecognitionAsync(impl::abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StopRecognitionAsync());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StopRecognitionAsync());
             return S_OK;
         }
         catch (...)
@@ -907,11 +970,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer2> : produ
         }
     }
 
-    HRESULT __stdcall add_HypothesisGenerated(abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionHypothesisGeneratedEventArgs>> value, event_token * returnValue) noexcept override
+    HRESULT __stdcall add_HypothesisGenerated(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionHypothesisGeneratedEventArgs>> value, event_token * returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().HypothesisGenerated(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionHypothesisGeneratedEventArgs> *>(&value)));
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().HypothesisGenerated(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionHypothesisGeneratedEventArgs> *>(&value)));
             return S_OK;
         }
         catch (...)
@@ -924,7 +988,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer2> : produ
     {
         try
         {
-            shim().HypothesisGenerated(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().HypothesisGenerated(value);
             return S_OK;
         }
         catch (...)
@@ -937,11 +1002,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizer2> : produ
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerFactory> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognizerFactory>
 {
-    HRESULT __stdcall abi_Create(abi_arg_in<Windows::Globalization::ILanguage> language, abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognizer> recognizer) noexcept override
+    HRESULT __stdcall abi_Create(impl::abi_arg_in<Windows::Globalization::ILanguage> language, impl::abi_arg_out<Windows::Media::SpeechRecognition::ISpeechRecognizer> recognizer) noexcept override
     {
         try
         {
-            *recognizer = detach(shim().Create(*reinterpret_cast<const Windows::Globalization::Language *>(&language)));
+            typename D::abi_guard guard(this->shim());
+            *recognizer = detach_abi(this->shim().Create(*reinterpret_cast<const Windows::Globalization::Language *>(&language)));
             return S_OK;
         }
         catch (...)
@@ -959,7 +1025,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerStateChang
     {
         try
         {
-            *value = detach(shim().State());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().State());
             return S_OK;
         }
         catch (...)
@@ -972,11 +1039,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerStateChang
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerStatics> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognizerStatics>
 {
-    HRESULT __stdcall get_SystemSpeechLanguage(abi_arg_out<Windows::Globalization::ILanguage> language) noexcept override
+    HRESULT __stdcall get_SystemSpeechLanguage(impl::abi_arg_out<Windows::Globalization::ILanguage> language) noexcept override
     {
         try
         {
-            *language = detach(shim().SystemSpeechLanguage());
+            typename D::abi_guard guard(this->shim());
+            *language = detach_abi(this->shim().SystemSpeechLanguage());
             return S_OK;
         }
         catch (...)
@@ -986,11 +1054,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerStatics> :
         }
     }
 
-    HRESULT __stdcall get_SupportedTopicLanguages(abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language>> languages) noexcept override
+    HRESULT __stdcall get_SupportedTopicLanguages(impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language>> languages) noexcept override
     {
         try
         {
-            *languages = detach(shim().SupportedTopicLanguages());
+            typename D::abi_guard guard(this->shim());
+            *languages = detach_abi(this->shim().SupportedTopicLanguages());
             return S_OK;
         }
         catch (...)
@@ -1000,11 +1069,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerStatics> :
         }
     }
 
-    HRESULT __stdcall get_SupportedGrammarLanguages(abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language>> languages) noexcept override
+    HRESULT __stdcall get_SupportedGrammarLanguages(impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language>> languages) noexcept override
     {
         try
         {
-            *languages = detach(shim().SupportedGrammarLanguages());
+            typename D::abi_guard guard(this->shim());
+            *languages = detach_abi(this->shim().SupportedGrammarLanguages());
             return S_OK;
         }
         catch (...)
@@ -1018,11 +1088,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerStatics> :
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts>
 {
-    HRESULT __stdcall get_InitialSilenceTimeout(abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_InitialSilenceTimeout(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            *value = detach(shim().InitialSilenceTimeout());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().InitialSilenceTimeout());
             return S_OK;
         }
         catch (...)
@@ -1031,11 +1102,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> 
         }
     }
 
-    HRESULT __stdcall put_InitialSilenceTimeout(abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall put_InitialSilenceTimeout(impl::abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            shim().InitialSilenceTimeout(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().InitialSilenceTimeout(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1044,11 +1116,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> 
         }
     }
 
-    HRESULT __stdcall get_EndSilenceTimeout(abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_EndSilenceTimeout(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            *value = detach(shim().EndSilenceTimeout());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EndSilenceTimeout());
             return S_OK;
         }
         catch (...)
@@ -1057,11 +1130,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> 
         }
     }
 
-    HRESULT __stdcall put_EndSilenceTimeout(abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall put_EndSilenceTimeout(impl::abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            shim().EndSilenceTimeout(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().EndSilenceTimeout(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1070,11 +1144,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> 
         }
     }
 
-    HRESULT __stdcall get_BabbleTimeout(abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_BabbleTimeout(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            *value = detach(shim().BabbleTimeout());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BabbleTimeout());
             return S_OK;
         }
         catch (...)
@@ -1083,11 +1158,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> 
         }
     }
 
-    HRESULT __stdcall put_BabbleTimeout(abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall put_BabbleTimeout(impl::abi_arg_in<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            shim().BabbleTimeout(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().BabbleTimeout(*reinterpret_cast<const Windows::Foundation::TimeSpan *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1100,11 +1176,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts> 
 template <typename D>
 struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions> : produce_base<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
 {
-    HRESULT __stdcall get_ExampleText(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_ExampleText(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().ExampleText());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExampleText());
             return S_OK;
         }
         catch (...)
@@ -1114,11 +1191,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
         }
     }
 
-    HRESULT __stdcall put_ExampleText(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_ExampleText(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().ExampleText(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().ExampleText(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1127,11 +1205,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
         }
     }
 
-    HRESULT __stdcall get_AudiblePrompt(abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_AudiblePrompt(impl::abi_arg_out<hstring> value) noexcept override
     {
         try
         {
-            *value = detach(shim().AudiblePrompt());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().AudiblePrompt());
             return S_OK;
         }
         catch (...)
@@ -1141,11 +1220,12 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
         }
     }
 
-    HRESULT __stdcall put_AudiblePrompt(abi_arg_in<hstring> value) noexcept override
+    HRESULT __stdcall put_AudiblePrompt(impl::abi_arg_in<hstring> value) noexcept override
     {
         try
         {
-            shim().AudiblePrompt(*reinterpret_cast<const hstring *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().AudiblePrompt(*reinterpret_cast<const hstring *>(&value));
             return S_OK;
         }
         catch (...)
@@ -1158,7 +1238,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
     {
         try
         {
-            *value = detach(shim().IsReadBackEnabled());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().IsReadBackEnabled());
             return S_OK;
         }
         catch (...)
@@ -1171,7 +1252,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
     {
         try
         {
-            shim().IsReadBackEnabled(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsReadBackEnabled(value);
             return S_OK;
         }
         catch (...)
@@ -1184,7 +1266,8 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
     {
         try
         {
-            *value = detach(shim().ShowConfirmation());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ShowConfirmation());
             return S_OK;
         }
         catch (...)
@@ -1197,11 +1280,95 @@ struct produce<D, Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
     {
         try
         {
-            shim().ShowConfirmation(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().ShowConfirmation(value);
             return S_OK;
         }
         catch (...)
         {
+            return impl::to_hresult();
+        }
+    }
+};
+
+template <typename D>
+struct produce<D, Windows::Media::SpeechRecognition::IVoiceCommandManager> : produce_base<D, Windows::Media::SpeechRecognition::IVoiceCommandManager>
+{
+    HRESULT __stdcall abi_InstallCommandSetsFromStorageFileAsync(impl::abi_arg_in<Windows::Storage::IStorageFile> file, impl::abi_arg_out<Windows::Foundation::IAsyncAction> installAction) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *installAction = detach_abi(this->shim().InstallCommandSetsFromStorageFileAsync(*reinterpret_cast<const Windows::Storage::StorageFile *>(&file)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            *installAction = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_InstalledCommandSets(impl::abi_arg_out<Windows::Foundation::Collections::IMapView<hstring, Windows::Media::SpeechRecognition::VoiceCommandSet>> voiceCommandSets) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *voiceCommandSets = detach_abi(this->shim().InstalledCommandSets());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *voiceCommandSets = nullptr;
+            return impl::to_hresult();
+        }
+    }
+};
+
+template <typename D>
+struct produce<D, Windows::Media::SpeechRecognition::IVoiceCommandSet> : produce_base<D, Windows::Media::SpeechRecognition::IVoiceCommandSet>
+{
+    HRESULT __stdcall get_Language(impl::abi_arg_out<hstring> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Language());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall get_Name(impl::abi_arg_out<hstring> value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Name());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall abi_SetPhraseListAsync(impl::abi_arg_in<hstring> phraseListName, impl::abi_arg_in<Windows::Foundation::Collections::IIterable<hstring>> phraseList, impl::abi_arg_out<Windows::Foundation::IAsyncAction> updateAction) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *updateAction = detach_abi(this->shim().SetPhraseListAsync(*reinterpret_cast<const hstring *>(&phraseListName), *reinterpret_cast<const Windows::Foundation::Collections::IIterable<hstring> *>(&phraseList)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            *updateAction = nullptr;
             return impl::to_hresult();
         }
     }
@@ -1214,351 +1381,351 @@ namespace Windows::Media::SpeechRecognition {
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionResultStatus impl_ISpeechRecognitionCompilationResult<D>::Status() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionResultStatus value {};
-    check_hresult(shim()->get_Status(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionCompilationResult)->get_Status(&value));
     return value;
 }
 
 template <typename D> Windows::Foundation::TimeSpan impl_ISpeechRecognizerTimeouts<D>::InitialSilenceTimeout() const
 {
     Windows::Foundation::TimeSpan value {};
-    check_hresult(shim()->get_InitialSilenceTimeout(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerTimeouts)->get_InitialSilenceTimeout(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISpeechRecognizerTimeouts<D>::InitialSilenceTimeout(const Windows::Foundation::TimeSpan & value) const
 {
-    check_hresult(shim()->put_InitialSilenceTimeout(get(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerTimeouts)->put_InitialSilenceTimeout(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::TimeSpan impl_ISpeechRecognizerTimeouts<D>::EndSilenceTimeout() const
 {
     Windows::Foundation::TimeSpan value {};
-    check_hresult(shim()->get_EndSilenceTimeout(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerTimeouts)->get_EndSilenceTimeout(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISpeechRecognizerTimeouts<D>::EndSilenceTimeout(const Windows::Foundation::TimeSpan & value) const
 {
-    check_hresult(shim()->put_EndSilenceTimeout(get(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerTimeouts)->put_EndSilenceTimeout(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::TimeSpan impl_ISpeechRecognizerTimeouts<D>::BabbleTimeout() const
 {
     Windows::Foundation::TimeSpan value {};
-    check_hresult(shim()->get_BabbleTimeout(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerTimeouts)->get_BabbleTimeout(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISpeechRecognizerTimeouts<D>::BabbleTimeout(const Windows::Foundation::TimeSpan & value) const
 {
-    check_hresult(shim()->put_BabbleTimeout(get(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerTimeouts)->put_BabbleTimeout(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISpeechRecognizerUIOptions<D>::ExampleText() const
 {
     hstring value;
-    check_hresult(shim()->get_ExampleText(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerUIOptions)->get_ExampleText(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISpeechRecognizerUIOptions<D>::ExampleText(hstring_ref value) const
+template <typename D> void impl_ISpeechRecognizerUIOptions<D>::ExampleText(hstring_view value) const
 {
-    check_hresult(shim()->put_ExampleText(get(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerUIOptions)->put_ExampleText(get_abi(value)));
 }
 
 template <typename D> hstring impl_ISpeechRecognizerUIOptions<D>::AudiblePrompt() const
 {
     hstring value;
-    check_hresult(shim()->get_AudiblePrompt(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerUIOptions)->get_AudiblePrompt(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISpeechRecognizerUIOptions<D>::AudiblePrompt(hstring_ref value) const
+template <typename D> void impl_ISpeechRecognizerUIOptions<D>::AudiblePrompt(hstring_view value) const
 {
-    check_hresult(shim()->put_AudiblePrompt(get(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerUIOptions)->put_AudiblePrompt(get_abi(value)));
 }
 
 template <typename D> bool impl_ISpeechRecognizerUIOptions<D>::IsReadBackEnabled() const
 {
     bool value {};
-    check_hresult(shim()->get_IsReadBackEnabled(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerUIOptions)->get_IsReadBackEnabled(&value));
     return value;
 }
 
 template <typename D> void impl_ISpeechRecognizerUIOptions<D>::IsReadBackEnabled(bool value) const
 {
-    check_hresult(shim()->put_IsReadBackEnabled(value));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerUIOptions)->put_IsReadBackEnabled(value));
 }
 
 template <typename D> bool impl_ISpeechRecognizerUIOptions<D>::ShowConfirmation() const
 {
     bool value {};
-    check_hresult(shim()->get_ShowConfirmation(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerUIOptions)->get_ShowConfirmation(&value));
     return value;
 }
 
 template <typename D> void impl_ISpeechRecognizerUIOptions<D>::ShowConfirmation(bool value) const
 {
-    check_hresult(shim()->put_ShowConfirmation(value));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerUIOptions)->put_ShowConfirmation(value));
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionResultStatus impl_ISpeechRecognitionResult<D>::Status() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionResultStatus value {};
-    check_hresult(shim()->get_Status(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult)->get_Status(&value));
     return value;
 }
 
 template <typename D> hstring impl_ISpeechRecognitionResult<D>::Text() const
 {
     hstring value;
-    check_hresult(shim()->get_Text(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult)->get_Text(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionConfidence impl_ISpeechRecognitionResult<D>::Confidence() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionConfidence value {};
-    check_hresult(shim()->get_Confidence(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult)->get_Confidence(&value));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionSemanticInterpretation impl_ISpeechRecognitionResult<D>::SemanticInterpretation() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionSemanticInterpretation value { nullptr };
-    check_hresult(shim()->get_SemanticInterpretation(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult)->get_SemanticInterpretation(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Media::SpeechRecognition::SpeechRecognitionResult> impl_ISpeechRecognitionResult<D>::GetAlternates(uint32_t maxAlternates) const
 {
     Windows::Foundation::Collections::IVectorView<Windows::Media::SpeechRecognition::SpeechRecognitionResult> alternates;
-    check_hresult(shim()->abi_GetAlternates(maxAlternates, put(alternates)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult)->abi_GetAlternates(maxAlternates, put_abi(alternates)));
     return alternates;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint impl_ISpeechRecognitionResult<D>::Constraint() const
 {
     Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint value;
-    check_hresult(shim()->get_Constraint(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult)->get_Constraint(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::Collections::IVectorView<hstring> impl_ISpeechRecognitionResult<D>::RulePath() const
 {
     Windows::Foundation::Collections::IVectorView<hstring> value;
-    check_hresult(shim()->get_RulePath(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult)->get_RulePath(put_abi(value)));
     return value;
 }
 
 template <typename D> double impl_ISpeechRecognitionResult<D>::RawConfidence() const
 {
     double value {};
-    check_hresult(shim()->get_RawConfidence(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult)->get_RawConfidence(&value));
     return value;
 }
 
 template <typename D> bool impl_ISpeechRecognitionConstraint<D>::IsEnabled() const
 {
     bool value {};
-    check_hresult(shim()->get_IsEnabled(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionConstraint)->get_IsEnabled(&value));
     return value;
 }
 
 template <typename D> void impl_ISpeechRecognitionConstraint<D>::IsEnabled(bool value) const
 {
-    check_hresult(shim()->put_IsEnabled(value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionConstraint)->put_IsEnabled(value));
 }
 
 template <typename D> hstring impl_ISpeechRecognitionConstraint<D>::Tag() const
 {
     hstring value;
-    check_hresult(shim()->get_Tag(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionConstraint)->get_Tag(put_abi(value)));
     return value;
 }
 
-template <typename D> void impl_ISpeechRecognitionConstraint<D>::Tag(hstring_ref value) const
+template <typename D> void impl_ISpeechRecognitionConstraint<D>::Tag(hstring_view value) const
 {
-    check_hresult(shim()->put_Tag(get(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionConstraint)->put_Tag(get_abi(value)));
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionConstraintType impl_ISpeechRecognitionConstraint<D>::Type() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionConstraintType value {};
-    check_hresult(shim()->get_Type(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionConstraint)->get_Type(&value));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionConstraintProbability impl_ISpeechRecognitionConstraint<D>::Probability() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionConstraintProbability value {};
-    check_hresult(shim()->get_Probability(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionConstraint)->get_Probability(&value));
     return value;
 }
 
 template <typename D> void impl_ISpeechRecognitionConstraint<D>::Probability(Windows::Media::SpeechRecognition::SpeechRecognitionConstraintProbability value) const
 {
-    check_hresult(shim()->put_Probability(value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionConstraint)->put_Probability(value));
 }
 
 template <typename D> Windows::Foundation::DateTime impl_ISpeechRecognitionResult2<D>::PhraseStartTime() const
 {
     Windows::Foundation::DateTime value {};
-    check_hresult(shim()->get_PhraseStartTime(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult2)->get_PhraseStartTime(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::TimeSpan impl_ISpeechRecognitionResult2<D>::PhraseDuration() const
 {
     Windows::Foundation::TimeSpan value {};
-    check_hresult(shim()->get_PhraseDuration(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionResult2)->get_PhraseDuration(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::Collections::IMapView<hstring, Windows::Foundation::Collections::IVectorView<hstring>> impl_ISpeechRecognitionSemanticInterpretation<D>::Properties() const
 {
     Windows::Foundation::Collections::IMapView<hstring, Windows::Foundation::Collections::IVectorView<hstring>> value;
-    check_hresult(shim()->get_Properties(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionSemanticInterpretation)->get_Properties(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionScenario impl_ISpeechRecognitionTopicConstraint<D>::Scenario() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionScenario value {};
-    check_hresult(shim()->get_Scenario(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionTopicConstraint)->get_Scenario(&value));
     return value;
 }
 
 template <typename D> hstring impl_ISpeechRecognitionTopicConstraint<D>::TopicHint() const
 {
     hstring value;
-    check_hresult(shim()->get_TopicHint(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionTopicConstraint)->get_TopicHint(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionTopicConstraint impl_ISpeechRecognitionTopicConstraintFactory<D>::Create(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_ref topicHint) const
+template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionTopicConstraint impl_ISpeechRecognitionTopicConstraintFactory<D>::Create(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_view topicHint) const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionTopicConstraint constraint { nullptr };
-    check_hresult(shim()->abi_Create(scenario, get(topicHint), put(constraint)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionTopicConstraintFactory)->abi_Create(scenario, get_abi(topicHint), put_abi(constraint)));
     return constraint;
 }
 
-template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionTopicConstraint impl_ISpeechRecognitionTopicConstraintFactory<D>::CreateWithTag(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_ref topicHint, hstring_ref tag) const
+template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionTopicConstraint impl_ISpeechRecognitionTopicConstraintFactory<D>::CreateWithTag(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_view topicHint, hstring_view tag) const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionTopicConstraint constraint { nullptr };
-    check_hresult(shim()->abi_CreateWithTag(scenario, get(topicHint), get(tag), put(constraint)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionTopicConstraintFactory)->abi_CreateWithTag(scenario, get_abi(topicHint), get_abi(tag), put_abi(constraint)));
     return constraint;
 }
 
 template <typename D> Windows::Foundation::Collections::IVector<hstring> impl_ISpeechRecognitionListConstraint<D>::Commands() const
 {
     Windows::Foundation::Collections::IVector<hstring> value;
-    check_hresult(shim()->get_Commands(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionListConstraint)->get_Commands(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionListConstraint impl_ISpeechRecognitionListConstraintFactory<D>::Create(const Windows::Foundation::Collections::IIterable<hstring> & commands) const
+template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionListConstraint impl_ISpeechRecognitionListConstraintFactory<D>::Create(iterable<hstring> commands) const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionListConstraint constraint { nullptr };
-    check_hresult(shim()->abi_Create(get(commands), put(constraint)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionListConstraintFactory)->abi_Create(get_abi(commands), put_abi(constraint)));
     return constraint;
 }
 
-template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionListConstraint impl_ISpeechRecognitionListConstraintFactory<D>::CreateWithTag(const Windows::Foundation::Collections::IIterable<hstring> & commands, hstring_ref tag) const
+template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionListConstraint impl_ISpeechRecognitionListConstraintFactory<D>::CreateWithTag(iterable<hstring> commands, hstring_view tag) const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionListConstraint constraint { nullptr };
-    check_hresult(shim()->abi_CreateWithTag(get(commands), get(tag), put(constraint)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionListConstraintFactory)->abi_CreateWithTag(get_abi(commands), get_abi(tag), put_abi(constraint)));
     return constraint;
 }
 
 template <typename D> Windows::Storage::StorageFile impl_ISpeechRecognitionGrammarFileConstraint<D>::GrammarFile() const
 {
     Windows::Storage::StorageFile value { nullptr };
-    check_hresult(shim()->get_GrammarFile(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionGrammarFileConstraint)->get_GrammarFile(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionGrammarFileConstraint impl_ISpeechRecognitionGrammarFileConstraintFactory<D>::Create(const Windows::Storage::StorageFile & file) const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionGrammarFileConstraint constraint { nullptr };
-    check_hresult(shim()->abi_Create(get(file), put(constraint)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionGrammarFileConstraintFactory)->abi_Create(get_abi(file), put_abi(constraint)));
     return constraint;
 }
 
-template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionGrammarFileConstraint impl_ISpeechRecognitionGrammarFileConstraintFactory<D>::CreateWithTag(const Windows::Storage::StorageFile & file, hstring_ref tag) const
+template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionGrammarFileConstraint impl_ISpeechRecognitionGrammarFileConstraintFactory<D>::CreateWithTag(const Windows::Storage::StorageFile & file, hstring_view tag) const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionGrammarFileConstraint constraint { nullptr };
-    check_hresult(shim()->abi_CreateWithTag(get(file), get(tag), put(constraint)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionGrammarFileConstraintFactory)->abi_CreateWithTag(get_abi(file), get_abi(tag), put_abi(constraint)));
     return constraint;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionAudioProblem impl_ISpeechRecognitionQualityDegradingEventArgs<D>::Problem() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionAudioProblem value {};
-    check_hresult(shim()->get_Problem(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionQualityDegradingEventArgs)->get_Problem(&value));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognizerState impl_ISpeechRecognizerStateChangedEventArgs<D>::State() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognizerState value {};
-    check_hresult(shim()->get_State(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerStateChangedEventArgs)->get_State(&value));
     return value;
 }
 
 template <typename D> Windows::Globalization::Language impl_ISpeechRecognizer<D>::CurrentLanguage() const
 {
     Windows::Globalization::Language language { nullptr };
-    check_hresult(shim()->get_CurrentLanguage(put(language)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->get_CurrentLanguage(put_abi(language)));
     return language;
 }
 
 template <typename D> Windows::Foundation::Collections::IVector<Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint> impl_ISpeechRecognizer<D>::Constraints() const
 {
     Windows::Foundation::Collections::IVector<Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint> value;
-    check_hresult(shim()->get_Constraints(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->get_Constraints(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognizerTimeouts impl_ISpeechRecognizer<D>::Timeouts() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognizerTimeouts value { nullptr };
-    check_hresult(shim()->get_Timeouts(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->get_Timeouts(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognizerUIOptions impl_ISpeechRecognizer<D>::UIOptions() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognizerUIOptions value { nullptr };
-    check_hresult(shim()->get_UIOptions(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->get_UIOptions(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionCompilationResult> impl_ISpeechRecognizer<D>::CompileConstraintsAsync() const
 {
     Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionCompilationResult> asyncOperation;
-    check_hresult(shim()->abi_CompileConstraintsAsync(put(asyncOperation)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->abi_CompileConstraintsAsync(put_abi(asyncOperation)));
     return asyncOperation;
 }
 
 template <typename D> Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionResult> impl_ISpeechRecognizer<D>::RecognizeAsync() const
 {
     Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionResult> asyncOperation;
-    check_hresult(shim()->abi_RecognizeAsync(put(asyncOperation)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->abi_RecognizeAsync(put_abi(asyncOperation)));
     return asyncOperation;
 }
 
 template <typename D> Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionResult> impl_ISpeechRecognizer<D>::RecognizeWithUIAsync() const
 {
     Windows::Foundation::IAsyncOperation<Windows::Media::SpeechRecognition::SpeechRecognitionResult> asyncOperation;
-    check_hresult(shim()->abi_RecognizeWithUIAsync(put(asyncOperation)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->abi_RecognizeWithUIAsync(put_abi(asyncOperation)));
     return asyncOperation;
 }
 
 template <typename D> event_token impl_ISpeechRecognizer<D>::RecognitionQualityDegrading(const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionQualityDegradingEventArgs> & speechRecognitionQualityDegradingHandler) const
 {
     event_token cookie {};
-    check_hresult(shim()->add_RecognitionQualityDegrading(get(speechRecognitionQualityDegradingHandler), &cookie));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->add_RecognitionQualityDegrading(get_abi(speechRecognitionQualityDegradingHandler), &cookie));
     return cookie;
 }
 
@@ -1569,13 +1736,13 @@ template <typename D> event_revoker<ISpeechRecognizer> impl_ISpeechRecognizer<D>
 
 template <typename D> void impl_ISpeechRecognizer<D>::RecognitionQualityDegrading(event_token cookie) const
 {
-    check_hresult(shim()->remove_RecognitionQualityDegrading(cookie));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->remove_RecognitionQualityDegrading(cookie));
 }
 
 template <typename D> event_token impl_ISpeechRecognizer<D>::StateChanged(const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognizerStateChangedEventArgs> & stateChangedHandler) const
 {
     event_token cookie {};
-    check_hresult(shim()->add_StateChanged(get(stateChangedHandler), &cookie));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->add_StateChanged(get_abi(stateChangedHandler), &cookie));
     return cookie;
 }
 
@@ -1586,62 +1753,62 @@ template <typename D> event_revoker<ISpeechRecognizer> impl_ISpeechRecognizer<D>
 
 template <typename D> void impl_ISpeechRecognizer<D>::StateChanged(event_token cookie) const
 {
-    check_hresult(shim()->remove_StateChanged(cookie));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer)->remove_StateChanged(cookie));
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognizer impl_ISpeechRecognizerFactory<D>::Create(const Windows::Globalization::Language & language) const
 {
     Windows::Media::SpeechRecognition::SpeechRecognizer recognizer { nullptr };
-    check_hresult(shim()->abi_Create(get(language), put(recognizer)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerFactory)->abi_Create(get_abi(language), put_abi(recognizer)));
     return recognizer;
 }
 
 template <typename D> Windows::Globalization::Language impl_ISpeechRecognizerStatics<D>::SystemSpeechLanguage() const
 {
     Windows::Globalization::Language language { nullptr };
-    check_hresult(shim()->get_SystemSpeechLanguage(put(language)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerStatics)->get_SystemSpeechLanguage(put_abi(language)));
     return language;
 }
 
 template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language> impl_ISpeechRecognizerStatics<D>::SupportedTopicLanguages() const
 {
     Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language> languages;
-    check_hresult(shim()->get_SupportedTopicLanguages(put(languages)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerStatics)->get_SupportedTopicLanguages(put_abi(languages)));
     return languages;
 }
 
 template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language> impl_ISpeechRecognizerStatics<D>::SupportedGrammarLanguages() const
 {
     Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language> languages;
-    check_hresult(shim()->get_SupportedGrammarLanguages(put(languages)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizerStatics)->get_SupportedGrammarLanguages(put_abi(languages)));
     return languages;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession impl_ISpeechRecognizer2<D>::ContinuousRecognitionSession() const
 {
     Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession value { nullptr };
-    check_hresult(shim()->get_ContinuousRecognitionSession(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer2)->get_ContinuousRecognitionSession(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognizerState impl_ISpeechRecognizer2<D>::State() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognizerState value {};
-    check_hresult(shim()->get_State(&value));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer2)->get_State(&value));
     return value;
 }
 
 template <typename D> Windows::Foundation::IAsyncAction impl_ISpeechRecognizer2<D>::StopRecognitionAsync() const
 {
     Windows::Foundation::IAsyncAction value;
-    check_hresult(shim()->abi_StopRecognitionAsync(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer2)->abi_StopRecognitionAsync(put_abi(value)));
     return value;
 }
 
 template <typename D> event_token impl_ISpeechRecognizer2<D>::HypothesisGenerated(const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechRecognizer, Windows::Media::SpeechRecognition::SpeechRecognitionHypothesisGeneratedEventArgs> & value) const
 {
     event_token returnValue {};
-    check_hresult(shim()->add_HypothesisGenerated(get(value), &returnValue));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer2)->add_HypothesisGenerated(get_abi(value), &returnValue));
     return returnValue;
 }
 
@@ -1652,79 +1819,79 @@ template <typename D> event_revoker<ISpeechRecognizer2> impl_ISpeechRecognizer2<
 
 template <typename D> void impl_ISpeechRecognizer2<D>::HypothesisGenerated(event_token value) const
 {
-    check_hresult(shim()->remove_HypothesisGenerated(value));
+    check_hresult(WINRT_SHIM(ISpeechRecognizer2)->remove_HypothesisGenerated(value));
 }
 
 template <typename D> hstring impl_ISpeechRecognitionHypothesis<D>::Text() const
 {
     hstring value;
-    check_hresult(shim()->get_Text(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionHypothesis)->get_Text(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionHypothesis impl_ISpeechRecognitionHypothesisGeneratedEventArgs<D>::Hypothesis() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionHypothesis value { nullptr };
-    check_hresult(shim()->get_Hypothesis(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechRecognitionHypothesisGeneratedEventArgs)->get_Hypothesis(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::TimeSpan impl_ISpeechContinuousRecognitionSession<D>::AutoStopSilenceTimeout() const
 {
     Windows::Foundation::TimeSpan value {};
-    check_hresult(shim()->get_AutoStopSilenceTimeout(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->get_AutoStopSilenceTimeout(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISpeechContinuousRecognitionSession<D>::AutoStopSilenceTimeout(const Windows::Foundation::TimeSpan & value) const
 {
-    check_hresult(shim()->put_AutoStopSilenceTimeout(get(value)));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->put_AutoStopSilenceTimeout(get_abi(value)));
 }
 
 template <typename D> Windows::Foundation::IAsyncAction impl_ISpeechContinuousRecognitionSession<D>::StartAsync() const
 {
     Windows::Foundation::IAsyncAction value;
-    check_hresult(shim()->abi_StartAsync(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->abi_StartAsync(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IAsyncAction impl_ISpeechContinuousRecognitionSession<D>::StartAsync(Windows::Media::SpeechRecognition::SpeechContinuousRecognitionMode mode) const
 {
     Windows::Foundation::IAsyncAction value;
-    check_hresult(shim()->abi_StartWithModeAsync(mode, put(value)));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->abi_StartWithModeAsync(mode, put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IAsyncAction impl_ISpeechContinuousRecognitionSession<D>::StopAsync() const
 {
     Windows::Foundation::IAsyncAction value;
-    check_hresult(shim()->abi_StopAsync(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->abi_StopAsync(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IAsyncAction impl_ISpeechContinuousRecognitionSession<D>::CancelAsync() const
 {
     Windows::Foundation::IAsyncAction value;
-    check_hresult(shim()->abi_CancelAsync(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->abi_CancelAsync(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::Foundation::IAsyncAction impl_ISpeechContinuousRecognitionSession<D>::PauseAsync() const
 {
     Windows::Foundation::IAsyncAction value;
-    check_hresult(shim()->abi_PauseAsync(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->abi_PauseAsync(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_ISpeechContinuousRecognitionSession<D>::Resume() const
 {
-    check_hresult(shim()->abi_Resume());
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->abi_Resume());
 }
 
 template <typename D> event_token impl_ISpeechContinuousRecognitionSession<D>::Completed(const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionCompletedEventArgs> & value) const
 {
     event_token returnValue {};
-    check_hresult(shim()->add_Completed(get(value), &returnValue));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->add_Completed(get_abi(value), &returnValue));
     return returnValue;
 }
 
@@ -1735,13 +1902,13 @@ template <typename D> event_revoker<ISpeechContinuousRecognitionSession> impl_IS
 
 template <typename D> void impl_ISpeechContinuousRecognitionSession<D>::Completed(event_token value) const
 {
-    check_hresult(shim()->remove_Completed(value));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->remove_Completed(value));
 }
 
 template <typename D> event_token impl_ISpeechContinuousRecognitionSession<D>::ResultGenerated(const Windows::Foundation::TypedEventHandler<Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession, Windows::Media::SpeechRecognition::SpeechContinuousRecognitionResultGeneratedEventArgs> & value) const
 {
     event_token returnValue {};
-    check_hresult(shim()->add_ResultGenerated(get(value), &returnValue));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->add_ResultGenerated(get_abi(value), &returnValue));
     return returnValue;
 }
 
@@ -1752,44 +1919,79 @@ template <typename D> event_revoker<ISpeechContinuousRecognitionSession> impl_IS
 
 template <typename D> void impl_ISpeechContinuousRecognitionSession<D>::ResultGenerated(event_token value) const
 {
-    check_hresult(shim()->remove_ResultGenerated(value));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionSession)->remove_ResultGenerated(value));
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionResultStatus impl_ISpeechContinuousRecognitionCompletedEventArgs<D>::Status() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionResultStatus value {};
-    check_hresult(shim()->get_Status(&value));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionCompletedEventArgs)->get_Status(&value));
     return value;
 }
 
 template <typename D> Windows::Media::SpeechRecognition::SpeechRecognitionResult impl_ISpeechContinuousRecognitionResultGeneratedEventArgs<D>::Result() const
 {
     Windows::Media::SpeechRecognition::SpeechRecognitionResult value { nullptr };
-    check_hresult(shim()->get_Result(put(value)));
+    check_hresult(WINRT_SHIM(ISpeechContinuousRecognitionResultGeneratedEventArgs)->get_Result(put_abi(value)));
     return value;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction impl_IVoiceCommandManager<D>::InstallCommandSetsFromStorageFileAsync(const Windows::Storage::StorageFile & file) const
+{
+    Windows::Foundation::IAsyncAction installAction;
+    check_hresult(WINRT_SHIM(IVoiceCommandManager)->abi_InstallCommandSetsFromStorageFileAsync(get_abi(file), put_abi(installAction)));
+    return installAction;
+}
+
+template <typename D> Windows::Foundation::Collections::IMapView<hstring, Windows::Media::SpeechRecognition::VoiceCommandSet> impl_IVoiceCommandManager<D>::InstalledCommandSets() const
+{
+    Windows::Foundation::Collections::IMapView<hstring, Windows::Media::SpeechRecognition::VoiceCommandSet> voiceCommandSets;
+    check_hresult(WINRT_SHIM(IVoiceCommandManager)->get_InstalledCommandSets(put_abi(voiceCommandSets)));
+    return voiceCommandSets;
+}
+
+template <typename D> hstring impl_IVoiceCommandSet<D>::Language() const
+{
+    hstring value;
+    check_hresult(WINRT_SHIM(IVoiceCommandSet)->get_Language(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring impl_IVoiceCommandSet<D>::Name() const
+{
+    hstring value;
+    check_hresult(WINRT_SHIM(IVoiceCommandSet)->get_Name(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction impl_IVoiceCommandSet<D>::SetPhraseListAsync(hstring_view phraseListName, iterable<hstring> phraseList) const
+{
+    Windows::Foundation::IAsyncAction updateAction;
+    check_hresult(WINRT_SHIM(IVoiceCommandSet)->abi_SetPhraseListAsync(get_abi(phraseListName), get_abi(phraseList), put_abi(updateAction)));
+    return updateAction;
 }
 
 inline SpeechRecognitionGrammarFileConstraint::SpeechRecognitionGrammarFileConstraint(const Windows::Storage::StorageFile & file) :
     SpeechRecognitionGrammarFileConstraint(get_activation_factory<SpeechRecognitionGrammarFileConstraint, ISpeechRecognitionGrammarFileConstraintFactory>().Create(file))
 {}
 
-inline SpeechRecognitionGrammarFileConstraint::SpeechRecognitionGrammarFileConstraint(const Windows::Storage::StorageFile & file, hstring_ref tag) :
+inline SpeechRecognitionGrammarFileConstraint::SpeechRecognitionGrammarFileConstraint(const Windows::Storage::StorageFile & file, hstring_view tag) :
     SpeechRecognitionGrammarFileConstraint(get_activation_factory<SpeechRecognitionGrammarFileConstraint, ISpeechRecognitionGrammarFileConstraintFactory>().CreateWithTag(file, tag))
 {}
 
-inline SpeechRecognitionListConstraint::SpeechRecognitionListConstraint(const Windows::Foundation::Collections::IIterable<hstring> & commands) :
+inline SpeechRecognitionListConstraint::SpeechRecognitionListConstraint(iterable<hstring> commands) :
     SpeechRecognitionListConstraint(get_activation_factory<SpeechRecognitionListConstraint, ISpeechRecognitionListConstraintFactory>().Create(commands))
 {}
 
-inline SpeechRecognitionListConstraint::SpeechRecognitionListConstraint(const Windows::Foundation::Collections::IIterable<hstring> & commands, hstring_ref tag) :
+inline SpeechRecognitionListConstraint::SpeechRecognitionListConstraint(iterable<hstring> commands, hstring_view tag) :
     SpeechRecognitionListConstraint(get_activation_factory<SpeechRecognitionListConstraint, ISpeechRecognitionListConstraintFactory>().CreateWithTag(commands, tag))
 {}
 
-inline SpeechRecognitionTopicConstraint::SpeechRecognitionTopicConstraint(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_ref topicHint) :
+inline SpeechRecognitionTopicConstraint::SpeechRecognitionTopicConstraint(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_view topicHint) :
     SpeechRecognitionTopicConstraint(get_activation_factory<SpeechRecognitionTopicConstraint, ISpeechRecognitionTopicConstraintFactory>().Create(scenario, topicHint))
 {}
 
-inline SpeechRecognitionTopicConstraint::SpeechRecognitionTopicConstraint(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_ref topicHint, hstring_ref tag) :
+inline SpeechRecognitionTopicConstraint::SpeechRecognitionTopicConstraint(Windows::Media::SpeechRecognition::SpeechRecognitionScenario scenario, hstring_view topicHint, hstring_view tag) :
     SpeechRecognitionTopicConstraint(get_activation_factory<SpeechRecognitionTopicConstraint, ISpeechRecognitionTopicConstraintFactory>().CreateWithTag(scenario, topicHint, tag))
 {}
 
@@ -1816,6 +2018,423 @@ inline Windows::Foundation::Collections::IVectorView<Windows::Globalization::Lan
     return get_activation_factory<SpeechRecognizer, ISpeechRecognizerStatics>().SupportedGrammarLanguages();
 }
 
+inline Windows::Foundation::IAsyncAction VoiceCommandManager::InstallCommandSetsFromStorageFileAsync(const Windows::Storage::StorageFile & file)
+{
+    return get_activation_factory<VoiceCommandManager, IVoiceCommandManager>().InstallCommandSetsFromStorageFileAsync(file);
+}
+
+inline Windows::Foundation::Collections::IMapView<hstring, Windows::Media::SpeechRecognition::VoiceCommandSet> VoiceCommandManager::InstalledCommandSets()
+{
+    return get_activation_factory<VoiceCommandManager, IVoiceCommandManager>().InstalledCommandSets();
 }
 
 }
+
+}
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionCompletedEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionCompletedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionResultGeneratedEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionResultGeneratedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionSession>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechContinuousRecognitionSession & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionCompilationResult>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionCompilationResult & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraintFactory>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionGrammarFileConstraintFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesis>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesis & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesisGeneratedEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionHypothesisGeneratedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraintFactory>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionListConstraintFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionQualityDegradingEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionQualityDegradingEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionResult>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionResult & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionResult2>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionResult2 & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionSemanticInterpretation>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionSemanticInterpretation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraintFactory>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionTopicConstraintFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionVoiceCommandDefinitionConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionVoiceCommandDefinitionConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognizer>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognizer & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognizer2>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognizer2 & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerFactory>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerStateChangedEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerStateChangedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerStatics>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerTimeouts & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::ISpeechRecognizerUIOptions & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::IVoiceCommandManager>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::IVoiceCommandManager & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::IVoiceCommandSet>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::IVoiceCommandSet & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechContinuousRecognitionCompletedEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechContinuousRecognitionCompletedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechContinuousRecognitionResultGeneratedEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechContinuousRecognitionResultGeneratedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechContinuousRecognitionSession & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionCompilationResult>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionCompilationResult & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionGrammarFileConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionGrammarFileConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionHypothesis>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionHypothesis & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionHypothesisGeneratedEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionHypothesisGeneratedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionListConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionListConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionQualityDegradingEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionQualityDegradingEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionResult>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionResult & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionSemanticInterpretation>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionSemanticInterpretation & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionTopicConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionTopicConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognitionVoiceCommandDefinitionConstraint>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognitionVoiceCommandDefinitionConstraint & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognizer>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognizer & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognizerStateChangedEventArgs>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognizerStateChangedEventArgs & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognizerTimeouts>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognizerTimeouts & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::SpeechRecognizerUIOptions>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::SpeechRecognizerUIOptions & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::Media::SpeechRecognition::VoiceCommandSet>
+{
+    size_t operator()(const winrt::Windows::Media::SpeechRecognition::VoiceCommandSet & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

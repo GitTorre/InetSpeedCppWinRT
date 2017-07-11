@@ -1,19 +1,14 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.Graphics.DirectX.0.h"
 
 WINRT_EXPORT namespace winrt {
 
 namespace ABI {
-
-
-}
-
-namespace Windows::Graphics::DirectX {
 
 
 }

@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -22,6 +22,14 @@ struct IPowerManagerStatics;
 struct BackgroundEnergyManager;
 struct ForegroundEnergyManager;
 struct PowerManager;
+
+}
+
+namespace Windows::System::Power {
+
+template <typename T> struct impl_IBackgroundEnergyManagerStatics;
+template <typename T> struct impl_IForegroundEnergyManagerStatics;
+template <typename T> struct impl_IPowerManagerStatics;
 
 }
 

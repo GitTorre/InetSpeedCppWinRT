@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -16,6 +16,12 @@ namespace Windows::System::Profile::SystemManufacturers {
 
 struct ISmbiosInformationStatics;
 struct SmbiosInformation;
+
+}
+
+namespace Windows::System::Profile::SystemManufacturers {
+
+template <typename T> struct impl_ISmbiosInformationStatics;
 
 }
 

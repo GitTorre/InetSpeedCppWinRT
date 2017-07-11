@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -112,7 +112,7 @@ struct WINRT_EBO StorePurchaseProperties :
 {
     StorePurchaseProperties(std::nullptr_t) noexcept {}
     StorePurchaseProperties();
-    StorePurchaseProperties(hstring_ref name);
+    StorePurchaseProperties(hstring_view name);
 };
 
 struct WINRT_EBO StorePurchaseResult :
@@ -124,7 +124,7 @@ struct WINRT_EBO StorePurchaseResult :
 struct StoreRequestHelper
 {
     StoreRequestHelper() = delete;
-    static Windows::Foundation::IAsyncOperation<Windows::Services::Store::StoreSendRequestResult> SendRequestAsync(const Windows::Services::Store::StoreContext & context, uint32_t requestKind, hstring_ref parametersAsJson);
+    static Windows::Foundation::IAsyncOperation<Windows::Services::Store::StoreSendRequestResult> SendRequestAsync(const Windows::Services::Store::StoreContext & context, uint32_t requestKind, hstring_view parametersAsJson);
 };
 
 struct WINRT_EBO StoreSendRequestResult :

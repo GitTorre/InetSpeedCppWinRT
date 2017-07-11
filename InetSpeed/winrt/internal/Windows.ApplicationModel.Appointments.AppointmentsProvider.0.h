@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -30,6 +30,16 @@ struct AddAppointmentOperation;
 struct AppointmentsProviderLaunchActionVerbs;
 struct RemoveAppointmentOperation;
 struct ReplaceAppointmentOperation;
+
+}
+
+namespace Windows::ApplicationModel::Appointments::AppointmentsProvider {
+
+template <typename T> struct impl_IAddAppointmentOperation;
+template <typename T> struct impl_IAppointmentsProviderLaunchActionVerbsStatics;
+template <typename T> struct impl_IAppointmentsProviderLaunchActionVerbsStatics2;
+template <typename T> struct impl_IRemoveAppointmentOperation;
+template <typename T> struct impl_IReplaceAppointmentOperation;
 
 }
 

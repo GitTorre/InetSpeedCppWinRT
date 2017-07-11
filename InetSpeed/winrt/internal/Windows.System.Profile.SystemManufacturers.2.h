@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -9,22 +9,11 @@ WINRT_EXPORT namespace winrt {
 
 namespace Windows::System::Profile::SystemManufacturers {
 
-template <typename D>
-class WINRT_EBO impl_ISmbiosInformationStatics
-{
-    auto shim() const { return impl::shim<D, ISmbiosInformationStatics>(this); }
-
-public:
-
-    hstring SerialNumber() const;
-};
-
 struct ISmbiosInformationStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISmbiosInformationStatics>
 {
     ISmbiosInformationStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISmbiosInformationStatics>(m_ptr); }
 };
 
 }

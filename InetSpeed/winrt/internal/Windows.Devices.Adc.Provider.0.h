@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -17,6 +17,13 @@ namespace Windows::Devices::Adc::Provider {
 
 struct IAdcControllerProvider;
 struct IAdcProvider;
+
+}
+
+namespace Windows::Devices::Adc::Provider {
+
+template <typename T> struct impl_IAdcControllerProvider;
+template <typename T> struct impl_IAdcProvider;
 
 }
 

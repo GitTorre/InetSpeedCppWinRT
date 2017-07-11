@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -29,6 +29,16 @@ struct IRatedContentRestrictionsFactory;
 struct ContentRestrictionsBrowsePolicy;
 struct RatedContentDescription;
 struct RatedContentRestrictions;
+
+}
+
+namespace Windows::Media::ContentRestrictions {
+
+template <typename T> struct impl_IContentRestrictionsBrowsePolicy;
+template <typename T> struct impl_IRatedContentDescription;
+template <typename T> struct impl_IRatedContentDescriptionFactory;
+template <typename T> struct impl_IRatedContentRestrictions;
+template <typename T> struct impl_IRatedContentRestrictionsFactory;
 
 }
 

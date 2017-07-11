@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -25,6 +25,16 @@ struct ISpiControllerProvider;
 struct ISpiDeviceProvider;
 struct ISpiProvider;
 struct ProviderSpiConnectionSettings;
+
+}
+
+namespace Windows::Devices::Spi::Provider {
+
+template <typename T> struct impl_IProviderSpiConnectionSettings;
+template <typename T> struct impl_IProviderSpiConnectionSettingsFactory;
+template <typename T> struct impl_ISpiControllerProvider;
+template <typename T> struct impl_ISpiDeviceProvider;
+template <typename T> struct impl_ISpiProvider;
 
 }
 

@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -18,6 +18,16 @@ template <> struct __declspec(uuid("5541d8a7-497c-5aa4-86fc-7713adbf2a2c")) __de
 }
 
 namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_70f4b32e_f91e_55bb_9a92_0246da734bb0
+#define WINRT_GENERIC_70f4b32e_f91e_55bb_9a92_0246da734bb0
+template <> struct __declspec(uuid("70f4b32e-f91e-55bb-9a92-0246da734bb0")) __declspec(novtable) IVector<Windows::ApplicationModel::Appointments::AppointmentInvitee> : impl_IVector<Windows::ApplicationModel::Appointments::AppointmentInvitee> {};
+#endif
+
+#ifndef WINRT_GENERIC_98b9acc1_4b56_532e_ac73_03d5291cca90
+#define WINRT_GENERIC_98b9acc1_4b56_532e_ac73_03d5291cca90
+template <> struct __declspec(uuid("98b9acc1-4b56-532e-ac73-03d5291cca90")) __declspec(novtable) IVector<hstring> : impl_IVector<hstring> {};
+#endif
 
 #ifndef WINRT_GENERIC_fb9718a9_f059_52b0_a904_1a65e4281e40
 #define WINRT_GENERIC_fb9718a9_f059_52b0_a904_1a65e4281e40
@@ -94,324 +104,102 @@ template <> struct __declspec(uuid("8c304ebb-6615-50a4-8829-879ecd443236")) __de
 
 namespace Windows::ApplicationModel::Appointments::DataProvider {
 
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarCancelMeetingRequest
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarCancelMeetingRequest>(this); }
-
-public:
-
-    hstring AppointmentCalendarLocalId() const;
-    hstring AppointmentLocalId() const;
-    Windows::Foundation::IReference<Windows::Foundation::DateTime> AppointmentOriginalStartTime() const;
-    hstring Subject() const;
-    hstring Comment() const;
-    bool NotifyInvitees() const;
-    Windows::Foundation::IAsyncAction ReportCompletedAsync() const;
-    Windows::Foundation::IAsyncAction ReportFailedAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarCancelMeetingRequestEventArgs
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarCancelMeetingRequestEventArgs>(this); }
-
-public:
-
-    Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarCancelMeetingRequest Request() const;
-    Windows::Foundation::Deferral GetDeferral() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarCreateOrUpdateAppointmentRequest
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarCreateOrUpdateAppointmentRequest>(this); }
-
-public:
-
-    hstring AppointmentCalendarLocalId() const;
-    Windows::ApplicationModel::Appointments::Appointment Appointment() const;
-    bool NotifyInvitees() const;
-    Windows::Foundation::Collections::IVectorView<hstring> ChangedProperties() const;
-    Windows::Foundation::IAsyncAction ReportCompletedAsync(const Windows::ApplicationModel::Appointments::Appointment & createdOrUpdatedAppointment) const;
-    Windows::Foundation::IAsyncAction ReportFailedAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs>(this); }
-
-public:
-
-    Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarCreateOrUpdateAppointmentRequest Request() const;
-    Windows::Foundation::Deferral GetDeferral() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarForwardMeetingRequest
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarForwardMeetingRequest>(this); }
-
-public:
-
-    hstring AppointmentCalendarLocalId() const;
-    hstring AppointmentLocalId() const;
-    Windows::Foundation::IReference<Windows::Foundation::DateTime> AppointmentOriginalStartTime() const;
-    Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Appointments::AppointmentInvitee> Invitees() const;
-    hstring Subject() const;
-    hstring ForwardHeader() const;
-    hstring Comment() const;
-    Windows::Foundation::IAsyncAction ReportCompletedAsync() const;
-    Windows::Foundation::IAsyncAction ReportFailedAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarForwardMeetingRequestEventArgs
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarForwardMeetingRequestEventArgs>(this); }
-
-public:
-
-    Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarForwardMeetingRequest Request() const;
-    Windows::Foundation::Deferral GetDeferral() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarProposeNewTimeForMeetingRequest
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarProposeNewTimeForMeetingRequest>(this); }
-
-public:
-
-    hstring AppointmentCalendarLocalId() const;
-    hstring AppointmentLocalId() const;
-    Windows::Foundation::IReference<Windows::Foundation::DateTime> AppointmentOriginalStartTime() const;
-    Windows::Foundation::DateTime NewStartTime() const;
-    Windows::Foundation::TimeSpan NewDuration() const;
-    hstring Subject() const;
-    hstring Comment() const;
-    Windows::Foundation::IAsyncAction ReportCompletedAsync() const;
-    Windows::Foundation::IAsyncAction ReportFailedAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs>(this); }
-
-public:
-
-    Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarProposeNewTimeForMeetingRequest Request() const;
-    Windows::Foundation::Deferral GetDeferral() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarSyncManagerSyncRequest
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarSyncManagerSyncRequest>(this); }
-
-public:
-
-    hstring AppointmentCalendarLocalId() const;
-    Windows::Foundation::IAsyncAction ReportCompletedAsync() const;
-    Windows::Foundation::IAsyncAction ReportFailedAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarSyncManagerSyncRequestEventArgs
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarSyncManagerSyncRequestEventArgs>(this); }
-
-public:
-
-    Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarSyncManagerSyncRequest Request() const;
-    Windows::Foundation::Deferral GetDeferral() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarUpdateMeetingResponseRequest
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarUpdateMeetingResponseRequest>(this); }
-
-public:
-
-    hstring AppointmentCalendarLocalId() const;
-    hstring AppointmentLocalId() const;
-    Windows::Foundation::IReference<Windows::Foundation::DateTime> AppointmentOriginalStartTime() const;
-    Windows::ApplicationModel::Appointments::AppointmentParticipantResponse Response() const;
-    hstring Subject() const;
-    hstring Comment() const;
-    bool SendUpdate() const;
-    Windows::Foundation::IAsyncAction ReportCompletedAsync() const;
-    Windows::Foundation::IAsyncAction ReportFailedAsync() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentCalendarUpdateMeetingResponseRequestEventArgs
-{
-    auto shim() const { return impl::shim<D, IAppointmentCalendarUpdateMeetingResponseRequestEventArgs>(this); }
-
-public:
-
-    Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarUpdateMeetingResponseRequest Request() const;
-    Windows::Foundation::Deferral GetDeferral() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentDataProviderConnection
-{
-    auto shim() const { return impl::shim<D, IAppointmentDataProviderConnection>(this); }
-
-public:
-
-    event_token SyncRequested(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarSyncManagerSyncRequestEventArgs> & handler) const;
-    using SyncRequested_revoker = event_revoker<IAppointmentDataProviderConnection>;
-    SyncRequested_revoker SyncRequested(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarSyncManagerSyncRequestEventArgs> & handler) const;
-    void SyncRequested(event_token token) const;
-    event_token CreateOrUpdateAppointmentRequested(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs> & handler) const;
-    using CreateOrUpdateAppointmentRequested_revoker = event_revoker<IAppointmentDataProviderConnection>;
-    CreateOrUpdateAppointmentRequested_revoker CreateOrUpdateAppointmentRequested(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs> & handler) const;
-    void CreateOrUpdateAppointmentRequested(event_token token) const;
-    event_token CancelMeetingRequested(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarCancelMeetingRequestEventArgs> & handler) const;
-    using CancelMeetingRequested_revoker = event_revoker<IAppointmentDataProviderConnection>;
-    CancelMeetingRequested_revoker CancelMeetingRequested(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarCancelMeetingRequestEventArgs> & handler) const;
-    void CancelMeetingRequested(event_token token) const;
-    event_token ForwardMeetingRequested(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarForwardMeetingRequestEventArgs> & handler) const;
-    using ForwardMeetingRequested_revoker = event_revoker<IAppointmentDataProviderConnection>;
-    ForwardMeetingRequested_revoker ForwardMeetingRequested(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarForwardMeetingRequestEventArgs> & handler) const;
-    void ForwardMeetingRequested(event_token token) const;
-    event_token ProposeNewTimeForMeetingRequested(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarProposeNewTimeForMeetingRequestEventArgs> & handler) const;
-    using ProposeNewTimeForMeetingRequested_revoker = event_revoker<IAppointmentDataProviderConnection>;
-    ProposeNewTimeForMeetingRequested_revoker ProposeNewTimeForMeetingRequested(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarProposeNewTimeForMeetingRequestEventArgs> & handler) const;
-    void ProposeNewTimeForMeetingRequested(event_token token) const;
-    event_token UpdateMeetingResponseRequested(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarUpdateMeetingResponseRequestEventArgs> & handler) const;
-    using UpdateMeetingResponseRequested_revoker = event_revoker<IAppointmentDataProviderConnection>;
-    UpdateMeetingResponseRequested_revoker UpdateMeetingResponseRequested(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection, Windows::ApplicationModel::Appointments::DataProvider::AppointmentCalendarUpdateMeetingResponseRequestEventArgs> & handler) const;
-    void UpdateMeetingResponseRequested(event_token token) const;
-    void Start() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAppointmentDataProviderTriggerDetails
-{
-    auto shim() const { return impl::shim<D, IAppointmentDataProviderTriggerDetails>(this); }
-
-public:
-
-    Windows::ApplicationModel::Appointments::DataProvider::AppointmentDataProviderConnection Connection() const;
-};
-
 struct IAppointmentCalendarCancelMeetingRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarCancelMeetingRequest>
 {
     IAppointmentCalendarCancelMeetingRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarCancelMeetingRequest>(m_ptr); }
 };
 
 struct IAppointmentCalendarCancelMeetingRequestEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarCancelMeetingRequestEventArgs>
 {
     IAppointmentCalendarCancelMeetingRequestEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarCancelMeetingRequestEventArgs>(m_ptr); }
 };
 
 struct IAppointmentCalendarCreateOrUpdateAppointmentRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarCreateOrUpdateAppointmentRequest>
 {
     IAppointmentCalendarCreateOrUpdateAppointmentRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarCreateOrUpdateAppointmentRequest>(m_ptr); }
 };
 
 struct IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs>
 {
     IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs>(m_ptr); }
 };
 
 struct IAppointmentCalendarForwardMeetingRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarForwardMeetingRequest>
 {
     IAppointmentCalendarForwardMeetingRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarForwardMeetingRequest>(m_ptr); }
 };
 
 struct IAppointmentCalendarForwardMeetingRequestEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarForwardMeetingRequestEventArgs>
 {
     IAppointmentCalendarForwardMeetingRequestEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarForwardMeetingRequestEventArgs>(m_ptr); }
 };
 
 struct IAppointmentCalendarProposeNewTimeForMeetingRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarProposeNewTimeForMeetingRequest>
 {
     IAppointmentCalendarProposeNewTimeForMeetingRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarProposeNewTimeForMeetingRequest>(m_ptr); }
 };
 
 struct IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs>
 {
     IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs>(m_ptr); }
 };
 
 struct IAppointmentCalendarSyncManagerSyncRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarSyncManagerSyncRequest>
 {
     IAppointmentCalendarSyncManagerSyncRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarSyncManagerSyncRequest>(m_ptr); }
 };
 
 struct IAppointmentCalendarSyncManagerSyncRequestEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarSyncManagerSyncRequestEventArgs>
 {
     IAppointmentCalendarSyncManagerSyncRequestEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarSyncManagerSyncRequestEventArgs>(m_ptr); }
 };
 
 struct IAppointmentCalendarUpdateMeetingResponseRequest :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarUpdateMeetingResponseRequest>
 {
     IAppointmentCalendarUpdateMeetingResponseRequest(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarUpdateMeetingResponseRequest>(m_ptr); }
 };
 
 struct IAppointmentCalendarUpdateMeetingResponseRequestEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentCalendarUpdateMeetingResponseRequestEventArgs>
 {
     IAppointmentCalendarUpdateMeetingResponseRequestEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentCalendarUpdateMeetingResponseRequestEventArgs>(m_ptr); }
 };
 
 struct IAppointmentDataProviderConnection :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentDataProviderConnection>
 {
     IAppointmentDataProviderConnection(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentDataProviderConnection>(m_ptr); }
 };
 
 struct IAppointmentDataProviderTriggerDetails :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAppointmentDataProviderTriggerDetails>
 {
     IAppointmentDataProviderTriggerDetails(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAppointmentDataProviderTriggerDetails>(m_ptr); }
 };
 
 }

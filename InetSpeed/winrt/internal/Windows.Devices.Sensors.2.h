@@ -1,9 +1,10 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
 #include "Windows.Devices.Sensors.1.h"
+#include "Windows.Foundation.1.h"
 #include "Windows.Foundation.2.h"
 
 WINRT_EXPORT namespace winrt {
@@ -14,26 +15,6 @@ namespace ABI::Windows::Foundation {
 #define WINRT_GENERIC_513ef3af_e784_5325_a91e_97c2b8111cf3
 template <> struct __declspec(uuid("513ef3af-e784-5325-a91e-97c2b8111cf3")) __declspec(novtable) IReference<uint32_t> : impl_IReference<uint32_t> {};
 #endif
-
-
-}
-
-namespace ABI::Windows::Foundation::Collections {
-
-#ifndef WINRT_GENERIC_e3e660d6_d041_5ecd_b18b_fa254e4a860f
-#define WINRT_GENERIC_e3e660d6_d041_5ecd_b18b_fa254e4a860f
-template <> struct __declspec(uuid("e3e660d6-d041-5ecd-b18b-fa254e4a860f")) __declspec(novtable) IVector<winrt::Windows::Devices::Sensors::ActivityType> : impl_IVector<winrt::Windows::Devices::Sensors::ActivityType> {};
-#endif
-
-#ifndef WINRT_GENERIC_fc7a0488_2803_505c_9e62_9200afe416c6
-#define WINRT_GENERIC_fc7a0488_2803_505c_9e62_9200afe416c6
-template <> struct __declspec(uuid("fc7a0488-2803-505c-9e62-9200afe416c6")) __declspec(novtable) IVectorView<winrt::Windows::Devices::Sensors::ActivityType> : impl_IVectorView<winrt::Windows::Devices::Sensors::ActivityType> {};
-#endif
-
-
-}
-
-namespace ABI::Windows::Foundation {
 
 #ifndef WINRT_GENERIC_2f2d6c29_5473_5f3e_92e7_96572bb990e2
 #define WINRT_GENERIC_2f2d6c29_5473_5f3e_92e7_96572bb990e2
@@ -109,6 +90,26 @@ namespace ABI::Windows::Foundation {
 #define WINRT_GENERIC_79a87969_327f_5b7a_a0d3_73eab16de21c
 template <> struct __declspec(uuid("79a87969-327f-5b7a-a0d3-73eab16de21c")) __declspec(novtable) IAsyncOperation<Windows::Devices::Sensors::ActivitySensorReading> : impl_IAsyncOperation<Windows::Devices::Sensors::ActivitySensorReading> {};
 #endif
+
+
+}
+
+namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_e3e660d6_d041_5ecd_b18b_fa254e4a860f
+#define WINRT_GENERIC_e3e660d6_d041_5ecd_b18b_fa254e4a860f
+template <> struct __declspec(uuid("e3e660d6-d041-5ecd-b18b-fa254e4a860f")) __declspec(novtable) IVector<winrt::Windows::Devices::Sensors::ActivityType> : impl_IVector<winrt::Windows::Devices::Sensors::ActivityType> {};
+#endif
+
+#ifndef WINRT_GENERIC_fc7a0488_2803_505c_9e62_9200afe416c6
+#define WINRT_GENERIC_fc7a0488_2803_505c_9e62_9200afe416c6
+template <> struct __declspec(uuid("fc7a0488-2803-505c-9e62-9200afe416c6")) __declspec(novtable) IVectorView<winrt::Windows::Devices::Sensors::ActivityType> : impl_IVectorView<winrt::Windows::Devices::Sensors::ActivityType> {};
+#endif
+
+
+}
+
+namespace ABI::Windows::Foundation {
 
 #ifndef WINRT_GENERIC_a5b72e01_546c_5fbb_b847_49200aaaaac5
 #define WINRT_GENERIC_a5b72e01_546c_5fbb_b847_49200aaaaac5
@@ -190,6 +191,41 @@ namespace ABI::Windows::Foundation {
 template <> struct __declspec(uuid("d775d699-9d74-5473-9c1b-d51a89db6642")) __declspec(novtable) TypedEventHandler<Windows::Devices::Sensors::Altimeter, Windows::Devices::Sensors::AltimeterReadingChangedEventArgs> : impl_TypedEventHandler<Windows::Devices::Sensors::Altimeter, Windows::Devices::Sensors::AltimeterReadingChangedEventArgs> {};
 #endif
 
+#ifndef WINRT_GENERIC_fb0594f4_93d9_5c2f_b8eb_90f1e9258fdc
+#define WINRT_GENERIC_fb0594f4_93d9_5c2f_b8eb_90f1e9258fdc
+template <> struct __declspec(uuid("fb0594f4-93d9-5c2f-b8eb-90f1e9258fdc")) __declspec(novtable) AsyncOperationCompletedHandler<Windows::Devices::Sensors::ActivitySensor> : impl_AsyncOperationCompletedHandler<Windows::Devices::Sensors::ActivitySensor> {};
+#endif
+
+
+}
+
+namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_407b00a8_8ef7_584e_8fc5_3327655132f9
+#define WINRT_GENERIC_407b00a8_8ef7_584e_8fc5_3327655132f9
+template <> struct __declspec(uuid("407b00a8-8ef7-584e-8fc5-3327655132f9")) __declspec(novtable) IVector<Windows::Devices::Sensors::ActivitySensorReading> : impl_IVector<Windows::Devices::Sensors::ActivitySensorReading> {};
+#endif
+
+#ifndef WINRT_GENERIC_d2dab535_0c94_547e_afe3_5527bcbeb9cc
+#define WINRT_GENERIC_d2dab535_0c94_547e_afe3_5527bcbeb9cc
+template <> struct __declspec(uuid("d2dab535-0c94-547e-afe3-5527bcbeb9cc")) __declspec(novtable) IIterator<Windows::Devices::Sensors::ActivitySensorReading> : impl_IIterator<Windows::Devices::Sensors::ActivitySensorReading> {};
+#endif
+
+#ifndef WINRT_GENERIC_9a34ce03_8c6d_5994_907f_d5c2d19148cb
+#define WINRT_GENERIC_9a34ce03_8c6d_5994_907f_d5c2d19148cb
+template <> struct __declspec(uuid("9a34ce03-8c6d-5994-907f-d5c2d19148cb")) __declspec(novtable) IIterable<Windows::Devices::Sensors::ActivitySensorReading> : impl_IIterable<Windows::Devices::Sensors::ActivitySensorReading> {};
+#endif
+
+
+}
+
+namespace ABI::Windows::Foundation {
+
+#ifndef WINRT_GENERIC_adc48d5d_b343_5a58_8454_6e2bc2e0475c
+#define WINRT_GENERIC_adc48d5d_b343_5a58_8454_6e2bc2e0475c
+template <> struct __declspec(uuid("adc48d5d-b343-5a58-8454-6e2bc2e0475c")) __declspec(novtable) AsyncOperationCompletedHandler<Windows::Devices::Sensors::ActivitySensorReading> : impl_AsyncOperationCompletedHandler<Windows::Devices::Sensors::ActivitySensorReading> {};
+#endif
+
 
 }
 
@@ -205,25 +241,10 @@ template <> struct __declspec(uuid("40524281-a7c6-50b1-b6f5-0baa95d902c2")) __de
 template <> struct __declspec(uuid("2a04cdfa-5dfd-5178-8731-ade998e4a7f6")) __declspec(novtable) IIterable<winrt::Windows::Devices::Sensors::ActivityType> : impl_IIterable<winrt::Windows::Devices::Sensors::ActivityType> {};
 #endif
 
-
-}
-
-namespace ABI::Windows::Foundation {
-
-#ifndef WINRT_GENERIC_fb0594f4_93d9_5c2f_b8eb_90f1e9258fdc
-#define WINRT_GENERIC_fb0594f4_93d9_5c2f_b8eb_90f1e9258fdc
-template <> struct __declspec(uuid("fb0594f4-93d9-5c2f-b8eb-90f1e9258fdc")) __declspec(novtable) AsyncOperationCompletedHandler<Windows::Devices::Sensors::ActivitySensor> : impl_AsyncOperationCompletedHandler<Windows::Devices::Sensors::ActivitySensor> {};
+#ifndef WINRT_GENERIC_52bbfffd_afc9_5ba3_ab51_bd9c68bfbed3
+#define WINRT_GENERIC_52bbfffd_afc9_5ba3_ab51_bd9c68bfbed3
+template <> struct __declspec(uuid("52bbfffd-afc9-5ba3-ab51-bd9c68bfbed3")) __declspec(novtable) IVector<Windows::Devices::Sensors::ActivitySensorReadingChangeReport> : impl_IVector<Windows::Devices::Sensors::ActivitySensorReadingChangeReport> {};
 #endif
-
-#ifndef WINRT_GENERIC_adc48d5d_b343_5a58_8454_6e2bc2e0475c
-#define WINRT_GENERIC_adc48d5d_b343_5a58_8454_6e2bc2e0475c
-template <> struct __declspec(uuid("adc48d5d-b343-5a58-8454-6e2bc2e0475c")) __declspec(novtable) AsyncOperationCompletedHandler<Windows::Devices::Sensors::ActivitySensorReading> : impl_AsyncOperationCompletedHandler<Windows::Devices::Sensors::ActivitySensorReading> {};
-#endif
-
-
-}
-
-namespace ABI::Windows::Foundation::Collections {
 
 #ifndef WINRT_GENERIC_9c07034e_8333_59d5_8d60_0e3f0438ac12
 #define WINRT_GENERIC_9c07034e_8333_59d5_8d60_0e3f0438ac12
@@ -250,6 +271,11 @@ template <> struct __declspec(uuid("a62dbe4e-51de-5a13-ba21-e76df3bc1396")) __de
 
 namespace ABI::Windows::Foundation::Collections {
 
+#ifndef WINRT_GENERIC_3864b898_3fad_5f74_a341_b38351bf13b6
+#define WINRT_GENERIC_3864b898_3fad_5f74_a341_b38351bf13b6
+template <> struct __declspec(uuid("3864b898-3fad-5f74-a341-b38351bf13b6")) __declspec(novtable) IVector<Windows::Devices::Sensors::PedometerReading> : impl_IVector<Windows::Devices::Sensors::PedometerReading> {};
+#endif
+
 #ifndef WINRT_GENERIC_0ac70ed3_8553_5ef3_92f8_438609623087
 #define WINRT_GENERIC_0ac70ed3_8553_5ef3_92f8_438609623087
 template <> struct __declspec(uuid("0ac70ed3-8553-5ef3-92f8-438609623087")) __declspec(novtable) IIterator<Windows::Devices::Sensors::PedometerReading> : impl_IIterator<Windows::Devices::Sensors::PedometerReading> {};
@@ -263,6 +289,16 @@ template <> struct __declspec(uuid("bbb61a5c-98c3-5718-88fe-5392a7451e2d")) __de
 #ifndef WINRT_GENERIC_b270d3b8_3dd2_599f_a671_2de5035503da
 #define WINRT_GENERIC_b270d3b8_3dd2_599f_a671_2de5035503da
 template <> struct __declspec(uuid("b270d3b8-3dd2-599f-a671-2de5035503da")) __declspec(novtable) IKeyValuePair<winrt::Windows::Devices::Sensors::PedometerStepKind, Windows::Devices::Sensors::PedometerReading> : impl_IKeyValuePair<winrt::Windows::Devices::Sensors::PedometerStepKind, Windows::Devices::Sensors::PedometerReading> {};
+#endif
+
+#ifndef WINRT_GENERIC_9803e953_5204_5b34_a81c_18d4bb25c750
+#define WINRT_GENERIC_9803e953_5204_5b34_a81c_18d4bb25c750
+template <> struct __declspec(uuid("9803e953-5204-5b34-a81c-18d4bb25c750")) __declspec(novtable) IMap<winrt::Windows::Devices::Sensors::PedometerStepKind, Windows::Devices::Sensors::PedometerReading> : impl_IMap<winrt::Windows::Devices::Sensors::PedometerStepKind, Windows::Devices::Sensors::PedometerReading> {};
+#endif
+
+#ifndef WINRT_GENERIC_59585ac3_e921_5560_9f39_9c8a74ddad41
+#define WINRT_GENERIC_59585ac3_e921_5560_9f39_9c8a74ddad41
+template <> struct __declspec(uuid("59585ac3-e921-5560-9f39-9c8a74ddad41")) __declspec(novtable) IVector<Windows::Devices::Sensors::ProximitySensorReading> : impl_IVector<Windows::Devices::Sensors::ProximitySensorReading> {};
 #endif
 
 #ifndef WINRT_GENERIC_1d4f08df_7f49_573b_936a_6d4d4e610930
@@ -320,1746 +356,620 @@ template <> struct __declspec(uuid("098f29cb-bc91-5639-a541-d5a4811ec35b")) __de
 
 namespace Windows::Devices::Sensors {
 
-template <typename D>
-class WINRT_EBO impl_IAccelerometer
-{
-    auto shim() const { return impl::shim<D, IAccelerometer>(this); }
-
-public:
-
-    Windows::Devices::Sensors::AccelerometerReading GetCurrentReading() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Accelerometer, Windows::Devices::Sensors::AccelerometerReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IAccelerometer>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Accelerometer, Windows::Devices::Sensors::AccelerometerReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-    event_token Shaken(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Accelerometer, Windows::Devices::Sensors::AccelerometerShakenEventArgs> & handler) const;
-    using Shaken_revoker = event_revoker<IAccelerometer>;
-    Shaken_revoker Shaken(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Accelerometer, Windows::Devices::Sensors::AccelerometerShakenEventArgs> & handler) const;
-    void Shaken(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometer2
-{
-    auto shim() const { return impl::shim<D, IAccelerometer2>(this); }
-
-public:
-
-    void ReadingTransform(Windows::Graphics::Display::DisplayOrientations value) const;
-    Windows::Graphics::Display::DisplayOrientations ReadingTransform() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometer3
-{
-    auto shim() const { return impl::shim<D, IAccelerometer3>(this); }
-
-public:
-
-    void ReportLatency(uint32_t value) const;
-    uint32_t ReportLatency() const;
-    uint32_t MaxBatchSize() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometer4
-{
-    auto shim() const { return impl::shim<D, IAccelerometer4>(this); }
-
-public:
-
-    Windows::Devices::Sensors::AccelerometerReadingType ReadingType() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometerDeviceId
-{
-    auto shim() const { return impl::shim<D, IAccelerometerDeviceId>(this); }
-
-public:
-
-    hstring DeviceId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometerReading
-{
-    auto shim() const { return impl::shim<D, IAccelerometerReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    double AccelerationX() const;
-    double AccelerationY() const;
-    double AccelerationZ() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometerReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IAccelerometerReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::AccelerometerReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometerShakenEventArgs
-{
-    auto shim() const { return impl::shim<D, IAccelerometerShakenEventArgs>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometerStatics
-{
-    auto shim() const { return impl::shim<D, IAccelerometerStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Accelerometer GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAccelerometerStatics2
-{
-    auto shim() const { return impl::shim<D, IAccelerometerStatics2>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Accelerometer GetDefault(Windows::Devices::Sensors::AccelerometerReadingType readingType) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IActivitySensor
-{
-    auto shim() const { return impl::shim<D, IActivitySensor>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Sensors::ActivitySensorReading> GetCurrentReadingAsync() const;
-    Windows::Foundation::Collections::IVector<winrt::Windows::Devices::Sensors::ActivityType> SubscribedActivities() const;
-    double PowerInMilliwatts() const;
-    hstring DeviceId() const;
-    Windows::Foundation::Collections::IVectorView<winrt::Windows::Devices::Sensors::ActivityType> SupportedActivities() const;
-    uint32_t MinimumReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::ActivitySensor, Windows::Devices::Sensors::ActivitySensorReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IActivitySensor>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::ActivitySensor, Windows::Devices::Sensors::ActivitySensorReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IActivitySensorReading
-{
-    auto shim() const { return impl::shim<D, IActivitySensorReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    Windows::Devices::Sensors::ActivityType Activity() const;
-    Windows::Devices::Sensors::ActivitySensorReadingConfidence Confidence() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IActivitySensorReadingChangeReport
-{
-    auto shim() const { return impl::shim<D, IActivitySensorReadingChangeReport>(this); }
-
-public:
-
-    Windows::Devices::Sensors::ActivitySensorReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IActivitySensorReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IActivitySensorReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::ActivitySensorReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IActivitySensorStatics
-{
-    auto shim() const { return impl::shim<D, IActivitySensorStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Sensors::ActivitySensor> GetDefaultAsync() const;
-    hstring GetDeviceSelector() const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Sensors::ActivitySensor> FromIdAsync(hstring_ref deviceId) const;
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Sensors::ActivitySensorReading>> GetSystemHistoryAsync(const Windows::Foundation::DateTime & fromTime) const;
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Sensors::ActivitySensorReading>> GetSystemHistoryAsync(const Windows::Foundation::DateTime & fromTime, const Windows::Foundation::TimeSpan & duration) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IActivitySensorTriggerDetails
-{
-    auto shim() const { return impl::shim<D, IActivitySensorTriggerDetails>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<Windows::Devices::Sensors::ActivitySensorReadingChangeReport> ReadReports() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAltimeter
-{
-    auto shim() const { return impl::shim<D, IAltimeter>(this); }
-
-public:
-
-    Windows::Devices::Sensors::AltimeterReading GetCurrentReading() const;
-    hstring DeviceId() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Altimeter, Windows::Devices::Sensors::AltimeterReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IAltimeter>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Altimeter, Windows::Devices::Sensors::AltimeterReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAltimeterReading
-{
-    auto shim() const { return impl::shim<D, IAltimeterReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    double AltitudeChangeInMeters() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAltimeterReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IAltimeterReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::AltimeterReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IAltimeterStatics
-{
-    auto shim() const { return impl::shim<D, IAltimeterStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Altimeter GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IBarometer
-{
-    auto shim() const { return impl::shim<D, IBarometer>(this); }
-
-public:
-
-    Windows::Devices::Sensors::BarometerReading GetCurrentReading() const;
-    hstring DeviceId() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Barometer, Windows::Devices::Sensors::BarometerReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IBarometer>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Barometer, Windows::Devices::Sensors::BarometerReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IBarometerReading
-{
-    auto shim() const { return impl::shim<D, IBarometerReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    double StationPressureInHectopascals() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IBarometerReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IBarometerReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::BarometerReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IBarometerStatics
-{
-    auto shim() const { return impl::shim<D, IBarometerStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Barometer GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ICompass
-{
-    auto shim() const { return impl::shim<D, ICompass>(this); }
-
-public:
-
-    Windows::Devices::Sensors::CompassReading GetCurrentReading() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Compass, Windows::Devices::Sensors::CompassReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<ICompass>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Compass, Windows::Devices::Sensors::CompassReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ICompass2
-{
-    auto shim() const { return impl::shim<D, ICompass2>(this); }
-
-public:
-
-    void ReadingTransform(Windows::Graphics::Display::DisplayOrientations value) const;
-    Windows::Graphics::Display::DisplayOrientations ReadingTransform() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ICompassDeviceId
-{
-    auto shim() const { return impl::shim<D, ICompassDeviceId>(this); }
-
-public:
-
-    hstring DeviceId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ICompassReading
-{
-    auto shim() const { return impl::shim<D, ICompassReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    double HeadingMagneticNorth() const;
-    Windows::Foundation::IReference<double> HeadingTrueNorth() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ICompassReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, ICompassReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::CompassReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ICompassReadingHeadingAccuracy
-{
-    auto shim() const { return impl::shim<D, ICompassReadingHeadingAccuracy>(this); }
-
-public:
-
-    Windows::Devices::Sensors::MagnetometerAccuracy HeadingAccuracy() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ICompassStatics
-{
-    auto shim() const { return impl::shim<D, ICompassStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Compass GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGyrometer
-{
-    auto shim() const { return impl::shim<D, IGyrometer>(this); }
-
-public:
-
-    Windows::Devices::Sensors::GyrometerReading GetCurrentReading() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Gyrometer, Windows::Devices::Sensors::GyrometerReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IGyrometer>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Gyrometer, Windows::Devices::Sensors::GyrometerReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGyrometer2
-{
-    auto shim() const { return impl::shim<D, IGyrometer2>(this); }
-
-public:
-
-    void ReadingTransform(Windows::Graphics::Display::DisplayOrientations value) const;
-    Windows::Graphics::Display::DisplayOrientations ReadingTransform() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGyrometerDeviceId
-{
-    auto shim() const { return impl::shim<D, IGyrometerDeviceId>(this); }
-
-public:
-
-    hstring DeviceId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGyrometerReading
-{
-    auto shim() const { return impl::shim<D, IGyrometerReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    double AngularVelocityX() const;
-    double AngularVelocityY() const;
-    double AngularVelocityZ() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGyrometerReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IGyrometerReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::GyrometerReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IGyrometerStatics
-{
-    auto shim() const { return impl::shim<D, IGyrometerStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Gyrometer GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometer
-{
-    auto shim() const { return impl::shim<D, IInclinometer>(this); }
-
-public:
-
-    Windows::Devices::Sensors::InclinometerReading GetCurrentReading() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Inclinometer, Windows::Devices::Sensors::InclinometerReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IInclinometer>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Inclinometer, Windows::Devices::Sensors::InclinometerReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometer2
-{
-    auto shim() const { return impl::shim<D, IInclinometer2>(this); }
-
-public:
-
-    void ReadingTransform(Windows::Graphics::Display::DisplayOrientations value) const;
-    Windows::Graphics::Display::DisplayOrientations ReadingTransform() const;
-    Windows::Devices::Sensors::SensorReadingType ReadingType() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometerDeviceId
-{
-    auto shim() const { return impl::shim<D, IInclinometerDeviceId>(this); }
-
-public:
-
-    hstring DeviceId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometerReading
-{
-    auto shim() const { return impl::shim<D, IInclinometerReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    float PitchDegrees() const;
-    float RollDegrees() const;
-    float YawDegrees() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometerReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IInclinometerReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::InclinometerReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometerReadingYawAccuracy
-{
-    auto shim() const { return impl::shim<D, IInclinometerReadingYawAccuracy>(this); }
-
-public:
-
-    Windows::Devices::Sensors::MagnetometerAccuracy YawAccuracy() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometerStatics
-{
-    auto shim() const { return impl::shim<D, IInclinometerStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Inclinometer GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometerStatics2
-{
-    auto shim() const { return impl::shim<D, IInclinometerStatics2>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Inclinometer GetDefaultForRelativeReadings() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IInclinometerStatics3
-{
-    auto shim() const { return impl::shim<D, IInclinometerStatics3>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Inclinometer GetDefault(Windows::Devices::Sensors::SensorReadingType sensorReadingtype) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ILightSensor
-{
-    auto shim() const { return impl::shim<D, ILightSensor>(this); }
-
-public:
-
-    Windows::Devices::Sensors::LightSensorReading GetCurrentReading() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::LightSensor, Windows::Devices::Sensors::LightSensorReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<ILightSensor>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::LightSensor, Windows::Devices::Sensors::LightSensorReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ILightSensorDeviceId
-{
-    auto shim() const { return impl::shim<D, ILightSensorDeviceId>(this); }
-
-public:
-
-    hstring DeviceId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ILightSensorReading
-{
-    auto shim() const { return impl::shim<D, ILightSensorReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    float IlluminanceInLux() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ILightSensorReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, ILightSensorReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::LightSensorReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ILightSensorStatics
-{
-    auto shim() const { return impl::shim<D, ILightSensorStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::LightSensor GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IMagnetometer
-{
-    auto shim() const { return impl::shim<D, IMagnetometer>(this); }
-
-public:
-
-    Windows::Devices::Sensors::MagnetometerReading GetCurrentReading() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Magnetometer, Windows::Devices::Sensors::MagnetometerReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IMagnetometer>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Magnetometer, Windows::Devices::Sensors::MagnetometerReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IMagnetometer2
-{
-    auto shim() const { return impl::shim<D, IMagnetometer2>(this); }
-
-public:
-
-    void ReadingTransform(Windows::Graphics::Display::DisplayOrientations value) const;
-    Windows::Graphics::Display::DisplayOrientations ReadingTransform() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IMagnetometerDeviceId
-{
-    auto shim() const { return impl::shim<D, IMagnetometerDeviceId>(this); }
-
-public:
-
-    hstring DeviceId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IMagnetometerReading
-{
-    auto shim() const { return impl::shim<D, IMagnetometerReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    float MagneticFieldX() const;
-    float MagneticFieldY() const;
-    float MagneticFieldZ() const;
-    Windows::Devices::Sensors::MagnetometerAccuracy DirectionalAccuracy() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IMagnetometerReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IMagnetometerReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::MagnetometerReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IMagnetometerStatics
-{
-    auto shim() const { return impl::shim<D, IMagnetometerStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::Magnetometer GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensor
-{
-    auto shim() const { return impl::shim<D, IOrientationSensor>(this); }
-
-public:
-
-    Windows::Devices::Sensors::OrientationSensorReading GetCurrentReading() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::OrientationSensor, Windows::Devices::Sensors::OrientationSensorReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IOrientationSensor>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::OrientationSensor, Windows::Devices::Sensors::OrientationSensorReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensor2
-{
-    auto shim() const { return impl::shim<D, IOrientationSensor2>(this); }
-
-public:
-
-    void ReadingTransform(Windows::Graphics::Display::DisplayOrientations value) const;
-    Windows::Graphics::Display::DisplayOrientations ReadingTransform() const;
-    Windows::Devices::Sensors::SensorReadingType ReadingType() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensorDeviceId
-{
-    auto shim() const { return impl::shim<D, IOrientationSensorDeviceId>(this); }
-
-public:
-
-    hstring DeviceId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensorReading
-{
-    auto shim() const { return impl::shim<D, IOrientationSensorReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    Windows::Devices::Sensors::SensorRotationMatrix RotationMatrix() const;
-    Windows::Devices::Sensors::SensorQuaternion Quaternion() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensorReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IOrientationSensorReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::OrientationSensorReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensorReadingYawAccuracy
-{
-    auto shim() const { return impl::shim<D, IOrientationSensorReadingYawAccuracy>(this); }
-
-public:
-
-    Windows::Devices::Sensors::MagnetometerAccuracy YawAccuracy() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensorStatics
-{
-    auto shim() const { return impl::shim<D, IOrientationSensorStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::OrientationSensor GetDefault() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensorStatics2
-{
-    auto shim() const { return impl::shim<D, IOrientationSensorStatics2>(this); }
-
-public:
-
-    Windows::Devices::Sensors::OrientationSensor GetDefaultForRelativeReadings() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOrientationSensorStatics3
-{
-    auto shim() const { return impl::shim<D, IOrientationSensorStatics3>(this); }
-
-public:
-
-    Windows::Devices::Sensors::OrientationSensor GetDefault(Windows::Devices::Sensors::SensorReadingType sensorReadingtype) const;
-    Windows::Devices::Sensors::OrientationSensor GetDefault(Windows::Devices::Sensors::SensorReadingType sensorReadingType, Windows::Devices::Sensors::SensorOptimizationGoal optimizationGoal) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPedometer
-{
-    auto shim() const { return impl::shim<D, IPedometer>(this); }
-
-public:
-
-    hstring DeviceId() const;
-    double PowerInMilliwatts() const;
-    uint32_t MinimumReportInterval() const;
-    void ReportInterval(uint32_t value) const;
-    uint32_t ReportInterval() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Pedometer, Windows::Devices::Sensors::PedometerReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IPedometer>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::Pedometer, Windows::Devices::Sensors::PedometerReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPedometer2
-{
-    auto shim() const { return impl::shim<D, IPedometer2>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IMapView<winrt::Windows::Devices::Sensors::PedometerStepKind, Windows::Devices::Sensors::PedometerReading> GetCurrentReadings() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPedometerDataThresholdFactory
-{
-    auto shim() const { return impl::shim<D, IPedometerDataThresholdFactory>(this); }
-
-public:
-
-    Windows::Devices::Sensors::PedometerDataThreshold Create(const Windows::Devices::Sensors::Pedometer & sensor, int32_t stepGoal) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPedometerReading
-{
-    auto shim() const { return impl::shim<D, IPedometerReading>(this); }
-
-public:
-
-    Windows::Devices::Sensors::PedometerStepKind StepKind() const;
-    int32_t CumulativeSteps() const;
-    Windows::Foundation::DateTime Timestamp() const;
-    Windows::Foundation::TimeSpan CumulativeStepsDuration() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPedometerReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IPedometerReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::PedometerReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPedometerStatics
-{
-    auto shim() const { return impl::shim<D, IPedometerStatics>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Sensors::Pedometer> FromIdAsync(hstring_ref deviceId) const;
-    Windows::Foundation::IAsyncOperation<Windows::Devices::Sensors::Pedometer> GetDefaultAsync() const;
-    hstring GetDeviceSelector() const;
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Sensors::PedometerReading>> GetSystemHistoryAsync(const Windows::Foundation::DateTime & fromTime) const;
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::Sensors::PedometerReading>> GetSystemHistoryAsync(const Windows::Foundation::DateTime & fromTime, const Windows::Foundation::TimeSpan & duration) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IPedometerStatics2
-{
-    auto shim() const { return impl::shim<D, IPedometerStatics2>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<Windows::Devices::Sensors::PedometerReading> GetReadingsFromTriggerDetails(const Windows::Devices::Sensors::SensorDataThresholdTriggerDetails & triggerDetails) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IProximitySensor
-{
-    auto shim() const { return impl::shim<D, IProximitySensor>(this); }
-
-public:
-
-    hstring DeviceId() const;
-    Windows::Foundation::IReference<uint32_t> MaxDistanceInMillimeters() const;
-    Windows::Foundation::IReference<uint32_t> MinDistanceInMillimeters() const;
-    Windows::Devices::Sensors::ProximitySensorReading GetCurrentReading() const;
-    event_token ReadingChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::ProximitySensor, Windows::Devices::Sensors::ProximitySensorReadingChangedEventArgs> & handler) const;
-    using ReadingChanged_revoker = event_revoker<IProximitySensor>;
-    ReadingChanged_revoker ReadingChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::ProximitySensor, Windows::Devices::Sensors::ProximitySensorReadingChangedEventArgs> & handler) const;
-    void ReadingChanged(event_token token) const;
-    Windows::Devices::Sensors::ProximitySensorDisplayOnOffController CreateDisplayOnOffController() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IProximitySensorDataThresholdFactory
-{
-    auto shim() const { return impl::shim<D, IProximitySensorDataThresholdFactory>(this); }
-
-public:
-
-    Windows::Devices::Sensors::ProximitySensorDataThreshold Create(const Windows::Devices::Sensors::ProximitySensor & sensor) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IProximitySensorReading
-{
-    auto shim() const { return impl::shim<D, IProximitySensorReading>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    bool IsDetected() const;
-    Windows::Foundation::IReference<uint32_t> DistanceInMillimeters() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IProximitySensorReadingChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, IProximitySensorReadingChangedEventArgs>(this); }
-
-public:
-
-    Windows::Devices::Sensors::ProximitySensorReading Reading() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IProximitySensorStatics
-{
-    auto shim() const { return impl::shim<D, IProximitySensorStatics>(this); }
-
-public:
-
-    hstring GetDeviceSelector() const;
-    Windows::Devices::Sensors::ProximitySensor FromId(hstring_ref sensorId) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IProximitySensorStatics2
-{
-    auto shim() const { return impl::shim<D, IProximitySensorStatics2>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<Windows::Devices::Sensors::ProximitySensorReading> GetReadingsFromTriggerDetails(const Windows::Devices::Sensors::SensorDataThresholdTriggerDetails & triggerDetails) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISensorDataThreshold
-{
-    auto shim() const { return impl::shim<D, ISensorDataThreshold>(this); }
-
-public:
-
-};
-
-template <typename D>
-class WINRT_EBO impl_ISensorDataThresholdTriggerDetails
-{
-    auto shim() const { return impl::shim<D, ISensorDataThresholdTriggerDetails>(this); }
-
-public:
-
-    hstring DeviceId() const;
-    Windows::Devices::Sensors::SensorType SensorType() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISensorQuaternion
-{
-    auto shim() const { return impl::shim<D, ISensorQuaternion>(this); }
-
-public:
-
-    float W() const;
-    float X() const;
-    float Y() const;
-    float Z() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISensorRotationMatrix
-{
-    auto shim() const { return impl::shim<D, ISensorRotationMatrix>(this); }
-
-public:
-
-    float M11() const;
-    float M12() const;
-    float M13() const;
-    float M21() const;
-    float M22() const;
-    float M23() const;
-    float M31() const;
-    float M32() const;
-    float M33() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISimpleOrientationSensor
-{
-    auto shim() const { return impl::shim<D, ISimpleOrientationSensor>(this); }
-
-public:
-
-    Windows::Devices::Sensors::SimpleOrientation GetCurrentOrientation() const;
-    event_token OrientationChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::SimpleOrientationSensor, Windows::Devices::Sensors::SimpleOrientationSensorOrientationChangedEventArgs> & handler) const;
-    using OrientationChanged_revoker = event_revoker<ISimpleOrientationSensor>;
-    OrientationChanged_revoker OrientationChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::Sensors::SimpleOrientationSensor, Windows::Devices::Sensors::SimpleOrientationSensorOrientationChangedEventArgs> & handler) const;
-    void OrientationChanged(event_token token) const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISimpleOrientationSensor2
-{
-    auto shim() const { return impl::shim<D, ISimpleOrientationSensor2>(this); }
-
-public:
-
-    void ReadingTransform(Windows::Graphics::Display::DisplayOrientations value) const;
-    Windows::Graphics::Display::DisplayOrientations ReadingTransform() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISimpleOrientationSensorDeviceId
-{
-    auto shim() const { return impl::shim<D, ISimpleOrientationSensorDeviceId>(this); }
-
-public:
-
-    hstring DeviceId() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISimpleOrientationSensorOrientationChangedEventArgs
-{
-    auto shim() const { return impl::shim<D, ISimpleOrientationSensorOrientationChangedEventArgs>(this); }
-
-public:
-
-    Windows::Foundation::DateTime Timestamp() const;
-    Windows::Devices::Sensors::SimpleOrientation Orientation() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_ISimpleOrientationSensorStatics
-{
-    auto shim() const { return impl::shim<D, ISimpleOrientationSensorStatics>(this); }
-
-public:
-
-    Windows::Devices::Sensors::SimpleOrientationSensor GetDefault() const;
-};
-
 struct IAccelerometer :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometer>
 {
     IAccelerometer(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometer>(m_ptr); }
 };
 
 struct IAccelerometer2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometer2>
 {
     IAccelerometer2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometer2>(m_ptr); }
 };
 
 struct IAccelerometer3 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometer3>
 {
     IAccelerometer3(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometer3>(m_ptr); }
 };
 
 struct IAccelerometer4 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometer4>
 {
     IAccelerometer4(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometer4>(m_ptr); }
 };
 
 struct IAccelerometerDeviceId :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometerDeviceId>
 {
     IAccelerometerDeviceId(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometerDeviceId>(m_ptr); }
 };
 
 struct IAccelerometerReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometerReading>
 {
     IAccelerometerReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometerReading>(m_ptr); }
 };
 
 struct IAccelerometerReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometerReadingChangedEventArgs>
 {
     IAccelerometerReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometerReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IAccelerometerShakenEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometerShakenEventArgs>
 {
     IAccelerometerShakenEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometerShakenEventArgs>(m_ptr); }
 };
 
 struct IAccelerometerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometerStatics>
 {
     IAccelerometerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometerStatics>(m_ptr); }
 };
 
 struct IAccelerometerStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAccelerometerStatics2>
 {
     IAccelerometerStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAccelerometerStatics2>(m_ptr); }
 };
 
 struct IActivitySensor :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IActivitySensor>
 {
     IActivitySensor(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IActivitySensor>(m_ptr); }
 };
 
 struct IActivitySensorReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IActivitySensorReading>
 {
     IActivitySensorReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IActivitySensorReading>(m_ptr); }
 };
 
 struct IActivitySensorReadingChangeReport :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IActivitySensorReadingChangeReport>
 {
     IActivitySensorReadingChangeReport(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IActivitySensorReadingChangeReport>(m_ptr); }
 };
 
 struct IActivitySensorReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IActivitySensorReadingChangedEventArgs>
 {
     IActivitySensorReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IActivitySensorReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IActivitySensorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IActivitySensorStatics>
 {
     IActivitySensorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IActivitySensorStatics>(m_ptr); }
 };
 
 struct IActivitySensorTriggerDetails :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IActivitySensorTriggerDetails>
 {
     IActivitySensorTriggerDetails(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IActivitySensorTriggerDetails>(m_ptr); }
 };
 
 struct IAltimeter :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAltimeter>
 {
     IAltimeter(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAltimeter>(m_ptr); }
 };
 
 struct IAltimeterReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAltimeterReading>
 {
     IAltimeterReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAltimeterReading>(m_ptr); }
 };
 
 struct IAltimeterReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAltimeterReadingChangedEventArgs>
 {
     IAltimeterReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAltimeterReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IAltimeterStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IAltimeterStatics>
 {
     IAltimeterStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IAltimeterStatics>(m_ptr); }
 };
 
 struct IBarometer :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IBarometer>
 {
     IBarometer(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IBarometer>(m_ptr); }
 };
 
 struct IBarometerReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IBarometerReading>
 {
     IBarometerReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IBarometerReading>(m_ptr); }
 };
 
 struct IBarometerReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IBarometerReadingChangedEventArgs>
 {
     IBarometerReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IBarometerReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IBarometerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IBarometerStatics>
 {
     IBarometerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IBarometerStatics>(m_ptr); }
 };
 
 struct ICompass :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ICompass>
 {
     ICompass(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ICompass>(m_ptr); }
 };
 
 struct ICompass2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ICompass2>
 {
     ICompass2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ICompass2>(m_ptr); }
 };
 
 struct ICompassDeviceId :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ICompassDeviceId>
 {
     ICompassDeviceId(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ICompassDeviceId>(m_ptr); }
 };
 
 struct ICompassReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ICompassReading>
 {
     ICompassReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ICompassReading>(m_ptr); }
 };
 
 struct ICompassReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ICompassReadingChangedEventArgs>
 {
     ICompassReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ICompassReadingChangedEventArgs>(m_ptr); }
 };
 
 struct ICompassReadingHeadingAccuracy :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ICompassReadingHeadingAccuracy>
 {
     ICompassReadingHeadingAccuracy(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ICompassReadingHeadingAccuracy>(m_ptr); }
 };
 
 struct ICompassStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ICompassStatics>
 {
     ICompassStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ICompassStatics>(m_ptr); }
 };
 
 struct IGyrometer :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGyrometer>
 {
     IGyrometer(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGyrometer>(m_ptr); }
 };
 
 struct IGyrometer2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGyrometer2>
 {
     IGyrometer2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGyrometer2>(m_ptr); }
 };
 
 struct IGyrometerDeviceId :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGyrometerDeviceId>
 {
     IGyrometerDeviceId(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGyrometerDeviceId>(m_ptr); }
 };
 
 struct IGyrometerReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGyrometerReading>
 {
     IGyrometerReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGyrometerReading>(m_ptr); }
 };
 
 struct IGyrometerReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGyrometerReadingChangedEventArgs>
 {
     IGyrometerReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGyrometerReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IGyrometerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IGyrometerStatics>
 {
     IGyrometerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IGyrometerStatics>(m_ptr); }
 };
 
 struct IInclinometer :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometer>
 {
     IInclinometer(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometer>(m_ptr); }
 };
 
 struct IInclinometer2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometer2>
 {
     IInclinometer2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometer2>(m_ptr); }
 };
 
 struct IInclinometerDeviceId :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometerDeviceId>
 {
     IInclinometerDeviceId(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometerDeviceId>(m_ptr); }
 };
 
 struct IInclinometerReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometerReading>
 {
     IInclinometerReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometerReading>(m_ptr); }
 };
 
 struct IInclinometerReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometerReadingChangedEventArgs>
 {
     IInclinometerReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometerReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IInclinometerReadingYawAccuracy :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometerReadingYawAccuracy>
 {
     IInclinometerReadingYawAccuracy(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometerReadingYawAccuracy>(m_ptr); }
 };
 
 struct IInclinometerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometerStatics>
 {
     IInclinometerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometerStatics>(m_ptr); }
 };
 
 struct IInclinometerStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometerStatics2>
 {
     IInclinometerStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometerStatics2>(m_ptr); }
 };
 
 struct IInclinometerStatics3 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IInclinometerStatics3>
 {
     IInclinometerStatics3(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IInclinometerStatics3>(m_ptr); }
 };
 
 struct ILightSensor :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ILightSensor>
 {
     ILightSensor(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ILightSensor>(m_ptr); }
 };
 
 struct ILightSensorDeviceId :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ILightSensorDeviceId>
 {
     ILightSensorDeviceId(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ILightSensorDeviceId>(m_ptr); }
 };
 
 struct ILightSensorReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ILightSensorReading>
 {
     ILightSensorReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ILightSensorReading>(m_ptr); }
 };
 
 struct ILightSensorReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ILightSensorReadingChangedEventArgs>
 {
     ILightSensorReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ILightSensorReadingChangedEventArgs>(m_ptr); }
 };
 
 struct ILightSensorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ILightSensorStatics>
 {
     ILightSensorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ILightSensorStatics>(m_ptr); }
 };
 
 struct IMagnetometer :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IMagnetometer>
 {
     IMagnetometer(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IMagnetometer>(m_ptr); }
 };
 
 struct IMagnetometer2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IMagnetometer2>
 {
     IMagnetometer2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IMagnetometer2>(m_ptr); }
 };
 
 struct IMagnetometerDeviceId :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IMagnetometerDeviceId>
 {
     IMagnetometerDeviceId(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IMagnetometerDeviceId>(m_ptr); }
 };
 
 struct IMagnetometerReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IMagnetometerReading>
 {
     IMagnetometerReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IMagnetometerReading>(m_ptr); }
 };
 
 struct IMagnetometerReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IMagnetometerReadingChangedEventArgs>
 {
     IMagnetometerReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IMagnetometerReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IMagnetometerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IMagnetometerStatics>
 {
     IMagnetometerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IMagnetometerStatics>(m_ptr); }
 };
 
 struct IOrientationSensor :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensor>
 {
     IOrientationSensor(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensor>(m_ptr); }
 };
 
 struct IOrientationSensor2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensor2>
 {
     IOrientationSensor2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensor2>(m_ptr); }
 };
 
 struct IOrientationSensorDeviceId :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensorDeviceId>
 {
     IOrientationSensorDeviceId(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensorDeviceId>(m_ptr); }
 };
 
 struct IOrientationSensorReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensorReading>
 {
     IOrientationSensorReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensorReading>(m_ptr); }
 };
 
 struct IOrientationSensorReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensorReadingChangedEventArgs>
 {
     IOrientationSensorReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensorReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IOrientationSensorReadingYawAccuracy :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensorReadingYawAccuracy>
 {
     IOrientationSensorReadingYawAccuracy(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensorReadingYawAccuracy>(m_ptr); }
 };
 
 struct IOrientationSensorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensorStatics>
 {
     IOrientationSensorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensorStatics>(m_ptr); }
 };
 
 struct IOrientationSensorStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensorStatics2>
 {
     IOrientationSensorStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensorStatics2>(m_ptr); }
 };
 
 struct IOrientationSensorStatics3 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOrientationSensorStatics3>
 {
     IOrientationSensorStatics3(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOrientationSensorStatics3>(m_ptr); }
 };
 
 struct IPedometer :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPedometer>
 {
     IPedometer(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPedometer>(m_ptr); }
 };
 
 struct IPedometer2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPedometer2>
 {
     IPedometer2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPedometer2>(m_ptr); }
 };
 
 struct IPedometerDataThresholdFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPedometerDataThresholdFactory>
 {
     IPedometerDataThresholdFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPedometerDataThresholdFactory>(m_ptr); }
 };
 
 struct IPedometerReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPedometerReading>
 {
     IPedometerReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPedometerReading>(m_ptr); }
 };
 
 struct IPedometerReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPedometerReadingChangedEventArgs>
 {
     IPedometerReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPedometerReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IPedometerStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPedometerStatics>
 {
     IPedometerStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPedometerStatics>(m_ptr); }
 };
 
 struct IPedometerStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IPedometerStatics2>
 {
     IPedometerStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IPedometerStatics2>(m_ptr); }
 };
 
 struct IProximitySensor :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IProximitySensor>
 {
     IProximitySensor(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IProximitySensor>(m_ptr); }
 };
 
 struct IProximitySensorDataThresholdFactory :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IProximitySensorDataThresholdFactory>
 {
     IProximitySensorDataThresholdFactory(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IProximitySensorDataThresholdFactory>(m_ptr); }
 };
 
 struct IProximitySensorReading :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IProximitySensorReading>
 {
     IProximitySensorReading(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IProximitySensorReading>(m_ptr); }
 };
 
 struct IProximitySensorReadingChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IProximitySensorReadingChangedEventArgs>
 {
     IProximitySensorReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IProximitySensorReadingChangedEventArgs>(m_ptr); }
 };
 
 struct IProximitySensorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IProximitySensorStatics>
 {
     IProximitySensorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IProximitySensorStatics>(m_ptr); }
 };
 
 struct IProximitySensorStatics2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IProximitySensorStatics2>
 {
     IProximitySensorStatics2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IProximitySensorStatics2>(m_ptr); }
 };
 
 struct ISensorDataThreshold :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISensorDataThreshold>
 {
     ISensorDataThreshold(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISensorDataThreshold>(m_ptr); }
 };
 
 struct ISensorDataThresholdTriggerDetails :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISensorDataThresholdTriggerDetails>
 {
     ISensorDataThresholdTriggerDetails(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISensorDataThresholdTriggerDetails>(m_ptr); }
 };
 
 struct ISensorQuaternion :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISensorQuaternion>
 {
     ISensorQuaternion(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISensorQuaternion>(m_ptr); }
 };
 
 struct ISensorRotationMatrix :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISensorRotationMatrix>
 {
     ISensorRotationMatrix(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISensorRotationMatrix>(m_ptr); }
 };
 
 struct ISimpleOrientationSensor :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISimpleOrientationSensor>
 {
     ISimpleOrientationSensor(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISimpleOrientationSensor>(m_ptr); }
 };
 
 struct ISimpleOrientationSensor2 :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISimpleOrientationSensor2>
 {
     ISimpleOrientationSensor2(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISimpleOrientationSensor2>(m_ptr); }
 };
 
 struct ISimpleOrientationSensorDeviceId :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISimpleOrientationSensorDeviceId>
 {
     ISimpleOrientationSensorDeviceId(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISimpleOrientationSensorDeviceId>(m_ptr); }
 };
 
 struct ISimpleOrientationSensorOrientationChangedEventArgs :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISimpleOrientationSensorOrientationChangedEventArgs>
 {
     ISimpleOrientationSensorOrientationChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISimpleOrientationSensorOrientationChangedEventArgs>(m_ptr); }
 };
 
 struct ISimpleOrientationSensorStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<ISimpleOrientationSensorStatics>
 {
     ISimpleOrientationSensorStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<ISimpleOrientationSensorStatics>(m_ptr); }
 };
 
 }

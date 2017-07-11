@@ -1,10 +1,13 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.Foundation.3.h"
-#include "internal\Windows.System.Power.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.Foundation.3.h"
+#include "internal/Windows.System.Power.3.h"
 #include "Windows.System.h"
 
 WINRT_EXPORT namespace winrt {
@@ -18,7 +21,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().LowUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().LowUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -31,7 +35,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().NearMaxAcceptableUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().NearMaxAcceptableUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -44,7 +49,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().MaxAcceptableUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().MaxAcceptableUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -57,7 +63,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().ExcessiveUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExcessiveUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -70,7 +77,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().NearTerminationUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().NearTerminationUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -83,7 +91,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().TerminationUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().TerminationUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -96,7 +105,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().RecentEnergyUsage());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RecentEnergyUsage());
             return S_OK;
         }
         catch (...)
@@ -109,7 +119,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().RecentEnergyUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RecentEnergyUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -118,11 +129,12 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
         }
     }
 
-    HRESULT __stdcall add_RecentEnergyUsageIncreased(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_RecentEnergyUsageIncreased(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().RecentEnergyUsageIncreased(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().RecentEnergyUsageIncreased(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -135,7 +147,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            shim().RecentEnergyUsageIncreased(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RecentEnergyUsageIncreased(token);
             return S_OK;
         }
         catch (...)
@@ -144,11 +157,12 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
         }
     }
 
-    HRESULT __stdcall add_RecentEnergyUsageReturnedToLow(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_RecentEnergyUsageReturnedToLow(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().RecentEnergyUsageReturnedToLow(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().RecentEnergyUsageReturnedToLow(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -161,7 +175,8 @@ struct produce<D, Windows::System::Power::IBackgroundEnergyManagerStatics> : pro
     {
         try
         {
-            shim().RecentEnergyUsageReturnedToLow(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RecentEnergyUsageReturnedToLow(token);
             return S_OK;
         }
         catch (...)
@@ -178,7 +193,8 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().LowUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().LowUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -191,7 +207,8 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().NearMaxAcceptableUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().NearMaxAcceptableUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -204,7 +221,8 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().MaxAcceptableUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().MaxAcceptableUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -217,7 +235,8 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().ExcessiveUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ExcessiveUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -230,7 +249,8 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().RecentEnergyUsage());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RecentEnergyUsage());
             return S_OK;
         }
         catch (...)
@@ -243,7 +263,8 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
     {
         try
         {
-            *value = detach(shim().RecentEnergyUsageLevel());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RecentEnergyUsageLevel());
             return S_OK;
         }
         catch (...)
@@ -252,11 +273,12 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
         }
     }
 
-    HRESULT __stdcall add_RecentEnergyUsageIncreased(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_RecentEnergyUsageIncreased(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().RecentEnergyUsageIncreased(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().RecentEnergyUsageIncreased(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -269,7 +291,8 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
     {
         try
         {
-            shim().RecentEnergyUsageIncreased(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RecentEnergyUsageIncreased(token);
             return S_OK;
         }
         catch (...)
@@ -278,11 +301,12 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
         }
     }
 
-    HRESULT __stdcall add_RecentEnergyUsageReturnedToLow(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_RecentEnergyUsageReturnedToLow(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().RecentEnergyUsageReturnedToLow(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().RecentEnergyUsageReturnedToLow(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -295,7 +319,8 @@ struct produce<D, Windows::System::Power::IForegroundEnergyManagerStatics> : pro
     {
         try
         {
-            shim().RecentEnergyUsageReturnedToLow(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RecentEnergyUsageReturnedToLow(token);
             return S_OK;
         }
         catch (...)
@@ -312,7 +337,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            *value = detach(shim().EnergySaverStatus());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().EnergySaverStatus());
             return S_OK;
         }
         catch (...)
@@ -321,11 +347,12 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
         }
     }
 
-    HRESULT __stdcall add_EnergySaverStatusChanged(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_EnergySaverStatusChanged(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().EnergySaverStatusChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().EnergySaverStatusChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -338,7 +365,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            shim().EnergySaverStatusChanged(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnergySaverStatusChanged(token);
             return S_OK;
         }
         catch (...)
@@ -351,7 +379,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            *value = detach(shim().BatteryStatus());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().BatteryStatus());
             return S_OK;
         }
         catch (...)
@@ -360,11 +389,12 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
         }
     }
 
-    HRESULT __stdcall add_BatteryStatusChanged(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_BatteryStatusChanged(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().BatteryStatusChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().BatteryStatusChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -377,7 +407,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            shim().BatteryStatusChanged(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().BatteryStatusChanged(token);
             return S_OK;
         }
         catch (...)
@@ -390,7 +421,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            *value = detach(shim().PowerSupplyStatus());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PowerSupplyStatus());
             return S_OK;
         }
         catch (...)
@@ -399,11 +431,12 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
         }
     }
 
-    HRESULT __stdcall add_PowerSupplyStatusChanged(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_PowerSupplyStatusChanged(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().PowerSupplyStatusChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().PowerSupplyStatusChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -416,7 +449,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            shim().PowerSupplyStatusChanged(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().PowerSupplyStatusChanged(token);
             return S_OK;
         }
         catch (...)
@@ -429,7 +463,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            *value = detach(shim().RemainingChargePercent());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RemainingChargePercent());
             return S_OK;
         }
         catch (...)
@@ -438,11 +473,12 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
         }
     }
 
-    HRESULT __stdcall add_RemainingChargePercentChanged(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_RemainingChargePercentChanged(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().RemainingChargePercentChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().RemainingChargePercentChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -455,7 +491,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            shim().RemainingChargePercentChanged(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemainingChargePercentChanged(token);
             return S_OK;
         }
         catch (...)
@@ -464,11 +501,12 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
         }
     }
 
-    HRESULT __stdcall get_RemainingDischargeTime(abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_RemainingDischargeTime(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RemainingDischargeTime());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RemainingDischargeTime());
             return S_OK;
         }
         catch (...)
@@ -477,11 +515,12 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
         }
     }
 
-    HRESULT __stdcall add_RemainingDischargeTimeChanged(abi_arg_in<Windows::Foundation::EventHandler<Windows::IInspectable>> handler, event_token * token) noexcept override
+    HRESULT __stdcall add_RemainingDischargeTimeChanged(impl::abi_arg_in<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> handler, event_token * token) noexcept override
     {
         try
         {
-            *token = detach(shim().RemainingDischargeTimeChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::IInspectable> *>(&handler)));
+            typename D::abi_guard guard(this->shim());
+            *token = detach_abi(this->shim().RemainingDischargeTimeChanged(*reinterpret_cast<const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> *>(&handler)));
             return S_OK;
         }
         catch (...)
@@ -494,7 +533,8 @@ struct produce<D, Windows::System::Power::IPowerManagerStatics> : produce_base<D
     {
         try
         {
-            shim().RemainingDischargeTimeChanged(token);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemainingDischargeTimeChanged(token);
             return S_OK;
         }
         catch (...)
@@ -511,287 +551,287 @@ namespace Windows::System::Power {
 template <typename D> Windows::System::Power::EnergySaverStatus impl_IPowerManagerStatics<D>::EnergySaverStatus() const
 {
     Windows::System::Power::EnergySaverStatus value {};
-    check_hresult(shim()->get_EnergySaverStatus(&value));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->get_EnergySaverStatus(&value));
     return value;
 }
 
-template <typename D> event_token impl_IPowerManagerStatics<D>::EnergySaverStatusChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IPowerManagerStatics<D>::EnergySaverStatusChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_EnergySaverStatusChanged(get(handler), &token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->add_EnergySaverStatusChanged(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::EnergySaverStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::EnergySaverStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IPowerManagerStatics>(this, &ABI::Windows::System::Power::IPowerManagerStatics::remove_EnergySaverStatusChanged, EnergySaverStatusChanged(handler));
 }
 
 template <typename D> void impl_IPowerManagerStatics<D>::EnergySaverStatusChanged(event_token token) const
 {
-    check_hresult(shim()->remove_EnergySaverStatusChanged(token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->remove_EnergySaverStatusChanged(token));
 }
 
 template <typename D> Windows::System::Power::BatteryStatus impl_IPowerManagerStatics<D>::BatteryStatus() const
 {
     Windows::System::Power::BatteryStatus value {};
-    check_hresult(shim()->get_BatteryStatus(&value));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->get_BatteryStatus(&value));
     return value;
 }
 
-template <typename D> event_token impl_IPowerManagerStatics<D>::BatteryStatusChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IPowerManagerStatics<D>::BatteryStatusChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_BatteryStatusChanged(get(handler), &token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->add_BatteryStatusChanged(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::BatteryStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::BatteryStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IPowerManagerStatics>(this, &ABI::Windows::System::Power::IPowerManagerStatics::remove_BatteryStatusChanged, BatteryStatusChanged(handler));
 }
 
 template <typename D> void impl_IPowerManagerStatics<D>::BatteryStatusChanged(event_token token) const
 {
-    check_hresult(shim()->remove_BatteryStatusChanged(token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->remove_BatteryStatusChanged(token));
 }
 
 template <typename D> Windows::System::Power::PowerSupplyStatus impl_IPowerManagerStatics<D>::PowerSupplyStatus() const
 {
     Windows::System::Power::PowerSupplyStatus value {};
-    check_hresult(shim()->get_PowerSupplyStatus(&value));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->get_PowerSupplyStatus(&value));
     return value;
 }
 
-template <typename D> event_token impl_IPowerManagerStatics<D>::PowerSupplyStatusChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IPowerManagerStatics<D>::PowerSupplyStatusChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_PowerSupplyStatusChanged(get(handler), &token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->add_PowerSupplyStatusChanged(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::PowerSupplyStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::PowerSupplyStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IPowerManagerStatics>(this, &ABI::Windows::System::Power::IPowerManagerStatics::remove_PowerSupplyStatusChanged, PowerSupplyStatusChanged(handler));
 }
 
 template <typename D> void impl_IPowerManagerStatics<D>::PowerSupplyStatusChanged(event_token token) const
 {
-    check_hresult(shim()->remove_PowerSupplyStatusChanged(token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->remove_PowerSupplyStatusChanged(token));
 }
 
 template <typename D> int32_t impl_IPowerManagerStatics<D>::RemainingChargePercent() const
 {
     int32_t value {};
-    check_hresult(shim()->get_RemainingChargePercent(&value));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->get_RemainingChargePercent(&value));
     return value;
 }
 
-template <typename D> event_token impl_IPowerManagerStatics<D>::RemainingChargePercentChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IPowerManagerStatics<D>::RemainingChargePercentChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_RemainingChargePercentChanged(get(handler), &token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->add_RemainingChargePercentChanged(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::RemainingChargePercentChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::RemainingChargePercentChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IPowerManagerStatics>(this, &ABI::Windows::System::Power::IPowerManagerStatics::remove_RemainingChargePercentChanged, RemainingChargePercentChanged(handler));
 }
 
 template <typename D> void impl_IPowerManagerStatics<D>::RemainingChargePercentChanged(event_token token) const
 {
-    check_hresult(shim()->remove_RemainingChargePercentChanged(token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->remove_RemainingChargePercentChanged(token));
 }
 
 template <typename D> Windows::Foundation::TimeSpan impl_IPowerManagerStatics<D>::RemainingDischargeTime() const
 {
     Windows::Foundation::TimeSpan value {};
-    check_hresult(shim()->get_RemainingDischargeTime(put(value)));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->get_RemainingDischargeTime(put_abi(value)));
     return value;
 }
 
-template <typename D> event_token impl_IPowerManagerStatics<D>::RemainingDischargeTimeChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IPowerManagerStatics<D>::RemainingDischargeTimeChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_RemainingDischargeTimeChanged(get(handler), &token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->add_RemainingDischargeTimeChanged(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::RemainingDischargeTimeChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IPowerManagerStatics> impl_IPowerManagerStatics<D>::RemainingDischargeTimeChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IPowerManagerStatics>(this, &ABI::Windows::System::Power::IPowerManagerStatics::remove_RemainingDischargeTimeChanged, RemainingDischargeTimeChanged(handler));
 }
 
 template <typename D> void impl_IPowerManagerStatics<D>::RemainingDischargeTimeChanged(event_token token) const
 {
-    check_hresult(shim()->remove_RemainingDischargeTimeChanged(token));
+    check_hresult(WINRT_SHIM(IPowerManagerStatics)->remove_RemainingDischargeTimeChanged(token));
 }
 
 template <typename D> uint32_t impl_IBackgroundEnergyManagerStatics<D>::LowUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_LowUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->get_LowUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IBackgroundEnergyManagerStatics<D>::NearMaxAcceptableUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_NearMaxAcceptableUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->get_NearMaxAcceptableUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IBackgroundEnergyManagerStatics<D>::MaxAcceptableUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_MaxAcceptableUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->get_MaxAcceptableUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IBackgroundEnergyManagerStatics<D>::ExcessiveUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_ExcessiveUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->get_ExcessiveUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IBackgroundEnergyManagerStatics<D>::NearTerminationUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_NearTerminationUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->get_NearTerminationUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IBackgroundEnergyManagerStatics<D>::TerminationUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_TerminationUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->get_TerminationUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsage() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_RecentEnergyUsage(&value));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->get_RecentEnergyUsage(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_RecentEnergyUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->get_RecentEnergyUsageLevel(&value));
     return value;
 }
 
-template <typename D> event_token impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_RecentEnergyUsageIncreased(get(handler), &token));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->add_RecentEnergyUsageIncreased(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IBackgroundEnergyManagerStatics> impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IBackgroundEnergyManagerStatics> impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IBackgroundEnergyManagerStatics>(this, &ABI::Windows::System::Power::IBackgroundEnergyManagerStatics::remove_RecentEnergyUsageIncreased, RecentEnergyUsageIncreased(handler));
 }
 
 template <typename D> void impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(event_token token) const
 {
-    check_hresult(shim()->remove_RecentEnergyUsageIncreased(token));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->remove_RecentEnergyUsageIncreased(token));
 }
 
-template <typename D> event_token impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_RecentEnergyUsageReturnedToLow(get(handler), &token));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->add_RecentEnergyUsageReturnedToLow(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IBackgroundEnergyManagerStatics> impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IBackgroundEnergyManagerStatics> impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IBackgroundEnergyManagerStatics>(this, &ABI::Windows::System::Power::IBackgroundEnergyManagerStatics::remove_RecentEnergyUsageReturnedToLow, RecentEnergyUsageReturnedToLow(handler));
 }
 
 template <typename D> void impl_IBackgroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(event_token token) const
 {
-    check_hresult(shim()->remove_RecentEnergyUsageReturnedToLow(token));
+    check_hresult(WINRT_SHIM(IBackgroundEnergyManagerStatics)->remove_RecentEnergyUsageReturnedToLow(token));
 }
 
 template <typename D> uint32_t impl_IForegroundEnergyManagerStatics<D>::LowUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_LowUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->get_LowUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IForegroundEnergyManagerStatics<D>::NearMaxAcceptableUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_NearMaxAcceptableUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->get_NearMaxAcceptableUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IForegroundEnergyManagerStatics<D>::MaxAcceptableUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_MaxAcceptableUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->get_MaxAcceptableUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IForegroundEnergyManagerStatics<D>::ExcessiveUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_ExcessiveUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->get_ExcessiveUsageLevel(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsage() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_RecentEnergyUsage(&value));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->get_RecentEnergyUsage(&value));
     return value;
 }
 
 template <typename D> uint32_t impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageLevel() const
 {
     uint32_t value {};
-    check_hresult(shim()->get_RecentEnergyUsageLevel(&value));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->get_RecentEnergyUsageLevel(&value));
     return value;
 }
 
-template <typename D> event_token impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_RecentEnergyUsageIncreased(get(handler), &token));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->add_RecentEnergyUsageIncreased(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IForegroundEnergyManagerStatics> impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IForegroundEnergyManagerStatics> impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IForegroundEnergyManagerStatics>(this, &ABI::Windows::System::Power::IForegroundEnergyManagerStatics::remove_RecentEnergyUsageIncreased, RecentEnergyUsageIncreased(handler));
 }
 
 template <typename D> void impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageIncreased(event_token token) const
 {
-    check_hresult(shim()->remove_RecentEnergyUsageIncreased(token));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->remove_RecentEnergyUsageIncreased(token));
 }
 
-template <typename D> event_token impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_token impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     event_token token {};
-    check_hresult(shim()->add_RecentEnergyUsageReturnedToLow(get(handler), &token));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->add_RecentEnergyUsageReturnedToLow(get_abi(handler), &token));
     return token;
 }
 
-template <typename D> event_revoker<IForegroundEnergyManagerStatics> impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler) const
+template <typename D> event_revoker<IForegroundEnergyManagerStatics> impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler) const
 {
     return impl::make_event_revoker<D, IForegroundEnergyManagerStatics>(this, &ABI::Windows::System::Power::IForegroundEnergyManagerStatics::remove_RecentEnergyUsageReturnedToLow, RecentEnergyUsageReturnedToLow(handler));
 }
 
 template <typename D> void impl_IForegroundEnergyManagerStatics<D>::RecentEnergyUsageReturnedToLow(event_token token) const
 {
-    check_hresult(shim()->remove_RecentEnergyUsageReturnedToLow(token));
+    check_hresult(WINRT_SHIM(IForegroundEnergyManagerStatics)->remove_RecentEnergyUsageReturnedToLow(token));
 }
 
 inline uint32_t BackgroundEnergyManager::LowUsageLevel()
@@ -834,12 +874,12 @@ inline uint32_t BackgroundEnergyManager::RecentEnergyUsageLevel()
     return get_activation_factory<BackgroundEnergyManager, IBackgroundEnergyManagerStatics>().RecentEnergyUsageLevel();
 }
 
-inline event_token BackgroundEnergyManager::RecentEnergyUsageIncreased(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token BackgroundEnergyManager::RecentEnergyUsageIncreased(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<BackgroundEnergyManager, IBackgroundEnergyManagerStatics>().RecentEnergyUsageIncreased(handler);
 }
 
-inline factory_event_revoker<IBackgroundEnergyManagerStatics> BackgroundEnergyManager::RecentEnergyUsageIncreased(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IBackgroundEnergyManagerStatics> BackgroundEnergyManager::RecentEnergyUsageIncreased(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<BackgroundEnergyManager, IBackgroundEnergyManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IBackgroundEnergyManagerStatics::remove_RecentEnergyUsageIncreased, factory.RecentEnergyUsageIncreased(handler) };
@@ -850,12 +890,12 @@ inline void BackgroundEnergyManager::RecentEnergyUsageIncreased(event_token toke
     get_activation_factory<BackgroundEnergyManager, IBackgroundEnergyManagerStatics>().RecentEnergyUsageIncreased(token);
 }
 
-inline event_token BackgroundEnergyManager::RecentEnergyUsageReturnedToLow(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token BackgroundEnergyManager::RecentEnergyUsageReturnedToLow(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<BackgroundEnergyManager, IBackgroundEnergyManagerStatics>().RecentEnergyUsageReturnedToLow(handler);
 }
 
-inline factory_event_revoker<IBackgroundEnergyManagerStatics> BackgroundEnergyManager::RecentEnergyUsageReturnedToLow(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IBackgroundEnergyManagerStatics> BackgroundEnergyManager::RecentEnergyUsageReturnedToLow(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<BackgroundEnergyManager, IBackgroundEnergyManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IBackgroundEnergyManagerStatics::remove_RecentEnergyUsageReturnedToLow, factory.RecentEnergyUsageReturnedToLow(handler) };
@@ -896,12 +936,12 @@ inline uint32_t ForegroundEnergyManager::RecentEnergyUsageLevel()
     return get_activation_factory<ForegroundEnergyManager, IForegroundEnergyManagerStatics>().RecentEnergyUsageLevel();
 }
 
-inline event_token ForegroundEnergyManager::RecentEnergyUsageIncreased(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token ForegroundEnergyManager::RecentEnergyUsageIncreased(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<ForegroundEnergyManager, IForegroundEnergyManagerStatics>().RecentEnergyUsageIncreased(handler);
 }
 
-inline factory_event_revoker<IForegroundEnergyManagerStatics> ForegroundEnergyManager::RecentEnergyUsageIncreased(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IForegroundEnergyManagerStatics> ForegroundEnergyManager::RecentEnergyUsageIncreased(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<ForegroundEnergyManager, IForegroundEnergyManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IForegroundEnergyManagerStatics::remove_RecentEnergyUsageIncreased, factory.RecentEnergyUsageIncreased(handler) };
@@ -912,12 +952,12 @@ inline void ForegroundEnergyManager::RecentEnergyUsageIncreased(event_token toke
     get_activation_factory<ForegroundEnergyManager, IForegroundEnergyManagerStatics>().RecentEnergyUsageIncreased(token);
 }
 
-inline event_token ForegroundEnergyManager::RecentEnergyUsageReturnedToLow(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token ForegroundEnergyManager::RecentEnergyUsageReturnedToLow(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<ForegroundEnergyManager, IForegroundEnergyManagerStatics>().RecentEnergyUsageReturnedToLow(handler);
 }
 
-inline factory_event_revoker<IForegroundEnergyManagerStatics> ForegroundEnergyManager::RecentEnergyUsageReturnedToLow(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IForegroundEnergyManagerStatics> ForegroundEnergyManager::RecentEnergyUsageReturnedToLow(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<ForegroundEnergyManager, IForegroundEnergyManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IForegroundEnergyManagerStatics::remove_RecentEnergyUsageReturnedToLow, factory.RecentEnergyUsageReturnedToLow(handler) };
@@ -933,12 +973,12 @@ inline Windows::System::Power::EnergySaverStatus PowerManager::EnergySaverStatus
     return get_activation_factory<PowerManager, IPowerManagerStatics>().EnergySaverStatus();
 }
 
-inline event_token PowerManager::EnergySaverStatusChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token PowerManager::EnergySaverStatusChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<PowerManager, IPowerManagerStatics>().EnergySaverStatusChanged(handler);
 }
 
-inline factory_event_revoker<IPowerManagerStatics> PowerManager::EnergySaverStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IPowerManagerStatics> PowerManager::EnergySaverStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<PowerManager, IPowerManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IPowerManagerStatics::remove_EnergySaverStatusChanged, factory.EnergySaverStatusChanged(handler) };
@@ -954,12 +994,12 @@ inline Windows::System::Power::BatteryStatus PowerManager::BatteryStatus()
     return get_activation_factory<PowerManager, IPowerManagerStatics>().BatteryStatus();
 }
 
-inline event_token PowerManager::BatteryStatusChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token PowerManager::BatteryStatusChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<PowerManager, IPowerManagerStatics>().BatteryStatusChanged(handler);
 }
 
-inline factory_event_revoker<IPowerManagerStatics> PowerManager::BatteryStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IPowerManagerStatics> PowerManager::BatteryStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<PowerManager, IPowerManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IPowerManagerStatics::remove_BatteryStatusChanged, factory.BatteryStatusChanged(handler) };
@@ -975,12 +1015,12 @@ inline Windows::System::Power::PowerSupplyStatus PowerManager::PowerSupplyStatus
     return get_activation_factory<PowerManager, IPowerManagerStatics>().PowerSupplyStatus();
 }
 
-inline event_token PowerManager::PowerSupplyStatusChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token PowerManager::PowerSupplyStatusChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<PowerManager, IPowerManagerStatics>().PowerSupplyStatusChanged(handler);
 }
 
-inline factory_event_revoker<IPowerManagerStatics> PowerManager::PowerSupplyStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IPowerManagerStatics> PowerManager::PowerSupplyStatusChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<PowerManager, IPowerManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IPowerManagerStatics::remove_PowerSupplyStatusChanged, factory.PowerSupplyStatusChanged(handler) };
@@ -996,12 +1036,12 @@ inline int32_t PowerManager::RemainingChargePercent()
     return get_activation_factory<PowerManager, IPowerManagerStatics>().RemainingChargePercent();
 }
 
-inline event_token PowerManager::RemainingChargePercentChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token PowerManager::RemainingChargePercentChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<PowerManager, IPowerManagerStatics>().RemainingChargePercentChanged(handler);
 }
 
-inline factory_event_revoker<IPowerManagerStatics> PowerManager::RemainingChargePercentChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IPowerManagerStatics> PowerManager::RemainingChargePercentChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<PowerManager, IPowerManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IPowerManagerStatics::remove_RemainingChargePercentChanged, factory.RemainingChargePercentChanged(handler) };
@@ -1017,12 +1057,12 @@ inline Windows::Foundation::TimeSpan PowerManager::RemainingDischargeTime()
     return get_activation_factory<PowerManager, IPowerManagerStatics>().RemainingDischargeTime();
 }
 
-inline event_token PowerManager::RemainingDischargeTimeChanged(const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline event_token PowerManager::RemainingDischargeTimeChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     return get_activation_factory<PowerManager, IPowerManagerStatics>().RemainingDischargeTimeChanged(handler);
 }
 
-inline factory_event_revoker<IPowerManagerStatics> PowerManager::RemainingDischargeTimeChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::IInspectable> & handler)
+inline factory_event_revoker<IPowerManagerStatics> PowerManager::RemainingDischargeTimeChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler)
 {
     auto factory = get_activation_factory<PowerManager, IPowerManagerStatics>();
     return { factory, &ABI::Windows::System::Power::IPowerManagerStatics::remove_RemainingDischargeTimeChanged, factory.RemainingDischargeTimeChanged(handler) };
@@ -1036,3 +1076,32 @@ inline void PowerManager::RemainingDischargeTimeChanged(event_token token)
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::System::Power::IBackgroundEnergyManagerStatics>
+{
+    size_t operator()(const winrt::Windows::System::Power::IBackgroundEnergyManagerStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::System::Power::IForegroundEnergyManagerStatics>
+{
+    size_t operator()(const winrt::Windows::System::Power::IForegroundEnergyManagerStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::System::Power::IPowerManagerStatics>
+{
+    size_t operator()(const winrt::Windows::System::Power::IPowerManagerStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -9,7 +9,7 @@ WINRT_EXPORT namespace winrt {
 namespace Windows::UI::Xaml::Media::Animation {
 
 template <typename D, typename ... Interfaces> struct ColorKeyFrameT :
-    overrides<D, Windows::IInspectable, Interfaces ...>,
+    overrides<D, Windows::Foundation::IInspectable, Interfaces ...>,
     impl::require<D, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IDependencyObject2, Windows::UI::Xaml::Media::Animation::IColorKeyFrame>
 {
     using composable = ColorKeyFrame;
@@ -18,12 +18,12 @@ protected:
 
     ColorKeyFrameT()
     {
-        get_activation_factory<ColorKeyFrame, IColorKeyFrameFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<ColorKeyFrame, IColorKeyFrameFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
 template <typename D, typename ... Interfaces> struct DoubleKeyFrameT :
-    overrides<D, Windows::IInspectable, Interfaces ...>,
+    overrides<D, Windows::Foundation::IInspectable, Interfaces ...>,
     impl::require<D, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IDependencyObject2, Windows::UI::Xaml::Media::Animation::IDoubleKeyFrame>
 {
     using composable = DoubleKeyFrame;
@@ -32,7 +32,7 @@ protected:
 
     DoubleKeyFrameT()
     {
-        get_activation_factory<DoubleKeyFrame, IDoubleKeyFrameFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<DoubleKeyFrame, IDoubleKeyFrameFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
@@ -46,12 +46,12 @@ protected:
 
     NavigationTransitionInfoT()
     {
-        get_activation_factory<NavigationTransitionInfo, INavigationTransitionInfoFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<NavigationTransitionInfo, INavigationTransitionInfoFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
 template <typename D, typename ... Interfaces> struct ObjectKeyFrameT :
-    overrides<D, Windows::IInspectable, Interfaces ...>,
+    overrides<D, Windows::Foundation::IInspectable, Interfaces ...>,
     impl::require<D, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IDependencyObject2, Windows::UI::Xaml::Media::Animation::IObjectKeyFrame>
 {
     using composable = ObjectKeyFrame;
@@ -60,12 +60,12 @@ protected:
 
     ObjectKeyFrameT()
     {
-        get_activation_factory<ObjectKeyFrame, IObjectKeyFrameFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<ObjectKeyFrame, IObjectKeyFrameFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
 template <typename D, typename ... Interfaces> struct PointKeyFrameT :
-    overrides<D, Windows::IInspectable, Interfaces ...>,
+    overrides<D, Windows::Foundation::IInspectable, Interfaces ...>,
     impl::require<D, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IDependencyObject2, Windows::UI::Xaml::Media::Animation::IPointKeyFrame>
 {
     using composable = PointKeyFrame;
@@ -74,12 +74,12 @@ protected:
 
     PointKeyFrameT()
     {
-        get_activation_factory<PointKeyFrame, IPointKeyFrameFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<PointKeyFrame, IPointKeyFrameFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
 template <typename D, typename ... Interfaces> struct TimelineT :
-    overrides<D, Windows::IInspectable, Interfaces ...>,
+    overrides<D, Windows::Foundation::IInspectable, Interfaces ...>,
     impl::require<D, Windows::UI::Xaml::IDependencyObject, Windows::UI::Xaml::IDependencyObject2, Windows::UI::Xaml::Media::Animation::ITimeline>
 {
     using composable = Timeline;
@@ -88,7 +88,7 @@ protected:
 
     TimelineT()
     {
-        get_activation_factory<Timeline, ITimelineFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<Timeline, ITimelineFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 

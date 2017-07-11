@@ -1,15 +1,19 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "internal\Windows.UI.Xaml.Media.3.h"
-#include "internal\Windows.Foundation.Collections.3.h"
-#include "internal\Windows.UI.Xaml.3.h"
-#include "internal\Windows.UI.Composition.3.h"
-#include "internal\Windows.UI.Xaml.Shapes.3.h"
+#include "base.h"
+WINRT_WARNING_PUSH
+
+#include "internal/Windows.UI.Xaml.Media.3.h"
+#include "internal/Windows.Foundation.Collections.3.h"
+#include "internal/Windows.UI.Xaml.3.h"
+#include "internal/Windows.Foundation.3.h"
+#include "internal/Windows.UI.Composition.3.h"
+#include "internal/Windows.UI.Xaml.Shapes.3.h"
 #include "Windows.UI.Xaml.h"
-#include "internal\Windows.UI.Xaml.Shapes.5.h"
+#include "internal/Windows.UI.Xaml.Shapes.5.h"
 
 WINRT_EXPORT namespace winrt {
 
@@ -26,7 +30,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
     {
         try
         {
-            *value = detach(shim().X1());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().X1());
             return S_OK;
         }
         catch (...)
@@ -39,7 +44,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
     {
         try
         {
-            shim().X1(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().X1(value);
             return S_OK;
         }
         catch (...)
@@ -52,7 +58,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
     {
         try
         {
-            *value = detach(shim().Y1());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Y1());
             return S_OK;
         }
         catch (...)
@@ -65,7 +72,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
     {
         try
         {
-            shim().Y1(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Y1(value);
             return S_OK;
         }
         catch (...)
@@ -78,7 +86,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
     {
         try
         {
-            *value = detach(shim().X2());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().X2());
             return S_OK;
         }
         catch (...)
@@ -91,7 +100,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
     {
         try
         {
-            shim().X2(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().X2(value);
             return S_OK;
         }
         catch (...)
@@ -104,7 +114,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
     {
         try
         {
-            *value = detach(shim().Y2());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Y2());
             return S_OK;
         }
         catch (...)
@@ -117,7 +128,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
     {
         try
         {
-            shim().Y2(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Y2(value);
             return S_OK;
         }
         catch (...)
@@ -130,11 +142,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILine> : produce_base<D, Windows::U
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::ILineStatics> : produce_base<D, Windows::UI::Xaml::Shapes::ILineStatics>
 {
-    HRESULT __stdcall get_X1Property(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_X1Property(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().X1Property());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().X1Property());
             return S_OK;
         }
         catch (...)
@@ -144,11 +157,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILineStatics> : produce_base<D, Win
         }
     }
 
-    HRESULT __stdcall get_Y1Property(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_Y1Property(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Y1Property());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Y1Property());
             return S_OK;
         }
         catch (...)
@@ -158,11 +172,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILineStatics> : produce_base<D, Win
         }
     }
 
-    HRESULT __stdcall get_X2Property(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_X2Property(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().X2Property());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().X2Property());
             return S_OK;
         }
         catch (...)
@@ -172,11 +187,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILineStatics> : produce_base<D, Win
         }
     }
 
-    HRESULT __stdcall get_Y2Property(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_Y2Property(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Y2Property());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Y2Property());
             return S_OK;
         }
         catch (...)
@@ -190,11 +206,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::ILineStatics> : produce_base<D, Win
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IPath> : produce_base<D, Windows::UI::Xaml::Shapes::IPath>
 {
-    HRESULT __stdcall get_Data(abi_arg_out<Windows::UI::Xaml::Media::IGeometry> value) noexcept override
+    HRESULT __stdcall get_Data(impl::abi_arg_out<Windows::UI::Xaml::Media::IGeometry> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Data());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Data());
             return S_OK;
         }
         catch (...)
@@ -204,11 +221,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPath> : produce_base<D, Windows::U
         }
     }
 
-    HRESULT __stdcall put_Data(abi_arg_in<Windows::UI::Xaml::Media::IGeometry> value) noexcept override
+    HRESULT __stdcall put_Data(impl::abi_arg_in<Windows::UI::Xaml::Media::IGeometry> value) noexcept override
     {
         try
         {
-            shim().Data(*reinterpret_cast<const Windows::UI::Xaml::Media::Geometry *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Data(*reinterpret_cast<const Windows::UI::Xaml::Media::Geometry *>(&value));
             return S_OK;
         }
         catch (...)
@@ -221,11 +239,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPath> : produce_base<D, Windows::U
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IPathFactory> : produce_base<D, Windows::UI::Xaml::Shapes::IPathFactory>
 {
-    HRESULT __stdcall abi_CreateInstance(abi_arg_in<Windows::IInspectable> outer, abi_arg_out<Windows::IInspectable> inner, abi_arg_out<Windows::UI::Xaml::Shapes::IPath> instance) noexcept override
+    HRESULT __stdcall abi_CreateInstance(impl::abi_arg_in<Windows::Foundation::IInspectable> outer, impl::abi_arg_out<Windows::Foundation::IInspectable> inner, impl::abi_arg_out<Windows::UI::Xaml::Shapes::IPath> instance) noexcept override
     {
         try
         {
-            *instance = detach(shim().CreateInstance(*reinterpret_cast<const Windows::IInspectable *>(&outer), *inner));
+            typename D::abi_guard guard(this->shim());
+            *instance = detach_abi(this->shim().CreateInstance(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&outer), *reinterpret_cast<Windows::Foundation::IInspectable *>(inner)));
             return S_OK;
         }
         catch (...)
@@ -240,11 +259,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPathFactory> : produce_base<D, Win
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IPathStatics> : produce_base<D, Windows::UI::Xaml::Shapes::IPathStatics>
 {
-    HRESULT __stdcall get_DataProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_DataProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().DataProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().DataProperty());
             return S_OK;
         }
         catch (...)
@@ -262,7 +282,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolygon> : produce_base<D, Windows
     {
         try
         {
-            *value = detach(shim().FillRule());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FillRule());
             return S_OK;
         }
         catch (...)
@@ -275,7 +296,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolygon> : produce_base<D, Windows
     {
         try
         {
-            shim().FillRule(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FillRule(value);
             return S_OK;
         }
         catch (...)
@@ -284,11 +306,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolygon> : produce_base<D, Windows
         }
     }
 
-    HRESULT __stdcall get_Points(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::Foundation::Point>> value) noexcept override
+    HRESULT __stdcall get_Points(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Points());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Points());
             return S_OK;
         }
         catch (...)
@@ -298,11 +321,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolygon> : produce_base<D, Windows
         }
     }
 
-    HRESULT __stdcall put_Points(abi_arg_in<Windows::Foundation::Collections::IVector<Windows::Foundation::Point>> value) noexcept override
+    HRESULT __stdcall put_Points(impl::abi_arg_in<Windows::Foundation::Collections::IVector<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            shim().Points(*reinterpret_cast<const Windows::UI::Xaml::Media::PointCollection *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Points(*reinterpret_cast<const Windows::UI::Xaml::Media::PointCollection *>(&value));
             return S_OK;
         }
         catch (...)
@@ -315,11 +339,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolygon> : produce_base<D, Windows
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IPolygonStatics> : produce_base<D, Windows::UI::Xaml::Shapes::IPolygonStatics>
 {
-    HRESULT __stdcall get_FillRuleProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FillRuleProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FillRuleProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FillRuleProperty());
             return S_OK;
         }
         catch (...)
@@ -329,11 +354,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolygonStatics> : produce_base<D, 
         }
     }
 
-    HRESULT __stdcall get_PointsProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_PointsProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PointsProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PointsProperty());
             return S_OK;
         }
         catch (...)
@@ -351,7 +377,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolyline> : produce_base<D, Window
     {
         try
         {
-            *value = detach(shim().FillRule());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FillRule());
             return S_OK;
         }
         catch (...)
@@ -364,7 +391,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolyline> : produce_base<D, Window
     {
         try
         {
-            shim().FillRule(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().FillRule(value);
             return S_OK;
         }
         catch (...)
@@ -373,11 +401,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolyline> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall get_Points(abi_arg_out<Windows::Foundation::Collections::IVector<Windows::Foundation::Point>> value) noexcept override
+    HRESULT __stdcall get_Points(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Points());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Points());
             return S_OK;
         }
         catch (...)
@@ -387,11 +416,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolyline> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall put_Points(abi_arg_in<Windows::Foundation::Collections::IVector<Windows::Foundation::Point>> value) noexcept override
+    HRESULT __stdcall put_Points(impl::abi_arg_in<Windows::Foundation::Collections::IVector<Windows::Foundation::Point>> value) noexcept override
     {
         try
         {
-            shim().Points(*reinterpret_cast<const Windows::UI::Xaml::Media::PointCollection *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Points(*reinterpret_cast<const Windows::UI::Xaml::Media::PointCollection *>(&value));
             return S_OK;
         }
         catch (...)
@@ -404,11 +434,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolyline> : produce_base<D, Window
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IPolylineStatics> : produce_base<D, Windows::UI::Xaml::Shapes::IPolylineStatics>
 {
-    HRESULT __stdcall get_FillRuleProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FillRuleProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FillRuleProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FillRuleProperty());
             return S_OK;
         }
         catch (...)
@@ -418,11 +449,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IPolylineStatics> : produce_base<D,
         }
     }
 
-    HRESULT __stdcall get_PointsProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_PointsProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().PointsProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().PointsProperty());
             return S_OK;
         }
         catch (...)
@@ -440,7 +472,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IRectangle> : produce_base<D, Windo
     {
         try
         {
-            *value = detach(shim().RadiusX());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RadiusX());
             return S_OK;
         }
         catch (...)
@@ -453,7 +486,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IRectangle> : produce_base<D, Windo
     {
         try
         {
-            shim().RadiusX(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RadiusX(value);
             return S_OK;
         }
         catch (...)
@@ -466,7 +500,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IRectangle> : produce_base<D, Windo
     {
         try
         {
-            *value = detach(shim().RadiusY());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RadiusY());
             return S_OK;
         }
         catch (...)
@@ -479,7 +514,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IRectangle> : produce_base<D, Windo
     {
         try
         {
-            shim().RadiusY(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().RadiusY(value);
             return S_OK;
         }
         catch (...)
@@ -492,11 +528,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IRectangle> : produce_base<D, Windo
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IRectangleStatics> : produce_base<D, Windows::UI::Xaml::Shapes::IRectangleStatics>
 {
-    HRESULT __stdcall get_RadiusXProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_RadiusXProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RadiusXProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RadiusXProperty());
             return S_OK;
         }
         catch (...)
@@ -506,11 +543,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IRectangleStatics> : produce_base<D
         }
     }
 
-    HRESULT __stdcall get_RadiusYProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_RadiusYProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().RadiusYProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().RadiusYProperty());
             return S_OK;
         }
         catch (...)
@@ -524,11 +562,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IRectangleStatics> : produce_base<D
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::UI::Xaml::Shapes::IShape>
 {
-    HRESULT __stdcall get_Fill(abi_arg_out<Windows::UI::Xaml::Media::IBrush> value) noexcept override
+    HRESULT __stdcall get_Fill(impl::abi_arg_out<Windows::UI::Xaml::Media::IBrush> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Fill());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Fill());
             return S_OK;
         }
         catch (...)
@@ -538,11 +577,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
         }
     }
 
-    HRESULT __stdcall put_Fill(abi_arg_in<Windows::UI::Xaml::Media::IBrush> value) noexcept override
+    HRESULT __stdcall put_Fill(impl::abi_arg_in<Windows::UI::Xaml::Media::IBrush> value) noexcept override
     {
         try
         {
-            shim().Fill(*reinterpret_cast<const Windows::UI::Xaml::Media::Brush *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Fill(*reinterpret_cast<const Windows::UI::Xaml::Media::Brush *>(&value));
             return S_OK;
         }
         catch (...)
@@ -551,11 +591,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
         }
     }
 
-    HRESULT __stdcall get_Stroke(abi_arg_out<Windows::UI::Xaml::Media::IBrush> value) noexcept override
+    HRESULT __stdcall get_Stroke(impl::abi_arg_out<Windows::UI::Xaml::Media::IBrush> value) noexcept override
     {
         try
         {
-            *value = detach(shim().Stroke());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Stroke());
             return S_OK;
         }
         catch (...)
@@ -565,11 +606,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
         }
     }
 
-    HRESULT __stdcall put_Stroke(abi_arg_in<Windows::UI::Xaml::Media::IBrush> value) noexcept override
+    HRESULT __stdcall put_Stroke(impl::abi_arg_in<Windows::UI::Xaml::Media::IBrush> value) noexcept override
     {
         try
         {
-            shim().Stroke(*reinterpret_cast<const Windows::UI::Xaml::Media::Brush *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().Stroke(*reinterpret_cast<const Windows::UI::Xaml::Media::Brush *>(&value));
             return S_OK;
         }
         catch (...)
@@ -582,7 +624,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            *value = detach(shim().StrokeMiterLimit());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeMiterLimit());
             return S_OK;
         }
         catch (...)
@@ -595,7 +638,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            shim().StrokeMiterLimit(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().StrokeMiterLimit(value);
             return S_OK;
         }
         catch (...)
@@ -608,7 +652,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            *value = detach(shim().StrokeThickness());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeThickness());
             return S_OK;
         }
         catch (...)
@@ -621,7 +666,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            shim().StrokeThickness(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().StrokeThickness(value);
             return S_OK;
         }
         catch (...)
@@ -634,7 +680,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            *value = detach(shim().StrokeStartLineCap());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeStartLineCap());
             return S_OK;
         }
         catch (...)
@@ -647,7 +694,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            shim().StrokeStartLineCap(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().StrokeStartLineCap(value);
             return S_OK;
         }
         catch (...)
@@ -660,7 +708,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            *value = detach(shim().StrokeEndLineCap());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeEndLineCap());
             return S_OK;
         }
         catch (...)
@@ -673,7 +722,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            shim().StrokeEndLineCap(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().StrokeEndLineCap(value);
             return S_OK;
         }
         catch (...)
@@ -686,7 +736,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            *value = detach(shim().StrokeLineJoin());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeLineJoin());
             return S_OK;
         }
         catch (...)
@@ -699,7 +750,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            shim().StrokeLineJoin(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().StrokeLineJoin(value);
             return S_OK;
         }
         catch (...)
@@ -712,7 +764,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            *value = detach(shim().StrokeDashOffset());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeDashOffset());
             return S_OK;
         }
         catch (...)
@@ -725,7 +778,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            shim().StrokeDashOffset(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().StrokeDashOffset(value);
             return S_OK;
         }
         catch (...)
@@ -738,7 +792,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            *value = detach(shim().StrokeDashCap());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeDashCap());
             return S_OK;
         }
         catch (...)
@@ -751,7 +806,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            shim().StrokeDashCap(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().StrokeDashCap(value);
             return S_OK;
         }
         catch (...)
@@ -760,11 +816,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
         }
     }
 
-    HRESULT __stdcall get_StrokeDashArray(abi_arg_out<Windows::Foundation::Collections::IVector<double>> value) noexcept override
+    HRESULT __stdcall get_StrokeDashArray(impl::abi_arg_out<Windows::Foundation::Collections::IVector<double>> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeDashArray());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeDashArray());
             return S_OK;
         }
         catch (...)
@@ -774,11 +831,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
         }
     }
 
-    HRESULT __stdcall put_StrokeDashArray(abi_arg_in<Windows::Foundation::Collections::IVector<double>> value) noexcept override
+    HRESULT __stdcall put_StrokeDashArray(impl::abi_arg_in<Windows::Foundation::Collections::IVector<double>> value) noexcept override
     {
         try
         {
-            shim().StrokeDashArray(*reinterpret_cast<const Windows::UI::Xaml::Media::DoubleCollection *>(&value));
+            typename D::abi_guard guard(this->shim());
+            this->shim().StrokeDashArray(*reinterpret_cast<const Windows::UI::Xaml::Media::DoubleCollection *>(&value));
             return S_OK;
         }
         catch (...)
@@ -791,7 +849,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            *value = detach(shim().Stretch());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().Stretch());
             return S_OK;
         }
         catch (...)
@@ -804,7 +863,8 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
     {
         try
         {
-            shim().Stretch(value);
+            typename D::abi_guard guard(this->shim());
+            this->shim().Stretch(value);
             return S_OK;
         }
         catch (...)
@@ -813,11 +873,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
         }
     }
 
-    HRESULT __stdcall get_GeometryTransform(abi_arg_out<Windows::UI::Xaml::Media::ITransform> value) noexcept override
+    HRESULT __stdcall get_GeometryTransform(impl::abi_arg_out<Windows::UI::Xaml::Media::ITransform> value) noexcept override
     {
         try
         {
-            *value = detach(shim().GeometryTransform());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().GeometryTransform());
             return S_OK;
         }
         catch (...)
@@ -831,11 +892,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape> : produce_base<D, Windows::
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IShape2> : produce_base<D, Windows::UI::Xaml::Shapes::IShape2>
 {
-    HRESULT __stdcall abi_GetAlphaMask(abi_arg_out<Windows::UI::Composition::ICompositionBrush> returnValue) noexcept override
+    HRESULT __stdcall abi_GetAlphaMask(impl::abi_arg_out<Windows::UI::Composition::ICompositionBrush> returnValue) noexcept override
     {
         try
         {
-            *returnValue = detach(shim().GetAlphaMask());
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_abi(this->shim().GetAlphaMask());
             return S_OK;
         }
         catch (...)
@@ -849,11 +911,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShape2> : produce_base<D, Windows:
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IShapeFactory> : produce_base<D, Windows::UI::Xaml::Shapes::IShapeFactory>
 {
-    HRESULT __stdcall abi_CreateInstance(abi_arg_in<Windows::IInspectable> outer, abi_arg_out<Windows::IInspectable> inner, abi_arg_out<Windows::UI::Xaml::Shapes::IShape> instance) noexcept override
+    HRESULT __stdcall abi_CreateInstance(impl::abi_arg_in<Windows::Foundation::IInspectable> outer, impl::abi_arg_out<Windows::Foundation::IInspectable> inner, impl::abi_arg_out<Windows::UI::Xaml::Shapes::IShape> instance) noexcept override
     {
         try
         {
-            *instance = detach(shim().CreateInstance(*reinterpret_cast<const Windows::IInspectable *>(&outer), *inner));
+            typename D::abi_guard guard(this->shim());
+            *instance = detach_abi(this->shim().CreateInstance(*reinterpret_cast<const Windows::Foundation::IInspectable *>(&outer), *reinterpret_cast<Windows::Foundation::IInspectable *>(inner)));
             return S_OK;
         }
         catch (...)
@@ -868,11 +931,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeFactory> : produce_base<D, Wi
 template <typename D>
 struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Windows::UI::Xaml::Shapes::IShapeStatics>
 {
-    HRESULT __stdcall get_FillProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_FillProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().FillProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().FillProperty());
             return S_OK;
         }
         catch (...)
@@ -882,11 +946,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeProperty());
             return S_OK;
         }
         catch (...)
@@ -896,11 +961,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeMiterLimitProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeMiterLimitProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeMiterLimitProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeMiterLimitProperty());
             return S_OK;
         }
         catch (...)
@@ -910,11 +976,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeThicknessProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeThicknessProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeThicknessProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeThicknessProperty());
             return S_OK;
         }
         catch (...)
@@ -924,11 +991,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeStartLineCapProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeStartLineCapProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeStartLineCapProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeStartLineCapProperty());
             return S_OK;
         }
         catch (...)
@@ -938,11 +1006,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeEndLineCapProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeEndLineCapProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeEndLineCapProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeEndLineCapProperty());
             return S_OK;
         }
         catch (...)
@@ -952,11 +1021,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeLineJoinProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeLineJoinProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeLineJoinProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeLineJoinProperty());
             return S_OK;
         }
         catch (...)
@@ -966,11 +1036,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeDashOffsetProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeDashOffsetProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeDashOffsetProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeDashOffsetProperty());
             return S_OK;
         }
         catch (...)
@@ -980,11 +1051,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeDashCapProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeDashCapProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeDashCapProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeDashCapProperty());
             return S_OK;
         }
         catch (...)
@@ -994,11 +1066,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StrokeDashArrayProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StrokeDashArrayProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StrokeDashArrayProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StrokeDashArrayProperty());
             return S_OK;
         }
         catch (...)
@@ -1008,11 +1081,12 @@ struct produce<D, Windows::UI::Xaml::Shapes::IShapeStatics> : produce_base<D, Wi
         }
     }
 
-    HRESULT __stdcall get_StretchProperty(abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
+    HRESULT __stdcall get_StretchProperty(impl::abi_arg_out<Windows::UI::Xaml::IDependencyProperty> value) noexcept override
     {
         try
         {
-            *value = detach(shim().StretchProperty());
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().StretchProperty());
             return S_OK;
         }
         catch (...)
@@ -1030,446 +1104,446 @@ namespace Windows::UI::Xaml::Shapes {
 template <typename D> Windows::UI::Xaml::Media::Brush impl_IShape<D>::Fill() const
 {
     Windows::UI::Xaml::Media::Brush value { nullptr };
-    check_hresult(shim()->get_Fill(put(value)));
+    check_hresult(WINRT_SHIM(IShape)->get_Fill(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::Fill(const Windows::UI::Xaml::Media::Brush & value) const
 {
-    check_hresult(shim()->put_Fill(get(value)));
+    check_hresult(WINRT_SHIM(IShape)->put_Fill(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Brush impl_IShape<D>::Stroke() const
 {
     Windows::UI::Xaml::Media::Brush value { nullptr };
-    check_hresult(shim()->get_Stroke(put(value)));
+    check_hresult(WINRT_SHIM(IShape)->get_Stroke(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::Stroke(const Windows::UI::Xaml::Media::Brush & value) const
 {
-    check_hresult(shim()->put_Stroke(get(value)));
+    check_hresult(WINRT_SHIM(IShape)->put_Stroke(get_abi(value)));
 }
 
 template <typename D> double impl_IShape<D>::StrokeMiterLimit() const
 {
     double value {};
-    check_hresult(shim()->get_StrokeMiterLimit(&value));
+    check_hresult(WINRT_SHIM(IShape)->get_StrokeMiterLimit(&value));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::StrokeMiterLimit(double value) const
 {
-    check_hresult(shim()->put_StrokeMiterLimit(value));
+    check_hresult(WINRT_SHIM(IShape)->put_StrokeMiterLimit(value));
 }
 
 template <typename D> double impl_IShape<D>::StrokeThickness() const
 {
     double value {};
-    check_hresult(shim()->get_StrokeThickness(&value));
+    check_hresult(WINRT_SHIM(IShape)->get_StrokeThickness(&value));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::StrokeThickness(double value) const
 {
-    check_hresult(shim()->put_StrokeThickness(value));
+    check_hresult(WINRT_SHIM(IShape)->put_StrokeThickness(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::PenLineCap impl_IShape<D>::StrokeStartLineCap() const
 {
     Windows::UI::Xaml::Media::PenLineCap value {};
-    check_hresult(shim()->get_StrokeStartLineCap(&value));
+    check_hresult(WINRT_SHIM(IShape)->get_StrokeStartLineCap(&value));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::StrokeStartLineCap(Windows::UI::Xaml::Media::PenLineCap value) const
 {
-    check_hresult(shim()->put_StrokeStartLineCap(value));
+    check_hresult(WINRT_SHIM(IShape)->put_StrokeStartLineCap(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::PenLineCap impl_IShape<D>::StrokeEndLineCap() const
 {
     Windows::UI::Xaml::Media::PenLineCap value {};
-    check_hresult(shim()->get_StrokeEndLineCap(&value));
+    check_hresult(WINRT_SHIM(IShape)->get_StrokeEndLineCap(&value));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::StrokeEndLineCap(Windows::UI::Xaml::Media::PenLineCap value) const
 {
-    check_hresult(shim()->put_StrokeEndLineCap(value));
+    check_hresult(WINRT_SHIM(IShape)->put_StrokeEndLineCap(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::PenLineJoin impl_IShape<D>::StrokeLineJoin() const
 {
     Windows::UI::Xaml::Media::PenLineJoin value {};
-    check_hresult(shim()->get_StrokeLineJoin(&value));
+    check_hresult(WINRT_SHIM(IShape)->get_StrokeLineJoin(&value));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::StrokeLineJoin(Windows::UI::Xaml::Media::PenLineJoin value) const
 {
-    check_hresult(shim()->put_StrokeLineJoin(value));
+    check_hresult(WINRT_SHIM(IShape)->put_StrokeLineJoin(value));
 }
 
 template <typename D> double impl_IShape<D>::StrokeDashOffset() const
 {
     double value {};
-    check_hresult(shim()->get_StrokeDashOffset(&value));
+    check_hresult(WINRT_SHIM(IShape)->get_StrokeDashOffset(&value));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::StrokeDashOffset(double value) const
 {
-    check_hresult(shim()->put_StrokeDashOffset(value));
+    check_hresult(WINRT_SHIM(IShape)->put_StrokeDashOffset(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::PenLineCap impl_IShape<D>::StrokeDashCap() const
 {
     Windows::UI::Xaml::Media::PenLineCap value {};
-    check_hresult(shim()->get_StrokeDashCap(&value));
+    check_hresult(WINRT_SHIM(IShape)->get_StrokeDashCap(&value));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::StrokeDashCap(Windows::UI::Xaml::Media::PenLineCap value) const
 {
-    check_hresult(shim()->put_StrokeDashCap(value));
+    check_hresult(WINRT_SHIM(IShape)->put_StrokeDashCap(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::DoubleCollection impl_IShape<D>::StrokeDashArray() const
 {
     Windows::UI::Xaml::Media::DoubleCollection value { nullptr };
-    check_hresult(shim()->get_StrokeDashArray(put(value)));
+    check_hresult(WINRT_SHIM(IShape)->get_StrokeDashArray(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::StrokeDashArray(const Windows::UI::Xaml::Media::DoubleCollection & value) const
 {
-    check_hresult(shim()->put_StrokeDashArray(get(value)));
+    check_hresult(WINRT_SHIM(IShape)->put_StrokeDashArray(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Stretch impl_IShape<D>::Stretch() const
 {
     Windows::UI::Xaml::Media::Stretch value {};
-    check_hresult(shim()->get_Stretch(&value));
+    check_hresult(WINRT_SHIM(IShape)->get_Stretch(&value));
     return value;
 }
 
 template <typename D> void impl_IShape<D>::Stretch(Windows::UI::Xaml::Media::Stretch value) const
 {
-    check_hresult(shim()->put_Stretch(value));
+    check_hresult(WINRT_SHIM(IShape)->put_Stretch(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::Transform impl_IShape<D>::GeometryTransform() const
 {
     Windows::UI::Xaml::Media::Transform value { nullptr };
-    check_hresult(shim()->get_GeometryTransform(put(value)));
+    check_hresult(WINRT_SHIM(IShape)->get_GeometryTransform(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::FillProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FillProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_FillProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeMiterLimitProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeMiterLimitProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeMiterLimitProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeThicknessProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeThicknessProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeThicknessProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeStartLineCapProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeStartLineCapProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeStartLineCapProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeEndLineCapProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeEndLineCapProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeEndLineCapProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeLineJoinProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeLineJoinProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeLineJoinProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeDashOffsetProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeDashOffsetProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeDashOffsetProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeDashCapProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeDashCapProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeDashCapProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StrokeDashArrayProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StrokeDashArrayProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StrokeDashArrayProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IShapeStatics<D>::StretchProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_StretchProperty(put(value)));
+    check_hresult(WINRT_SHIM(IShapeStatics)->get_StretchProperty(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::UI::Xaml::Shapes::Shape impl_IShapeFactory<D>::CreateInstance(const Windows::IInspectable & outer, Windows::IInspectable & inner) const
+template <typename D> Windows::UI::Xaml::Shapes::Shape impl_IShapeFactory<D>::CreateInstance(const Windows::Foundation::IInspectable & outer, Windows::Foundation::IInspectable & inner) const
 {
     Windows::UI::Xaml::Shapes::Shape instance { nullptr };
-    check_hresult(shim()->abi_CreateInstance(get(outer), put(inner), put(instance)));
+    check_hresult(WINRT_SHIM(IShapeFactory)->abi_CreateInstance(get_abi(outer), put_abi(inner), put_abi(instance)));
     return instance;
 }
 
 template <typename D> Windows::UI::Composition::CompositionBrush impl_IShape2<D>::GetAlphaMask() const
 {
     Windows::UI::Composition::CompositionBrush returnValue { nullptr };
-    check_hresult(shim()->abi_GetAlphaMask(put(returnValue)));
+    check_hresult(WINRT_SHIM(IShape2)->abi_GetAlphaMask(put_abi(returnValue)));
     return returnValue;
 }
 
 template <typename D> double impl_ILine<D>::X1() const
 {
     double value {};
-    check_hresult(shim()->get_X1(&value));
+    check_hresult(WINRT_SHIM(ILine)->get_X1(&value));
     return value;
 }
 
 template <typename D> void impl_ILine<D>::X1(double value) const
 {
-    check_hresult(shim()->put_X1(value));
+    check_hresult(WINRT_SHIM(ILine)->put_X1(value));
 }
 
 template <typename D> double impl_ILine<D>::Y1() const
 {
     double value {};
-    check_hresult(shim()->get_Y1(&value));
+    check_hresult(WINRT_SHIM(ILine)->get_Y1(&value));
     return value;
 }
 
 template <typename D> void impl_ILine<D>::Y1(double value) const
 {
-    check_hresult(shim()->put_Y1(value));
+    check_hresult(WINRT_SHIM(ILine)->put_Y1(value));
 }
 
 template <typename D> double impl_ILine<D>::X2() const
 {
     double value {};
-    check_hresult(shim()->get_X2(&value));
+    check_hresult(WINRT_SHIM(ILine)->get_X2(&value));
     return value;
 }
 
 template <typename D> void impl_ILine<D>::X2(double value) const
 {
-    check_hresult(shim()->put_X2(value));
+    check_hresult(WINRT_SHIM(ILine)->put_X2(value));
 }
 
 template <typename D> double impl_ILine<D>::Y2() const
 {
     double value {};
-    check_hresult(shim()->get_Y2(&value));
+    check_hresult(WINRT_SHIM(ILine)->get_Y2(&value));
     return value;
 }
 
 template <typename D> void impl_ILine<D>::Y2(double value) const
 {
-    check_hresult(shim()->put_Y2(value));
+    check_hresult(WINRT_SHIM(ILine)->put_Y2(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ILineStatics<D>::X1Property() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_X1Property(put(value)));
+    check_hresult(WINRT_SHIM(ILineStatics)->get_X1Property(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ILineStatics<D>::Y1Property() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_Y1Property(put(value)));
+    check_hresult(WINRT_SHIM(ILineStatics)->get_Y1Property(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ILineStatics<D>::X2Property() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_X2Property(put(value)));
+    check_hresult(WINRT_SHIM(ILineStatics)->get_X2Property(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_ILineStatics<D>::Y2Property() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_Y2Property(put(value)));
+    check_hresult(WINRT_SHIM(ILineStatics)->get_Y2Property(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::Geometry impl_IPath<D>::Data() const
 {
     Windows::UI::Xaml::Media::Geometry value { nullptr };
-    check_hresult(shim()->get_Data(put(value)));
+    check_hresult(WINRT_SHIM(IPath)->get_Data(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IPath<D>::Data(const Windows::UI::Xaml::Media::Geometry & value) const
 {
-    check_hresult(shim()->put_Data(get(value)));
+    check_hresult(WINRT_SHIM(IPath)->put_Data(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPathStatics<D>::DataProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_DataProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPathStatics)->get_DataProperty(put_abi(value)));
     return value;
 }
 
-template <typename D> Windows::UI::Xaml::Shapes::Path impl_IPathFactory<D>::CreateInstance(const Windows::IInspectable & outer, Windows::IInspectable & inner) const
+template <typename D> Windows::UI::Xaml::Shapes::Path impl_IPathFactory<D>::CreateInstance(const Windows::Foundation::IInspectable & outer, Windows::Foundation::IInspectable & inner) const
 {
     Windows::UI::Xaml::Shapes::Path instance { nullptr };
-    check_hresult(shim()->abi_CreateInstance(get(outer), put(inner), put(instance)));
+    check_hresult(WINRT_SHIM(IPathFactory)->abi_CreateInstance(get_abi(outer), put_abi(inner), put_abi(instance)));
     return instance;
 }
 
 template <typename D> Windows::UI::Xaml::Media::FillRule impl_IPolygon<D>::FillRule() const
 {
     Windows::UI::Xaml::Media::FillRule value {};
-    check_hresult(shim()->get_FillRule(&value));
+    check_hresult(WINRT_SHIM(IPolygon)->get_FillRule(&value));
     return value;
 }
 
 template <typename D> void impl_IPolygon<D>::FillRule(Windows::UI::Xaml::Media::FillRule value) const
 {
-    check_hresult(shim()->put_FillRule(value));
+    check_hresult(WINRT_SHIM(IPolygon)->put_FillRule(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::PointCollection impl_IPolygon<D>::Points() const
 {
     Windows::UI::Xaml::Media::PointCollection value { nullptr };
-    check_hresult(shim()->get_Points(put(value)));
+    check_hresult(WINRT_SHIM(IPolygon)->get_Points(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IPolygon<D>::Points(const Windows::UI::Xaml::Media::PointCollection & value) const
 {
-    check_hresult(shim()->put_Points(get(value)));
+    check_hresult(WINRT_SHIM(IPolygon)->put_Points(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPolygonStatics<D>::FillRuleProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FillRuleProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPolygonStatics)->get_FillRuleProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPolygonStatics<D>::PointsProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_PointsProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPolygonStatics)->get_PointsProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::Media::FillRule impl_IPolyline<D>::FillRule() const
 {
     Windows::UI::Xaml::Media::FillRule value {};
-    check_hresult(shim()->get_FillRule(&value));
+    check_hresult(WINRT_SHIM(IPolyline)->get_FillRule(&value));
     return value;
 }
 
 template <typename D> void impl_IPolyline<D>::FillRule(Windows::UI::Xaml::Media::FillRule value) const
 {
-    check_hresult(shim()->put_FillRule(value));
+    check_hresult(WINRT_SHIM(IPolyline)->put_FillRule(value));
 }
 
 template <typename D> Windows::UI::Xaml::Media::PointCollection impl_IPolyline<D>::Points() const
 {
     Windows::UI::Xaml::Media::PointCollection value { nullptr };
-    check_hresult(shim()->get_Points(put(value)));
+    check_hresult(WINRT_SHIM(IPolyline)->get_Points(put_abi(value)));
     return value;
 }
 
 template <typename D> void impl_IPolyline<D>::Points(const Windows::UI::Xaml::Media::PointCollection & value) const
 {
-    check_hresult(shim()->put_Points(get(value)));
+    check_hresult(WINRT_SHIM(IPolyline)->put_Points(get_abi(value)));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPolylineStatics<D>::FillRuleProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_FillRuleProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPolylineStatics)->get_FillRuleProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IPolylineStatics<D>::PointsProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_PointsProperty(put(value)));
+    check_hresult(WINRT_SHIM(IPolylineStatics)->get_PointsProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> double impl_IRectangle<D>::RadiusX() const
 {
     double value {};
-    check_hresult(shim()->get_RadiusX(&value));
+    check_hresult(WINRT_SHIM(IRectangle)->get_RadiusX(&value));
     return value;
 }
 
 template <typename D> void impl_IRectangle<D>::RadiusX(double value) const
 {
-    check_hresult(shim()->put_RadiusX(value));
+    check_hresult(WINRT_SHIM(IRectangle)->put_RadiusX(value));
 }
 
 template <typename D> double impl_IRectangle<D>::RadiusY() const
 {
     double value {};
-    check_hresult(shim()->get_RadiusY(&value));
+    check_hresult(WINRT_SHIM(IRectangle)->get_RadiusY(&value));
     return value;
 }
 
 template <typename D> void impl_IRectangle<D>::RadiusY(double value) const
 {
-    check_hresult(shim()->put_RadiusY(value));
+    check_hresult(WINRT_SHIM(IRectangle)->put_RadiusY(value));
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IRectangleStatics<D>::RadiusXProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_RadiusXProperty(put(value)));
+    check_hresult(WINRT_SHIM(IRectangleStatics)->get_RadiusXProperty(put_abi(value)));
     return value;
 }
 
 template <typename D> Windows::UI::Xaml::DependencyProperty impl_IRectangleStatics<D>::RadiusYProperty() const
 {
     Windows::UI::Xaml::DependencyProperty value { nullptr };
-    check_hresult(shim()->get_RadiusYProperty(put(value)));
+    check_hresult(WINRT_SHIM(IRectangleStatics)->get_RadiusYProperty(put_abi(value)));
     return value;
 }
 
@@ -1503,7 +1577,7 @@ inline Windows::UI::Xaml::DependencyProperty Line::Y2Property()
 
 inline Path::Path()
 {
-    Windows::IInspectable outer, inner;
+    Windows::Foundation::IInspectable outer, inner;
     impl_move(get_activation_factory<Path, IPathFactory>().CreateInstance(outer, inner));
 }
 
@@ -1612,3 +1686,212 @@ inline Windows::UI::Xaml::DependencyProperty Shape::StretchProperty()
 }
 
 }
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IEllipse>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IEllipse & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::ILine>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::ILine & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::ILineStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::ILineStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IPath>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IPath & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IPathFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IPathFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IPathStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IPathStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IPolygon>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IPolygon & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IPolygonStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IPolygonStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IPolyline>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IPolyline & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IPolylineStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IPolylineStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IRectangle>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IRectangle & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IRectangleStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IRectangleStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IShape>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IShape & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IShape2>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IShape2 & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IShapeFactory>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IShapeFactory & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::IShapeStatics>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::IShapeStatics & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::Ellipse>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::Ellipse & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::Line>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::Line & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::Path>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::Path & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::Polygon>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::Polygon & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::Polyline>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::Polyline & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::Rectangle>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::Rectangle & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+template<>
+struct std::hash<winrt::Windows::UI::Xaml::Shapes::Shape>
+{
+    size_t operator()(const winrt::Windows::UI::Xaml::Shapes::Shape & value) const noexcept
+    {
+        return winrt::impl::hash_unknown(value);
+    }
+};
+
+WINRT_WARNING_POP

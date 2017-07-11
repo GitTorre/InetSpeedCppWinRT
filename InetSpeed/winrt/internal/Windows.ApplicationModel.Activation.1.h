@@ -1,9 +1,9 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.ApplicationModel.Activation.0.h"
 #include "Windows.ApplicationModel.Appointments.AppointmentsProvider.0.h"
 #include "Windows.ApplicationModel.Background.0.h"
@@ -36,318 +36,318 @@ WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::ApplicationModel::Activation {
 
-struct __declspec(uuid("cf651713-cd08-4fd8-b697-a281b6544e2e")) __declspec(novtable) IActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("cf651713-cd08-4fd8-b697-a281b6544e2e")) __declspec(novtable) IActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Kind(winrt::Windows::ApplicationModel::Activation::ActivationKind * value) = 0;
     virtual HRESULT __stdcall get_PreviousExecutionState(winrt::Windows::ApplicationModel::Activation::ApplicationExecutionState * value) = 0;
     virtual HRESULT __stdcall get_SplashScreen(Windows::ApplicationModel::Activation::ISplashScreen ** value) = 0;
 };
 
-struct __declspec(uuid("1cf09b9e-9962-4936-80ff-afc8e8ae5c8c")) __declspec(novtable) IActivatedEventArgsWithUser : Windows::IInspectable
+struct __declspec(uuid("1cf09b9e-9962-4936-80ff-afc8e8ae5c8c")) __declspec(novtable) IActivatedEventArgsWithUser : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_User(Windows::System::IUser ** value) = 0;
 };
 
-struct __declspec(uuid("930cef4b-b829-40fc-88f4-8513e8a64738")) __declspec(novtable) IApplicationViewActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("930cef4b-b829-40fc-88f4-8513e8a64738")) __declspec(novtable) IApplicationViewActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_CurrentlyShownApplicationViewId(int32_t * value) = 0;
 };
 
-struct __declspec(uuid("3364c405-933c-4e7d-a034-500fb8dcd9f3")) __declspec(novtable) IAppointmentsProviderActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("3364c405-933c-4e7d-a034-500fb8dcd9f3")) __declspec(novtable) IAppointmentsProviderActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Verb(hstring * value) = 0;
 };
 
-struct __declspec(uuid("a2861367-cee5-4e4d-9ed7-41c34ec18b02")) __declspec(novtable) IAppointmentsProviderAddAppointmentActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("a2861367-cee5-4e4d-9ed7-41c34ec18b02")) __declspec(novtable) IAppointmentsProviderAddAppointmentActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_AddAppointmentOperation(Windows::ApplicationModel::Appointments::AppointmentsProvider::IAddAppointmentOperation ** value) = 0;
 };
 
-struct __declspec(uuid("751f3ab8-0b8e-451c-9f15-966e699bac25")) __declspec(novtable) IAppointmentsProviderRemoveAppointmentActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("751f3ab8-0b8e-451c-9f15-966e699bac25")) __declspec(novtable) IAppointmentsProviderRemoveAppointmentActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_RemoveAppointmentOperation(Windows::ApplicationModel::Appointments::AppointmentsProvider::IRemoveAppointmentOperation ** value) = 0;
 };
 
-struct __declspec(uuid("1551b7d4-a981-4067-8a62-0524e4ade121")) __declspec(novtable) IAppointmentsProviderReplaceAppointmentActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("1551b7d4-a981-4067-8a62-0524e4ade121")) __declspec(novtable) IAppointmentsProviderReplaceAppointmentActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ReplaceAppointmentOperation(Windows::ApplicationModel::Appointments::AppointmentsProvider::IReplaceAppointmentOperation ** value) = 0;
 };
 
-struct __declspec(uuid("3958f065-9841-4ca5-999b-885198b9ef2a")) __declspec(novtable) IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("3958f065-9841-4ca5-999b-885198b9ef2a")) __declspec(novtable) IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_InstanceStartDate(Windows::Foundation::IReference<Windows::Foundation::DateTime> ** value) = 0;
     virtual HRESULT __stdcall get_LocalId(hstring * value) = 0;
     virtual HRESULT __stdcall get_RoamingId(hstring * value) = 0;
 };
 
-struct __declspec(uuid("9baeaba6-0e0b-49aa-babc-12b1dc774986")) __declspec(novtable) IAppointmentsProviderShowTimeFrameActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("9baeaba6-0e0b-49aa-babc-12b1dc774986")) __declspec(novtable) IAppointmentsProviderShowTimeFrameActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_TimeToShow(Windows::Foundation::DateTime * value) = 0;
     virtual HRESULT __stdcall get_Duration(Windows::Foundation::TimeSpan * value) = 0;
 };
 
-struct __declspec(uuid("ab14bee0-e760-440e-a91c-44796de3a92d")) __declspec(novtable) IBackgroundActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("ab14bee0-e760-440e-a91c-44796de3a92d")) __declspec(novtable) IBackgroundActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_TaskInstance(Windows::ApplicationModel::Background::IBackgroundTaskInstance ** value) = 0;
 };
 
-struct __declspec(uuid("d06eb1c7-3805-4ecb-b757-6cf15e26fef3")) __declspec(novtable) ICachedFileUpdaterActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("d06eb1c7-3805-4ecb-b757-6cf15e26fef3")) __declspec(novtable) ICachedFileUpdaterActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_CachedFileUpdaterUI(Windows::Storage::Provider::ICachedFileUpdaterUI ** value) = 0;
 };
 
-struct __declspec(uuid("fb67a508-2dad-490a-9170-dca036eb114b")) __declspec(novtable) ICameraSettingsActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("fb67a508-2dad-490a-9170-dca036eb114b")) __declspec(novtable) ICameraSettingsActivatedEventArgs : Windows::Foundation::IInspectable
 {
-    virtual HRESULT __stdcall get_VideoDeviceController(Windows::IInspectable ** value) = 0;
-    virtual HRESULT __stdcall get_VideoDeviceExtension(Windows::IInspectable ** value) = 0;
+    virtual HRESULT __stdcall get_VideoDeviceController(Windows::Foundation::IInspectable ** value) = 0;
+    virtual HRESULT __stdcall get_VideoDeviceExtension(Windows::Foundation::IInspectable ** value) = 0;
 };
 
-struct __declspec(uuid("d627a1c4-c025-4c41-9def-f1eafad075e7")) __declspec(novtable) IContactActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("d627a1c4-c025-4c41-9def-f1eafad075e7")) __declspec(novtable) IContactActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Verb(hstring * value) = 0;
 };
 
-struct __declspec(uuid("c2df14c7-30eb-41c6-b3bc-5b1694f9dab3")) __declspec(novtable) IContactCallActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("c2df14c7-30eb-41c6-b3bc-5b1694f9dab3")) __declspec(novtable) IContactCallActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ServiceId(hstring * value) = 0;
     virtual HRESULT __stdcall get_ServiceUserId(hstring * value) = 0;
     virtual HRESULT __stdcall get_Contact(Windows::ApplicationModel::Contacts::IContact ** value) = 0;
 };
 
-struct __declspec(uuid("b32bf870-eee7-4ad2-aaf1-a87effcf00a4")) __declspec(novtable) IContactMapActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("b32bf870-eee7-4ad2-aaf1-a87effcf00a4")) __declspec(novtable) IContactMapActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Address(Windows::ApplicationModel::Contacts::IContactAddress ** value) = 0;
     virtual HRESULT __stdcall get_Contact(Windows::ApplicationModel::Contacts::IContact ** value) = 0;
 };
 
-struct __declspec(uuid("de598db2-0e03-43b0-bf56-bcc40b3162df")) __declspec(novtable) IContactMessageActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("de598db2-0e03-43b0-bf56-bcc40b3162df")) __declspec(novtable) IContactMessageActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ServiceId(hstring * value) = 0;
     virtual HRESULT __stdcall get_ServiceUserId(hstring * value) = 0;
     virtual HRESULT __stdcall get_Contact(Windows::ApplicationModel::Contacts::IContact ** value) = 0;
 };
 
-struct __declspec(uuid("ce57aae7-6449-45a7-971f-d113be7a8936")) __declspec(novtable) IContactPickerActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("ce57aae7-6449-45a7-971f-d113be7a8936")) __declspec(novtable) IContactPickerActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ContactPickerUI(Windows::ApplicationModel::Contacts::Provider::IContactPickerUI ** value) = 0;
 };
 
-struct __declspec(uuid("b35a3c67-f1e7-4655-ad6e-4857588f552f")) __declspec(novtable) IContactPostActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("b35a3c67-f1e7-4655-ad6e-4857588f552f")) __declspec(novtable) IContactPostActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ServiceId(hstring * value) = 0;
     virtual HRESULT __stdcall get_ServiceUserId(hstring * value) = 0;
     virtual HRESULT __stdcall get_Contact(Windows::ApplicationModel::Contacts::IContact ** value) = 0;
 };
 
-struct __declspec(uuid("61079db8-e3e7-4b4f-858d-5c63a96ef684")) __declspec(novtable) IContactVideoCallActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("61079db8-e3e7-4b4f-858d-5c63a96ef684")) __declspec(novtable) IContactVideoCallActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ServiceId(hstring * value) = 0;
     virtual HRESULT __stdcall get_ServiceUserId(hstring * value) = 0;
     virtual HRESULT __stdcall get_Contact(Windows::ApplicationModel::Contacts::IContact ** value) = 0;
 };
 
-struct __declspec(uuid("4580dca8-5750-4916-aa52-c0829521eb94")) __declspec(novtable) IContactsProviderActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("4580dca8-5750-4916-aa52-c0829521eb94")) __declspec(novtable) IContactsProviderActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Verb(hstring * value) = 0;
 };
 
-struct __declspec(uuid("e58106b5-155f-4a94-a742-c7e08f4e188c")) __declspec(novtable) IContinuationActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("e58106b5-155f-4a94-a742-c7e08f4e188c")) __declspec(novtable) IContinuationActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ContinuationData(Windows::Foundation::Collections::IPropertySet ** value) = 0;
 };
 
-struct __declspec(uuid("cd50b9a9-ce10-44d2-8234-c355a073ef33")) __declspec(novtable) IDeviceActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("cd50b9a9-ce10-44d2-8234-c355a073ef33")) __declspec(novtable) IDeviceActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_DeviceInformationId(hstring * value) = 0;
     virtual HRESULT __stdcall get_Verb(hstring * value) = 0;
 };
 
-struct __declspec(uuid("eba0d1e4-ecc6-4148-94ed-f4b37ec05b3e")) __declspec(novtable) IDevicePairingActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("eba0d1e4-ecc6-4148-94ed-f4b37ec05b3e")) __declspec(novtable) IDevicePairingActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_DeviceInformation(Windows::Devices::Enumeration::IDeviceInformation ** value) = 0;
 };
 
-struct __declspec(uuid("fb777ed7-85ee-456e-a44d-85d730e70aed")) __declspec(novtable) IDialReceiverActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("fb777ed7-85ee-456e-a44d-85d730e70aed")) __declspec(novtable) IDialReceiverActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_AppName(hstring * value) = 0;
 };
 
-struct __declspec(uuid("bb2afc33-93b1-42ed-8b26-236dd9c78496")) __declspec(novtable) IFileActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("bb2afc33-93b1-42ed-8b26-236dd9c78496")) __declspec(novtable) IFileActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Files(Windows::Foundation::Collections::IVectorView<Windows::Storage::IStorageItem> ** value) = 0;
     virtual HRESULT __stdcall get_Verb(hstring * value) = 0;
 };
 
-struct __declspec(uuid("2d60f06b-d25f-4d25-8653-e1c5e1108309")) __declspec(novtable) IFileActivatedEventArgsWithCallerPackageFamilyName : Windows::IInspectable
+struct __declspec(uuid("2d60f06b-d25f-4d25-8653-e1c5e1108309")) __declspec(novtable) IFileActivatedEventArgsWithCallerPackageFamilyName : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_CallerPackageFamilyName(hstring * value) = 0;
 };
 
-struct __declspec(uuid("433ba1a4-e1e2-48fd-b7fc-b5d6eee65033")) __declspec(novtable) IFileActivatedEventArgsWithNeighboringFiles : Windows::IInspectable
+struct __declspec(uuid("433ba1a4-e1e2-48fd-b7fc-b5d6eee65033")) __declspec(novtable) IFileActivatedEventArgsWithNeighboringFiles : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_NeighboringFilesQuery(Windows::Storage::Search::IStorageFileQueryResult ** value) = 0;
 };
 
-struct __declspec(uuid("72827082-5525-4bf2-bc09-1f5095d4964d")) __declspec(novtable) IFileOpenPickerActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("72827082-5525-4bf2-bc09-1f5095d4964d")) __declspec(novtable) IFileOpenPickerActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_FileOpenPickerUI(Windows::Storage::Pickers::Provider::IFileOpenPickerUI ** value) = 0;
 };
 
-struct __declspec(uuid("5e731f66-8d1f-45fb-af1d-73205c8fc7a1")) __declspec(novtable) IFileOpenPickerActivatedEventArgs2 : Windows::IInspectable
+struct __declspec(uuid("5e731f66-8d1f-45fb-af1d-73205c8fc7a1")) __declspec(novtable) IFileOpenPickerActivatedEventArgs2 : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_CallerPackageFamilyName(hstring * value) = 0;
 };
 
-struct __declspec(uuid("f0fa3f3a-d4e8-4ad3-9c34-2308f32fcec9")) __declspec(novtable) IFileOpenPickerContinuationEventArgs : Windows::IInspectable
+struct __declspec(uuid("f0fa3f3a-d4e8-4ad3-9c34-2308f32fcec9")) __declspec(novtable) IFileOpenPickerContinuationEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Files(Windows::Foundation::Collections::IVectorView<Windows::Storage::StorageFile> ** value) = 0;
 };
 
-struct __declspec(uuid("81c19cf1-74e6-4387-82eb-bb8fd64b4346")) __declspec(novtable) IFileSavePickerActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("81c19cf1-74e6-4387-82eb-bb8fd64b4346")) __declspec(novtable) IFileSavePickerActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_FileSavePickerUI(Windows::Storage::Pickers::Provider::IFileSavePickerUI ** value) = 0;
 };
 
-struct __declspec(uuid("6b73fe13-2cf2-4d48-8cbc-af67d23f1ce7")) __declspec(novtable) IFileSavePickerActivatedEventArgs2 : Windows::IInspectable
+struct __declspec(uuid("6b73fe13-2cf2-4d48-8cbc-af67d23f1ce7")) __declspec(novtable) IFileSavePickerActivatedEventArgs2 : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_CallerPackageFamilyName(hstring * value) = 0;
     virtual HRESULT __stdcall get_EnterpriseId(hstring * value) = 0;
 };
 
-struct __declspec(uuid("2c846fe1-3bad-4f33-8c8b-e46fae824b4b")) __declspec(novtable) IFileSavePickerContinuationEventArgs : Windows::IInspectable
+struct __declspec(uuid("2c846fe1-3bad-4f33-8c8b-e46fae824b4b")) __declspec(novtable) IFileSavePickerContinuationEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_File(Windows::Storage::IStorageFile ** value) = 0;
 };
 
-struct __declspec(uuid("51882366-9f4b-498f-beb0-42684f6e1c29")) __declspec(novtable) IFolderPickerContinuationEventArgs : Windows::IInspectable
+struct __declspec(uuid("51882366-9f4b-498f-beb0-42684f6e1c29")) __declspec(novtable) IFolderPickerContinuationEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Folder(Windows::Storage::IStorageFolder ** value) = 0;
 };
 
-struct __declspec(uuid("fbc93e26-a14a-4b4f-82b0-33bed920af52")) __declspec(novtable) ILaunchActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("fbc93e26-a14a-4b4f-82b0-33bed920af52")) __declspec(novtable) ILaunchActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Arguments(hstring * value) = 0;
     virtual HRESULT __stdcall get_TileId(hstring * value) = 0;
 };
 
-struct __declspec(uuid("0fd37ebc-9dc9-46b5-9ace-bd95d4565345")) __declspec(novtable) ILaunchActivatedEventArgs2 : Windows::IInspectable
+struct __declspec(uuid("0fd37ebc-9dc9-46b5-9ace-bd95d4565345")) __declspec(novtable) ILaunchActivatedEventArgs2 : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_TileActivatedInfo(Windows::ApplicationModel::Activation::ITileActivatedInfo ** value) = 0;
 };
 
-struct __declspec(uuid("3ca77966-6108-4a41-8220-ee7d133c8532")) __declspec(novtable) ILockScreenActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("3ca77966-6108-4a41-8220-ee7d133c8532")) __declspec(novtable) ILockScreenActivatedEventArgs : Windows::Foundation::IInspectable
 {
-    virtual HRESULT __stdcall get_Info(Windows::IInspectable ** value) = 0;
+    virtual HRESULT __stdcall get_Info(Windows::Foundation::IInspectable ** value) = 0;
 };
 
-struct __declspec(uuid("06f37fbe-b5f2-448b-b13e-e328ac1c516a")) __declspec(novtable) ILockScreenCallActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("06f37fbe-b5f2-448b-b13e-e328ac1c516a")) __declspec(novtable) ILockScreenCallActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_CallUI(Windows::ApplicationModel::Calls::ILockScreenCallUI ** value) = 0;
 };
 
-struct __declspec(uuid("360defb9-a9d3-4984-a4ed-9ec734604921")) __declspec(novtable) IPickerReturnedActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("360defb9-a9d3-4984-a4ed-9ec734604921")) __declspec(novtable) IPickerReturnedActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_PickerOperationId(hstring * value) = 0;
 };
 
-struct __declspec(uuid("0c44717b-19f7-48d6-b046-cf22826eaa74")) __declspec(novtable) IPrelaunchActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("0c44717b-19f7-48d6-b046-cf22826eaa74")) __declspec(novtable) IPrelaunchActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_PrelaunchActivated(bool * value) = 0;
 };
 
-struct __declspec(uuid("3f57e78b-f2ac-4619-8302-ef855e1c9b90")) __declspec(novtable) IPrint3DWorkflowActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("3f57e78b-f2ac-4619-8302-ef855e1c9b90")) __declspec(novtable) IPrint3DWorkflowActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Workflow(Windows::Devices::Printers::Extensions::IPrint3DWorkflow ** value) = 0;
 };
 
-struct __declspec(uuid("ee30a0c9-ce56-4865-ba8e-8954ac271107")) __declspec(novtable) IPrintTaskSettingsActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("ee30a0c9-ce56-4865-ba8e-8954ac271107")) __declspec(novtable) IPrintTaskSettingsActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Configuration(Windows::Devices::Printers::Extensions::IPrintTaskConfiguration ** value) = 0;
 };
 
-struct __declspec(uuid("6095f4dd-b7c0-46ab-81fe-d90f36d00d24")) __declspec(novtable) IProtocolActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("6095f4dd-b7c0-46ab-81fe-d90f36d00d24")) __declspec(novtable) IProtocolActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Uri(Windows::Foundation::IUriRuntimeClass ** value) = 0;
 };
 
-struct __declspec(uuid("d84a0c12-5c8f-438c-83cb-c28fcc0b2fdb")) __declspec(novtable) IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData : Windows::IInspectable
+struct __declspec(uuid("d84a0c12-5c8f-438c-83cb-c28fcc0b2fdb")) __declspec(novtable) IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_CallerPackageFamilyName(hstring * value) = 0;
     virtual HRESULT __stdcall get_Data(Windows::Foundation::Collections::IPropertySet ** value) = 0;
 };
 
-struct __declspec(uuid("e75132c2-7ae7-4517-80ac-dbe8d7cc5b9c")) __declspec(novtable) IProtocolForResultsActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("e75132c2-7ae7-4517-80ac-dbe8d7cc5b9c")) __declspec(novtable) IProtocolForResultsActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ProtocolForResultsOperation(Windows::System::IProtocolForResultsOperation ** value) = 0;
 };
 
-struct __declspec(uuid("e0b7ac81-bfc3-4344-a5da-19fd5a27baae")) __declspec(novtable) IRestrictedLaunchActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("e0b7ac81-bfc3-4344-a5da-19fd5a27baae")) __declspec(novtable) IRestrictedLaunchActivatedEventArgs : Windows::Foundation::IInspectable
 {
-    virtual HRESULT __stdcall get_SharedContext(Windows::IInspectable ** value) = 0;
+    virtual HRESULT __stdcall get_SharedContext(Windows::Foundation::IInspectable ** value) = 0;
 };
 
-struct __declspec(uuid("8cb36951-58c8-43e3-94bc-41d33f8b630e")) __declspec(novtable) ISearchActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("8cb36951-58c8-43e3-94bc-41d33f8b630e")) __declspec(novtable) ISearchActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_QueryText(hstring * value) = 0;
     virtual HRESULT __stdcall get_Language(hstring * value) = 0;
 };
 
-struct __declspec(uuid("c09f33da-08ab-4931-9b7c-451025f21f81")) __declspec(novtable) ISearchActivatedEventArgsWithLinguisticDetails : Windows::IInspectable
+struct __declspec(uuid("c09f33da-08ab-4931-9b7c-451025f21f81")) __declspec(novtable) ISearchActivatedEventArgsWithLinguisticDetails : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_LinguisticDetails(Windows::ApplicationModel::Search::ISearchPaneQueryLinguisticDetails ** value) = 0;
 };
 
-struct __declspec(uuid("4bdaf9c8-cdb2-4acb-bfc3-6648563378ec")) __declspec(novtable) IShareTargetActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("4bdaf9c8-cdb2-4acb-bfc3-6648563378ec")) __declspec(novtable) IShareTargetActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ShareOperation(Windows::ApplicationModel::DataTransfer::ShareTarget::IShareOperation ** value) = 0;
 };
 
-struct __declspec(uuid("ca4d975c-d4d6-43f0-97c0-0833c6391c24")) __declspec(novtable) ISplashScreen : Windows::IInspectable
+struct __declspec(uuid("ca4d975c-d4d6-43f0-97c0-0833c6391c24")) __declspec(novtable) ISplashScreen : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ImageLocation(Windows::Foundation::Rect * value) = 0;
-    virtual HRESULT __stdcall add_Dismissed(Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Activation::SplashScreen, Windows::IInspectable> * handler, event_token * cookie) = 0;
+    virtual HRESULT __stdcall add_Dismissed(Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Activation::SplashScreen, Windows::Foundation::IInspectable> * handler, event_token * cookie) = 0;
     virtual HRESULT __stdcall remove_Dismissed(event_token cookie) = 0;
 };
 
-struct __declspec(uuid("80e4a3b1-3980-4f17-b738-89194e0b8f65")) __declspec(novtable) ITileActivatedInfo : Windows::IInspectable
+struct __declspec(uuid("80e4a3b1-3980-4f17-b738-89194e0b8f65")) __declspec(novtable) ITileActivatedInfo : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_RecentlyShownNotifications(Windows::Foundation::Collections::IVectorView<Windows::UI::Notifications::ShownTileNotification> ** value) = 0;
 };
 
-struct __declspec(uuid("92a86f82-5290-431d-be85-c4aaeeb8685f")) __declspec(novtable) IToastNotificationActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("92a86f82-5290-431d-be85-c4aaeeb8685f")) __declspec(novtable) IToastNotificationActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Argument(hstring * argument) = 0;
     virtual HRESULT __stdcall get_UserInput(Windows::Foundation::Collections::IPropertySet ** value) = 0;
 };
 
-struct __declspec(uuid("1bc9f723-8ef1-4a51-a63a-fe711eeab607")) __declspec(novtable) IUserDataAccountProviderActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("1bc9f723-8ef1-4a51-a63a-fe711eeab607")) __declspec(novtable) IUserDataAccountProviderActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Operation(Windows::ApplicationModel::UserDataAccounts::Provider::IUserDataAccountProviderOperation ** value) = 0;
 };
 
-struct __declspec(uuid("33f288a6-5c2c-4d27-bac7-7536088f1219")) __declspec(novtable) IViewSwitcherProvider : Windows::IInspectable
+struct __declspec(uuid("33f288a6-5c2c-4d27-bac7-7536088f1219")) __declspec(novtable) IViewSwitcherProvider : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ViewSwitcher(Windows::UI::ViewManagement::IActivationViewSwitcher ** value) = 0;
 };
 
-struct __declspec(uuid("ab92dcfd-8d43-4de6-9775-20704b581b00")) __declspec(novtable) IVoiceCommandActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("ab92dcfd-8d43-4de6-9775-20704b581b00")) __declspec(novtable) IVoiceCommandActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Result(Windows::Media::SpeechRecognition::ISpeechRecognitionResult ** value) = 0;
 };
 
-struct __declspec(uuid("fcfc027b-1a1a-4d22-923f-ae6f45fa52d9")) __declspec(novtable) IWalletActionActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("fcfc027b-1a1a-4d22-923f-ae6f45fa52d9")) __declspec(novtable) IWalletActionActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_ItemId(hstring * value) = 0;
     virtual HRESULT __stdcall get_ActionKind(winrt::Windows::ApplicationModel::Wallet::WalletActionKind * value) = 0;
     virtual HRESULT __stdcall get_ActionId(hstring * value) = 0;
 };
 
-struct __declspec(uuid("72b71774-98ea-4ccf-9752-46d9051004f1")) __declspec(novtable) IWebAccountProviderActivatedEventArgs : Windows::IInspectable
+struct __declspec(uuid("72b71774-98ea-4ccf-9752-46d9051004f1")) __declspec(novtable) IWebAccountProviderActivatedEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_Operation(Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation ** value) = 0;
 };
 
-struct __declspec(uuid("75dda3d4-7714-453d-b7ff-b95e3a1709da")) __declspec(novtable) IWebAuthenticationBrokerContinuationEventArgs : Windows::IInspectable
+struct __declspec(uuid("75dda3d4-7714-453d-b7ff-b95e3a1709da")) __declspec(novtable) IWebAuthenticationBrokerContinuationEventArgs : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_WebAuthenticationResult(Windows::Security::Authentication::Web::IWebAuthenticationResult ** result) = 0;
 };
@@ -403,64 +403,381 @@ template <> struct traits<Windows::ApplicationModel::Activation::WebAuthenticati
 
 namespace Windows::ApplicationModel::Activation {
 
-template <typename T> class impl_IActivatedEventArgs;
-template <typename T> class impl_IActivatedEventArgsWithUser;
-template <typename T> class impl_IApplicationViewActivatedEventArgs;
-template <typename T> class impl_IAppointmentsProviderActivatedEventArgs;
-template <typename T> class impl_IAppointmentsProviderAddAppointmentActivatedEventArgs;
-template <typename T> class impl_IAppointmentsProviderRemoveAppointmentActivatedEventArgs;
-template <typename T> class impl_IAppointmentsProviderReplaceAppointmentActivatedEventArgs;
-template <typename T> class impl_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs;
-template <typename T> class impl_IAppointmentsProviderShowTimeFrameActivatedEventArgs;
-template <typename T> class impl_IBackgroundActivatedEventArgs;
-template <typename T> class impl_ICachedFileUpdaterActivatedEventArgs;
-template <typename T> class impl_ICameraSettingsActivatedEventArgs;
-template <typename T> class impl_IContactActivatedEventArgs;
-template <typename T> class impl_IContactCallActivatedEventArgs;
-template <typename T> class impl_IContactMapActivatedEventArgs;
-template <typename T> class impl_IContactMessageActivatedEventArgs;
-template <typename T> class impl_IContactPickerActivatedEventArgs;
-template <typename T> class impl_IContactPostActivatedEventArgs;
-template <typename T> class impl_IContactVideoCallActivatedEventArgs;
-template <typename T> class impl_IContactsProviderActivatedEventArgs;
-template <typename T> class impl_IContinuationActivatedEventArgs;
-template <typename T> class impl_IDeviceActivatedEventArgs;
-template <typename T> class impl_IDevicePairingActivatedEventArgs;
-template <typename T> class impl_IDialReceiverActivatedEventArgs;
-template <typename T> class impl_IFileActivatedEventArgs;
-template <typename T> class impl_IFileActivatedEventArgsWithCallerPackageFamilyName;
-template <typename T> class impl_IFileActivatedEventArgsWithNeighboringFiles;
-template <typename T> class impl_IFileOpenPickerActivatedEventArgs;
-template <typename T> class impl_IFileOpenPickerActivatedEventArgs2;
-template <typename T> class impl_IFileOpenPickerContinuationEventArgs;
-template <typename T> class impl_IFileSavePickerActivatedEventArgs;
-template <typename T> class impl_IFileSavePickerActivatedEventArgs2;
-template <typename T> class impl_IFileSavePickerContinuationEventArgs;
-template <typename T> class impl_IFolderPickerContinuationEventArgs;
-template <typename T> class impl_ILaunchActivatedEventArgs;
-template <typename T> class impl_ILaunchActivatedEventArgs2;
-template <typename T> class impl_ILockScreenActivatedEventArgs;
-template <typename T> class impl_ILockScreenCallActivatedEventArgs;
-template <typename T> class impl_IPickerReturnedActivatedEventArgs;
-template <typename T> class impl_IPrelaunchActivatedEventArgs;
-template <typename T> class impl_IPrint3DWorkflowActivatedEventArgs;
-template <typename T> class impl_IPrintTaskSettingsActivatedEventArgs;
-template <typename T> class impl_IProtocolActivatedEventArgs;
-template <typename T> class impl_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData;
-template <typename T> class impl_IProtocolForResultsActivatedEventArgs;
-template <typename T> class impl_IRestrictedLaunchActivatedEventArgs;
-template <typename T> class impl_ISearchActivatedEventArgs;
-template <typename T> class impl_ISearchActivatedEventArgsWithLinguisticDetails;
-template <typename T> class impl_IShareTargetActivatedEventArgs;
-template <typename T> class impl_ISplashScreen;
-template <typename T> class impl_ITileActivatedInfo;
-template <typename T> class impl_IToastNotificationActivatedEventArgs;
-template <typename T> class impl_IUserDataAccountProviderActivatedEventArgs;
-template <typename T> class impl_IViewSwitcherProvider;
-template <typename T> class impl_IVoiceCommandActivatedEventArgs;
-template <typename T> class impl_IWalletActionActivatedEventArgs;
-template <typename T> class impl_IWebAccountProviderActivatedEventArgs;
-template <typename T> class impl_IWebAuthenticationBrokerContinuationEventArgs;
+template <typename D>
+struct WINRT_EBO impl_IActivatedEventArgs
+{
+    Windows::ApplicationModel::Activation::ActivationKind Kind() const;
+    Windows::ApplicationModel::Activation::ApplicationExecutionState PreviousExecutionState() const;
+    Windows::ApplicationModel::Activation::SplashScreen SplashScreen() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IActivatedEventArgsWithUser
+{
+    Windows::System::User User() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IApplicationViewActivatedEventArgs
+{
+    int32_t CurrentlyShownApplicationViewId() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IAppointmentsProviderActivatedEventArgs
+{
+    hstring Verb() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IAppointmentsProviderAddAppointmentActivatedEventArgs
+{
+    Windows::ApplicationModel::Appointments::AppointmentsProvider::AddAppointmentOperation AddAppointmentOperation() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IAppointmentsProviderRemoveAppointmentActivatedEventArgs
+{
+    Windows::ApplicationModel::Appointments::AppointmentsProvider::RemoveAppointmentOperation RemoveAppointmentOperation() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IAppointmentsProviderReplaceAppointmentActivatedEventArgs
+{
+    Windows::ApplicationModel::Appointments::AppointmentsProvider::ReplaceAppointmentOperation ReplaceAppointmentOperation() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs
+{
+    Windows::Foundation::IReference<Windows::Foundation::DateTime> InstanceStartDate() const;
+    hstring LocalId() const;
+    hstring RoamingId() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IAppointmentsProviderShowTimeFrameActivatedEventArgs
+{
+    Windows::Foundation::DateTime TimeToShow() const;
+    Windows::Foundation::TimeSpan Duration() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IBackgroundActivatedEventArgs
+{
+    Windows::ApplicationModel::Background::IBackgroundTaskInstance TaskInstance() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ICachedFileUpdaterActivatedEventArgs
+{
+    Windows::Storage::Provider::CachedFileUpdaterUI CachedFileUpdaterUI() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ICameraSettingsActivatedEventArgs
+{
+    Windows::Foundation::IInspectable VideoDeviceController() const;
+    Windows::Foundation::IInspectable VideoDeviceExtension() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContactActivatedEventArgs
+{
+    hstring Verb() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContactCallActivatedEventArgs
+{
+    hstring ServiceId() const;
+    hstring ServiceUserId() const;
+    Windows::ApplicationModel::Contacts::Contact Contact() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContactMapActivatedEventArgs
+{
+    Windows::ApplicationModel::Contacts::ContactAddress Address() const;
+    Windows::ApplicationModel::Contacts::Contact Contact() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContactMessageActivatedEventArgs
+{
+    hstring ServiceId() const;
+    hstring ServiceUserId() const;
+    Windows::ApplicationModel::Contacts::Contact Contact() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContactPickerActivatedEventArgs
+{
+    Windows::ApplicationModel::Contacts::Provider::ContactPickerUI ContactPickerUI() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContactPostActivatedEventArgs
+{
+    hstring ServiceId() const;
+    hstring ServiceUserId() const;
+    Windows::ApplicationModel::Contacts::Contact Contact() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContactVideoCallActivatedEventArgs
+{
+    hstring ServiceId() const;
+    hstring ServiceUserId() const;
+    Windows::ApplicationModel::Contacts::Contact Contact() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContactsProviderActivatedEventArgs
+{
+    hstring Verb() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IContinuationActivatedEventArgs
+{
+    Windows::Foundation::Collections::ValueSet ContinuationData() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IDeviceActivatedEventArgs
+{
+    hstring DeviceInformationId() const;
+    hstring Verb() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IDevicePairingActivatedEventArgs
+{
+    Windows::Devices::Enumeration::DeviceInformation DeviceInformation() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IDialReceiverActivatedEventArgs
+{
+    hstring AppName() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileActivatedEventArgs
+{
+    Windows::Foundation::Collections::IVectorView<Windows::Storage::IStorageItem> Files() const;
+    hstring Verb() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileActivatedEventArgsWithCallerPackageFamilyName
+{
+    hstring CallerPackageFamilyName() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileActivatedEventArgsWithNeighboringFiles
+{
+    Windows::Storage::Search::StorageFileQueryResult NeighboringFilesQuery() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileOpenPickerActivatedEventArgs
+{
+    Windows::Storage::Pickers::Provider::FileOpenPickerUI FileOpenPickerUI() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileOpenPickerActivatedEventArgs2
+{
+    hstring CallerPackageFamilyName() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileOpenPickerContinuationEventArgs
+{
+    Windows::Foundation::Collections::IVectorView<Windows::Storage::StorageFile> Files() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileSavePickerActivatedEventArgs
+{
+    Windows::Storage::Pickers::Provider::FileSavePickerUI FileSavePickerUI() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileSavePickerActivatedEventArgs2
+{
+    hstring CallerPackageFamilyName() const;
+    hstring EnterpriseId() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFileSavePickerContinuationEventArgs
+{
+    Windows::Storage::StorageFile File() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IFolderPickerContinuationEventArgs
+{
+    Windows::Storage::StorageFolder Folder() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ILaunchActivatedEventArgs
+{
+    hstring Arguments() const;
+    hstring TileId() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ILaunchActivatedEventArgs2
+{
+    Windows::ApplicationModel::Activation::TileActivatedInfo TileActivatedInfo() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ILockScreenActivatedEventArgs
+{
+    Windows::Foundation::IInspectable Info() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ILockScreenCallActivatedEventArgs
+{
+    Windows::ApplicationModel::Calls::LockScreenCallUI CallUI() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IPickerReturnedActivatedEventArgs
+{
+    hstring PickerOperationId() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IPrelaunchActivatedEventArgs
+{
+    bool PrelaunchActivated() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IPrint3DWorkflowActivatedEventArgs
+{
+    Windows::Devices::Printers::Extensions::Print3DWorkflow Workflow() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IPrintTaskSettingsActivatedEventArgs
+{
+    Windows::Devices::Printers::Extensions::PrintTaskConfiguration Configuration() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IProtocolActivatedEventArgs
+{
+    Windows::Foundation::Uri Uri() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData
+{
+    hstring CallerPackageFamilyName() const;
+    Windows::Foundation::Collections::ValueSet Data() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IProtocolForResultsActivatedEventArgs
+{
+    Windows::System::ProtocolForResultsOperation ProtocolForResultsOperation() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IRestrictedLaunchActivatedEventArgs
+{
+    Windows::Foundation::IInspectable SharedContext() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ISearchActivatedEventArgs
+{
+    hstring QueryText() const;
+    hstring Language() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ISearchActivatedEventArgsWithLinguisticDetails
+{
+    Windows::ApplicationModel::Search::SearchPaneQueryLinguisticDetails LinguisticDetails() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IShareTargetActivatedEventArgs
+{
+    Windows::ApplicationModel::DataTransfer::ShareTarget::ShareOperation ShareOperation() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ISplashScreen
+{
+    Windows::Foundation::Rect ImageLocation() const;
+    event_token Dismissed(const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Activation::SplashScreen, Windows::Foundation::IInspectable> & handler) const;
+    using Dismissed_revoker = event_revoker<ISplashScreen>;
+    Dismissed_revoker Dismissed(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::ApplicationModel::Activation::SplashScreen, Windows::Foundation::IInspectable> & handler) const;
+    void Dismissed(event_token cookie) const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ITileActivatedInfo
+{
+    Windows::Foundation::Collections::IVectorView<Windows::UI::Notifications::ShownTileNotification> RecentlyShownNotifications() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IToastNotificationActivatedEventArgs
+{
+    hstring Argument() const;
+    Windows::Foundation::Collections::ValueSet UserInput() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IUserDataAccountProviderActivatedEventArgs
+{
+    Windows::ApplicationModel::UserDataAccounts::Provider::IUserDataAccountProviderOperation Operation() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IViewSwitcherProvider
+{
+    Windows::UI::ViewManagement::ActivationViewSwitcher ViewSwitcher() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IVoiceCommandActivatedEventArgs
+{
+    Windows::Media::SpeechRecognition::SpeechRecognitionResult Result() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IWalletActionActivatedEventArgs
+{
+    hstring ItemId() const;
+    Windows::ApplicationModel::Wallet::WalletActionKind ActionKind() const;
+    hstring ActionId() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IWebAccountProviderActivatedEventArgs
+{
+    Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation Operation() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_IWebAuthenticationBrokerContinuationEventArgs
+{
+    Windows::Security::Authentication::Web::WebAuthenticationResult WebAuthenticationResult() const;
+};
 
 }
 
@@ -817,294 +1134,252 @@ template <> struct traits<Windows::ApplicationModel::Activation::IWebAuthenticat
 template <> struct traits<Windows::ApplicationModel::Activation::AppointmentsProviderAddAppointmentActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::AppointmentsProviderAddAppointmentActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IAppointmentsProviderAddAppointmentActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.AppointmentsProviderAddAppointmentActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::AppointmentsProviderRemoveAppointmentActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::AppointmentsProviderRemoveAppointmentActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IAppointmentsProviderRemoveAppointmentActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.AppointmentsProviderRemoveAppointmentActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::AppointmentsProviderReplaceAppointmentActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::AppointmentsProviderReplaceAppointmentActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IAppointmentsProviderReplaceAppointmentActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.AppointmentsProviderReplaceAppointmentActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::AppointmentsProviderShowAppointmentDetailsActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::AppointmentsProviderShowAppointmentDetailsActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.AppointmentsProviderShowAppointmentDetailsActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::AppointmentsProviderShowTimeFrameActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::AppointmentsProviderShowTimeFrameActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IAppointmentsProviderShowTimeFrameActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.AppointmentsProviderShowTimeFrameActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::BackgroundActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::BackgroundActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IBackgroundActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.BackgroundActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::CachedFileUpdaterActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::CachedFileUpdaterActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::ICachedFileUpdaterActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.CachedFileUpdaterActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.CameraSettingsActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ContactCallActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ContactMapActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ContactMessageActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ContactPickerActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ContactPostActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ContactVideoCallActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::DeviceActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::DeviceActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IDeviceActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.DeviceActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::DevicePairingActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::DevicePairingActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IDevicePairingActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.DevicePairingActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::DialReceiverActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::DialReceiverActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IDialReceiverActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.DialReceiverActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::FileActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::FileActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IFileActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.FileActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::FileOpenPickerActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::FileOpenPickerActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IFileOpenPickerActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.FileOpenPickerActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::FileOpenPickerContinuationEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::FileOpenPickerContinuationEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IFileOpenPickerContinuationEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.FileOpenPickerContinuationEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::FileSavePickerActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::FileSavePickerActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IFileSavePickerActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.FileSavePickerActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::FileSavePickerContinuationEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::FileSavePickerContinuationEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IFileSavePickerContinuationEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.FileSavePickerContinuationEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::FolderPickerContinuationEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::FolderPickerContinuationEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IFolderPickerContinuationEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.FolderPickerContinuationEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::LaunchActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::LaunchActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.LaunchActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::LockScreenActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::LockScreenActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::ILockScreenActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.LockScreenActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.LockScreenCallActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::PickerReturnedActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::PickerReturnedActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IPickerReturnedActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.PickerReturnedActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.Print3DWorkflowActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.PrintTaskSettingsActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ProtocolActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ProtocolActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IProtocolActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ProtocolActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ProtocolForResultsActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ProtocolForResultsActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IProtocolForResultsActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ProtocolForResultsActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::RestrictedLaunchActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::RestrictedLaunchActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IRestrictedLaunchActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.RestrictedLaunchActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::SearchActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::SearchActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::ISearchActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.SearchActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ShareTargetActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ShareTargetActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IShareTargetActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::SplashScreen>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::SplashScreen;
-    using default_interface = Windows::ApplicationModel::Activation::ISplashScreen;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.SplashScreen"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::TileActivatedInfo>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::TileActivatedInfo;
-    using default_interface = Windows::ApplicationModel::Activation::ITileActivatedInfo;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.TileActivatedInfo"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::ToastNotificationActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::ToastNotificationActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IToastNotificationActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.ToastNotificationActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::UserDataAccountProviderActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::UserDataAccountProviderActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IUserDataAccountProviderActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.UserDataAccountProviderActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::VoiceCommandActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::VoiceCommandActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IVoiceCommandActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.VoiceCommandActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.WalletActionActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::WebAccountProviderActivatedEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::WebAccountProviderActivatedEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IWebAccountProviderActivatedEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.WebAccountProviderActivatedEventArgs"; }
 };
 
 template <> struct traits<Windows::ApplicationModel::Activation::WebAuthenticationBrokerContinuationEventArgs>
 {
     using abi = ABI::Windows::ApplicationModel::Activation::WebAuthenticationBrokerContinuationEventArgs;
-    using default_interface = Windows::ApplicationModel::Activation::IWebAuthenticationBrokerContinuationEventArgs;
     static constexpr const wchar_t * name() noexcept { return L"Windows.ApplicationModel.Activation.WebAuthenticationBrokerContinuationEventArgs"; }
 };
 

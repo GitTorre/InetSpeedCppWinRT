@@ -1,16 +1,16 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.System.Profile.SystemManufacturers.0.h"
 
 WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::System::Profile::SystemManufacturers {
 
-struct __declspec(uuid("080cca7c-637c-48c4-b728-f9273812db8e")) __declspec(novtable) ISmbiosInformationStatics : Windows::IInspectable
+struct __declspec(uuid("080cca7c-637c-48c4-b728-f9273812db8e")) __declspec(novtable) ISmbiosInformationStatics : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall get_SerialNumber(hstring * value) = 0;
 };
@@ -24,7 +24,11 @@ namespace ABI {
 
 namespace Windows::System::Profile::SystemManufacturers {
 
-template <typename T> class impl_ISmbiosInformationStatics;
+template <typename D>
+struct WINRT_EBO impl_ISmbiosInformationStatics
+{
+    hstring SerialNumber() const;
+};
 
 }
 

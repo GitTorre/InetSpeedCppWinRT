@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -23,6 +23,14 @@ struct IMediaTranscoder2;
 struct IPrepareTranscodeResult;
 struct MediaTranscoder;
 struct PrepareTranscodeResult;
+
+}
+
+namespace Windows::Media::Transcoding {
+
+template <typename T> struct impl_IMediaTranscoder;
+template <typename T> struct impl_IMediaTranscoder2;
+template <typename T> struct impl_IPrepareTranscodeResult;
 
 }
 

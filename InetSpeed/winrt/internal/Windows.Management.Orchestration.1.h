@@ -1,9 +1,9 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
-#include "base.h"
+#include "../base.h"
 #include "Windows.Management.Orchestration.0.h"
 #include "Windows.Foundation.0.h"
 
@@ -11,17 +11,17 @@ WINRT_EXPORT namespace winrt {
 
 namespace ABI::Windows::Management::Orchestration {
 
-struct __declspec(uuid("cff49929-e352-4ff4-bf46-786197a99112")) __declspec(novtable) ICurrentAppOrchestration : Windows::IInspectable
+struct __declspec(uuid("cff49929-e352-4ff4-bf46-786197a99112")) __declspec(novtable) ICurrentAppOrchestration : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall abi_StartSingleAppMode(Windows::Management::Orchestration::ISingleAppModeContext ** result) = 0;
 };
 
-struct __declspec(uuid("0ee337f8-63c5-46d6-ac61-5093e4af6db3")) __declspec(novtable) ICurrentAppOrchestrationStatics : Windows::IInspectable
+struct __declspec(uuid("0ee337f8-63c5-46d6-ac61-5093e4af6db3")) __declspec(novtable) ICurrentAppOrchestrationStatics : Windows::Foundation::IInspectable
 {
     virtual HRESULT __stdcall abi_GetForCurrentView(Windows::Management::Orchestration::ICurrentAppOrchestration ** result) = 0;
 };
 
-struct __declspec(uuid("87739739-6756-498b-8f1b-3ed4b59d7c9e")) __declspec(novtable) ISingleAppModeContext : Windows::IInspectable
+struct __declspec(uuid("87739739-6756-498b-8f1b-3ed4b59d7c9e")) __declspec(novtable) ISingleAppModeContext : Windows::Foundation::IInspectable
 {
 };
 
@@ -36,9 +36,22 @@ template <> struct traits<Windows::Management::Orchestration::SingleAppModeConte
 
 namespace Windows::Management::Orchestration {
 
-template <typename T> class impl_ICurrentAppOrchestration;
-template <typename T> class impl_ICurrentAppOrchestrationStatics;
-template <typename T> class impl_ISingleAppModeContext;
+template <typename D>
+struct WINRT_EBO impl_ICurrentAppOrchestration
+{
+    Windows::Management::Orchestration::SingleAppModeContext StartSingleAppMode() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ICurrentAppOrchestrationStatics
+{
+    Windows::Management::Orchestration::CurrentAppOrchestration GetForCurrentView() const;
+};
+
+template <typename D>
+struct WINRT_EBO impl_ISingleAppModeContext
+{
+};
 
 }
 
@@ -65,14 +78,12 @@ template <> struct traits<Windows::Management::Orchestration::ISingleAppModeCont
 template <> struct traits<Windows::Management::Orchestration::CurrentAppOrchestration>
 {
     using abi = ABI::Windows::Management::Orchestration::CurrentAppOrchestration;
-    using default_interface = Windows::Management::Orchestration::ICurrentAppOrchestration;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Management.Orchestration.CurrentAppOrchestration"; }
 };
 
 template <> struct traits<Windows::Management::Orchestration::SingleAppModeContext>
 {
     using abi = ABI::Windows::Management::Orchestration::SingleAppModeContext;
-    using default_interface = Windows::Management::Orchestration::ISingleAppModeContext;
     static constexpr const wchar_t * name() noexcept { return L"Windows.Management.Orchestration.SingleAppModeContext"; }
 };
 

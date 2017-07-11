@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -25,6 +25,15 @@ struct IPwmControllerStatics2;
 struct IPwmPin;
 struct PwmController;
 struct PwmPin;
+
+}
+
+namespace Windows::Devices::Pwm {
+
+template <typename T> struct impl_IPwmController;
+template <typename T> struct impl_IPwmControllerStatics;
+template <typename T> struct impl_IPwmControllerStatics2;
+template <typename T> struct impl_IPwmPin;
 
 }
 

@@ -1,21 +1,11 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
 #include "Windows.Media.Ocr.1.h"
 
 WINRT_EXPORT namespace winrt {
-
-namespace ABI::Windows::Foundation::Collections {
-
-#ifndef WINRT_GENERIC_144b0f3d_2d59_5dd2_b012_908ec3e06435
-#define WINRT_GENERIC_144b0f3d_2d59_5dd2_b012_908ec3e06435
-template <> struct __declspec(uuid("144b0f3d-2d59-5dd2-b012-908ec3e06435")) __declspec(novtable) IVectorView<Windows::Globalization::Language> : impl_IVectorView<Windows::Globalization::Language> {};
-#endif
-
-
-}
 
 namespace ABI::Windows::Foundation {
 
@@ -28,6 +18,11 @@ template <> struct __declspec(uuid("2f2d6c29-5473-5f3e-92e7-96572bb990e2")) __de
 }
 
 namespace ABI::Windows::Foundation::Collections {
+
+#ifndef WINRT_GENERIC_144b0f3d_2d59_5dd2_b012_908ec3e06435
+#define WINRT_GENERIC_144b0f3d_2d59_5dd2_b012_908ec3e06435
+template <> struct __declspec(uuid("144b0f3d-2d59-5dd2-b012-908ec3e06435")) __declspec(novtable) IVectorView<Windows::Globalization::Language> : impl_IVectorView<Windows::Globalization::Language> {};
+#endif
 
 #ifndef WINRT_GENERIC_805a60c7_df4f_527c_86b2_e29e439a83d2
 #define WINRT_GENERIC_805a60c7_df4f_527c_86b2_e29e439a83d2
@@ -54,6 +49,11 @@ template <> struct __declspec(uuid("c7d7118e-ae36-59c0-ac76-7badee711c8b")) __de
 
 namespace ABI::Windows::Foundation::Collections {
 
+#ifndef WINRT_GENERIC_dcf2525a_42c0_501d_9fcb_471fae060396
+#define WINRT_GENERIC_dcf2525a_42c0_501d_9fcb_471fae060396
+template <> struct __declspec(uuid("dcf2525a-42c0-501d-9fcb-471fae060396")) __declspec(novtable) IVector<Windows::Globalization::Language> : impl_IVector<Windows::Globalization::Language> {};
+#endif
+
 #ifndef WINRT_GENERIC_48409a10_61b6_5db1_a69d_8abc46ac608a
 #define WINRT_GENERIC_48409a10_61b6_5db1_a69d_8abc46ac608a
 template <> struct __declspec(uuid("48409a10-61b6-5db1-a69d-8abc46ac608a")) __declspec(novtable) IIterable<Windows::Globalization::Language> : impl_IIterable<Windows::Globalization::Language> {};
@@ -64,6 +64,11 @@ template <> struct __declspec(uuid("48409a10-61b6-5db1-a69d-8abc46ac608a")) __de
 template <> struct __declspec(uuid("30e99ae6-f414-5243-8db2-aab38ea3f1f1")) __declspec(novtable) IIterator<Windows::Globalization::Language> : impl_IIterator<Windows::Globalization::Language> {};
 #endif
 
+#ifndef WINRT_GENERIC_816ce87f_11b3_5e2b_ba1d_b251fe265b99
+#define WINRT_GENERIC_816ce87f_11b3_5e2b_ba1d_b251fe265b99
+template <> struct __declspec(uuid("816ce87f-11b3-5e2b-ba1d-b251fe265b99")) __declspec(novtable) IVector<Windows::Media::Ocr::OcrWord> : impl_IVector<Windows::Media::Ocr::OcrWord> {};
+#endif
+
 #ifndef WINRT_GENERIC_0ed4317a_9964_51c6_acbe_02512a069082
 #define WINRT_GENERIC_0ed4317a_9964_51c6_acbe_02512a069082
 template <> struct __declspec(uuid("0ed4317a-9964-51c6-acbe-02512a069082")) __declspec(novtable) IIterator<Windows::Media::Ocr::OcrWord> : impl_IIterator<Windows::Media::Ocr::OcrWord> {};
@@ -72,6 +77,11 @@ template <> struct __declspec(uuid("0ed4317a-9964-51c6-acbe-02512a069082")) __de
 #ifndef WINRT_GENERIC_a0ce663a_46d0_55e5_928e_251eb67a1e99
 #define WINRT_GENERIC_a0ce663a_46d0_55e5_928e_251eb67a1e99
 template <> struct __declspec(uuid("a0ce663a-46d0-55e5-928e-251eb67a1e99")) __declspec(novtable) IIterable<Windows::Media::Ocr::OcrWord> : impl_IIterable<Windows::Media::Ocr::OcrWord> {};
+#endif
+
+#ifndef WINRT_GENERIC_87a2feca_2afa_5da6_9e14_6f5d47877923
+#define WINRT_GENERIC_87a2feca_2afa_5da6_9e14_6f5d47877923
+template <> struct __declspec(uuid("87a2feca-2afa-5da6-9e14-6f5d47877923")) __declspec(novtable) IVector<Windows::Media::Ocr::OcrLine> : impl_IVector<Windows::Media::Ocr::OcrLine> {};
 #endif
 
 #ifndef WINRT_GENERIC_52ca0f8a_5788_5695_b905_46b8d8171d88
@@ -99,103 +109,39 @@ template <> struct __declspec(uuid("989c1371-444a-5e7e-b197-9eaaf9d2829a")) __de
 
 namespace Windows::Media::Ocr {
 
-template <typename D>
-class WINRT_EBO impl_IOcrEngine
-{
-    auto shim() const { return impl::shim<D, IOcrEngine>(this); }
-
-public:
-
-    Windows::Foundation::IAsyncOperation<Windows::Media::Ocr::OcrResult> RecognizeAsync(const Windows::Graphics::Imaging::SoftwareBitmap & bitmap) const;
-    Windows::Globalization::Language RecognizerLanguage() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOcrEngineStatics
-{
-    auto shim() const { return impl::shim<D, IOcrEngineStatics>(this); }
-
-public:
-
-    uint32_t MaxImageDimension() const;
-    Windows::Foundation::Collections::IVectorView<Windows::Globalization::Language> AvailableRecognizerLanguages() const;
-    bool IsLanguageSupported(const Windows::Globalization::Language & language) const;
-    Windows::Media::Ocr::OcrEngine TryCreateFromLanguage(const Windows::Globalization::Language & language) const;
-    Windows::Media::Ocr::OcrEngine TryCreateFromUserProfileLanguages() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOcrLine
-{
-    auto shim() const { return impl::shim<D, IOcrLine>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<Windows::Media::Ocr::OcrWord> Words() const;
-    hstring Text() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOcrResult
-{
-    auto shim() const { return impl::shim<D, IOcrResult>(this); }
-
-public:
-
-    Windows::Foundation::Collections::IVectorView<Windows::Media::Ocr::OcrLine> Lines() const;
-    Windows::Foundation::IReference<double> TextAngle() const;
-    hstring Text() const;
-};
-
-template <typename D>
-class WINRT_EBO impl_IOcrWord
-{
-    auto shim() const { return impl::shim<D, IOcrWord>(this); }
-
-public:
-
-    Windows::Foundation::Rect BoundingRect() const;
-    hstring Text() const;
-};
-
 struct IOcrEngine :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOcrEngine>
 {
     IOcrEngine(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOcrEngine>(m_ptr); }
 };
 
 struct IOcrEngineStatics :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOcrEngineStatics>
 {
     IOcrEngineStatics(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOcrEngineStatics>(m_ptr); }
 };
 
 struct IOcrLine :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOcrLine>
 {
     IOcrLine(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOcrLine>(m_ptr); }
 };
 
 struct IOcrResult :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOcrResult>
 {
     IOcrResult(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOcrResult>(m_ptr); }
 };
 
 struct IOcrWord :
-    Windows::IInspectable,
+    Windows::Foundation::IInspectable,
     impl::consume<IOcrWord>
 {
     IOcrWord(std::nullptr_t = nullptr) noexcept {}
-    auto operator->() const noexcept { return ptr<IOcrWord>(m_ptr); }
 };
 
 }

@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -37,6 +37,17 @@ struct ContactListServerSearchReadBatchRequest;
 struct ContactListServerSearchReadBatchRequestEventArgs;
 struct ContactListSyncManagerSyncRequest;
 struct ContactListSyncManagerSyncRequestEventArgs;
+
+}
+
+namespace Windows::ApplicationModel::Contacts::DataProvider {
+
+template <typename T> struct impl_IContactDataProviderConnection;
+template <typename T> struct impl_IContactDataProviderTriggerDetails;
+template <typename T> struct impl_IContactListServerSearchReadBatchRequest;
+template <typename T> struct impl_IContactListServerSearchReadBatchRequestEventArgs;
+template <typename T> struct impl_IContactListSyncManagerSyncRequest;
+template <typename T> struct impl_IContactListSyncManagerSyncRequestEventArgs;
 
 }
 

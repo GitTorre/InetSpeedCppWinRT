@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -13,7 +13,7 @@ template <typename H> struct impl_BackgroundTaskCanceledEventHandler : implement
 {
     impl_BackgroundTaskCanceledEventHandler(H && handler) : H(std::forward<H>(handler)) {}
 
-    HRESULT __stdcall abi_Invoke(abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskInstance> sender, Windows::ApplicationModel::Background::BackgroundTaskCancellationReason reason) noexcept override
+    HRESULT __stdcall abi_Invoke(impl::abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskInstance> sender, Windows::ApplicationModel::Background::BackgroundTaskCancellationReason reason) noexcept override
     {
         try
         {
@@ -31,7 +31,7 @@ template <typename H> struct impl_BackgroundTaskCompletedEventHandler : implemen
 {
     impl_BackgroundTaskCompletedEventHandler(H && handler) : H(std::forward<H>(handler)) {}
 
-    HRESULT __stdcall abi_Invoke(abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskRegistration> sender, abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskCompletedEventArgs> args) noexcept override
+    HRESULT __stdcall abi_Invoke(impl::abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskRegistration> sender, impl::abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskCompletedEventArgs> args) noexcept override
     {
         try
         {
@@ -49,7 +49,7 @@ template <typename H> struct impl_BackgroundTaskProgressEventHandler : implement
 {
     impl_BackgroundTaskProgressEventHandler(H && handler) : H(std::forward<H>(handler)) {}
 
-    HRESULT __stdcall abi_Invoke(abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskRegistration> sender, abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskProgressEventArgs> args) noexcept override
+    HRESULT __stdcall abi_Invoke(impl::abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskRegistration> sender, impl::abi_arg_in<Windows::ApplicationModel::Background::IBackgroundTaskProgressEventArgs> args) noexcept override
     {
         try
         {
@@ -105,11 +105,11 @@ struct BackgroundExecutionManager
 {
     BackgroundExecutionManager() = delete;
     static Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus> RequestAccessAsync();
-    static Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus> RequestAccessAsync(hstring_ref applicationId);
+    static Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus> RequestAccessAsync(hstring_view applicationId);
     static void RemoveAccess();
-    static void RemoveAccess(hstring_ref applicationId);
+    static void RemoveAccess(hstring_view applicationId);
     static Windows::ApplicationModel::Background::BackgroundAccessStatus GetAccessStatus();
-    static Windows::ApplicationModel::Background::BackgroundAccessStatus GetAccessStatus(hstring_ref applicationId);
+    static Windows::ApplicationModel::Background::BackgroundAccessStatus GetAccessStatus(hstring_view applicationId);
 };
 
 struct WINRT_EBO BackgroundTaskBuilder :
@@ -193,6 +193,13 @@ struct WINRT_EBO ChatMessageReceivedNotificationTrigger :
     ChatMessageReceivedNotificationTrigger();
 };
 
+struct WINRT_EBO CommunicationBlockingAppSetAsActiveTrigger :
+    Windows::ApplicationModel::Background::ICommunicationBlockingAppSetAsActiveTrigger
+{
+    CommunicationBlockingAppSetAsActiveTrigger(std::nullptr_t) noexcept {}
+    CommunicationBlockingAppSetAsActiveTrigger();
+};
+
 struct WINRT_EBO ContactStoreNotificationTrigger :
     Windows::ApplicationModel::Background::IContactStoreNotificationTrigger
 {
@@ -212,14 +219,14 @@ struct WINRT_EBO DeviceConnectionChangeTrigger :
     Windows::ApplicationModel::Background::IDeviceConnectionChangeTrigger
 {
     DeviceConnectionChangeTrigger(std::nullptr_t) noexcept {}
-    static Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::Background::DeviceConnectionChangeTrigger> FromIdAsync(hstring_ref deviceId);
+    static Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::Background::DeviceConnectionChangeTrigger> FromIdAsync(hstring_view deviceId);
 };
 
 struct WINRT_EBO DeviceManufacturerNotificationTrigger :
     Windows::ApplicationModel::Background::IDeviceManufacturerNotificationTrigger
 {
     DeviceManufacturerNotificationTrigger(std::nullptr_t) noexcept {}
-    DeviceManufacturerNotificationTrigger(hstring_ref triggerQualifier, bool oneShot);
+    DeviceManufacturerNotificationTrigger(hstring_view triggerQualifier, bool oneShot);
 };
 
 struct WINRT_EBO DeviceServicingTrigger :
@@ -316,7 +323,7 @@ struct WINRT_EBO NetworkOperatorNotificationTrigger :
     Windows::ApplicationModel::Background::INetworkOperatorNotificationTrigger
 {
     NetworkOperatorNotificationTrigger(std::nullptr_t) noexcept {}
-    NetworkOperatorNotificationTrigger(hstring_ref networkAccountId);
+    NetworkOperatorNotificationTrigger(hstring_view networkAccountId);
 };
 
 struct WINRT_EBO PhoneTrigger :
@@ -331,7 +338,7 @@ struct WINRT_EBO PushNotificationTrigger :
 {
     PushNotificationTrigger(std::nullptr_t) noexcept {}
     PushNotificationTrigger();
-    PushNotificationTrigger(hstring_ref applicationId);
+    PushNotificationTrigger(hstring_view applicationId);
 };
 
 struct WINRT_EBO RcsEndUserMessageAvailableTrigger :
@@ -362,6 +369,13 @@ struct WINRT_EBO SensorDataThresholdTrigger :
     SensorDataThresholdTrigger(const Windows::Devices::Sensors::ISensorDataThreshold & threshold);
 };
 
+struct WINRT_EBO SmartCardTrigger :
+    Windows::ApplicationModel::Background::ISmartCardTrigger
+{
+    SmartCardTrigger(std::nullptr_t) noexcept {}
+    SmartCardTrigger(Windows::Devices::SmartCards::SmartCardTriggerType triggerType);
+};
+
 struct WINRT_EBO SmsMessageReceivedTrigger :
     Windows::ApplicationModel::Background::IBackgroundTrigger
 {
@@ -382,7 +396,7 @@ struct WINRT_EBO StorageLibraryContentChangedTrigger :
 {
     StorageLibraryContentChangedTrigger(std::nullptr_t) noexcept {}
     static Windows::ApplicationModel::Background::StorageLibraryContentChangedTrigger Create(const Windows::Storage::StorageLibrary & storageLibrary);
-    static Windows::ApplicationModel::Background::StorageLibraryContentChangedTrigger CreateFromLibraries(const Windows::Foundation::Collections::IIterable<Windows::Storage::StorageLibrary> & storageLibraries);
+    static Windows::ApplicationModel::Background::StorageLibraryContentChangedTrigger CreateFromLibraries(iterable<Windows::Storage::StorageLibrary> storageLibraries);
 };
 
 struct WINRT_EBO SystemCondition :
@@ -411,7 +425,7 @@ struct WINRT_EBO ToastNotificationActionTrigger :
 {
     ToastNotificationActionTrigger(std::nullptr_t) noexcept {}
     ToastNotificationActionTrigger();
-    ToastNotificationActionTrigger(hstring_ref applicationId);
+    ToastNotificationActionTrigger(hstring_view applicationId);
 };
 
 struct WINRT_EBO ToastNotificationHistoryChangedTrigger :
@@ -419,7 +433,7 @@ struct WINRT_EBO ToastNotificationHistoryChangedTrigger :
 {
     ToastNotificationHistoryChangedTrigger(std::nullptr_t) noexcept {}
     ToastNotificationHistoryChangedTrigger();
-    ToastNotificationHistoryChangedTrigger(hstring_ref applicationId);
+    ToastNotificationHistoryChangedTrigger(hstring_view applicationId);
 };
 
 struct WINRT_EBO UserNotificationChangedTrigger :

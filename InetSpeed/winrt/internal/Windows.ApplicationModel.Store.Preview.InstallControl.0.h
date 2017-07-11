@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -37,6 +37,19 @@ struct AppInstallItem;
 struct AppInstallManager;
 struct AppInstallManagerItemEventArgs;
 struct AppInstallStatus;
+
+}
+
+namespace Windows::ApplicationModel::Store::Preview::InstallControl {
+
+template <typename T> struct impl_IAppInstallItem;
+template <typename T> struct impl_IAppInstallItem2;
+template <typename T> struct impl_IAppInstallManager;
+template <typename T> struct impl_IAppInstallManager2;
+template <typename T> struct impl_IAppInstallManager3;
+template <typename T> struct impl_IAppInstallManagerItemEventArgs;
+template <typename T> struct impl_IAppInstallStatus;
+template <typename T> struct impl_IAppInstallStatus2;
 
 }
 

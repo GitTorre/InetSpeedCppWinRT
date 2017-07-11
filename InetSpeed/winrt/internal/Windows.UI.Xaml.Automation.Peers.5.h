@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -18,7 +18,7 @@ protected:
 
     AppBarAutomationPeerT(const Windows::UI::Xaml::Controls::AppBar & owner)
     {
-        get_activation_factory<AppBarAutomationPeer, IAppBarAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<AppBarAutomationPeer, IAppBarAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -32,7 +32,7 @@ protected:
 
     AppBarButtonAutomationPeerT(const Windows::UI::Xaml::Controls::AppBarButton & owner)
     {
-        get_activation_factory<AppBarButtonAutomationPeer, IAppBarButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<AppBarButtonAutomationPeer, IAppBarButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -46,7 +46,7 @@ protected:
 
     AppBarToggleButtonAutomationPeerT(const Windows::UI::Xaml::Controls::AppBarToggleButton & owner)
     {
-        get_activation_factory<AppBarToggleButtonAutomationPeer, IAppBarToggleButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<AppBarToggleButtonAutomationPeer, IAppBarToggleButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -60,7 +60,7 @@ protected:
 
     AutomationPeerT()
     {
-        get_activation_factory<AutomationPeer, IAutomationPeerFactory>().CreateInstance(*this, m_inner);
+        get_activation_factory<AutomationPeer, IAutomationPeerFactory>().CreateInstance(*this, this->m_inner);
     }
 };
 
@@ -74,7 +74,7 @@ protected:
 
     ButtonAutomationPeerT(const Windows::UI::Xaml::Controls::Button & owner)
     {
-        get_activation_factory<ButtonAutomationPeer, IButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ButtonAutomationPeer, IButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -88,7 +88,7 @@ protected:
 
     ButtonBaseAutomationPeerT(const Windows::UI::Xaml::Controls::Primitives::ButtonBase & owner)
     {
-        get_activation_factory<ButtonBaseAutomationPeer, IButtonBaseAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ButtonBaseAutomationPeer, IButtonBaseAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -102,7 +102,7 @@ protected:
 
     CaptureElementAutomationPeerT(const Windows::UI::Xaml::Controls::CaptureElement & owner)
     {
-        get_activation_factory<CaptureElementAutomationPeer, ICaptureElementAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<CaptureElementAutomationPeer, ICaptureElementAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -116,7 +116,7 @@ protected:
 
     CheckBoxAutomationPeerT(const Windows::UI::Xaml::Controls::CheckBox & owner)
     {
-        get_activation_factory<CheckBoxAutomationPeer, ICheckBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<CheckBoxAutomationPeer, ICheckBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -130,7 +130,7 @@ protected:
 
     ComboBoxAutomationPeerT(const Windows::UI::Xaml::Controls::ComboBox & owner)
     {
-        get_activation_factory<ComboBoxAutomationPeer, IComboBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ComboBoxAutomationPeer, IComboBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -144,7 +144,7 @@ protected:
 
     ComboBoxItemAutomationPeerT(const Windows::UI::Xaml::Controls::ComboBoxItem & owner)
     {
-        get_activation_factory<ComboBoxItemAutomationPeer, IComboBoxItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ComboBoxItemAutomationPeer, IComboBoxItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -156,9 +156,9 @@ template <typename D, typename ... Interfaces> struct ComboBoxItemDataAutomation
 
 protected:
 
-    ComboBoxItemDataAutomationPeerT(const Windows::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::ComboBoxAutomationPeer & parent)
+    ComboBoxItemDataAutomationPeerT(const Windows::Foundation::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::ComboBoxAutomationPeer & parent)
     {
-        get_activation_factory<ComboBoxItemDataAutomationPeer, IComboBoxItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, m_inner);
+        get_activation_factory<ComboBoxItemDataAutomationPeer, IComboBoxItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, this->m_inner);
     }
 };
 
@@ -172,7 +172,7 @@ protected:
 
     DatePickerAutomationPeerT(const Windows::UI::Xaml::Controls::DatePicker & owner)
     {
-        get_activation_factory<DatePickerAutomationPeer, IDatePickerAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<DatePickerAutomationPeer, IDatePickerAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -186,7 +186,7 @@ protected:
 
     FlipViewAutomationPeerT(const Windows::UI::Xaml::Controls::FlipView & owner)
     {
-        get_activation_factory<FlipViewAutomationPeer, IFlipViewAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<FlipViewAutomationPeer, IFlipViewAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -200,7 +200,7 @@ protected:
 
     FlipViewItemAutomationPeerT(const Windows::UI::Xaml::Controls::FlipViewItem & owner)
     {
-        get_activation_factory<FlipViewItemAutomationPeer, IFlipViewItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<FlipViewItemAutomationPeer, IFlipViewItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -212,9 +212,9 @@ template <typename D, typename ... Interfaces> struct FlipViewItemDataAutomation
 
 protected:
 
-    FlipViewItemDataAutomationPeerT(const Windows::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::FlipViewAutomationPeer & parent)
+    FlipViewItemDataAutomationPeerT(const Windows::Foundation::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::FlipViewAutomationPeer & parent)
     {
-        get_activation_factory<FlipViewItemDataAutomationPeer, IFlipViewItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, m_inner);
+        get_activation_factory<FlipViewItemDataAutomationPeer, IFlipViewItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, this->m_inner);
     }
 };
 
@@ -228,7 +228,7 @@ protected:
 
     FlyoutPresenterAutomationPeerT(const Windows::UI::Xaml::Controls::FlyoutPresenter & owner)
     {
-        get_activation_factory<FlyoutPresenterAutomationPeer, IFlyoutPresenterAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<FlyoutPresenterAutomationPeer, IFlyoutPresenterAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -242,7 +242,7 @@ protected:
 
     FrameworkElementAutomationPeerT(const Windows::UI::Xaml::FrameworkElement & owner)
     {
-        get_activation_factory<FrameworkElementAutomationPeer, IFrameworkElementAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<FrameworkElementAutomationPeer, IFrameworkElementAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -256,7 +256,7 @@ protected:
 
     GridViewAutomationPeerT(const Windows::UI::Xaml::Controls::GridView & owner)
     {
-        get_activation_factory<GridViewAutomationPeer, IGridViewAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<GridViewAutomationPeer, IGridViewAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -270,7 +270,7 @@ protected:
 
     GridViewHeaderItemAutomationPeerT(const Windows::UI::Xaml::Controls::GridViewHeaderItem & owner)
     {
-        get_activation_factory<GridViewHeaderItemAutomationPeer, IGridViewHeaderItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<GridViewHeaderItemAutomationPeer, IGridViewHeaderItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -284,7 +284,7 @@ protected:
 
     GridViewItemAutomationPeerT(const Windows::UI::Xaml::Controls::GridViewItem & owner)
     {
-        get_activation_factory<GridViewItemAutomationPeer, IGridViewItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<GridViewItemAutomationPeer, IGridViewItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -296,9 +296,9 @@ template <typename D, typename ... Interfaces> struct GridViewItemDataAutomation
 
 protected:
 
-    GridViewItemDataAutomationPeerT(const Windows::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::GridViewAutomationPeer & parent)
+    GridViewItemDataAutomationPeerT(const Windows::Foundation::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::GridViewAutomationPeer & parent)
     {
-        get_activation_factory<GridViewItemDataAutomationPeer, IGridViewItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, m_inner);
+        get_activation_factory<GridViewItemDataAutomationPeer, IGridViewItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, this->m_inner);
     }
 };
 
@@ -312,7 +312,7 @@ protected:
 
     GroupItemAutomationPeerT(const Windows::UI::Xaml::Controls::GroupItem & owner)
     {
-        get_activation_factory<GroupItemAutomationPeer, IGroupItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<GroupItemAutomationPeer, IGroupItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -326,7 +326,7 @@ protected:
 
     HubAutomationPeerT(const Windows::UI::Xaml::Controls::Hub & owner)
     {
-        get_activation_factory<HubAutomationPeer, IHubAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<HubAutomationPeer, IHubAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -340,7 +340,7 @@ protected:
 
     HubSectionAutomationPeerT(const Windows::UI::Xaml::Controls::HubSection & owner)
     {
-        get_activation_factory<HubSectionAutomationPeer, IHubSectionAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<HubSectionAutomationPeer, IHubSectionAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -354,7 +354,7 @@ protected:
 
     HyperlinkButtonAutomationPeerT(const Windows::UI::Xaml::Controls::HyperlinkButton & owner)
     {
-        get_activation_factory<HyperlinkButtonAutomationPeer, IHyperlinkButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<HyperlinkButtonAutomationPeer, IHyperlinkButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -368,7 +368,7 @@ protected:
 
     ImageAutomationPeerT(const Windows::UI::Xaml::Controls::Image & owner)
     {
-        get_activation_factory<ImageAutomationPeer, IImageAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ImageAutomationPeer, IImageAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -380,9 +380,9 @@ template <typename D, typename ... Interfaces> struct ItemAutomationPeerT :
 
 protected:
 
-    ItemAutomationPeerT(const Windows::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::ItemsControlAutomationPeer & parent)
+    ItemAutomationPeerT(const Windows::Foundation::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::ItemsControlAutomationPeer & parent)
     {
-        get_activation_factory<ItemAutomationPeer, IItemAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, m_inner);
+        get_activation_factory<ItemAutomationPeer, IItemAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, this->m_inner);
     }
 };
 
@@ -396,7 +396,7 @@ protected:
 
     ItemsControlAutomationPeerT(const Windows::UI::Xaml::Controls::ItemsControl & owner)
     {
-        get_activation_factory<ItemsControlAutomationPeer, IItemsControlAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ItemsControlAutomationPeer, IItemsControlAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -410,7 +410,7 @@ protected:
 
     ListBoxAutomationPeerT(const Windows::UI::Xaml::Controls::ListBox & owner)
     {
-        get_activation_factory<ListBoxAutomationPeer, IListBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ListBoxAutomationPeer, IListBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -424,7 +424,7 @@ protected:
 
     ListBoxItemAutomationPeerT(const Windows::UI::Xaml::Controls::ListBoxItem & owner)
     {
-        get_activation_factory<ListBoxItemAutomationPeer, IListBoxItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ListBoxItemAutomationPeer, IListBoxItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -436,9 +436,9 @@ template <typename D, typename ... Interfaces> struct ListBoxItemDataAutomationP
 
 protected:
 
-    ListBoxItemDataAutomationPeerT(const Windows::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::ListBoxAutomationPeer & parent)
+    ListBoxItemDataAutomationPeerT(const Windows::Foundation::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::ListBoxAutomationPeer & parent)
     {
-        get_activation_factory<ListBoxItemDataAutomationPeer, IListBoxItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, m_inner);
+        get_activation_factory<ListBoxItemDataAutomationPeer, IListBoxItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, this->m_inner);
     }
 };
 
@@ -452,7 +452,7 @@ protected:
 
     ListViewAutomationPeerT(const Windows::UI::Xaml::Controls::ListView & owner)
     {
-        get_activation_factory<ListViewAutomationPeer, IListViewAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ListViewAutomationPeer, IListViewAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -466,7 +466,7 @@ protected:
 
     ListViewBaseAutomationPeerT(const Windows::UI::Xaml::Controls::ListViewBase & owner)
     {
-        get_activation_factory<ListViewBaseAutomationPeer, IListViewBaseAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ListViewBaseAutomationPeer, IListViewBaseAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -480,7 +480,7 @@ protected:
 
     ListViewBaseHeaderItemAutomationPeerT(const Windows::UI::Xaml::Controls::ListViewBaseHeaderItem & owner)
     {
-        get_activation_factory<ListViewBaseHeaderItemAutomationPeer, IListViewBaseHeaderItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ListViewBaseHeaderItemAutomationPeer, IListViewBaseHeaderItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -494,7 +494,7 @@ protected:
 
     ListViewHeaderItemAutomationPeerT(const Windows::UI::Xaml::Controls::ListViewHeaderItem & owner)
     {
-        get_activation_factory<ListViewHeaderItemAutomationPeer, IListViewHeaderItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ListViewHeaderItemAutomationPeer, IListViewHeaderItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -508,7 +508,7 @@ protected:
 
     ListViewItemAutomationPeerT(const Windows::UI::Xaml::Controls::ListViewItem & owner)
     {
-        get_activation_factory<ListViewItemAutomationPeer, IListViewItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ListViewItemAutomationPeer, IListViewItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -520,9 +520,9 @@ template <typename D, typename ... Interfaces> struct ListViewItemDataAutomation
 
 protected:
 
-    ListViewItemDataAutomationPeerT(const Windows::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::ListViewBaseAutomationPeer & parent)
+    ListViewItemDataAutomationPeerT(const Windows::Foundation::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::ListViewBaseAutomationPeer & parent)
     {
-        get_activation_factory<ListViewItemDataAutomationPeer, IListViewItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, m_inner);
+        get_activation_factory<ListViewItemDataAutomationPeer, IListViewItemDataAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, this->m_inner);
     }
 };
 
@@ -536,7 +536,7 @@ protected:
 
     MediaElementAutomationPeerT(const Windows::UI::Xaml::Controls::MediaElement & owner)
     {
-        get_activation_factory<MediaElementAutomationPeer, IMediaElementAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<MediaElementAutomationPeer, IMediaElementAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -550,7 +550,7 @@ protected:
 
     MediaPlayerElementAutomationPeerT(const Windows::UI::Xaml::Controls::MediaPlayerElement & owner)
     {
-        get_activation_factory<MediaPlayerElementAutomationPeer, IMediaPlayerElementAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<MediaPlayerElementAutomationPeer, IMediaPlayerElementAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -564,7 +564,7 @@ protected:
 
     MediaTransportControlsAutomationPeerT(const Windows::UI::Xaml::Controls::MediaTransportControls & owner)
     {
-        get_activation_factory<MediaTransportControlsAutomationPeer, IMediaTransportControlsAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<MediaTransportControlsAutomationPeer, IMediaTransportControlsAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -578,7 +578,7 @@ protected:
 
     MenuFlyoutItemAutomationPeerT(const Windows::UI::Xaml::Controls::MenuFlyoutItem & owner)
     {
-        get_activation_factory<MenuFlyoutItemAutomationPeer, IMenuFlyoutItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<MenuFlyoutItemAutomationPeer, IMenuFlyoutItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -592,7 +592,7 @@ protected:
 
     MenuFlyoutPresenterAutomationPeerT(const Windows::UI::Xaml::Controls::MenuFlyoutPresenter & owner)
     {
-        get_activation_factory<MenuFlyoutPresenterAutomationPeer, IMenuFlyoutPresenterAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<MenuFlyoutPresenterAutomationPeer, IMenuFlyoutPresenterAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -606,7 +606,7 @@ protected:
 
     PasswordBoxAutomationPeerT(const Windows::UI::Xaml::Controls::PasswordBox & owner)
     {
-        get_activation_factory<PasswordBoxAutomationPeer, IPasswordBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<PasswordBoxAutomationPeer, IPasswordBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -620,7 +620,7 @@ protected:
 
     ProgressBarAutomationPeerT(const Windows::UI::Xaml::Controls::ProgressBar & owner)
     {
-        get_activation_factory<ProgressBarAutomationPeer, IProgressBarAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ProgressBarAutomationPeer, IProgressBarAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -634,7 +634,7 @@ protected:
 
     ProgressRingAutomationPeerT(const Windows::UI::Xaml::Controls::ProgressRing & owner)
     {
-        get_activation_factory<ProgressRingAutomationPeer, IProgressRingAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ProgressRingAutomationPeer, IProgressRingAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -648,7 +648,7 @@ protected:
 
     RadioButtonAutomationPeerT(const Windows::UI::Xaml::Controls::RadioButton & owner)
     {
-        get_activation_factory<RadioButtonAutomationPeer, IRadioButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<RadioButtonAutomationPeer, IRadioButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -662,7 +662,7 @@ protected:
 
     RangeBaseAutomationPeerT(const Windows::UI::Xaml::Controls::Primitives::RangeBase & owner)
     {
-        get_activation_factory<RangeBaseAutomationPeer, IRangeBaseAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<RangeBaseAutomationPeer, IRangeBaseAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -676,7 +676,7 @@ protected:
 
     RepeatButtonAutomationPeerT(const Windows::UI::Xaml::Controls::Primitives::RepeatButton & owner)
     {
-        get_activation_factory<RepeatButtonAutomationPeer, IRepeatButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<RepeatButtonAutomationPeer, IRepeatButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -690,7 +690,7 @@ protected:
 
     RichEditBoxAutomationPeerT(const Windows::UI::Xaml::Controls::RichEditBox & owner)
     {
-        get_activation_factory<RichEditBoxAutomationPeer, IRichEditBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<RichEditBoxAutomationPeer, IRichEditBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -704,7 +704,7 @@ protected:
 
     RichTextBlockAutomationPeerT(const Windows::UI::Xaml::Controls::RichTextBlock & owner)
     {
-        get_activation_factory<RichTextBlockAutomationPeer, IRichTextBlockAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<RichTextBlockAutomationPeer, IRichTextBlockAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -718,7 +718,7 @@ protected:
 
     RichTextBlockOverflowAutomationPeerT(const Windows::UI::Xaml::Controls::RichTextBlockOverflow & owner)
     {
-        get_activation_factory<RichTextBlockOverflowAutomationPeer, IRichTextBlockOverflowAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<RichTextBlockOverflowAutomationPeer, IRichTextBlockOverflowAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -732,7 +732,7 @@ protected:
 
     ScrollBarAutomationPeerT(const Windows::UI::Xaml::Controls::Primitives::ScrollBar & owner)
     {
-        get_activation_factory<ScrollBarAutomationPeer, IScrollBarAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ScrollBarAutomationPeer, IScrollBarAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -746,7 +746,7 @@ protected:
 
     ScrollViewerAutomationPeerT(const Windows::UI::Xaml::Controls::ScrollViewer & owner)
     {
-        get_activation_factory<ScrollViewerAutomationPeer, IScrollViewerAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ScrollViewerAutomationPeer, IScrollViewerAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -760,7 +760,7 @@ protected:
 
     SearchBoxAutomationPeerT(const Windows::UI::Xaml::Controls::SearchBox & owner)
     {
-        get_activation_factory<SearchBoxAutomationPeer, ISearchBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<SearchBoxAutomationPeer, ISearchBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -774,7 +774,7 @@ protected:
 
     SelectorAutomationPeerT(const Windows::UI::Xaml::Controls::Primitives::Selector & owner)
     {
-        get_activation_factory<SelectorAutomationPeer, ISelectorAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<SelectorAutomationPeer, ISelectorAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -786,9 +786,9 @@ template <typename D, typename ... Interfaces> struct SelectorItemAutomationPeer
 
 protected:
 
-    SelectorItemAutomationPeerT(const Windows::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::SelectorAutomationPeer & parent)
+    SelectorItemAutomationPeerT(const Windows::Foundation::IInspectable & item, const Windows::UI::Xaml::Automation::Peers::SelectorAutomationPeer & parent)
     {
-        get_activation_factory<SelectorItemAutomationPeer, ISelectorItemAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, m_inner);
+        get_activation_factory<SelectorItemAutomationPeer, ISelectorItemAutomationPeerFactory>().CreateInstanceWithParentAndItem(item, parent, *this, this->m_inner);
     }
 };
 
@@ -802,7 +802,7 @@ protected:
 
     SemanticZoomAutomationPeerT(const Windows::UI::Xaml::Controls::SemanticZoom & owner)
     {
-        get_activation_factory<SemanticZoomAutomationPeer, ISemanticZoomAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<SemanticZoomAutomationPeer, ISemanticZoomAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -816,7 +816,7 @@ protected:
 
     SettingsFlyoutAutomationPeerT(const Windows::UI::Xaml::Controls::SettingsFlyout & owner)
     {
-        get_activation_factory<SettingsFlyoutAutomationPeer, ISettingsFlyoutAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<SettingsFlyoutAutomationPeer, ISettingsFlyoutAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -830,7 +830,7 @@ protected:
 
     SliderAutomationPeerT(const Windows::UI::Xaml::Controls::Slider & owner)
     {
-        get_activation_factory<SliderAutomationPeer, ISliderAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<SliderAutomationPeer, ISliderAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -844,7 +844,7 @@ protected:
 
     TextBlockAutomationPeerT(const Windows::UI::Xaml::Controls::TextBlock & owner)
     {
-        get_activation_factory<TextBlockAutomationPeer, ITextBlockAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<TextBlockAutomationPeer, ITextBlockAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -858,7 +858,7 @@ protected:
 
     TextBoxAutomationPeerT(const Windows::UI::Xaml::Controls::TextBox & owner)
     {
-        get_activation_factory<TextBoxAutomationPeer, ITextBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<TextBoxAutomationPeer, ITextBoxAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -872,7 +872,7 @@ protected:
 
     ThumbAutomationPeerT(const Windows::UI::Xaml::Controls::Primitives::Thumb & owner)
     {
-        get_activation_factory<ThumbAutomationPeer, IThumbAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ThumbAutomationPeer, IThumbAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -886,7 +886,7 @@ protected:
 
     TimePickerAutomationPeerT(const Windows::UI::Xaml::Controls::TimePicker & owner)
     {
-        get_activation_factory<TimePickerAutomationPeer, ITimePickerAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<TimePickerAutomationPeer, ITimePickerAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -900,7 +900,7 @@ protected:
 
     ToggleButtonAutomationPeerT(const Windows::UI::Xaml::Controls::Primitives::ToggleButton & owner)
     {
-        get_activation_factory<ToggleButtonAutomationPeer, IToggleButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ToggleButtonAutomationPeer, IToggleButtonAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -914,7 +914,7 @@ protected:
 
     ToggleMenuFlyoutItemAutomationPeerT(const Windows::UI::Xaml::Controls::ToggleMenuFlyoutItem & owner)
     {
-        get_activation_factory<ToggleMenuFlyoutItemAutomationPeer, IToggleMenuFlyoutItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ToggleMenuFlyoutItemAutomationPeer, IToggleMenuFlyoutItemAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 
@@ -928,7 +928,7 @@ protected:
 
     ToggleSwitchAutomationPeerT(const Windows::UI::Xaml::Controls::ToggleSwitch & owner)
     {
-        get_activation_factory<ToggleSwitchAutomationPeer, IToggleSwitchAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, m_inner);
+        get_activation_factory<ToggleSwitchAutomationPeer, IToggleSwitchAutomationPeerFactory>().CreateInstanceWithOwner(owner, *this, this->m_inner);
     }
 };
 

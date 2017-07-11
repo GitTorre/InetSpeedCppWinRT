@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -29,6 +29,15 @@ struct PhoneCallBlockedTriggerDetails;
 struct PhoneCallOriginDataRequestTriggerDetails;
 struct PhoneLineChangedTriggerDetails;
 struct PhoneNewVoicemailMessageTriggerDetails;
+
+}
+
+namespace Windows::ApplicationModel::Calls::Background {
+
+template <typename T> struct impl_IPhoneCallBlockedTriggerDetails;
+template <typename T> struct impl_IPhoneCallOriginDataRequestTriggerDetails;
+template <typename T> struct impl_IPhoneLineChangedTriggerDetails;
+template <typename T> struct impl_IPhoneNewVoicemailMessageTriggerDetails;
 
 }
 

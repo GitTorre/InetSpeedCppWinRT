@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -51,6 +51,16 @@ struct WINRT_EBO MuteChangeEventArgs :
     MuteChangeEventArgs(std::nullptr_t) noexcept {}
 };
 
+struct PhoneCallBlocking
+{
+    PhoneCallBlocking() = delete;
+    static bool BlockUnknownNumbers();
+    static void BlockUnknownNumbers(bool value);
+    static bool BlockPrivateNumbers();
+    static void BlockPrivateNumbers(bool value);
+    static Windows::Foundation::IAsyncOperation<bool> SetCallBlockingListAsync(iterable<hstring> phoneNumberList);
+};
+
 struct WINRT_EBO PhoneCallHistoryEntry :
     Windows::ApplicationModel::Calls::IPhoneCallHistoryEntry
 {
@@ -63,7 +73,7 @@ struct WINRT_EBO PhoneCallHistoryEntryAddress :
 {
     PhoneCallHistoryEntryAddress(std::nullptr_t) noexcept {}
     PhoneCallHistoryEntryAddress();
-    PhoneCallHistoryEntryAddress(hstring_ref rawAddress, Windows::ApplicationModel::Calls::PhoneCallHistoryEntryRawAddressKind rawAddressKind);
+    PhoneCallHistoryEntryAddress(hstring_view rawAddress, Windows::ApplicationModel::Calls::PhoneCallHistoryEntryRawAddressKind rawAddressKind);
 };
 
 struct WINRT_EBO PhoneCallHistoryEntryQueryOptions :
@@ -96,6 +106,82 @@ struct WINRT_EBO PhoneCallHistoryStore :
     Windows::ApplicationModel::Calls::IPhoneCallHistoryStore
 {
     PhoneCallHistoryStore(std::nullptr_t) noexcept {}
+};
+
+struct PhoneCallManager
+{
+    PhoneCallManager() = delete;
+    static void ShowPhoneCallUI(hstring_view phoneNumber, hstring_view displayName);
+    static event_token CallStateChanged(const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler);
+    using CallStateChanged_revoker = factory_event_revoker<IPhoneCallManagerStatics2>;
+    static CallStateChanged_revoker CallStateChanged(auto_revoke_t, const Windows::Foundation::EventHandler<Windows::Foundation::IInspectable> & handler);
+    static void CallStateChanged(event_token token);
+    static bool IsCallActive();
+    static bool IsCallIncoming();
+    static void ShowPhoneCallSettingsUI();
+    static Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::Calls::PhoneCallStore> RequestStoreAsync();
+};
+
+struct WINRT_EBO PhoneCallStore :
+    Windows::ApplicationModel::Calls::IPhoneCallStore
+{
+    PhoneCallStore(std::nullptr_t) noexcept {}
+};
+
+struct WINRT_EBO PhoneCallVideoCapabilities :
+    Windows::ApplicationModel::Calls::IPhoneCallVideoCapabilities
+{
+    PhoneCallVideoCapabilities(std::nullptr_t) noexcept {}
+};
+
+struct PhoneCallVideoCapabilitiesManager
+{
+    PhoneCallVideoCapabilitiesManager() = delete;
+    static Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::Calls::PhoneCallVideoCapabilities> GetCapabilitiesAsync(hstring_view phoneNumber);
+};
+
+struct WINRT_EBO PhoneDialOptions :
+    Windows::ApplicationModel::Calls::IPhoneDialOptions
+{
+    PhoneDialOptions(std::nullptr_t) noexcept {}
+    PhoneDialOptions();
+};
+
+struct WINRT_EBO PhoneLine :
+    Windows::ApplicationModel::Calls::IPhoneLine
+{
+    PhoneLine(std::nullptr_t) noexcept {}
+    static Windows::Foundation::IAsyncOperation<Windows::ApplicationModel::Calls::PhoneLine> FromIdAsync(GUID lineId);
+};
+
+struct WINRT_EBO PhoneLineCellularDetails :
+    Windows::ApplicationModel::Calls::IPhoneLineCellularDetails
+{
+    PhoneLineCellularDetails(std::nullptr_t) noexcept {}
+};
+
+struct WINRT_EBO PhoneLineConfiguration :
+    Windows::ApplicationModel::Calls::IPhoneLineConfiguration
+{
+    PhoneLineConfiguration(std::nullptr_t) noexcept {}
+};
+
+struct WINRT_EBO PhoneLineWatcher :
+    Windows::ApplicationModel::Calls::IPhoneLineWatcher
+{
+    PhoneLineWatcher(std::nullptr_t) noexcept {}
+};
+
+struct WINRT_EBO PhoneLineWatcherEventArgs :
+    Windows::ApplicationModel::Calls::IPhoneLineWatcherEventArgs
+{
+    PhoneLineWatcherEventArgs(std::nullptr_t) noexcept {}
+};
+
+struct WINRT_EBO PhoneVoicemail :
+    Windows::ApplicationModel::Calls::IPhoneVoicemail
+{
+    PhoneVoicemail(std::nullptr_t) noexcept {}
 };
 
 struct WINRT_EBO VoipCallCoordinator :

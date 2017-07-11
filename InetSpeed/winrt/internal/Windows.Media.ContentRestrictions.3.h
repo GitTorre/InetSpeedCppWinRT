@@ -1,5 +1,5 @@
-// C++ for the Windows Runtime v1.29
-// Copyright (c) 2016 Microsoft Corporation
+// C++ for the Windows Runtime v1.0.170406.8
+// Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
 
@@ -19,7 +19,7 @@ struct WINRT_EBO RatedContentDescription :
     Windows::Media::ContentRestrictions::IRatedContentDescription
 {
     RatedContentDescription(std::nullptr_t) noexcept {}
-    RatedContentDescription(hstring_ref id, hstring_ref title, Windows::Media::ContentRestrictions::RatedContentCategory category);
+    RatedContentDescription(hstring_view id, hstring_view title, Windows::Media::ContentRestrictions::RatedContentCategory category);
 };
 
 struct WINRT_EBO RatedContentRestrictions :
