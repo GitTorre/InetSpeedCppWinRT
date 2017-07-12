@@ -12,10 +12,10 @@ using namespace Sockets;
 using namespace std;
 using namespace InetSpeed;
 
-hstring _socketTcpWellKnownHostNames[4] = { L"google.com", L"bing.com", L"facebook.com", L"yahoo.com" };
+const hstring _socketTcpWellKnownHostNames[4] = { L"google.com", L"bing.com", L"facebook.com", L"yahoo.com" };
 double _rawSpeed = 0.0;
 HostName _serverHost = HostName(_socketTcpWellKnownHostNames[0]);
-bool _custom;
+bool _custom = false;
 UINT _port = 0;
 
 ConnectionType InternetConnectionState::GetConnectionType()
