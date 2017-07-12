@@ -13,4 +13,4 @@
 #include <winrt\Windows.UI.Xaml.Controls.h>
 #include <experimental\coroutine>
 #include <future>
-#include "Enums.h"
+#include <string>

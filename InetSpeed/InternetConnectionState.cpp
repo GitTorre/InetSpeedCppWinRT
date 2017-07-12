@@ -2,13 +2,11 @@
 #include "InternetConnectionState.h"
 
 using namespace winrt;
-
 using namespace Windows::Foundation;
 using namespace Collections;
 using namespace Windows::Networking;
 using namespace Connectivity;
 using namespace Sockets;
-
 using namespace std;
 using namespace InetSpeed;
 
@@ -21,7 +19,7 @@ UINT _port = 0;
 ConnectionType InternetConnectionState::GetConnectionType()
 {
 	auto profile = NetworkInformation::GetInternetConnectionProfile();
-	if (profile == nullptr) return ConnectionType::Unknown;
+	if (profile == nullptr) return ConnectionType::Other;
 
 	auto interfaceType = profile.NetworkAdapter().IanaInterfaceType();
 
@@ -40,7 +38,7 @@ ConnectionType InternetConnectionState::GetConnectionType()
 	{
 		return ConnectionType::Cellular;
 	}
-    return ConnectionType::Unknown;
+    return ConnectionType::Other;
 }
 
 ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime)

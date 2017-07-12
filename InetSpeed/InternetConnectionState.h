@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "Enums.h"
 
 using namespace winrt;
 using namespace Windows::Foundation;

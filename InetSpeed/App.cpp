@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "InternetConnectionState.h"
-#include <string>
 
 using namespace winrt;
 
