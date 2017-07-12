@@ -4,18 +4,19 @@
 using namespace winrt;
 
 using namespace Windows::Foundation;
-using namespace Windows::Foundation::Collections;
+using namespace Collections;
 using namespace Windows::Networking;
-using namespace Windows::Networking::Connectivity;
-using namespace Windows::Networking::Sockets;
+using namespace Connectivity;
+using namespace Sockets;
 
 using namespace std;
 using namespace InetSpeed;
 
-hstring _socketTcpWellKnownHostNames[] = { L"google.com", L"bing.com", L"facebook.com", L"yahoo.com" };
-double _rawSpeed;
-HostName _serverHost = _socketTcpWellKnownHostNames[0];
+hstring _socketTcpWellKnownHostNames[4] = { L"google.com", L"bing.com", L"facebook.com", L"yahoo.com" };
+double _rawSpeed = 0.0;
+HostName _serverHost = HostName(_socketTcpWellKnownHostNames[0]);
 bool _custom;
+UINT _port = 0;
 
 ConnectionType InternetConnectionState::GetConnectionType()
 {
@@ -39,11 +40,9 @@ ConnectionType InternetConnectionState::GetConnectionType()
 	{
 		return ConnectionType::Cellular;
 	}
-	else
-	{
-		return ConnectionType::Unknown;
-	}
+    return ConnectionType::Unknown;
 }
+
 ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime)
 {
 	if (!(roundtriptime > 0.0))
@@ -64,22 +63,24 @@ ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime
 	return ConnectionSpeed::Low;
 }
 
-future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(const std::atomic_bool& cancelled)
+future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(const atomic_bool& cancelled)
 {	
 	int retries = 4;
 	//long long task_timeout_ms = 1000;
 	double currentSpeed = 0.0;
-	auto connectionType = InternetConnectionState::GetConnectionType();
+	auto connectionType = GetConnectionType();
 
 	if (connectionType == ConnectionType::Cellular || connectionType == ConnectionType::WiFi)
 	{
 		retries = 2;
 	}
 
-	for (int i = 0; i < retries; ++i)
+	for (size_t i = 0; i < retries; ++i)
 	{
 		if (cancelled)
+		{
 			return ConnectionSpeed::Unknown;
+		}
 
 		if (_serverHost == nullptr || !_custom)
 		{
@@ -93,7 +94,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 
 		try
 		{
-			co_await _clientSocket.ConnectAsync(_serverHost, L"80", SocketProtectionLevel::PlainSocket);
+			co_await _clientSocket.ConnectAsync(_serverHost, to_wstring(_port), SocketProtectionLevel::PlainSocket);
 			currentSpeed += _clientSocket.Information().RoundTripTimeStatistics().Min / 1000000.0;
 		}
 		catch (...)
@@ -113,7 +114,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 	
 	double rawSpeed = currentSpeed / retries;
 	_rawSpeed = rawSpeed;
-	return InternetConnectionState::GetConnectionSpeed(rawSpeed);
+	return GetConnectionSpeed(rawSpeed);
 }
 
 double InternetConnectionState::RawSpeed()
@@ -123,7 +124,7 @@ double InternetConnectionState::RawSpeed()
 //TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 {
-	if (!InternetConnectionState::InternetConnected())
+	if (!InternetConnected())
 	{
 		return ConnectionSpeed::Unknown;
 	}
@@ -135,7 +136,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 
 	return async(launch::async, [&]() -> ConnectionSpeed
 	{
-		auto future = InternetConnectionState::InternetConnectSocketAsync(std::ref(cancellation_token));
+		auto future = InternetConnectSocketAsync(ref(cancellation_token));
 
 		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
 		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...
@@ -152,9 +153,9 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 	}).get();
 }
 //TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
-ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName)
+ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName, UINT port)
 {
-	if (!InternetConnectionState::InternetConnected())
+	if (!InternetConnected())
 	{
 		return ConnectionSpeed::Unknown;
 	}
@@ -163,14 +164,15 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 	{
 		_serverHost = hostName;
 		_custom = true;
+		_port = port;
 	}
 
-	auto timeout = std::chrono::milliseconds(200);
-	std::atomic_bool cancellation_token = false;
+	auto timeout = chrono::milliseconds(200);
+	atomic_bool cancellation_token = false;
 
 	return async(launch::async, [&]() -> ConnectionSpeed
 	{
-		auto future = InternetConnectionState::InternetConnectSocketAsync(std::ref(cancellation_token));
+		auto future = InternetConnectSocketAsync(ref(cancellation_token));
 
 		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
 		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...

@@ -46,8 +46,8 @@ struct App : ApplicationT<App>
 
 			//Specify target location (as a HostName) for maximum usefulness -> quickly figure out if you are on a fast connection (Fast or Average) 
 			//by testing networking conditions to/from supplied domain...
-			HostName host = L"bing.com";
-			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host);
+			auto host = HostName(L"bing.com");
+			auto speed = InternetConnectionState::GetInternetConnectionSpeedWithHostName(host, 443);
 
 			auto rawspeed = to_wstring(InternetConnectionState::RawSpeed());
 
