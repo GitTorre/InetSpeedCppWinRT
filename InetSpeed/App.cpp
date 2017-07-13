@@ -45,31 +45,32 @@ struct App : ApplicationT<App>
 
 			//Specify target location (as a HostName) for maximum usefulness -> quickly figure out if you are on a fast connection (Fast or Average) 
 			//by testing networking conditions to/from supplied domain...
-			auto host = HostName(L"bing.com");
-			auto speed = InternetConnectionState::GetInternetConnectionSpeed(host, 443);
+			auto host = HostName(L"www.bing.com");
+			UINT port = 443;
+			auto speed = InternetConnectionState::GetInternetConnectionSpeed(host, port);
 
 			auto rawspeed = to_wstring(InternetConnectionState::RawSpeed());
 
 			if (speed == ConnectionSpeed::High)
 			{
-				text.Text(L"Connected High!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
+				text.Text(L"High  speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
 			}
 			else if (speed == ConnectionSpeed::Average)
 			{
-				text.Text(L"Connected Average!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
+				text.Text(L"Average speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
 			}
 			else if (speed == ConnectionSpeed::Low)
 			{
-				text.Text(L"Connected Low!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str());
+				text.Text(L"Low speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
 			}
 			else
 			{
-				text.Text(L"Connected Unknown. Careful!");
+				text.Text(L"Connection speed unknown. Careful!");
 			}
 		}
 		else
 		{
-			text.Text(L"You are not connected to Internet!");
+			text.Text(L"You are not connected to the Internet...");
 		}
 
 		text.FontFamily(FontFamily(L"Segoe UI Semibold"));
