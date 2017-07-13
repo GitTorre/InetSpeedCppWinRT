@@ -10,11 +10,18 @@ using namespace Sockets;
 using namespace std;
 using namespace InetSpeed;
 
-const hstring _socketTcpWellKnownHostNames[4] = { L"google.com", L"bing.com", L"facebook.com", L"yahoo.com" };
-double _rawSpeed = 0.0;
-HostName _serverHost = HostName(_socketTcpWellKnownHostNames[0]);
-bool _custom = false;
-UINT _port = 0;
+const HostName _socketTcpWellKnownHostNames[4] = 
+				{ 
+					HostName(L"google.com"),
+					HostName(L"bing.com"),
+					HostName(L"facebook.com"),
+					HostName(L"yahoo.com")
+				};
+
+double g_rawSpeed = 0.0;
+HostName g_serverHost = _socketTcpWellKnownHostNames[0];
+bool g_custom = false;
+UINT g_port = 0;
 
 ConnectionType InternetConnectionState::GetConnectionType()
 {
@@ -80,12 +87,13 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 	{
 		if (cancelled)
 		{
-			return ConnectionSpeed::Unknown;
+			currentSpeed = 0.0;
+			break;
 		}
 
-		if (_serverHost == nullptr || !_custom)
+		if (g_serverHost == nullptr || !g_custom)
 		{
-			_serverHost = HostName(_socketTcpWellKnownHostNames[i]);
+			g_serverHost = HostName(_socketTcpWellKnownHostNames[i]);
 		}
 
 		StreamSocket _clientSocket;
@@ -95,7 +103,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 
 		try
 		{
-			co_await _clientSocket.ConnectAsync(_serverHost, to_wstring(_port), SocketProtectionLevel::PlainSocket);
+			co_await _clientSocket.ConnectAsync(g_serverHost, to_wstring(g_port), SocketProtectionLevel::PlainSocket);
 			currentSpeed += _clientSocket.Information().RoundTripTimeStatistics().Min / 1000000.0;
 		}
 		catch (...)
@@ -103,24 +111,24 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 			currentSpeed = 0.0;
 			retries--;
 		}
-		//close stream socket...
+		//close socket...
 		_clientSocket.Close();
 	}
 
-	//Compute speed...
+	//No need to continue...
 	if (currentSpeed == 0.0)
 	{
 		return ConnectionSpeed::Unknown;
 	}
 	
 	double rawSpeed = currentSpeed / retries;
-	_rawSpeed = rawSpeed;
+	g_rawSpeed = rawSpeed;
 	return GetConnectionSpeed(rawSpeed);
 }
 
 double InternetConnectionState::RawSpeed()
 {
-	return _rawSpeed;
+	return g_rawSpeed;
 }
 //TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
@@ -130,9 +138,9 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 		return ConnectionSpeed::Unknown;
 	}
 
-	_serverHost = nullptr;
-	_custom = false;
-	auto timeout = chrono::milliseconds(1000);
+	g_serverHost = nullptr;
+	g_custom = false;
+	auto timeout = chrono::seconds(1);
 	atomic_bool cancellation_token = false;
 
 	return async(launch::async, [&]() -> ConnectionSpeed
@@ -169,12 +177,12 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(HostName hos
 
 	if (hostName != nullptr)
 	{
-		_serverHost = hostName;
-		_custom = true;
-		_port = port;
+		g_serverHost = hostName;
+		g_custom = true;
+		g_port = port;
 	}
 
-	auto timeout = chrono::milliseconds(1000);
+	auto timeout = chrono::seconds(1);
 	atomic_bool cancellation_token = false;
 
 	return async(launch::async, [&]() -> ConnectionSpeed
