@@ -1,7 +1,7 @@
 #pragma once
 namespace InetSpeed
 {
-	enum ConnectionSpeed
+	enum class ConnectionSpeed
 	{
 		High,
 		Average,
@@ -9,7 +9,7 @@ namespace InetSpeed
 		Unknown
 	};
 
-	enum ConnectionType
+	enum class ConnectionType
 	{
 		Cellular,
 		WiFi,
