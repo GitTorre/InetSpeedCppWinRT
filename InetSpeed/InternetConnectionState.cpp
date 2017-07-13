@@ -141,20 +141,26 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 
 		//this guarantees this function will return a result in a reasonable amount of time (1s). However, this is a hack...
 		//Proper support for cancelation in winrt_await_adapters will replace this (and be used in InternetConnectSocketAsync)...
-		auto status = future.wait_for(timeout);
-		
-		if (status == future_status::timeout)
+		future_status status;
+		do
 		{
-			cancellation_token = true;
-			return ConnectionSpeed::Unknown;
-		}
-		
-		return future.get();
+			status = future.wait_for(timeout);
+			if (status == std::future_status::timeout)
+			{
+				cancellation_token = true;
+			}
+			else if (status == std::future_status::ready)
+			{
+				return future.get();
+			}
+		} while (status != std::future_status::ready);
+
+		return ConnectionSpeed::Unknown;
 		
 	}).get();
 }
 //TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
-ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(HostName hostName, UINT port)
+ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(HostName hostName, UINT port)
 {
 	if (!InternetConnected())
 	{
@@ -192,6 +198,8 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeedWithHostName(
 		} 
 		while (status != std::future_status::ready);
 		
+		return ConnectionSpeed::Unknown;
+
 	}).get();
 }
 
