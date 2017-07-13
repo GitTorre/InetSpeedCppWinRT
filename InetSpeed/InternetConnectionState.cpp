@@ -10,7 +10,7 @@ using namespace Sockets;
 using namespace std;
 using namespace InetSpeed;
 
-const HostName _socketTcpWellKnownHostNames[4] = 
+const HostName g_socketTcpWellKnownHostNames[4] = 
 				{ 
 					HostName(L"google.com"),
 					HostName(L"bing.com"),
@@ -19,7 +19,7 @@ const HostName _socketTcpWellKnownHostNames[4] =
 				};
 
 double g_rawSpeed = 0.0;
-HostName g_serverHost = _socketTcpWellKnownHostNames[0];
+HostName g_serverHost = g_socketTcpWellKnownHostNames[0];
 bool g_custom = false;
 UINT g_port = 0;
 
@@ -93,7 +93,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 
 		if (g_serverHost == nullptr || !g_custom)
 		{
-			g_serverHost = HostName(_socketTcpWellKnownHostNames[i]);
+			g_serverHost = HostName(g_socketTcpWellKnownHostNames[i]);
 		}
 
 		StreamSocket _clientSocket;
