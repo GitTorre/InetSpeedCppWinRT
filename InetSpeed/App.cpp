@@ -53,11 +53,11 @@ struct App : ApplicationT<App>
 
 			if (speed == ConnectionSpeed::High)
 			{
-				text.Text(L"High  speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
+				text.Text(L"High speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
 			}
-			else if (speed == ConnectionSpeed::Average)
+			else if (speed == ConnectionSpeed::Medium)
 			{
-				text.Text(L"Average speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
+				text.Text(L"Medium speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
 			}
 			else if (speed == ConnectionSpeed::Low)
 			{

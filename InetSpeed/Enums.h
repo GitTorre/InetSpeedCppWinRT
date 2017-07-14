@@ -4,7 +4,7 @@ namespace InetSpeed
 	enum class ConnectionSpeed
 	{
 		High,
-		Average,
+		Medium,
 		Low,
 		Unknown
 	};
