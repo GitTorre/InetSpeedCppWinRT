@@ -106,7 +106,7 @@ future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(cons
 			co_await _clientSocket.ConnectAsync(g_serverHost, to_wstring(g_port), SocketProtectionLevel::PlainSocket);
 			currentSpeed += _clientSocket.Information().RoundTripTimeStatistics().Min / 1000000.0;
 		}
-		catch (...)
+		catch (SocketError)
 		{
 			currentSpeed = 0.0;
 			retries--;
