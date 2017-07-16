@@ -74,7 +74,7 @@ future<ConnectionSpeed>
 InternetConnectionState::InternetConnectSocketAsync(const atomic_bool& cancelled)
 {	
 	double currentSpeed = 0.0;
-	auto connectionType = GetConnectionType();
+	//auto connectionType = GetConnectionType();
 
 	for (size_t i = 0; i < connectionProfile.NumTests; ++i)
 	{
