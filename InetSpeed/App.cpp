@@ -72,9 +72,9 @@ struct App : ApplicationT<App>
 			text.Text(L"You are not connected to the Internet...");
 		}
 
-		//text.FontFamily(FontFamily(L"Segoe UI Semibold"));
+		text.FontFamily(FontFamily(L"Segoe UI Semibold"));
 		text.FontSize(72.0);
-		//text.Foreground(SolidColorBrush(Colors::MidnightBlue()));
+		text.Foreground(SolidColorBrush(Colors::MidnightBlue()));
 		text.VerticalAlignment(VerticalAlignment::Center);
 		text.TextAlignment(TextAlignment::Center);
 		text.TextWrapping(TextWrapping::Wrap);
