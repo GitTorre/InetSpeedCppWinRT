@@ -1,22 +1,45 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.Perception.People.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.Perception.People.2.h"
 #include "Windows.Perception.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> Windows::Foundation::Numerics::float3 consume_Windows_Perception_People_IHeadPose<D>::Position() const
+{
+    Windows::Foundation::Numerics::float3 value{};
+    check_hresult(WINRT_SHIM(Windows::Perception::People::IHeadPose)->get_Position(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Numerics::float3 consume_Windows_Perception_People_IHeadPose<D>::ForwardDirection() const
+{
+    Windows::Foundation::Numerics::float3 value{};
+    check_hresult(WINRT_SHIM(Windows::Perception::People::IHeadPose)->get_ForwardDirection(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Numerics::float3 consume_Windows_Perception_People_IHeadPose<D>::UpDirection() const
+{
+    Windows::Foundation::Numerics::float3 value{};
+    check_hresult(WINRT_SHIM(Windows::Perception::People::IHeadPose)->get_UpDirection(put_abi(value)));
+    return value;
+}
 
 template <typename D>
 struct produce<D, Windows::Perception::People::IHeadPose> : produce_base<D, Windows::Perception::People::IHeadPose>
 {
-    HRESULT __stdcall get_Position(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_Position(abi_t<Windows::Foundation::Numerics::float3>* value) noexcept override
     {
         try
         {
@@ -30,7 +53,7 @@ struct produce<D, Windows::Perception::People::IHeadPose> : produce_base<D, Wind
         }
     }
 
-    HRESULT __stdcall get_ForwardDirection(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_ForwardDirection(abi_t<Windows::Foundation::Numerics::float3>* value) noexcept override
     {
         try
         {
@@ -44,7 +67,7 @@ struct produce<D, Windows::Perception::People::IHeadPose> : produce_base<D, Wind
         }
     }
 
-    HRESULT __stdcall get_UpDirection(impl::abi_arg_out<Windows::Foundation::Numerics::float3> value) noexcept override
+    HRESULT __stdcall get_UpDirection(abi_t<Windows::Foundation::Numerics::float3>* value) noexcept override
     {
         try
         {
@@ -63,47 +86,18 @@ struct produce<D, Windows::Perception::People::IHeadPose> : produce_base<D, Wind
 
 namespace Windows::Perception::People {
 
-template <typename D> Windows::Foundation::Numerics::float3 impl_IHeadPose<D>::Position() const
-{
-    Windows::Foundation::Numerics::float3 value {};
-    check_hresult(WINRT_SHIM(IHeadPose)->get_Position(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Numerics::float3 impl_IHeadPose<D>::ForwardDirection() const
-{
-    Windows::Foundation::Numerics::float3 value {};
-    check_hresult(WINRT_SHIM(IHeadPose)->get_ForwardDirection(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Numerics::float3 impl_IHeadPose<D>::UpDirection() const
-{
-    Windows::Foundation::Numerics::float3 value {};
-    check_hresult(WINRT_SHIM(IHeadPose)->get_UpDirection(put_abi(value)));
-    return value;
 }
 
 }
 
+namespace std {
+
+template<> struct hash<winrt::Windows::Perception::People::IHeadPose> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Perception::People::IHeadPose> {};
+
+template<> struct hash<winrt::Windows::Perception::People::HeadPose> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Perception::People::HeadPose> {};
+
 }
-
-template<>
-struct std::hash<winrt::Windows::Perception::People::IHeadPose>
-{
-    size_t operator()(const winrt::Windows::Perception::People::IHeadPose & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
-
-template<>
-struct std::hash<winrt::Windows::Perception::People::HeadPose>
-{
-    size_t operator()(const winrt::Windows::Perception::People::HeadPose & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
 
 WINRT_WARNING_POP

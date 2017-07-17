@@ -5,9 +5,10 @@ using namespace winrt;
 
 using namespace Windows::ApplicationModel::Activation;
 using namespace Windows::Foundation;
-using namespace Windows::ApplicationModel::Core;
-using namespace Windows::UI::Core;
 using namespace Windows::UI;
+using namespace Xaml;
+using namespace Controls;
+using namespace Media;
 using namespace Xaml;
 using namespace Controls;
 using namespace Media;
@@ -16,8 +17,6 @@ using namespace std;
 
 struct App : ApplicationT<App>
 {
-	virtual ~App() = default;
-
 	void OnLaunched (LaunchActivatedEventArgs const &)
 	{
 		auto window = Window::Current();
@@ -73,9 +72,9 @@ struct App : ApplicationT<App>
 			text.Text(L"You are not connected to the Internet...");
 		}
 
-		text.FontFamily(FontFamily(L"Segoe UI Semibold"));
+		//text.FontFamily(FontFamily(L"Segoe UI Semibold"));
 		text.FontSize(72.0);
-		text.Foreground(SolidColorBrush(Colors::MidnightBlue()));
+		//text.Foreground(SolidColorBrush(Colors::MidnightBlue()));
 		text.VerticalAlignment(VerticalAlignment::Center);
 		text.TextAlignment(TextAlignment::Center);
 		text.TextWrapping(TextWrapping::Wrap);

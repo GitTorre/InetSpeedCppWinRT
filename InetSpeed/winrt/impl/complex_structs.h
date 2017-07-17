@@ -1,0 +1,6 @@
+﻿#include "Windows.Services.Store.0.h"
+#include "Windows.Storage.AccessCache.0.h"
+#include "Windows.Storage.Search.0.h"
+#include "Windows.UI.Xaml.Interop.0.h"
+#include "Windows.UI.Xaml.Markup.0.h"
+#include "Windows.Web.Http.0.h"

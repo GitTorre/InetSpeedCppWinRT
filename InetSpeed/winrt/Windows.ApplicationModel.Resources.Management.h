@@ -1,24 +1,109 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.Foundation.3.h"
-#include "internal/Windows.Foundation.Collections.3.h"
-#include "internal/Windows.ApplicationModel.Resources.Management.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.Foundation.2.h"
+#include "impl\Windows.ApplicationModel.Resources.Management.2.h"
 #include "Windows.ApplicationModel.Resources.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> Windows::ApplicationModel::Resources::Management::IndexedResourceType consume_Windows_ApplicationModel_Resources_Management_IIndexedResourceCandidate<D>::Type() const
+{
+    Windows::ApplicationModel::Resources::Management::IndexedResourceType value{};
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate)->get_Type(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Uri consume_Windows_ApplicationModel_Resources_Management_IIndexedResourceCandidate<D>::Uri() const
+{
+    Windows::Foundation::Uri value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate)->get_Uri(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Collections::IMapView<hstring, hstring> consume_Windows_ApplicationModel_Resources_Management_IIndexedResourceCandidate<D>::Metadata() const
+{
+    Windows::Foundation::Collections::IMapView<hstring, hstring> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate)->get_Metadata(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier> consume_Windows_ApplicationModel_Resources_Management_IIndexedResourceCandidate<D>::Qualifiers() const
+{
+    Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate)->get_Qualifiers(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring consume_Windows_ApplicationModel_Resources_Management_IIndexedResourceCandidate<D>::ValueAsString() const
+{
+    hstring value{};
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate)->get_ValueAsString(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring consume_Windows_ApplicationModel_Resources_Management_IIndexedResourceCandidate<D>::GetQualifierValue(param::hstring const& qualifierName) const
+{
+    hstring qualifierValue{};
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate)->GetQualifierValue(get_abi(qualifierName), put_abi(qualifierValue)));
+    return qualifierValue;
+}
+
+template <typename D> hstring consume_Windows_ApplicationModel_Resources_Management_IIndexedResourceQualifier<D>::QualifierName() const
+{
+    hstring value{};
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IIndexedResourceQualifier)->get_QualifierName(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring consume_Windows_ApplicationModel_Resources_Management_IIndexedResourceQualifier<D>::QualifierValue() const
+{
+    hstring value{};
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IIndexedResourceQualifier)->get_QualifierValue(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate consume_Windows_ApplicationModel_Resources_Management_IResourceIndexer<D>::IndexFilePath(Windows::Foundation::Uri const& filePath) const
+{
+    Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate candidate{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IResourceIndexer)->IndexFilePath(get_abi(filePath), put_abi(candidate)));
+    return candidate;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate>> consume_Windows_ApplicationModel_Resources_Management_IResourceIndexer<D>::IndexFileContentsAsync(Windows::Foundation::Uri const& file) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate>> operation{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IResourceIndexer)->IndexFileContentsAsync(get_abi(file), put_abi(operation)));
+    return operation;
+}
+
+template <typename D> Windows::ApplicationModel::Resources::Management::ResourceIndexer consume_Windows_ApplicationModel_Resources_Management_IResourceIndexerFactory<D>::CreateResourceIndexer(Windows::Foundation::Uri const& projectRoot) const
+{
+    Windows::ApplicationModel::Resources::Management::ResourceIndexer indexer{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory)->CreateResourceIndexer(get_abi(projectRoot), put_abi(indexer)));
+    return indexer;
+}
+
+template <typename D> Windows::ApplicationModel::Resources::Management::ResourceIndexer consume_Windows_ApplicationModel_Resources_Management_IResourceIndexerFactory2<D>::CreateResourceIndexerWithExtension(Windows::Foundation::Uri const& projectRoot, Windows::Foundation::Uri const& extensionDllPath) const
+{
+    Windows::ApplicationModel::Resources::Management::ResourceIndexer indexer{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory2)->CreateResourceIndexerWithExtension(get_abi(projectRoot), get_abi(extensionDllPath), put_abi(indexer)));
+    return indexer;
+}
 
 template <typename D>
 struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate> : produce_base<D, Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate>
 {
-    HRESULT __stdcall get_Type(Windows::ApplicationModel::Resources::Management::IndexedResourceType * value) noexcept override
+    HRESULT __stdcall get_Type(abi_t<Windows::ApplicationModel::Resources::Management::IndexedResourceType>* value) noexcept override
     {
         try
         {
@@ -32,7 +117,7 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedReso
         }
     }
 
-    HRESULT __stdcall get_Uri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_Uri(::IUnknown** value) noexcept override
     {
         try
         {
@@ -47,7 +132,7 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedReso
         }
     }
 
-    HRESULT __stdcall get_Metadata(impl::abi_arg_out<Windows::Foundation::Collections::IMapView<hstring, hstring>> value) noexcept override
+    HRESULT __stdcall get_Metadata(::IUnknown** value) noexcept override
     {
         try
         {
@@ -62,7 +147,7 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedReso
         }
     }
 
-    HRESULT __stdcall get_Qualifiers(impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier>> value) noexcept override
+    HRESULT __stdcall get_Qualifiers(::IUnknown** value) noexcept override
     {
         try
         {
@@ -77,7 +162,7 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedReso
         }
     }
 
-    HRESULT __stdcall get_ValueAsString(impl::abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_ValueAsString(HSTRING* value) noexcept override
     {
         try
         {
@@ -92,12 +177,12 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedReso
         }
     }
 
-    HRESULT __stdcall abi_GetQualifierValue(impl::abi_arg_in<hstring> qualifierName, impl::abi_arg_out<hstring> qualifierValue) noexcept override
+    HRESULT __stdcall GetQualifierValue(HSTRING qualifierName, HSTRING* qualifierValue) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *qualifierValue = detach_abi(this->shim().GetQualifierValue(*reinterpret_cast<const hstring *>(&qualifierName)));
+            *qualifierValue = detach_abi(this->shim().GetQualifierValue(*reinterpret_cast<hstring const*>(&qualifierName)));
             return S_OK;
         }
         catch (...)
@@ -111,7 +196,7 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedReso
 template <typename D>
 struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedResourceQualifier> : produce_base<D, Windows::ApplicationModel::Resources::Management::IIndexedResourceQualifier>
 {
-    HRESULT __stdcall get_QualifierName(impl::abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_QualifierName(HSTRING* value) noexcept override
     {
         try
         {
@@ -126,7 +211,7 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedReso
         }
     }
 
-    HRESULT __stdcall get_QualifierValue(impl::abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_QualifierValue(HSTRING* value) noexcept override
     {
         try
         {
@@ -145,12 +230,12 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IIndexedReso
 template <typename D>
 struct produce<D, Windows::ApplicationModel::Resources::Management::IResourceIndexer> : produce_base<D, Windows::ApplicationModel::Resources::Management::IResourceIndexer>
 {
-    HRESULT __stdcall abi_IndexFilePath(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> filePath, impl::abi_arg_out<Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate> candidate) noexcept override
+    HRESULT __stdcall IndexFilePath(::IUnknown* filePath, ::IUnknown** candidate) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *candidate = detach_abi(this->shim().IndexFilePath(*reinterpret_cast<const Windows::Foundation::Uri *>(&filePath)));
+            *candidate = detach_abi(this->shim().IndexFilePath(*reinterpret_cast<Windows::Foundation::Uri const*>(&filePath)));
             return S_OK;
         }
         catch (...)
@@ -160,12 +245,12 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IResourceInd
         }
     }
 
-    HRESULT __stdcall abi_IndexFileContentsAsync(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> file, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate>>> operation) noexcept override
+    HRESULT __stdcall IndexFileContentsAsync(::IUnknown* file, ::IUnknown** operation) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *operation = detach_abi(this->shim().IndexFileContentsAsync(*reinterpret_cast<const Windows::Foundation::Uri *>(&file)));
+            *operation = detach_abi(this->shim().IndexFileContentsAsync(*reinterpret_cast<Windows::Foundation::Uri const*>(&file)));
             return S_OK;
         }
         catch (...)
@@ -179,12 +264,12 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IResourceInd
 template <typename D>
 struct produce<D, Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory> : produce_base<D, Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory>
 {
-    HRESULT __stdcall abi_CreateResourceIndexer(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> projectRoot, impl::abi_arg_out<Windows::ApplicationModel::Resources::Management::IResourceIndexer> indexer) noexcept override
+    HRESULT __stdcall CreateResourceIndexer(::IUnknown* projectRoot, ::IUnknown** indexer) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *indexer = detach_abi(this->shim().CreateResourceIndexer(*reinterpret_cast<const Windows::Foundation::Uri *>(&projectRoot)));
+            *indexer = detach_abi(this->shim().CreateResourceIndexer(*reinterpret_cast<Windows::Foundation::Uri const*>(&projectRoot)));
             return S_OK;
         }
         catch (...)
@@ -198,12 +283,12 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IResourceInd
 template <typename D>
 struct produce<D, Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory2> : produce_base<D, Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory2>
 {
-    HRESULT __stdcall abi_CreateResourceIndexerWithExtension(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> projectRoot, impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> extensionDllPath, impl::abi_arg_out<Windows::ApplicationModel::Resources::Management::IResourceIndexer> indexer) noexcept override
+    HRESULT __stdcall CreateResourceIndexerWithExtension(::IUnknown* projectRoot, ::IUnknown* extensionDllPath, ::IUnknown** indexer) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *indexer = detach_abi(this->shim().CreateResourceIndexerWithExtension(*reinterpret_cast<const Windows::Foundation::Uri *>(&projectRoot), *reinterpret_cast<const Windows::Foundation::Uri *>(&extensionDllPath)));
+            *indexer = detach_abi(this->shim().CreateResourceIndexerWithExtension(*reinterpret_cast<Windows::Foundation::Uri const*>(&projectRoot), *reinterpret_cast<Windows::Foundation::Uri const*>(&extensionDllPath)));
             return S_OK;
         }
         catch (...)
@@ -218,172 +303,44 @@ struct produce<D, Windows::ApplicationModel::Resources::Management::IResourceInd
 
 namespace Windows::ApplicationModel::Resources::Management {
 
-template <typename D> Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate impl_IResourceIndexer<D>::IndexFilePath(const Windows::Foundation::Uri & filePath) const
-{
-    Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate candidate { nullptr };
-    check_hresult(WINRT_SHIM(IResourceIndexer)->abi_IndexFilePath(get_abi(filePath), put_abi(candidate)));
-    return candidate;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate>> impl_IResourceIndexer<D>::IndexFileContentsAsync(const Windows::Foundation::Uri & file) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate>> operation;
-    check_hresult(WINRT_SHIM(IResourceIndexer)->abi_IndexFileContentsAsync(get_abi(file), put_abi(operation)));
-    return operation;
-}
-
-template <typename D> Windows::ApplicationModel::Resources::Management::ResourceIndexer impl_IResourceIndexerFactory<D>::CreateResourceIndexer(const Windows::Foundation::Uri & projectRoot) const
-{
-    Windows::ApplicationModel::Resources::Management::ResourceIndexer indexer { nullptr };
-    check_hresult(WINRT_SHIM(IResourceIndexerFactory)->abi_CreateResourceIndexer(get_abi(projectRoot), put_abi(indexer)));
-    return indexer;
-}
-
-template <typename D> Windows::ApplicationModel::Resources::Management::ResourceIndexer impl_IResourceIndexerFactory2<D>::CreateResourceIndexerWithExtension(const Windows::Foundation::Uri & projectRoot, const Windows::Foundation::Uri & extensionDllPath) const
-{
-    Windows::ApplicationModel::Resources::Management::ResourceIndexer indexer { nullptr };
-    check_hresult(WINRT_SHIM(IResourceIndexerFactory2)->abi_CreateResourceIndexerWithExtension(get_abi(projectRoot), get_abi(extensionDllPath), put_abi(indexer)));
-    return indexer;
-}
-
-template <typename D> hstring impl_IIndexedResourceQualifier<D>::QualifierName() const
-{
-    hstring value;
-    check_hresult(WINRT_SHIM(IIndexedResourceQualifier)->get_QualifierName(put_abi(value)));
-    return value;
-}
-
-template <typename D> hstring impl_IIndexedResourceQualifier<D>::QualifierValue() const
-{
-    hstring value;
-    check_hresult(WINRT_SHIM(IIndexedResourceQualifier)->get_QualifierValue(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::ApplicationModel::Resources::Management::IndexedResourceType impl_IIndexedResourceCandidate<D>::Type() const
-{
-    Windows::ApplicationModel::Resources::Management::IndexedResourceType value {};
-    check_hresult(WINRT_SHIM(IIndexedResourceCandidate)->get_Type(&value));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Uri impl_IIndexedResourceCandidate<D>::Uri() const
-{
-    Windows::Foundation::Uri value { nullptr };
-    check_hresult(WINRT_SHIM(IIndexedResourceCandidate)->get_Uri(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Collections::IMapView<hstring, hstring> impl_IIndexedResourceCandidate<D>::Metadata() const
-{
-    Windows::Foundation::Collections::IMapView<hstring, hstring> value;
-    check_hresult(WINRT_SHIM(IIndexedResourceCandidate)->get_Metadata(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier> impl_IIndexedResourceCandidate<D>::Qualifiers() const
-{
-    Windows::Foundation::Collections::IVectorView<Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier> value;
-    check_hresult(WINRT_SHIM(IIndexedResourceCandidate)->get_Qualifiers(put_abi(value)));
-    return value;
-}
-
-template <typename D> hstring impl_IIndexedResourceCandidate<D>::ValueAsString() const
-{
-    hstring value;
-    check_hresult(WINRT_SHIM(IIndexedResourceCandidate)->get_ValueAsString(put_abi(value)));
-    return value;
-}
-
-template <typename D> hstring impl_IIndexedResourceCandidate<D>::GetQualifierValue(hstring_view qualifierName) const
-{
-    hstring qualifierValue;
-    check_hresult(WINRT_SHIM(IIndexedResourceCandidate)->abi_GetQualifierValue(get_abi(qualifierName), put_abi(qualifierValue)));
-    return qualifierValue;
-}
-
-inline ResourceIndexer::ResourceIndexer(const Windows::Foundation::Uri & projectRoot, const Windows::Foundation::Uri & extensionDllPath) :
-    ResourceIndexer(get_activation_factory<ResourceIndexer, IResourceIndexerFactory2>().CreateResourceIndexerWithExtension(projectRoot, extensionDllPath))
+inline ResourceIndexer::ResourceIndexer(Windows::Foundation::Uri const& projectRoot) :
+    ResourceIndexer(get_activation_factory<ResourceIndexer, Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory>().CreateResourceIndexer(projectRoot))
 {}
 
-inline ResourceIndexer::ResourceIndexer(const Windows::Foundation::Uri & projectRoot) :
-    ResourceIndexer(get_activation_factory<ResourceIndexer, IResourceIndexerFactory>().CreateResourceIndexer(projectRoot))
+inline ResourceIndexer::ResourceIndexer(Windows::Foundation::Uri const& projectRoot, Windows::Foundation::Uri const& extensionDllPath) :
+    ResourceIndexer(get_activation_factory<ResourceIndexer, Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory2>().CreateResourceIndexerWithExtension(projectRoot, extensionDllPath))
 {}
 
 }
 
 }
 
-template<>
-struct std::hash<winrt::Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate>
-{
-    size_t operator()(const winrt::Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+namespace std {
 
-template<>
-struct std::hash<winrt::Windows::ApplicationModel::Resources::Management::IIndexedResourceQualifier>
-{
-    size_t operator()(const winrt::Windows::ApplicationModel::Resources::Management::IIndexedResourceQualifier & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::ApplicationModel::Resources::Management::IIndexedResourceCandidate> {};
 
-template<>
-struct std::hash<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexer>
-{
-    size_t operator()(const winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexer & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::ApplicationModel::Resources::Management::IIndexedResourceQualifier> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::ApplicationModel::Resources::Management::IIndexedResourceQualifier> {};
 
-template<>
-struct std::hash<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory>
-{
-    size_t operator()(const winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexer> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexer> {};
 
-template<>
-struct std::hash<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory2>
-{
-    size_t operator()(const winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory2 & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory> {};
 
-template<>
-struct std::hash<winrt::Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate>
-{
-    size_t operator()(const winrt::Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory2> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::ApplicationModel::Resources::Management::IResourceIndexerFactory2> {};
 
-template<>
-struct std::hash<winrt::Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier>
-{
-    size_t operator()(const winrt::Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::ApplicationModel::Resources::Management::IndexedResourceCandidate> {};
 
-template<>
-struct std::hash<winrt::Windows::ApplicationModel::Resources::Management::ResourceIndexer>
-{
-    size_t operator()(const winrt::Windows::ApplicationModel::Resources::Management::ResourceIndexer & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::ApplicationModel::Resources::Management::IndexedResourceQualifier> {};
+
+template<> struct hash<winrt::Windows::ApplicationModel::Resources::Management::ResourceIndexer> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::ApplicationModel::Resources::Management::ResourceIndexer> {};
+
+}
 
 WINRT_WARNING_POP

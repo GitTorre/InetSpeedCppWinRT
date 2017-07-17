@@ -1,18 +1,29 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
+
 WINRT_WARNING_PUSH
+#include "impl\Windows.Graphics.DirectX.2.h"
+#include "Windows.Graphics.h"
 
-#include "internal/Windows.Graphics.DirectX.3.h"
-
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
 
 }
+
+namespace Windows::Graphics::DirectX {
+
+}
+
+}
+
+namespace std {
 
 }
 

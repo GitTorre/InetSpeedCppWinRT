@@ -1,22 +1,34 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.System.Display.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.System.Display.2.h"
 #include "Windows.System.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> void consume_Windows_System_Display_IDisplayRequest<D>::RequestActive() const
+{
+    check_hresult(WINRT_SHIM(Windows::System::Display::IDisplayRequest)->RequestActive());
+}
+
+template <typename D> void consume_Windows_System_Display_IDisplayRequest<D>::RequestRelease() const
+{
+    check_hresult(WINRT_SHIM(Windows::System::Display::IDisplayRequest)->RequestRelease());
+}
 
 template <typename D>
 struct produce<D, Windows::System::Display::IDisplayRequest> : produce_base<D, Windows::System::Display::IDisplayRequest>
 {
-    HRESULT __stdcall abi_RequestActive() noexcept override
+    HRESULT __stdcall RequestActive() noexcept override
     {
         try
         {
@@ -30,7 +42,7 @@ struct produce<D, Windows::System::Display::IDisplayRequest> : produce_base<D, W
         }
     }
 
-    HRESULT __stdcall abi_RequestRelease() noexcept override
+    HRESULT __stdcall RequestRelease() noexcept override
     {
         try
         {
@@ -49,16 +61,6 @@ struct produce<D, Windows::System::Display::IDisplayRequest> : produce_base<D, W
 
 namespace Windows::System::Display {
 
-template <typename D> void impl_IDisplayRequest<D>::RequestActive() const
-{
-    check_hresult(WINRT_SHIM(IDisplayRequest)->abi_RequestActive());
-}
-
-template <typename D> void impl_IDisplayRequest<D>::RequestRelease() const
-{
-    check_hresult(WINRT_SHIM(IDisplayRequest)->abi_RequestRelease());
-}
-
 inline DisplayRequest::DisplayRequest() :
     DisplayRequest(activate_instance<DisplayRequest>())
 {}
@@ -67,22 +69,14 @@ inline DisplayRequest::DisplayRequest() :
 
 }
 
-template<>
-struct std::hash<winrt::Windows::System::Display::IDisplayRequest>
-{
-    size_t operator()(const winrt::Windows::System::Display::IDisplayRequest & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+namespace std {
 
-template<>
-struct std::hash<winrt::Windows::System::Display::DisplayRequest>
-{
-    size_t operator()(const winrt::Windows::System::Display::DisplayRequest & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::System::Display::IDisplayRequest> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::System::Display::IDisplayRequest> {};
+
+template<> struct hash<winrt::Windows::System::Display::DisplayRequest> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::System::Display::DisplayRequest> {};
+
+}
 
 WINRT_WARNING_POP

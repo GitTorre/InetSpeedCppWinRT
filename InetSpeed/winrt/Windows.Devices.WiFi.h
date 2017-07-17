@@ -1,26 +1,216 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.Foundation.3.h"
-#include "internal/Windows.Networking.Connectivity.3.h"
-#include "internal/Windows.Security.Credentials.3.h"
-#include "internal/Windows.Foundation.Collections.3.h"
-#include "internal/Windows.Devices.WiFi.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.Networking.Connectivity.2.h"
+#include "impl\Windows.Security.Credentials.2.h"
+#include "impl\Windows.Devices.WiFi.2.h"
 #include "Windows.Devices.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> Windows::Networking::Connectivity::NetworkAdapter consume_Windows_Devices_WiFi_IWiFiAdapter<D>::NetworkAdapter() const
+{
+    Windows::Networking::Connectivity::NetworkAdapter value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->get_NetworkAdapter(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Devices_WiFi_IWiFiAdapter<D>::ScanAsync() const
+{
+    Windows::Foundation::IAsyncAction value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->ScanAsync(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Devices::WiFi::WiFiNetworkReport consume_Windows_Devices_WiFi_IWiFiAdapter<D>::NetworkReport() const
+{
+    Windows::Devices::WiFi::WiFiNetworkReport value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->get_NetworkReport(put_abi(value)));
+    return value;
+}
+
+template <typename D> event_token consume_Windows_Devices_WiFi_IWiFiAdapter<D>::AvailableNetworksChanged(Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable> const& args) const
+{
+    event_token eventCookie{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->add_AvailableNetworksChanged(get_abi(args), put_abi(eventCookie)));
+    return eventCookie;
+}
+
+template <typename D> event_revoker<Windows::Devices::WiFi::IWiFiAdapter> consume_Windows_Devices_WiFi_IWiFiAdapter<D>::AvailableNetworksChanged(auto_revoke_t, Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable> const& args) const
+{
+    return impl::make_event_revoker<D, Windows::Devices::WiFi::IWiFiAdapter>(this, &abi_t<Windows::Devices::WiFi::IWiFiAdapter>::remove_AvailableNetworksChanged, AvailableNetworksChanged(args));
+}
+
+template <typename D> void consume_Windows_Devices_WiFi_IWiFiAdapter<D>::AvailableNetworksChanged(event_token const& eventCookie) const
+{
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->remove_AvailableNetworksChanged(get_abi(eventCookie)));
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> consume_Windows_Devices_WiFi_IWiFiAdapter<D>::ConnectAsync(Windows::Devices::WiFi::WiFiAvailableNetwork const& availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind const& reconnectionKind) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->ConnectAsync(get_abi(availableNetwork), get_abi(reconnectionKind), put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> consume_Windows_Devices_WiFi_IWiFiAdapter<D>::ConnectAsync(Windows::Devices::WiFi::WiFiAvailableNetwork const& availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind const& reconnectionKind, Windows::Security::Credentials::PasswordCredential const& passwordCredential) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->ConnectWithPasswordCredentialAsync(get_abi(availableNetwork), get_abi(reconnectionKind), get_abi(passwordCredential), put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> consume_Windows_Devices_WiFi_IWiFiAdapter<D>::ConnectAsync(Windows::Devices::WiFi::WiFiAvailableNetwork const& availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind const& reconnectionKind, Windows::Security::Credentials::PasswordCredential const& passwordCredential, param::hstring const& ssid) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->ConnectWithPasswordCredentialAndSsidAsync(get_abi(availableNetwork), get_abi(reconnectionKind), get_abi(passwordCredential), get_abi(ssid), put_abi(value)));
+    return value;
+}
+
+template <typename D> void consume_Windows_Devices_WiFi_IWiFiAdapter<D>::Disconnect() const
+{
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapter)->Disconnect());
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAdapter>> consume_Windows_Devices_WiFi_IWiFiAdapterStatics<D>::FindAllAdaptersAsync() const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAdapter>> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapterStatics)->FindAllAdaptersAsync(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring consume_Windows_Devices_WiFi_IWiFiAdapterStatics<D>::GetDeviceSelector() const
+{
+    hstring deviceSelector{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapterStatics)->GetDeviceSelector(put_abi(deviceSelector)));
+    return deviceSelector;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAdapter> consume_Windows_Devices_WiFi_IWiFiAdapterStatics<D>::FromIdAsync(param::hstring const& deviceId) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAdapter> asyncOp{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapterStatics)->FromIdAsync(get_abi(deviceId), put_abi(asyncOp)));
+    return asyncOp;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAccessStatus> consume_Windows_Devices_WiFi_IWiFiAdapterStatics<D>::RequestAccessAsync() const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAccessStatus> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAdapterStatics)->RequestAccessAsync(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::TimeSpan consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::Uptime() const
+{
+    Windows::Foundation::TimeSpan value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_Uptime(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::Ssid() const
+{
+    hstring value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_Ssid(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::Bssid() const
+{
+    hstring value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_Bssid(put_abi(value)));
+    return value;
+}
+
+template <typename D> int32_t consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::ChannelCenterFrequencyInKilohertz() const
+{
+    int32_t value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_ChannelCenterFrequencyInKilohertz(&value));
+    return value;
+}
+
+template <typename D> double consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::NetworkRssiInDecibelMilliwatts() const
+{
+    double value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_NetworkRssiInDecibelMilliwatts(&value));
+    return value;
+}
+
+template <typename D> uint8_t consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::SignalBars() const
+{
+    uint8_t value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_SignalBars(&value));
+    return value;
+}
+
+template <typename D> Windows::Devices::WiFi::WiFiNetworkKind consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::NetworkKind() const
+{
+    Windows::Devices::WiFi::WiFiNetworkKind value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_NetworkKind(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Devices::WiFi::WiFiPhyKind consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::PhyKind() const
+{
+    Windows::Devices::WiFi::WiFiPhyKind value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_PhyKind(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Networking::Connectivity::NetworkSecuritySettings consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::SecuritySettings() const
+{
+    Windows::Networking::Connectivity::NetworkSecuritySettings value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_SecuritySettings(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::TimeSpan consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::BeaconInterval() const
+{
+    Windows::Foundation::TimeSpan value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_BeaconInterval(put_abi(value)));
+    return value;
+}
+
+template <typename D> bool consume_Windows_Devices_WiFi_IWiFiAvailableNetwork<D>::IsWiFiDirect() const
+{
+    bool value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiAvailableNetwork)->get_IsWiFiDirect(&value));
+    return value;
+}
+
+template <typename D> Windows::Devices::WiFi::WiFiConnectionStatus consume_Windows_Devices_WiFi_IWiFiConnectionResult<D>::ConnectionStatus() const
+{
+    Windows::Devices::WiFi::WiFiConnectionStatus value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiConnectionResult)->get_ConnectionStatus(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::DateTime consume_Windows_Devices_WiFi_IWiFiNetworkReport<D>::Timestamp() const
+{
+    Windows::Foundation::DateTime value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiNetworkReport)->get_Timestamp(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAvailableNetwork> consume_Windows_Devices_WiFi_IWiFiNetworkReport<D>::AvailableNetworks() const
+{
+    Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAvailableNetwork> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::WiFi::IWiFiNetworkReport)->get_AvailableNetworks(put_abi(value)));
+    return value;
+}
 
 template <typename D>
 struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Windows::Devices::WiFi::IWiFiAdapter>
 {
-    HRESULT __stdcall get_NetworkAdapter(impl::abi_arg_out<Windows::Networking::Connectivity::INetworkAdapter> value) noexcept override
+    HRESULT __stdcall get_NetworkAdapter(::IUnknown** value) noexcept override
     {
         try
         {
@@ -35,7 +225,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall abi_ScanAsync(impl::abi_arg_out<Windows::Foundation::IAsyncAction> value) noexcept override
+    HRESULT __stdcall ScanAsync(::IUnknown** value) noexcept override
     {
         try
         {
@@ -50,7 +240,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall get_NetworkReport(impl::abi_arg_out<Windows::Devices::WiFi::IWiFiNetworkReport> value) noexcept override
+    HRESULT __stdcall get_NetworkReport(::IUnknown** value) noexcept override
     {
         try
         {
@@ -65,12 +255,12 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall add_AvailableNetworksChanged(impl::abi_arg_in<Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable>> args, event_token * eventCookie) noexcept override
+    HRESULT __stdcall add_AvailableNetworksChanged(::IUnknown* args, abi_t<event_token>* eventCookie) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *eventCookie = detach_abi(this->shim().AvailableNetworksChanged(*reinterpret_cast<const Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable> *>(&args)));
+            *eventCookie = detach_abi(this->shim().AvailableNetworksChanged(*reinterpret_cast<Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable> const*>(&args)));
             return S_OK;
         }
         catch (...)
@@ -79,12 +269,12 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall remove_AvailableNetworksChanged(event_token eventCookie) noexcept override
+    HRESULT __stdcall remove_AvailableNetworksChanged(abi_t<event_token> eventCookie) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            this->shim().AvailableNetworksChanged(eventCookie);
+            this->shim().AvailableNetworksChanged(*reinterpret_cast<event_token const*>(&eventCookie));
             return S_OK;
         }
         catch (...)
@@ -93,27 +283,12 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall abi_ConnectAsync(impl::abi_arg_in<Windows::Devices::WiFi::IWiFiAvailableNetwork> availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult>> value) noexcept override
+    HRESULT __stdcall ConnectAsync(::IUnknown* availableNetwork, abi_t<Windows::Devices::WiFi::WiFiReconnectionKind> reconnectionKind, ::IUnknown** value) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *value = detach_abi(this->shim().ConnectAsync(*reinterpret_cast<const Windows::Devices::WiFi::WiFiAvailableNetwork *>(&availableNetwork), reconnectionKind));
-            return S_OK;
-        }
-        catch (...)
-        {
-            *value = nullptr;
-            return impl::to_hresult();
-        }
-    }
-
-    HRESULT __stdcall abi_ConnectWithPasswordCredentialAsync(impl::abi_arg_in<Windows::Devices::WiFi::IWiFiAvailableNetwork> availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind, impl::abi_arg_in<Windows::Security::Credentials::IPasswordCredential> passwordCredential, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult>> value) noexcept override
-    {
-        try
-        {
-            typename D::abi_guard guard(this->shim());
-            *value = detach_abi(this->shim().ConnectAsync(*reinterpret_cast<const Windows::Devices::WiFi::WiFiAvailableNetwork *>(&availableNetwork), reconnectionKind, *reinterpret_cast<const Windows::Security::Credentials::PasswordCredential *>(&passwordCredential)));
+            *value = detach_abi(this->shim().ConnectAsync(*reinterpret_cast<Windows::Devices::WiFi::WiFiAvailableNetwork const*>(&availableNetwork), *reinterpret_cast<Windows::Devices::WiFi::WiFiReconnectionKind const*>(&reconnectionKind)));
             return S_OK;
         }
         catch (...)
@@ -123,12 +298,12 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall abi_ConnectWithPasswordCredentialAndSsidAsync(impl::abi_arg_in<Windows::Devices::WiFi::IWiFiAvailableNetwork> availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind, impl::abi_arg_in<Windows::Security::Credentials::IPasswordCredential> passwordCredential, impl::abi_arg_in<hstring> ssid, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult>> value) noexcept override
+    HRESULT __stdcall ConnectWithPasswordCredentialAsync(::IUnknown* availableNetwork, abi_t<Windows::Devices::WiFi::WiFiReconnectionKind> reconnectionKind, ::IUnknown* passwordCredential, ::IUnknown** value) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *value = detach_abi(this->shim().ConnectAsync(*reinterpret_cast<const Windows::Devices::WiFi::WiFiAvailableNetwork *>(&availableNetwork), reconnectionKind, *reinterpret_cast<const Windows::Security::Credentials::PasswordCredential *>(&passwordCredential), *reinterpret_cast<const hstring *>(&ssid)));
+            *value = detach_abi(this->shim().ConnectAsync(*reinterpret_cast<Windows::Devices::WiFi::WiFiAvailableNetwork const*>(&availableNetwork), *reinterpret_cast<Windows::Devices::WiFi::WiFiReconnectionKind const*>(&reconnectionKind), *reinterpret_cast<Windows::Security::Credentials::PasswordCredential const*>(&passwordCredential)));
             return S_OK;
         }
         catch (...)
@@ -138,7 +313,22 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Window
         }
     }
 
-    HRESULT __stdcall abi_Disconnect() noexcept override
+    HRESULT __stdcall ConnectWithPasswordCredentialAndSsidAsync(::IUnknown* availableNetwork, abi_t<Windows::Devices::WiFi::WiFiReconnectionKind> reconnectionKind, ::IUnknown* passwordCredential, HSTRING ssid, ::IUnknown** value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().ConnectAsync(*reinterpret_cast<Windows::Devices::WiFi::WiFiAvailableNetwork const*>(&availableNetwork), *reinterpret_cast<Windows::Devices::WiFi::WiFiReconnectionKind const*>(&reconnectionKind), *reinterpret_cast<Windows::Security::Credentials::PasswordCredential const*>(&passwordCredential), *reinterpret_cast<hstring const*>(&ssid)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall Disconnect() noexcept override
     {
         try
         {
@@ -156,7 +346,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapter> : produce_base<D, Window
 template <typename D>
 struct produce<D, Windows::Devices::WiFi::IWiFiAdapterStatics> : produce_base<D, Windows::Devices::WiFi::IWiFiAdapterStatics>
 {
-    HRESULT __stdcall abi_FindAllAdaptersAsync(impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAdapter>>> value) noexcept override
+    HRESULT __stdcall FindAllAdaptersAsync(::IUnknown** value) noexcept override
     {
         try
         {
@@ -171,7 +361,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapterStatics> : produce_base<D,
         }
     }
 
-    HRESULT __stdcall abi_GetDeviceSelector(impl::abi_arg_out<hstring> deviceSelector) noexcept override
+    HRESULT __stdcall GetDeviceSelector(HSTRING* deviceSelector) noexcept override
     {
         try
         {
@@ -186,12 +376,12 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapterStatics> : produce_base<D,
         }
     }
 
-    HRESULT __stdcall abi_FromIdAsync(impl::abi_arg_in<hstring> deviceId, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAdapter>> asyncOp) noexcept override
+    HRESULT __stdcall FromIdAsync(HSTRING deviceId, ::IUnknown** asyncOp) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncOp = detach_abi(this->shim().FromIdAsync(*reinterpret_cast<const hstring *>(&deviceId)));
+            *asyncOp = detach_abi(this->shim().FromIdAsync(*reinterpret_cast<hstring const*>(&deviceId)));
             return S_OK;
         }
         catch (...)
@@ -201,7 +391,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapterStatics> : produce_base<D,
         }
     }
 
-    HRESULT __stdcall abi_RequestAccessAsync(impl::abi_arg_out<Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::WiFi::WiFiAccessStatus>> value) noexcept override
+    HRESULT __stdcall RequestAccessAsync(::IUnknown** value) noexcept override
     {
         try
         {
@@ -220,7 +410,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAdapterStatics> : produce_base<D,
 template <typename D>
 struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<D, Windows::Devices::WiFi::IWiFiAvailableNetwork>
 {
-    HRESULT __stdcall get_Uptime(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_Uptime(abi_t<Windows::Foundation::TimeSpan>* value) noexcept override
     {
         try
         {
@@ -234,7 +424,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_Ssid(impl::abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Ssid(HSTRING* value) noexcept override
     {
         try
         {
@@ -249,7 +439,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_Bssid(impl::abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_Bssid(HSTRING* value) noexcept override
     {
         try
         {
@@ -264,7 +454,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_ChannelCenterFrequencyInKilohertz(int32_t * value) noexcept override
+    HRESULT __stdcall get_ChannelCenterFrequencyInKilohertz(int32_t* value) noexcept override
     {
         try
         {
@@ -278,7 +468,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_NetworkRssiInDecibelMilliwatts(double * value) noexcept override
+    HRESULT __stdcall get_NetworkRssiInDecibelMilliwatts(double* value) noexcept override
     {
         try
         {
@@ -292,7 +482,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_SignalBars(uint8_t * value) noexcept override
+    HRESULT __stdcall get_SignalBars(uint8_t* value) noexcept override
     {
         try
         {
@@ -306,7 +496,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_NetworkKind(Windows::Devices::WiFi::WiFiNetworkKind * value) noexcept override
+    HRESULT __stdcall get_NetworkKind(abi_t<Windows::Devices::WiFi::WiFiNetworkKind>* value) noexcept override
     {
         try
         {
@@ -320,7 +510,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_PhyKind(Windows::Devices::WiFi::WiFiPhyKind * value) noexcept override
+    HRESULT __stdcall get_PhyKind(abi_t<Windows::Devices::WiFi::WiFiPhyKind>* value) noexcept override
     {
         try
         {
@@ -334,7 +524,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_SecuritySettings(impl::abi_arg_out<Windows::Networking::Connectivity::INetworkSecuritySettings> value) noexcept override
+    HRESULT __stdcall get_SecuritySettings(::IUnknown** value) noexcept override
     {
         try
         {
@@ -349,7 +539,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_BeaconInterval(impl::abi_arg_out<Windows::Foundation::TimeSpan> value) noexcept override
+    HRESULT __stdcall get_BeaconInterval(abi_t<Windows::Foundation::TimeSpan>* value) noexcept override
     {
         try
         {
@@ -363,7 +553,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
         }
     }
 
-    HRESULT __stdcall get_IsWiFiDirect(bool * value) noexcept override
+    HRESULT __stdcall get_IsWiFiDirect(bool* value) noexcept override
     {
         try
         {
@@ -381,7 +571,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiAvailableNetwork> : produce_base<
 template <typename D>
 struct produce<D, Windows::Devices::WiFi::IWiFiConnectionResult> : produce_base<D, Windows::Devices::WiFi::IWiFiConnectionResult>
 {
-    HRESULT __stdcall get_ConnectionStatus(Windows::Devices::WiFi::WiFiConnectionStatus * value) noexcept override
+    HRESULT __stdcall get_ConnectionStatus(abi_t<Windows::Devices::WiFi::WiFiConnectionStatus>* value) noexcept override
     {
         try
         {
@@ -399,7 +589,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiConnectionResult> : produce_base<
 template <typename D>
 struct produce<D, Windows::Devices::WiFi::IWiFiNetworkReport> : produce_base<D, Windows::Devices::WiFi::IWiFiNetworkReport>
 {
-    HRESULT __stdcall get_Timestamp(impl::abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
+    HRESULT __stdcall get_Timestamp(abi_t<Windows::Foundation::DateTime>* value) noexcept override
     {
         try
         {
@@ -413,7 +603,7 @@ struct produce<D, Windows::Devices::WiFi::IWiFiNetworkReport> : produce_base<D, 
         }
     }
 
-    HRESULT __stdcall get_AvailableNetworks(impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAvailableNetwork>> value) noexcept override
+    HRESULT __stdcall get_AvailableNetworks(::IUnknown** value) noexcept override
     {
         try
         {
@@ -433,299 +623,59 @@ struct produce<D, Windows::Devices::WiFi::IWiFiNetworkReport> : produce_base<D, 
 
 namespace Windows::Devices::WiFi {
 
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAdapter>> impl_IWiFiAdapterStatics<D>::FindAllAdaptersAsync() const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAdapter>> value;
-    check_hresult(WINRT_SHIM(IWiFiAdapterStatics)->abi_FindAllAdaptersAsync(put_abi(value)));
-    return value;
-}
-
-template <typename D> hstring impl_IWiFiAdapterStatics<D>::GetDeviceSelector() const
-{
-    hstring deviceSelector;
-    check_hresult(WINRT_SHIM(IWiFiAdapterStatics)->abi_GetDeviceSelector(put_abi(deviceSelector)));
-    return deviceSelector;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAdapter> impl_IWiFiAdapterStatics<D>::FromIdAsync(hstring_view deviceId) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAdapter> asyncOp;
-    check_hresult(WINRT_SHIM(IWiFiAdapterStatics)->abi_FromIdAsync(get_abi(deviceId), put_abi(asyncOp)));
-    return asyncOp;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::WiFi::WiFiAccessStatus> impl_IWiFiAdapterStatics<D>::RequestAccessAsync() const
-{
-    Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::WiFi::WiFiAccessStatus> value;
-    check_hresult(WINRT_SHIM(IWiFiAdapterStatics)->abi_RequestAccessAsync(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Networking::Connectivity::NetworkAdapter impl_IWiFiAdapter<D>::NetworkAdapter() const
-{
-    Windows::Networking::Connectivity::NetworkAdapter value { nullptr };
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->get_NetworkAdapter(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWiFiAdapter<D>::ScanAsync() const
-{
-    Windows::Foundation::IAsyncAction value;
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->abi_ScanAsync(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Devices::WiFi::WiFiNetworkReport impl_IWiFiAdapter<D>::NetworkReport() const
-{
-    Windows::Devices::WiFi::WiFiNetworkReport value { nullptr };
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->get_NetworkReport(put_abi(value)));
-    return value;
-}
-
-template <typename D> event_token impl_IWiFiAdapter<D>::AvailableNetworksChanged(const Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable> & args) const
-{
-    event_token eventCookie {};
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->add_AvailableNetworksChanged(get_abi(args), &eventCookie));
-    return eventCookie;
-}
-
-template <typename D> event_revoker<IWiFiAdapter> impl_IWiFiAdapter<D>::AvailableNetworksChanged(auto_revoke_t, const Windows::Foundation::TypedEventHandler<Windows::Devices::WiFi::WiFiAdapter, Windows::Foundation::IInspectable> & args) const
-{
-    return impl::make_event_revoker<D, IWiFiAdapter>(this, &ABI::Windows::Devices::WiFi::IWiFiAdapter::remove_AvailableNetworksChanged, AvailableNetworksChanged(args));
-}
-
-template <typename D> void impl_IWiFiAdapter<D>::AvailableNetworksChanged(event_token eventCookie) const
-{
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->remove_AvailableNetworksChanged(eventCookie));
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> impl_IWiFiAdapter<D>::ConnectAsync(const Windows::Devices::WiFi::WiFiAvailableNetwork & availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> value;
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->abi_ConnectAsync(get_abi(availableNetwork), reconnectionKind, put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> impl_IWiFiAdapter<D>::ConnectAsync(const Windows::Devices::WiFi::WiFiAvailableNetwork & availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind, const Windows::Security::Credentials::PasswordCredential & passwordCredential) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> value;
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->abi_ConnectWithPasswordCredentialAsync(get_abi(availableNetwork), reconnectionKind, get_abi(passwordCredential), put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> impl_IWiFiAdapter<D>::ConnectAsync(const Windows::Devices::WiFi::WiFiAvailableNetwork & availableNetwork, Windows::Devices::WiFi::WiFiReconnectionKind reconnectionKind, const Windows::Security::Credentials::PasswordCredential & passwordCredential, hstring_view ssid) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiConnectionResult> value;
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->abi_ConnectWithPasswordCredentialAndSsidAsync(get_abi(availableNetwork), reconnectionKind, get_abi(passwordCredential), get_abi(ssid), put_abi(value)));
-    return value;
-}
-
-template <typename D> void impl_IWiFiAdapter<D>::Disconnect() const
-{
-    check_hresult(WINRT_SHIM(IWiFiAdapter)->abi_Disconnect());
-}
-
-template <typename D> Windows::Foundation::DateTime impl_IWiFiNetworkReport<D>::Timestamp() const
-{
-    Windows::Foundation::DateTime value {};
-    check_hresult(WINRT_SHIM(IWiFiNetworkReport)->get_Timestamp(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAvailableNetwork> impl_IWiFiNetworkReport<D>::AvailableNetworks() const
-{
-    Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAvailableNetwork> value;
-    check_hresult(WINRT_SHIM(IWiFiNetworkReport)->get_AvailableNetworks(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::TimeSpan impl_IWiFiAvailableNetwork<D>::Uptime() const
-{
-    Windows::Foundation::TimeSpan value {};
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_Uptime(put_abi(value)));
-    return value;
-}
-
-template <typename D> hstring impl_IWiFiAvailableNetwork<D>::Ssid() const
-{
-    hstring value;
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_Ssid(put_abi(value)));
-    return value;
-}
-
-template <typename D> hstring impl_IWiFiAvailableNetwork<D>::Bssid() const
-{
-    hstring value;
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_Bssid(put_abi(value)));
-    return value;
-}
-
-template <typename D> int32_t impl_IWiFiAvailableNetwork<D>::ChannelCenterFrequencyInKilohertz() const
-{
-    int32_t value {};
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_ChannelCenterFrequencyInKilohertz(&value));
-    return value;
-}
-
-template <typename D> double impl_IWiFiAvailableNetwork<D>::NetworkRssiInDecibelMilliwatts() const
-{
-    double value {};
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_NetworkRssiInDecibelMilliwatts(&value));
-    return value;
-}
-
-template <typename D> uint8_t impl_IWiFiAvailableNetwork<D>::SignalBars() const
-{
-    uint8_t value {};
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_SignalBars(&value));
-    return value;
-}
-
-template <typename D> Windows::Devices::WiFi::WiFiNetworkKind impl_IWiFiAvailableNetwork<D>::NetworkKind() const
-{
-    Windows::Devices::WiFi::WiFiNetworkKind value {};
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_NetworkKind(&value));
-    return value;
-}
-
-template <typename D> Windows::Devices::WiFi::WiFiPhyKind impl_IWiFiAvailableNetwork<D>::PhyKind() const
-{
-    Windows::Devices::WiFi::WiFiPhyKind value {};
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_PhyKind(&value));
-    return value;
-}
-
-template <typename D> Windows::Networking::Connectivity::NetworkSecuritySettings impl_IWiFiAvailableNetwork<D>::SecuritySettings() const
-{
-    Windows::Networking::Connectivity::NetworkSecuritySettings value { nullptr };
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_SecuritySettings(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::TimeSpan impl_IWiFiAvailableNetwork<D>::BeaconInterval() const
-{
-    Windows::Foundation::TimeSpan value {};
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_BeaconInterval(put_abi(value)));
-    return value;
-}
-
-template <typename D> bool impl_IWiFiAvailableNetwork<D>::IsWiFiDirect() const
-{
-    bool value {};
-    check_hresult(WINRT_SHIM(IWiFiAvailableNetwork)->get_IsWiFiDirect(&value));
-    return value;
-}
-
-template <typename D> Windows::Devices::WiFi::WiFiConnectionStatus impl_IWiFiConnectionResult<D>::ConnectionStatus() const
-{
-    Windows::Devices::WiFi::WiFiConnectionStatus value {};
-    check_hresult(WINRT_SHIM(IWiFiConnectionResult)->get_ConnectionStatus(&value));
-    return value;
-}
-
 inline Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Devices::WiFi::WiFiAdapter>> WiFiAdapter::FindAllAdaptersAsync()
 {
-    return get_activation_factory<WiFiAdapter, IWiFiAdapterStatics>().FindAllAdaptersAsync();
+    return get_activation_factory<WiFiAdapter, Windows::Devices::WiFi::IWiFiAdapterStatics>().FindAllAdaptersAsync();
 }
 
 inline hstring WiFiAdapter::GetDeviceSelector()
 {
-    return get_activation_factory<WiFiAdapter, IWiFiAdapterStatics>().GetDeviceSelector();
+    return get_activation_factory<WiFiAdapter, Windows::Devices::WiFi::IWiFiAdapterStatics>().GetDeviceSelector();
 }
 
-inline Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAdapter> WiFiAdapter::FromIdAsync(hstring_view deviceId)
+inline Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAdapter> WiFiAdapter::FromIdAsync(param::hstring const& deviceId)
 {
-    return get_activation_factory<WiFiAdapter, IWiFiAdapterStatics>().FromIdAsync(deviceId);
+    return get_activation_factory<WiFiAdapter, Windows::Devices::WiFi::IWiFiAdapterStatics>().FromIdAsync(deviceId);
 }
 
-inline Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::WiFi::WiFiAccessStatus> WiFiAdapter::RequestAccessAsync()
+inline Windows::Foundation::IAsyncOperation<Windows::Devices::WiFi::WiFiAccessStatus> WiFiAdapter::RequestAccessAsync()
 {
-    return get_activation_factory<WiFiAdapter, IWiFiAdapterStatics>().RequestAccessAsync();
+    return get_activation_factory<WiFiAdapter, Windows::Devices::WiFi::IWiFiAdapterStatics>().RequestAccessAsync();
 }
 
 }
 
 }
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::IWiFiAdapter>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::IWiFiAdapter & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+namespace std {
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::IWiFiAdapterStatics>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::IWiFiAdapterStatics & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiAdapter> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::IWiFiAdapter> {};
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::IWiFiAvailableNetwork>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::IWiFiAvailableNetwork & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiAdapterStatics> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::IWiFiAdapterStatics> {};
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::IWiFiConnectionResult>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::IWiFiConnectionResult & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiAvailableNetwork> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::IWiFiAvailableNetwork> {};
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::IWiFiNetworkReport>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::IWiFiNetworkReport & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiConnectionResult> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::IWiFiConnectionResult> {};
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::WiFiAdapter>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::WiFiAdapter & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiNetworkReport> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::IWiFiNetworkReport> {};
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::WiFiAvailableNetwork>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::WiFiAvailableNetwork & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Devices::WiFi::WiFiAdapter> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::WiFiAdapter> {};
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::WiFiConnectionResult>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::WiFiConnectionResult & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Devices::WiFi::WiFiAvailableNetwork> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::WiFiAvailableNetwork> {};
 
-template<>
-struct std::hash<winrt::Windows::Devices::WiFi::WiFiNetworkReport>
-{
-    size_t operator()(const winrt::Windows::Devices::WiFi::WiFiNetworkReport & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Devices::WiFi::WiFiConnectionResult> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::WiFiConnectionResult> {};
+
+template<> struct hash<winrt::Windows::Devices::WiFi::WiFiNetworkReport> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::WiFi::WiFiNetworkReport> {};
+
+}
 
 WINRT_WARNING_POP

@@ -1,22 +1,38 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.Graphics.DirectX.Direct3D11.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.Graphics.DirectX.2.h"
+#include "impl\Windows.Foundation.2.h"
+#include "impl\Windows.Graphics.DirectX.Direct3D11.2.h"
 #include "Windows.Graphics.DirectX.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> void consume_Windows_Graphics_DirectX_Direct3D11_IDirect3DDevice<D>::Trim() const
+{
+    check_hresult(WINRT_SHIM(Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice)->Trim());
+}
+
+template <typename D> Windows::Graphics::DirectX::Direct3D11::Direct3DSurfaceDescription consume_Windows_Graphics_DirectX_Direct3D11_IDirect3DSurface<D>::Description() const
+{
+    Windows::Graphics::DirectX::Direct3D11::Direct3DSurfaceDescription value{};
+    check_hresult(WINRT_SHIM(Windows::Graphics::DirectX::Direct3D11::IDirect3DSurface)->get_Description(put_abi(value)));
+    return value;
+}
 
 template <typename D>
 struct produce<D, Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice> : produce_base<D, Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice>
 {
-    HRESULT __stdcall abi_Trim() noexcept override
+    HRESULT __stdcall Trim() noexcept override
     {
         try
         {
@@ -34,7 +50,7 @@ struct produce<D, Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice> : pro
 template <typename D>
 struct produce<D, Windows::Graphics::DirectX::Direct3D11::IDirect3DSurface> : produce_base<D, Windows::Graphics::DirectX::Direct3D11::IDirect3DSurface>
 {
-    HRESULT __stdcall get_Description(impl::abi_arg_out<Windows::Graphics::DirectX::Direct3D11::Direct3DSurfaceDescription> value) noexcept override
+    HRESULT __stdcall get_Description(abi_t<Windows::Graphics::DirectX::Direct3D11::Direct3DSurfaceDescription>* value) noexcept override
     {
         try
         {
@@ -53,38 +69,18 @@ struct produce<D, Windows::Graphics::DirectX::Direct3D11::IDirect3DSurface> : pr
 
 namespace Windows::Graphics::DirectX::Direct3D11 {
 
-template <typename D> void impl_IDirect3DDevice<D>::Trim() const
-{
-    check_hresult(WINRT_SHIM(IDirect3DDevice)->abi_Trim());
-}
-
-template <typename D> Windows::Graphics::DirectX::Direct3D11::Direct3DSurfaceDescription impl_IDirect3DSurface<D>::Description() const
-{
-    Windows::Graphics::DirectX::Direct3D11::Direct3DSurfaceDescription value {};
-    check_hresult(WINRT_SHIM(IDirect3DSurface)->get_Description(put_abi(value)));
-    return value;
 }
 
 }
 
+namespace std {
+
+template<> struct hash<winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice> {};
+
+template<> struct hash<winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DSurface> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DSurface> {};
+
 }
-
-template<>
-struct std::hash<winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice>
-{
-    size_t operator()(const winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
-
-template<>
-struct std::hash<winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DSurface>
-{
-    size_t operator()(const winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DSurface & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
 
 WINRT_WARNING_POP

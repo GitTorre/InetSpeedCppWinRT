@@ -1,27 +1,44 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
+
 WINRT_WARNING_PUSH
+#include "impl\Windows.Foundation.2.h"
+#include "impl\Windows.Storage.Streams.2.h"
+#include "impl\Windows.Web.2.h"
 
-#include "internal/Windows.Foundation.3.h"
-#include "internal/Windows.Web.3.h"
-
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IInputStream> consume_Windows_Web_IUriToStreamResolver<D>::UriToStreamAsync(Windows::Foundation::Uri const& uri) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IInputStream> operation{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Web::IUriToStreamResolver)->UriToStreamAsync(get_abi(uri), put_abi(operation)));
+    return operation;
+}
+
+template <typename D> Windows::Web::WebErrorStatus consume_Windows_Web_IWebErrorStatics<D>::GetStatus(int32_t hresult) const
+{
+    Windows::Web::WebErrorStatus status{};
+    check_hresult(WINRT_SHIM(Windows::Web::IWebErrorStatics)->GetStatus(hresult, put_abi(status)));
+    return status;
+}
 
 template <typename D>
 struct produce<D, Windows::Web::IUriToStreamResolver> : produce_base<D, Windows::Web::IUriToStreamResolver>
 {
-    HRESULT __stdcall abi_UriToStreamAsync(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> uri, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IInputStream>> operation) noexcept override
+    HRESULT __stdcall UriToStreamAsync(::IUnknown* uri, ::IUnknown** operation) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *operation = detach_abi(this->shim().UriToStreamAsync(*reinterpret_cast<const Windows::Foundation::Uri *>(&uri)));
+            *operation = detach_abi(this->shim().UriToStreamAsync(*reinterpret_cast<Windows::Foundation::Uri const*>(&uri)));
             return S_OK;
         }
         catch (...)
@@ -35,7 +52,7 @@ struct produce<D, Windows::Web::IUriToStreamResolver> : produce_base<D, Windows:
 template <typename D>
 struct produce<D, Windows::Web::IWebErrorStatics> : produce_base<D, Windows::Web::IWebErrorStatics>
 {
-    HRESULT __stdcall abi_GetStatus(int32_t hresult, Windows::Web::WebErrorStatus * status) noexcept override
+    HRESULT __stdcall GetStatus(int32_t hresult, abi_t<Windows::Web::WebErrorStatus>* status) noexcept override
     {
         try
         {
@@ -54,45 +71,26 @@ struct produce<D, Windows::Web::IWebErrorStatics> : produce_base<D, Windows::Web
 
 namespace Windows::Web {
 
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IInputStream> impl_IUriToStreamResolver<D>::UriToStreamAsync(const Windows::Foundation::Uri & uri) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IInputStream> operation;
-    check_hresult(WINRT_SHIM(IUriToStreamResolver)->abi_UriToStreamAsync(get_abi(uri), put_abi(operation)));
-    return operation;
-}
-
-template <typename D> Windows::Web::WebErrorStatus impl_IWebErrorStatics<D>::GetStatus(int32_t hresult) const
-{
-    Windows::Web::WebErrorStatus status {};
-    check_hresult(WINRT_SHIM(IWebErrorStatics)->abi_GetStatus(hresult, &status));
-    return status;
-}
-
 inline Windows::Web::WebErrorStatus WebError::GetStatus(int32_t hresult)
 {
-    return get_activation_factory<WebError, IWebErrorStatics>().GetStatus(hresult);
+    return get_activation_factory<WebError, Windows::Web::IWebErrorStatics>().GetStatus(hresult);
 }
 
 }
 
 }
 
-template<>
-struct std::hash<winrt::Windows::Web::IUriToStreamResolver>
-{
-    size_t operator()(const winrt::Windows::Web::IUriToStreamResolver & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+namespace std {
 
-template<>
-struct std::hash<winrt::Windows::Web::IWebErrorStatics>
-{
-    size_t operator()(const winrt::Windows::Web::IWebErrorStatics & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Web::IUriToStreamResolver> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Web::IUriToStreamResolver> {};
+
+template<> struct hash<winrt::Windows::Web::IWebErrorStatics> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Web::IWebErrorStatics> {};
+
+template<> struct hash<winrt::Windows::Web::WebError> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Web::WebError> {};
+
+}
 
 WINRT_WARNING_POP

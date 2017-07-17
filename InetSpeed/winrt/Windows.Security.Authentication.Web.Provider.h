@@ -1,28 +1,427 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.Security.Authentication.Web.Core.3.h"
-#include "internal/Windows.Foundation.Collections.3.h"
-#include "internal/Windows.Foundation.3.h"
-#include "internal/Windows.Security.Authentication.Web.3.h"
-#include "internal/Windows.Security.Credentials.3.h"
-#include "internal/Windows.Storage.Streams.3.h"
-#include "internal/Windows.Security.Authentication.Web.Provider.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.Foundation.2.h"
+#include "impl\Windows.Security.Authentication.Web.2.h"
+#include "impl\Windows.Security.Authentication.Web.Core.2.h"
+#include "impl\Windows.Security.Credentials.2.h"
+#include "impl\Windows.Security.Cryptography.Core.2.h"
+#include "impl\Windows.Storage.Streams.2.h"
+#include "impl\Windows.System.2.h"
+#include "impl\Windows.Web.Http.2.h"
+#include "impl\Windows.Security.Authentication.Web.Provider.2.h"
 #include "Windows.Security.Authentication.Web.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> Windows::Foundation::Uri consume_Windows_Security_Authentication_Web_Provider_IWebAccountClientView<D>::ApplicationCallbackUri() const
+{
+    Windows::Foundation::Uri value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountClientView)->get_ApplicationCallbackUri(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountClientViewType consume_Windows_Security_Authentication_Web_Provider_IWebAccountClientView<D>::Type() const
+{
+    Windows::Security::Authentication::Web::Provider::WebAccountClientViewType value{};
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountClientView)->get_Type(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring consume_Windows_Security_Authentication_Web_Provider_IWebAccountClientView<D>::AccountPairwiseId() const
+{
+    hstring value{};
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountClientView)->get_AccountPairwiseId(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountClientView consume_Windows_Security_Authentication_Web_Provider_IWebAccountClientViewFactory<D>::Create(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType const& viewType, Windows::Foundation::Uri const& applicationCallbackUri) const
+{
+    Windows::Security::Authentication::Web::Provider::WebAccountClientView view{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory)->Create(get_abi(viewType), get_abi(applicationCallbackUri), put_abi(view)));
+    return view;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountClientView consume_Windows_Security_Authentication_Web_Provider_IWebAccountClientViewFactory<D>::CreateWithPairwiseId(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType const& viewType, Windows::Foundation::Uri const& applicationCallbackUri, param::hstring const& accountPairwiseId) const
+{
+    Windows::Security::Authentication::Web::Provider::WebAccountClientView view{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory)->CreateWithPairwiseId(get_abi(viewType), get_abi(applicationCallbackUri), get_abi(accountPairwiseId), put_abi(view)));
+    return view;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::UpdateWebAccountPropertiesAsync(Windows::Security::Credentials::WebAccount const& webAccount, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& additionalProperties) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->UpdateWebAccountPropertiesAsync(get_abi(webAccount), get_abi(webAccountUserName), get_abi(additionalProperties), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::AddWebAccountAsync(param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->AddWebAccountAsync(get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::DeleteWebAccountAsync(Windows::Security::Credentials::WebAccount const& webAccount) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->DeleteWebAccountAsync(get_abi(webAccount), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::FindAllProviderWebAccountsAsync() const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->FindAllProviderWebAccountsAsync(put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::PushCookiesAsync(Windows::Foundation::Uri const& uri, param::async_vector_view<Windows::Web::Http::HttpCookie> const& cookies) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->PushCookiesAsync(get_abi(uri), get_abi(cookies), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::SetViewAsync(Windows::Security::Credentials::WebAccount const& webAccount, Windows::Security::Authentication::Web::Provider::WebAccountClientView const& view) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->SetViewAsync(get_abi(webAccount), get_abi(view), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::ClearViewAsync(Windows::Security::Credentials::WebAccount const& webAccount, Windows::Foundation::Uri const& applicationCallbackUri) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->ClearViewAsync(get_abi(webAccount), get_abi(applicationCallbackUri), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Authentication::Web::Provider::WebAccountClientView>> consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::GetViewsAsync(Windows::Security::Credentials::WebAccount const& webAccount) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Authentication::Web::Provider::WebAccountClientView>> asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->GetViewsAsync(get_abi(webAccount), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::SetWebAccountPictureAsync(Windows::Security::Credentials::WebAccount const& webAccount, Windows::Storage::Streams::IRandomAccessStream const& webAccountPicture) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->SetWebAccountPictureAsync(get_abi(webAccount), get_abi(webAccountPicture), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics<D>::ClearWebAccountPictureAsync(Windows::Security::Credentials::WebAccount const& webAccount) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics)->ClearWebAccountPictureAsync(get_abi(webAccount), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics2<D>::PullCookiesAsync(param::hstring const& uriString, param::hstring const& callerPFN) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics2)->PullCookiesAsync(get_abi(uriString), get_abi(callerPFN), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics3<D>::FindAllProviderWebAccountsForUserAsync(Windows::System::User const& user) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> operation{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3)->FindAllProviderWebAccountsForUserAsync(get_abi(user), put_abi(operation)));
+    return operation;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics3<D>::AddWebAccountForUserAsync(Windows::System::User const& user, param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> operation{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3)->AddWebAccountForUserAsync(get_abi(user), get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), put_abi(operation)));
+    return operation;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics3<D>::AddWebAccountForUserAsync(Windows::System::User const& user, param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> operation{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3)->AddWebAccountWithScopeForUserAsync(get_abi(user), get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), get_abi(scope), put_abi(operation)));
+    return operation;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> consume_Windows_Security_Authentication_Web_Provider_IWebAccountManagerStatics3<D>::AddWebAccountForUserAsync(Windows::System::User const& user, param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope, param::hstring const& perUserWebAccountId) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> operation{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3)->AddWebAccountWithScopeAndMapForUserAsync(get_abi(user), get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), get_abi(scope), get_abi(perUserWebAccountId), put_abi(operation)));
+    return operation;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> consume_Windows_Security_Authentication_Web_Provider_IWebAccountMapManagerStatics<D>::AddWebAccountAsync(param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope, param::hstring const& perUserWebAccountId) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics)->AddWebAccountWithScopeAndMapAsync(get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), get_abi(scope), get_abi(perUserWebAccountId), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountMapManagerStatics<D>::SetPerAppToPerUserAccountAsync(Windows::Security::Credentials::WebAccount const& perAppAccount, param::hstring const& perUserWebAccountId) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics)->SetPerAppToPerUserAccountAsync(get_abi(perAppAccount), get_abi(perUserWebAccountId), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> consume_Windows_Security_Authentication_Web_Provider_IWebAccountMapManagerStatics<D>::GetPerUserFromPerAppAccountAsync(Windows::Security::Credentials::WebAccount const& perAppAccount) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics)->GetPerUserFromPerAppAccountAsync(get_abi(perAppAccount), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountMapManagerStatics<D>::ClearPerUserFromPerAppAccountAsync(Windows::Security::Credentials::WebAccount const& perAppAccount) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics)->ClearPerUserFromPerAppAccountAsync(get_abi(perAppAccount), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderAddAccountOperation<D>::ReportCompleted() const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderAddAccountOperation)->ReportCompleted());
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderBaseReportOperation<D>::ReportCompleted() const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderBaseReportOperation)->ReportCompleted());
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderBaseReportOperation<D>::ReportError(Windows::Security::Authentication::Web::Core::WebProviderError const& value) const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderBaseReportOperation)->ReportError(get_abi(value)));
+}
+
+template <typename D> Windows::Security::Credentials::WebAccount consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderDeleteAccountOperation<D>::WebAccount() const
+{
+    Windows::Security::Credentials::WebAccount value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderDeleteAccountOperation)->get_WebAccount(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Security::Credentials::WebAccount consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderManageAccountOperation<D>::WebAccount() const
+{
+    Windows::Security::Credentials::WebAccount value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderManageAccountOperation)->get_WebAccount(put_abi(value)));
+    return value;
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderManageAccountOperation<D>::ReportCompleted() const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderManageAccountOperation)->ReportCompleted());
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountProviderOperationKind consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderOperation<D>::Kind() const
+{
+    Windows::Security::Authentication::Web::Provider::WebAccountProviderOperationKind value{};
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation)->get_Kind(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Uri consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderRetrieveCookiesOperation<D>::Context() const
+{
+    Windows::Foundation::Uri webCookieRequestContext{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation)->get_Context(put_abi(webCookieRequestContext)));
+    return webCookieRequestContext;
+}
+
+template <typename D> Windows::Foundation::Collections::IVector<Windows::Web::Http::HttpCookie> consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderRetrieveCookiesOperation<D>::Cookies() const
+{
+    Windows::Foundation::Collections::IVector<Windows::Web::Http::HttpCookie> cookies{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation)->get_Cookies(put_abi(cookies)));
+    return cookies;
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderRetrieveCookiesOperation<D>::Uri(Windows::Foundation::Uri const& uri) const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation)->put_Uri(get_abi(uri)));
+}
+
+template <typename D> Windows::Foundation::Uri consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderRetrieveCookiesOperation<D>::Uri() const
+{
+    Windows::Foundation::Uri uri{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation)->get_Uri(put_abi(uri)));
+    return uri;
+}
+
+template <typename D> Windows::Foundation::Uri consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderRetrieveCookiesOperation<D>::ApplicationCallbackUri() const
+{
+    Windows::Foundation::Uri value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation)->get_ApplicationCallbackUri(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Security::Credentials::WebAccount consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderSignOutAccountOperation<D>::WebAccount() const
+{
+    Windows::Security::Credentials::WebAccount value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation)->get_WebAccount(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Uri consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderSignOutAccountOperation<D>::ApplicationCallbackUri() const
+{
+    Windows::Foundation::Uri value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation)->get_ApplicationCallbackUri(put_abi(value)));
+    return value;
+}
+
+template <typename D> hstring consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderSignOutAccountOperation<D>::ClientId() const
+{
+    hstring value{};
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation)->get_ClientId(put_abi(value)));
+    return value;
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderSilentReportOperation<D>::ReportUserInteractionRequired() const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderSilentReportOperation)->ReportUserInteractionRequired());
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderSilentReportOperation<D>::ReportUserInteractionRequired(Windows::Security::Authentication::Web::Core::WebProviderError const& value) const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderSilentReportOperation)->ReportUserInteractionRequiredWithError(get_abi(value)));
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderTokenObjects<D>::Operation() const
+{
+    Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects)->get_Operation(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::System::User consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderTokenObjects2<D>::User() const
+{
+    Windows::System::User value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects2)->get_User(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::WebProviderTokenRequest consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderTokenOperation<D>::ProviderRequest() const
+{
+    Windows::Security::Authentication::Web::Provider::WebProviderTokenRequest webTokenRequest{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation)->get_ProviderRequest(put_abi(webTokenRequest)));
+    return webTokenRequest;
+}
+
+template <typename D> Windows::Foundation::Collections::IVector<Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse> consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderTokenOperation<D>::ProviderResponses() const
+{
+    Windows::Foundation::Collections::IVector<Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation)->get_ProviderResponses(put_abi(value)));
+    return value;
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderTokenOperation<D>::CacheExpirationTime(Windows::Foundation::DateTime const& value) const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation)->put_CacheExpirationTime(get_abi(value)));
+}
+
+template <typename D> Windows::Foundation::DateTime consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderTokenOperation<D>::CacheExpirationTime() const
+{
+    Windows::Foundation::DateTime value{};
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation)->get_CacheExpirationTime(put_abi(value)));
+    return value;
+}
+
+template <typename D> void consume_Windows_Security_Authentication_Web_Provider_IWebAccountProviderUIReportOperation<D>::ReportUserCanceled() const
+{
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountProviderUIReportOperation)->ReportUserCanceled());
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> consume_Windows_Security_Authentication_Web_Provider_IWebAccountScopeManagerStatics<D>::AddWebAccountAsync(param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics)->AddWebAccountWithScopeAsync(get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), get_abi(scope), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncAction consume_Windows_Security_Authentication_Web_Provider_IWebAccountScopeManagerStatics<D>::SetScopeAsync(Windows::Security::Credentials::WebAccount const& webAccount, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope) const
+{
+    Windows::Foundation::IAsyncAction asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics)->SetScopeAsync(get_abi(webAccount), get_abi(scope), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountScope consume_Windows_Security_Authentication_Web_Provider_IWebAccountScopeManagerStatics<D>::GetScope(Windows::Security::Credentials::WebAccount const& webAccount) const
+{
+    Windows::Security::Authentication::Web::Provider::WebAccountScope scope{};
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics)->GetScope(get_abi(webAccount), put_abi(scope)));
+    return scope;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Core::WebTokenRequest consume_Windows_Security_Authentication_Web_Provider_IWebProviderTokenRequest<D>::ClientRequest() const
+{
+    Windows::Security::Authentication::Web::Core::WebTokenRequest value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest)->get_ClientRequest(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount> consume_Windows_Security_Authentication_Web_Provider_IWebProviderTokenRequest<D>::WebAccounts() const
+{
+    Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount> value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest)->get_WebAccounts(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountSelectionOptions consume_Windows_Security_Authentication_Web_Provider_IWebProviderTokenRequest<D>::WebAccountSelectionOptions() const
+{
+    Windows::Security::Authentication::Web::Provider::WebAccountSelectionOptions value{};
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest)->get_WebAccountSelectionOptions(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::Uri consume_Windows_Security_Authentication_Web_Provider_IWebProviderTokenRequest<D>::ApplicationCallbackUri() const
+{
+    Windows::Foundation::Uri value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest)->get_ApplicationCallbackUri(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Cryptography::Core::CryptographicKey> consume_Windows_Security_Authentication_Web_Provider_IWebProviderTokenRequest<D>::GetApplicationTokenBindingKeyAsync(Windows::Security::Authentication::Web::TokenBindingKeyType const& keyType, Windows::Foundation::Uri const& target) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Security::Cryptography::Core::CryptographicKey> asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest)->GetApplicationTokenBindingKeyAsync(get_abi(keyType), get_abi(target), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> consume_Windows_Security_Authentication_Web_Provider_IWebProviderTokenRequest2<D>::GetApplicationTokenBindingKeyIdAsync(Windows::Security::Authentication::Web::TokenBindingKeyType const& keyType, Windows::Foundation::Uri const& target) const
+{
+    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> asyncInfo{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest2)->GetApplicationTokenBindingKeyIdAsync(get_abi(keyType), get_abi(target), put_abi(asyncInfo)));
+    return asyncInfo;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Core::WebTokenResponse consume_Windows_Security_Authentication_Web_Provider_IWebProviderTokenResponse<D>::ClientResponse() const
+{
+    Windows::Security::Authentication::Web::Core::WebTokenResponse value{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponse)->get_ClientResponse(put_abi(value)));
+    return value;
+}
+
+template <typename D> Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse consume_Windows_Security_Authentication_Web_Provider_IWebProviderTokenResponseFactory<D>::Create(Windows::Security::Authentication::Web::Core::WebTokenResponse const& webTokenResponse) const
+{
+    Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse webProviderTokenResponse{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponseFactory)->Create(get_abi(webTokenResponse), put_abi(webProviderTokenResponse)));
+    return webProviderTokenResponse;
+}
 
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountClientView> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountClientView>
 {
-    HRESULT __stdcall get_ApplicationCallbackUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_ApplicationCallbackUri(::IUnknown** value) noexcept override
     {
         try
         {
@@ -37,7 +436,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountC
         }
     }
 
-    HRESULT __stdcall get_Type(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType * value) noexcept override
+    HRESULT __stdcall get_Type(abi_t<Windows::Security::Authentication::Web::Provider::WebAccountClientViewType>* value) noexcept override
     {
         try
         {
@@ -51,7 +450,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountC
         }
     }
 
-    HRESULT __stdcall get_AccountPairwiseId(impl::abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_AccountPairwiseId(HSTRING* value) noexcept override
     {
         try
         {
@@ -70,12 +469,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountC
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory>
 {
-    HRESULT __stdcall abi_Create(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType viewType, impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> applicationCallbackUri, impl::abi_arg_out<Windows::Security::Authentication::Web::Provider::IWebAccountClientView> view) noexcept override
+    HRESULT __stdcall Create(abi_t<Windows::Security::Authentication::Web::Provider::WebAccountClientViewType> viewType, ::IUnknown* applicationCallbackUri, ::IUnknown** view) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *view = detach_abi(this->shim().Create(viewType, *reinterpret_cast<const Windows::Foundation::Uri *>(&applicationCallbackUri)));
+            *view = detach_abi(this->shim().Create(*reinterpret_cast<Windows::Security::Authentication::Web::Provider::WebAccountClientViewType const*>(&viewType), *reinterpret_cast<Windows::Foundation::Uri const*>(&applicationCallbackUri)));
             return S_OK;
         }
         catch (...)
@@ -85,12 +484,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountC
         }
     }
 
-    HRESULT __stdcall abi_CreateWithPairwiseId(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType viewType, impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> applicationCallbackUri, impl::abi_arg_in<hstring> accountPairwiseId, impl::abi_arg_out<Windows::Security::Authentication::Web::Provider::IWebAccountClientView> view) noexcept override
+    HRESULT __stdcall CreateWithPairwiseId(abi_t<Windows::Security::Authentication::Web::Provider::WebAccountClientViewType> viewType, ::IUnknown* applicationCallbackUri, HSTRING accountPairwiseId, ::IUnknown** view) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *view = detach_abi(this->shim().CreateWithPairwiseId(viewType, *reinterpret_cast<const Windows::Foundation::Uri *>(&applicationCallbackUri), *reinterpret_cast<const hstring *>(&accountPairwiseId)));
+            *view = detach_abi(this->shim().CreateWithPairwiseId(*reinterpret_cast<Windows::Security::Authentication::Web::Provider::WebAccountClientViewType const*>(&viewType), *reinterpret_cast<Windows::Foundation::Uri const*>(&applicationCallbackUri), *reinterpret_cast<hstring const*>(&accountPairwiseId)));
             return S_OK;
         }
         catch (...)
@@ -104,12 +503,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountC
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>
 {
-    HRESULT __stdcall abi_UpdateWebAccountPropertiesAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, impl::abi_arg_in<hstring> webAccountUserName, impl::abi_arg_in<Windows::Foundation::Collections::IMapView<hstring, hstring>> additionalProperties, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall UpdateWebAccountPropertiesAsync(::IUnknown* webAccount, HSTRING webAccountUserName, ::IUnknown* additionalProperties, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().UpdateWebAccountPropertiesAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount), *reinterpret_cast<const hstring *>(&webAccountUserName), *reinterpret_cast<const Windows::Foundation::Collections::IMapView<hstring, hstring> *>(&additionalProperties)));
+            *asyncInfo = detach_abi(this->shim().UpdateWebAccountPropertiesAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount), *reinterpret_cast<hstring const*>(&webAccountUserName), *reinterpret_cast<Windows::Foundation::Collections::IMapView<hstring, hstring> const*>(&additionalProperties)));
             return S_OK;
         }
         catch (...)
@@ -119,12 +518,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_AddWebAccountAsync(impl::abi_arg_in<hstring> webAccountId, impl::abi_arg_in<hstring> webAccountUserName, impl::abi_arg_in<Windows::Foundation::Collections::IMapView<hstring, hstring>> props, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount>> asyncInfo) noexcept override
+    HRESULT __stdcall AddWebAccountAsync(HSTRING webAccountId, HSTRING webAccountUserName, ::IUnknown* props, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().AddWebAccountAsync(*reinterpret_cast<const hstring *>(&webAccountId), *reinterpret_cast<const hstring *>(&webAccountUserName), *reinterpret_cast<const Windows::Foundation::Collections::IMapView<hstring, hstring> *>(&props)));
+            *asyncInfo = detach_abi(this->shim().AddWebAccountAsync(*reinterpret_cast<hstring const*>(&webAccountId), *reinterpret_cast<hstring const*>(&webAccountUserName), *reinterpret_cast<Windows::Foundation::Collections::IMapView<hstring, hstring> const*>(&props)));
             return S_OK;
         }
         catch (...)
@@ -134,12 +533,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_DeleteWebAccountAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall DeleteWebAccountAsync(::IUnknown* webAccount, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().DeleteWebAccountAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount)));
+            *asyncInfo = detach_abi(this->shim().DeleteWebAccountAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount)));
             return S_OK;
         }
         catch (...)
@@ -149,7 +548,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_FindAllProviderWebAccountsAsync(impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>>> asyncInfo) noexcept override
+    HRESULT __stdcall FindAllProviderWebAccountsAsync(::IUnknown** asyncInfo) noexcept override
     {
         try
         {
@@ -164,12 +563,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_PushCookiesAsync(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> uri, impl::abi_arg_in<Windows::Foundation::Collections::IVectorView<Windows::Web::Http::HttpCookie>> cookies, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall PushCookiesAsync(::IUnknown* uri, ::IUnknown* cookies, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().PushCookiesAsync(*reinterpret_cast<const Windows::Foundation::Uri *>(&uri), *reinterpret_cast<const Windows::Foundation::Collections::IVectorView<Windows::Web::Http::HttpCookie> *>(&cookies)));
+            *asyncInfo = detach_abi(this->shim().PushCookiesAsync(*reinterpret_cast<Windows::Foundation::Uri const*>(&uri), *reinterpret_cast<Windows::Foundation::Collections::IVectorView<Windows::Web::Http::HttpCookie> const*>(&cookies)));
             return S_OK;
         }
         catch (...)
@@ -179,12 +578,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_SetViewAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, impl::abi_arg_in<Windows::Security::Authentication::Web::Provider::IWebAccountClientView> view, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall SetViewAsync(::IUnknown* webAccount, ::IUnknown* view, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().SetViewAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount), *reinterpret_cast<const Windows::Security::Authentication::Web::Provider::WebAccountClientView *>(&view)));
+            *asyncInfo = detach_abi(this->shim().SetViewAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount), *reinterpret_cast<Windows::Security::Authentication::Web::Provider::WebAccountClientView const*>(&view)));
             return S_OK;
         }
         catch (...)
@@ -194,12 +593,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_ClearViewAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> applicationCallbackUri, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall ClearViewAsync(::IUnknown* webAccount, ::IUnknown* applicationCallbackUri, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().ClearViewAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount), *reinterpret_cast<const Windows::Foundation::Uri *>(&applicationCallbackUri)));
+            *asyncInfo = detach_abi(this->shim().ClearViewAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount), *reinterpret_cast<Windows::Foundation::Uri const*>(&applicationCallbackUri)));
             return S_OK;
         }
         catch (...)
@@ -209,12 +608,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_GetViewsAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Authentication::Web::Provider::WebAccountClientView>>> asyncInfo) noexcept override
+    HRESULT __stdcall GetViewsAsync(::IUnknown* webAccount, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().GetViewsAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount)));
+            *asyncInfo = detach_abi(this->shim().GetViewsAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount)));
             return S_OK;
         }
         catch (...)
@@ -224,12 +623,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_SetWebAccountPictureAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, impl::abi_arg_in<Windows::Storage::Streams::IRandomAccessStream> webAccountPicture, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall SetWebAccountPictureAsync(::IUnknown* webAccount, ::IUnknown* webAccountPicture, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().SetWebAccountPictureAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount), *reinterpret_cast<const Windows::Storage::Streams::IRandomAccessStream *>(&webAccountPicture)));
+            *asyncInfo = detach_abi(this->shim().SetWebAccountPictureAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount), *reinterpret_cast<Windows::Storage::Streams::IRandomAccessStream const*>(&webAccountPicture)));
             return S_OK;
         }
         catch (...)
@@ -239,12 +638,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_ClearWebAccountPictureAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall ClearWebAccountPictureAsync(::IUnknown* webAccount, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().ClearWebAccountPictureAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount)));
+            *asyncInfo = detach_abi(this->shim().ClearWebAccountPictureAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount)));
             return S_OK;
         }
         catch (...)
@@ -258,12 +657,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics2> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics2>
 {
-    HRESULT __stdcall abi_PullCookiesAsync(impl::abi_arg_in<hstring> uriString, impl::abi_arg_in<hstring> callerPFN, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall PullCookiesAsync(HSTRING uriString, HSTRING callerPFN, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().PullCookiesAsync(*reinterpret_cast<const hstring *>(&uriString), *reinterpret_cast<const hstring *>(&callerPFN)));
+            *asyncInfo = detach_abi(this->shim().PullCookiesAsync(*reinterpret_cast<hstring const*>(&uriString), *reinterpret_cast<hstring const*>(&callerPFN)));
             return S_OK;
         }
         catch (...)
@@ -275,14 +674,78 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
 };
 
 template <typename D>
+struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3>
+{
+    HRESULT __stdcall FindAllProviderWebAccountsForUserAsync(::IUnknown* user, ::IUnknown** operation) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().FindAllProviderWebAccountsForUserAsync(*reinterpret_cast<Windows::System::User const*>(&user)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            *operation = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall AddWebAccountForUserAsync(::IUnknown* user, HSTRING webAccountId, HSTRING webAccountUserName, ::IUnknown* props, ::IUnknown** operation) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().AddWebAccountForUserAsync(*reinterpret_cast<Windows::System::User const*>(&user), *reinterpret_cast<hstring const*>(&webAccountId), *reinterpret_cast<hstring const*>(&webAccountUserName), *reinterpret_cast<Windows::Foundation::Collections::IMapView<hstring, hstring> const*>(&props)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            *operation = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall AddWebAccountWithScopeForUserAsync(::IUnknown* user, HSTRING webAccountId, HSTRING webAccountUserName, ::IUnknown* props, abi_t<Windows::Security::Authentication::Web::Provider::WebAccountScope> scope, ::IUnknown** operation) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().AddWebAccountForUserAsync(*reinterpret_cast<Windows::System::User const*>(&user), *reinterpret_cast<hstring const*>(&webAccountId), *reinterpret_cast<hstring const*>(&webAccountUserName), *reinterpret_cast<Windows::Foundation::Collections::IMapView<hstring, hstring> const*>(&props), *reinterpret_cast<Windows::Security::Authentication::Web::Provider::WebAccountScope const*>(&scope)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            *operation = nullptr;
+            return impl::to_hresult();
+        }
+    }
+
+    HRESULT __stdcall AddWebAccountWithScopeAndMapForUserAsync(::IUnknown* user, HSTRING webAccountId, HSTRING webAccountUserName, ::IUnknown* props, abi_t<Windows::Security::Authentication::Web::Provider::WebAccountScope> scope, HSTRING perUserWebAccountId, ::IUnknown** operation) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_abi(this->shim().AddWebAccountForUserAsync(*reinterpret_cast<Windows::System::User const*>(&user), *reinterpret_cast<hstring const*>(&webAccountId), *reinterpret_cast<hstring const*>(&webAccountUserName), *reinterpret_cast<Windows::Foundation::Collections::IMapView<hstring, hstring> const*>(&props), *reinterpret_cast<Windows::Security::Authentication::Web::Provider::WebAccountScope const*>(&scope), *reinterpret_cast<hstring const*>(&perUserWebAccountId)));
+            return S_OK;
+        }
+        catch (...)
+        {
+            *operation = nullptr;
+            return impl::to_hresult();
+        }
+    }
+};
+
+template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics>
 {
-    HRESULT __stdcall abi_AddWebAccountWithScopeAndMapAsync(impl::abi_arg_in<hstring> webAccountId, impl::abi_arg_in<hstring> webAccountUserName, impl::abi_arg_in<Windows::Foundation::Collections::IMapView<hstring, hstring>> props, Windows::Security::Authentication::Web::Provider::WebAccountScope scope, impl::abi_arg_in<hstring> perUserWebAccountId, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount>> asyncInfo) noexcept override
+    HRESULT __stdcall AddWebAccountWithScopeAndMapAsync(HSTRING webAccountId, HSTRING webAccountUserName, ::IUnknown* props, abi_t<Windows::Security::Authentication::Web::Provider::WebAccountScope> scope, HSTRING perUserWebAccountId, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().AddWebAccountAsync(*reinterpret_cast<const hstring *>(&webAccountId), *reinterpret_cast<const hstring *>(&webAccountUserName), *reinterpret_cast<const Windows::Foundation::Collections::IMapView<hstring, hstring> *>(&props), scope, *reinterpret_cast<const hstring *>(&perUserWebAccountId)));
+            *asyncInfo = detach_abi(this->shim().AddWebAccountAsync(*reinterpret_cast<hstring const*>(&webAccountId), *reinterpret_cast<hstring const*>(&webAccountUserName), *reinterpret_cast<Windows::Foundation::Collections::IMapView<hstring, hstring> const*>(&props), *reinterpret_cast<Windows::Security::Authentication::Web::Provider::WebAccountScope const*>(&scope), *reinterpret_cast<hstring const*>(&perUserWebAccountId)));
             return S_OK;
         }
         catch (...)
@@ -292,12 +755,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_SetPerAppToPerUserAccountAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> perAppAccount, impl::abi_arg_in<hstring> perUserWebAccountId, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall SetPerAppToPerUserAccountAsync(::IUnknown* perAppAccount, HSTRING perUserWebAccountId, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().SetPerAppToPerUserAccountAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&perAppAccount), *reinterpret_cast<const hstring *>(&perUserWebAccountId)));
+            *asyncInfo = detach_abi(this->shim().SetPerAppToPerUserAccountAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&perAppAccount), *reinterpret_cast<hstring const*>(&perUserWebAccountId)));
             return S_OK;
         }
         catch (...)
@@ -307,12 +770,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_GetPerUserFromPerAppAccountAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> perAppAccount, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount>> asyncInfo) noexcept override
+    HRESULT __stdcall GetPerUserFromPerAppAccountAsync(::IUnknown* perAppAccount, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().GetPerUserFromPerAppAccountAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&perAppAccount)));
+            *asyncInfo = detach_abi(this->shim().GetPerUserFromPerAppAccountAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&perAppAccount)));
             return S_OK;
         }
         catch (...)
@@ -322,12 +785,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
         }
     }
 
-    HRESULT __stdcall abi_ClearPerUserFromPerAppAccountAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> perAppAccount, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall ClearPerUserFromPerAppAccountAsync(::IUnknown* perAppAccount, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().ClearPerUserFromPerAppAccountAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&perAppAccount)));
+            *asyncInfo = detach_abi(this->shim().ClearPerUserFromPerAppAccountAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&perAppAccount)));
             return S_OK;
         }
         catch (...)
@@ -341,7 +804,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountM
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderAddAccountOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderAddAccountOperation>
 {
-    HRESULT __stdcall abi_ReportCompleted() noexcept override
+    HRESULT __stdcall ReportCompleted() noexcept override
     {
         try
         {
@@ -359,7 +822,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderBaseReportOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderBaseReportOperation>
 {
-    HRESULT __stdcall abi_ReportCompleted() noexcept override
+    HRESULT __stdcall ReportCompleted() noexcept override
     {
         try
         {
@@ -373,12 +836,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall abi_ReportError(impl::abi_arg_in<Windows::Security::Authentication::Web::Core::IWebProviderError> value) noexcept override
+    HRESULT __stdcall ReportError(::IUnknown* value) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            this->shim().ReportError(*reinterpret_cast<const Windows::Security::Authentication::Web::Core::WebProviderError *>(&value));
+            this->shim().ReportError(*reinterpret_cast<Windows::Security::Authentication::Web::Core::WebProviderError const*>(&value));
             return S_OK;
         }
         catch (...)
@@ -391,7 +854,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderDeleteAccountOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderDeleteAccountOperation>
 {
-    HRESULT __stdcall get_WebAccount(impl::abi_arg_out<Windows::Security::Credentials::IWebAccount> value) noexcept override
+    HRESULT __stdcall get_WebAccount(::IUnknown** value) noexcept override
     {
         try
         {
@@ -410,7 +873,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderManageAccountOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderManageAccountOperation>
 {
-    HRESULT __stdcall get_WebAccount(impl::abi_arg_out<Windows::Security::Credentials::IWebAccount> value) noexcept override
+    HRESULT __stdcall get_WebAccount(::IUnknown** value) noexcept override
     {
         try
         {
@@ -425,7 +888,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall abi_ReportCompleted() noexcept override
+    HRESULT __stdcall ReportCompleted() noexcept override
     {
         try
         {
@@ -443,7 +906,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation>
 {
-    HRESULT __stdcall get_Kind(Windows::Security::Authentication::Web::Provider::WebAccountProviderOperationKind * value) noexcept override
+    HRESULT __stdcall get_Kind(abi_t<Windows::Security::Authentication::Web::Provider::WebAccountProviderOperationKind>* value) noexcept override
     {
         try
         {
@@ -461,7 +924,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation>
 {
-    HRESULT __stdcall get_Context(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> webCookieRequestContext) noexcept override
+    HRESULT __stdcall get_Context(::IUnknown** webCookieRequestContext) noexcept override
     {
         try
         {
@@ -476,7 +939,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall get_Cookies(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::Web::Http::HttpCookie>> cookies) noexcept override
+    HRESULT __stdcall get_Cookies(::IUnknown** cookies) noexcept override
     {
         try
         {
@@ -491,12 +954,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall put_Uri(impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> uri) noexcept override
+    HRESULT __stdcall put_Uri(::IUnknown* uri) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            this->shim().Uri(*reinterpret_cast<const Windows::Foundation::Uri *>(&uri));
+            this->shim().Uri(*reinterpret_cast<Windows::Foundation::Uri const*>(&uri));
             return S_OK;
         }
         catch (...)
@@ -505,7 +968,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall get_Uri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> uri) noexcept override
+    HRESULT __stdcall get_Uri(::IUnknown** uri) noexcept override
     {
         try
         {
@@ -520,7 +983,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall get_ApplicationCallbackUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_ApplicationCallbackUri(::IUnknown** value) noexcept override
     {
         try
         {
@@ -539,7 +1002,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation>
 {
-    HRESULT __stdcall get_WebAccount(impl::abi_arg_out<Windows::Security::Credentials::IWebAccount> value) noexcept override
+    HRESULT __stdcall get_WebAccount(::IUnknown** value) noexcept override
     {
         try
         {
@@ -554,7 +1017,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall get_ApplicationCallbackUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_ApplicationCallbackUri(::IUnknown** value) noexcept override
     {
         try
         {
@@ -569,7 +1032,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall get_ClientId(impl::abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_ClientId(HSTRING* value) noexcept override
     {
         try
         {
@@ -588,7 +1051,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderSilentReportOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderSilentReportOperation>
 {
-    HRESULT __stdcall abi_ReportUserInteractionRequired() noexcept override
+    HRESULT __stdcall ReportUserInteractionRequired() noexcept override
     {
         try
         {
@@ -602,12 +1065,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall abi_ReportUserInteractionRequiredWithError(impl::abi_arg_in<Windows::Security::Authentication::Web::Core::IWebProviderError> value) noexcept override
+    HRESULT __stdcall ReportUserInteractionRequiredWithError(::IUnknown* value) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            this->shim().ReportUserInteractionRequired(*reinterpret_cast<const Windows::Security::Authentication::Web::Core::WebProviderError *>(&value));
+            this->shim().ReportUserInteractionRequired(*reinterpret_cast<Windows::Security::Authentication::Web::Core::WebProviderError const*>(&value));
             return S_OK;
         }
         catch (...)
@@ -620,7 +1083,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects>
 {
-    HRESULT __stdcall get_Operation(impl::abi_arg_out<Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation> value) noexcept override
+    HRESULT __stdcall get_Operation(::IUnknown** value) noexcept override
     {
         try
         {
@@ -637,9 +1100,28 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 };
 
 template <typename D>
+struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects2> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects2>
+{
+    HRESULT __stdcall get_User(::IUnknown** value) noexcept override
+    {
+        try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_abi(this->shim().User());
+            return S_OK;
+        }
+        catch (...)
+        {
+            *value = nullptr;
+            return impl::to_hresult();
+        }
+    }
+};
+
+template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation>
 {
-    HRESULT __stdcall get_ProviderRequest(impl::abi_arg_out<Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest> webTokenRequest) noexcept override
+    HRESULT __stdcall get_ProviderRequest(::IUnknown** webTokenRequest) noexcept override
     {
         try
         {
@@ -654,7 +1136,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall get_ProviderResponses(impl::abi_arg_out<Windows::Foundation::Collections::IVector<Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse>> value) noexcept override
+    HRESULT __stdcall get_ProviderResponses(::IUnknown** value) noexcept override
     {
         try
         {
@@ -669,12 +1151,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall put_CacheExpirationTime(impl::abi_arg_in<Windows::Foundation::DateTime> value) noexcept override
+    HRESULT __stdcall put_CacheExpirationTime(abi_t<Windows::Foundation::DateTime> value) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            this->shim().CacheExpirationTime(*reinterpret_cast<const Windows::Foundation::DateTime *>(&value));
+            this->shim().CacheExpirationTime(*reinterpret_cast<Windows::Foundation::DateTime const*>(&value));
             return S_OK;
         }
         catch (...)
@@ -683,7 +1165,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
         }
     }
 
-    HRESULT __stdcall get_CacheExpirationTime(impl::abi_arg_out<Windows::Foundation::DateTime> value) noexcept override
+    HRESULT __stdcall get_CacheExpirationTime(abi_t<Windows::Foundation::DateTime>* value) noexcept override
     {
         try
         {
@@ -701,7 +1183,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderUIReportOperation> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountProviderUIReportOperation>
 {
-    HRESULT __stdcall abi_ReportUserCanceled() noexcept override
+    HRESULT __stdcall ReportUserCanceled() noexcept override
     {
         try
         {
@@ -719,12 +1201,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountP
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics>
 {
-    HRESULT __stdcall abi_AddWebAccountWithScopeAsync(impl::abi_arg_in<hstring> webAccountId, impl::abi_arg_in<hstring> webAccountUserName, impl::abi_arg_in<Windows::Foundation::Collections::IMapView<hstring, hstring>> props, Windows::Security::Authentication::Web::Provider::WebAccountScope scope, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount>> asyncInfo) noexcept override
+    HRESULT __stdcall AddWebAccountWithScopeAsync(HSTRING webAccountId, HSTRING webAccountUserName, ::IUnknown* props, abi_t<Windows::Security::Authentication::Web::Provider::WebAccountScope> scope, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().AddWebAccountAsync(*reinterpret_cast<const hstring *>(&webAccountId), *reinterpret_cast<const hstring *>(&webAccountUserName), *reinterpret_cast<const Windows::Foundation::Collections::IMapView<hstring, hstring> *>(&props), scope));
+            *asyncInfo = detach_abi(this->shim().AddWebAccountAsync(*reinterpret_cast<hstring const*>(&webAccountId), *reinterpret_cast<hstring const*>(&webAccountUserName), *reinterpret_cast<Windows::Foundation::Collections::IMapView<hstring, hstring> const*>(&props), *reinterpret_cast<Windows::Security::Authentication::Web::Provider::WebAccountScope const*>(&scope)));
             return S_OK;
         }
         catch (...)
@@ -734,12 +1216,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountS
         }
     }
 
-    HRESULT __stdcall abi_SetScopeAsync(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, Windows::Security::Authentication::Web::Provider::WebAccountScope scope, impl::abi_arg_out<Windows::Foundation::IAsyncAction> asyncInfo) noexcept override
+    HRESULT __stdcall SetScopeAsync(::IUnknown* webAccount, abi_t<Windows::Security::Authentication::Web::Provider::WebAccountScope> scope, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().SetScopeAsync(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount), scope));
+            *asyncInfo = detach_abi(this->shim().SetScopeAsync(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount), *reinterpret_cast<Windows::Security::Authentication::Web::Provider::WebAccountScope const*>(&scope)));
             return S_OK;
         }
         catch (...)
@@ -749,12 +1231,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountS
         }
     }
 
-    HRESULT __stdcall abi_GetScope(impl::abi_arg_in<Windows::Security::Credentials::IWebAccount> webAccount, Windows::Security::Authentication::Web::Provider::WebAccountScope * scope) noexcept override
+    HRESULT __stdcall GetScope(::IUnknown* webAccount, abi_t<Windows::Security::Authentication::Web::Provider::WebAccountScope>* scope) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *scope = detach_abi(this->shim().GetScope(*reinterpret_cast<const Windows::Security::Credentials::WebAccount *>(&webAccount)));
+            *scope = detach_abi(this->shim().GetScope(*reinterpret_cast<Windows::Security::Credentials::WebAccount const*>(&webAccount)));
             return S_OK;
         }
         catch (...)
@@ -767,7 +1249,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebAccountS
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest>
 {
-    HRESULT __stdcall get_ClientRequest(impl::abi_arg_out<Windows::Security::Authentication::Web::Core::IWebTokenRequest> value) noexcept override
+    HRESULT __stdcall get_ClientRequest(::IUnknown** value) noexcept override
     {
         try
         {
@@ -782,7 +1264,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProvider
         }
     }
 
-    HRESULT __stdcall get_WebAccounts(impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> value) noexcept override
+    HRESULT __stdcall get_WebAccounts(::IUnknown** value) noexcept override
     {
         try
         {
@@ -797,7 +1279,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProvider
         }
     }
 
-    HRESULT __stdcall get_WebAccountSelectionOptions(Windows::Security::Authentication::Web::Provider::WebAccountSelectionOptions * value) noexcept override
+    HRESULT __stdcall get_WebAccountSelectionOptions(abi_t<Windows::Security::Authentication::Web::Provider::WebAccountSelectionOptions>* value) noexcept override
     {
         try
         {
@@ -811,7 +1293,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProvider
         }
     }
 
-    HRESULT __stdcall get_ApplicationCallbackUri(impl::abi_arg_out<Windows::Foundation::IUriRuntimeClass> value) noexcept override
+    HRESULT __stdcall get_ApplicationCallbackUri(::IUnknown** value) noexcept override
     {
         try
         {
@@ -826,12 +1308,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProvider
         }
     }
 
-    HRESULT __stdcall abi_GetApplicationTokenBindingKeyAsync(Windows::Security::Authentication::Web::TokenBindingKeyType keyType, impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> target, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Security::Cryptography::Core::CryptographicKey>> asyncInfo) noexcept override
+    HRESULT __stdcall GetApplicationTokenBindingKeyAsync(abi_t<Windows::Security::Authentication::Web::TokenBindingKeyType> keyType, ::IUnknown* target, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().GetApplicationTokenBindingKeyAsync(keyType, *reinterpret_cast<const Windows::Foundation::Uri *>(&target)));
+            *asyncInfo = detach_abi(this->shim().GetApplicationTokenBindingKeyAsync(*reinterpret_cast<Windows::Security::Authentication::Web::TokenBindingKeyType const*>(&keyType), *reinterpret_cast<Windows::Foundation::Uri const*>(&target)));
             return S_OK;
         }
         catch (...)
@@ -845,12 +1327,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProvider
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest2> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest2>
 {
-    HRESULT __stdcall abi_GetApplicationTokenBindingKeyIdAsync(Windows::Security::Authentication::Web::TokenBindingKeyType keyType, impl::abi_arg_in<Windows::Foundation::IUriRuntimeClass> target, impl::abi_arg_out<Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer>> asyncInfo) noexcept override
+    HRESULT __stdcall GetApplicationTokenBindingKeyIdAsync(abi_t<Windows::Security::Authentication::Web::TokenBindingKeyType> keyType, ::IUnknown* target, ::IUnknown** asyncInfo) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *asyncInfo = detach_abi(this->shim().GetApplicationTokenBindingKeyIdAsync(keyType, *reinterpret_cast<const Windows::Foundation::Uri *>(&target)));
+            *asyncInfo = detach_abi(this->shim().GetApplicationTokenBindingKeyIdAsync(*reinterpret_cast<Windows::Security::Authentication::Web::TokenBindingKeyType const*>(&keyType), *reinterpret_cast<Windows::Foundation::Uri const*>(&target)));
             return S_OK;
         }
         catch (...)
@@ -864,7 +1346,7 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProvider
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponse> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponse>
 {
-    HRESULT __stdcall get_ClientResponse(impl::abi_arg_out<Windows::Security::Authentication::Web::Core::IWebTokenResponse> value) noexcept override
+    HRESULT __stdcall get_ClientResponse(::IUnknown** value) noexcept override
     {
         try
         {
@@ -883,12 +1365,12 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProvider
 template <typename D>
 struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponseFactory> : produce_base<D, Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponseFactory>
 {
-    HRESULT __stdcall abi_Create(impl::abi_arg_in<Windows::Security::Authentication::Web::Core::IWebTokenResponse> webTokenResponse, impl::abi_arg_out<Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponse> webProviderTokenResponse) noexcept override
+    HRESULT __stdcall Create(::IUnknown* webTokenResponse, ::IUnknown** webProviderTokenResponse) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *webProviderTokenResponse = detach_abi(this->shim().Create(*reinterpret_cast<const Windows::Security::Authentication::Web::Core::WebTokenResponse *>(&webTokenResponse)));
+            *webProviderTokenResponse = detach_abi(this->shim().Create(*reinterpret_cast<Windows::Security::Authentication::Web::Core::WebTokenResponse const*>(&webTokenResponse)));
             return S_OK;
         }
         catch (...)
@@ -903,758 +1385,239 @@ struct produce<D, Windows::Security::Authentication::Web::Provider::IWebProvider
 
 namespace Windows::Security::Authentication::Web::Provider {
 
-template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountProviderOperationKind impl_IWebAccountProviderOperation<D>::Kind() const
-{
-    Windows::Security::Authentication::Web::Provider::WebAccountProviderOperationKind value {};
-    check_hresult(WINRT_SHIM(IWebAccountProviderOperation)->get_Kind(&value));
-    return value;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Core::WebTokenRequest impl_IWebProviderTokenRequest<D>::ClientRequest() const
-{
-    Windows::Security::Authentication::Web::Core::WebTokenRequest value { nullptr };
-    check_hresult(WINRT_SHIM(IWebProviderTokenRequest)->get_ClientRequest(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount> impl_IWebProviderTokenRequest<D>::WebAccounts() const
-{
-    Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount> value;
-    check_hresult(WINRT_SHIM(IWebProviderTokenRequest)->get_WebAccounts(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountSelectionOptions impl_IWebProviderTokenRequest<D>::WebAccountSelectionOptions() const
-{
-    Windows::Security::Authentication::Web::Provider::WebAccountSelectionOptions value {};
-    check_hresult(WINRT_SHIM(IWebProviderTokenRequest)->get_WebAccountSelectionOptions(&value));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Uri impl_IWebProviderTokenRequest<D>::ApplicationCallbackUri() const
-{
-    Windows::Foundation::Uri value { nullptr };
-    check_hresult(WINRT_SHIM(IWebProviderTokenRequest)->get_ApplicationCallbackUri(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Cryptography::Core::CryptographicKey> impl_IWebProviderTokenRequest<D>::GetApplicationTokenBindingKeyAsync(Windows::Security::Authentication::Web::TokenBindingKeyType keyType, const Windows::Foundation::Uri & target) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Security::Cryptography::Core::CryptographicKey> asyncInfo;
-    check_hresult(WINRT_SHIM(IWebProviderTokenRequest)->abi_GetApplicationTokenBindingKeyAsync(keyType, get_abi(target), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> impl_IWebProviderTokenRequest2<D>::GetApplicationTokenBindingKeyIdAsync(Windows::Security::Authentication::Web::TokenBindingKeyType keyType, const Windows::Foundation::Uri & target) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Storage::Streams::IBuffer> asyncInfo;
-    check_hresult(WINRT_SHIM(IWebProviderTokenRequest2)->abi_GetApplicationTokenBindingKeyIdAsync(keyType, get_abi(target), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Core::WebTokenResponse impl_IWebProviderTokenResponse<D>::ClientResponse() const
-{
-    Windows::Security::Authentication::Web::Core::WebTokenResponse value { nullptr };
-    check_hresult(WINRT_SHIM(IWebProviderTokenResponse)->get_ClientResponse(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse impl_IWebProviderTokenResponseFactory<D>::Create(const Windows::Security::Authentication::Web::Core::WebTokenResponse & webTokenResponse) const
-{
-    Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse webProviderTokenResponse { nullptr };
-    check_hresult(WINRT_SHIM(IWebProviderTokenResponseFactory)->abi_Create(get_abi(webTokenResponse), put_abi(webProviderTokenResponse)));
-    return webProviderTokenResponse;
-}
-
-template <typename D> Windows::Foundation::Uri impl_IWebAccountClientView<D>::ApplicationCallbackUri() const
-{
-    Windows::Foundation::Uri value { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountClientView)->get_ApplicationCallbackUri(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountClientViewType impl_IWebAccountClientView<D>::Type() const
-{
-    Windows::Security::Authentication::Web::Provider::WebAccountClientViewType value {};
-    check_hresult(WINRT_SHIM(IWebAccountClientView)->get_Type(&value));
-    return value;
-}
-
-template <typename D> hstring impl_IWebAccountClientView<D>::AccountPairwiseId() const
-{
-    hstring value;
-    check_hresult(WINRT_SHIM(IWebAccountClientView)->get_AccountPairwiseId(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountClientView impl_IWebAccountClientViewFactory<D>::Create(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType viewType, const Windows::Foundation::Uri & applicationCallbackUri) const
-{
-    Windows::Security::Authentication::Web::Provider::WebAccountClientView view { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountClientViewFactory)->abi_Create(viewType, get_abi(applicationCallbackUri), put_abi(view)));
-    return view;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountClientView impl_IWebAccountClientViewFactory<D>::CreateWithPairwiseId(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType viewType, const Windows::Foundation::Uri & applicationCallbackUri, hstring_view accountPairwiseId) const
-{
-    Windows::Security::Authentication::Web::Provider::WebAccountClientView view { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountClientViewFactory)->abi_CreateWithPairwiseId(viewType, get_abi(applicationCallbackUri), get_abi(accountPairwiseId), put_abi(view)));
-    return view;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountManagerStatics<D>::UpdateWebAccountPropertiesAsync(const Windows::Security::Credentials::WebAccount & webAccount, hstring_view webAccountUserName, map_view<hstring, hstring> additionalProperties) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_UpdateWebAccountPropertiesAsync(get_abi(webAccount), get_abi(webAccountUserName), get_abi(additionalProperties), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> impl_IWebAccountManagerStatics<D>::AddWebAccountAsync(hstring_view webAccountId, hstring_view webAccountUserName, map_view<hstring, hstring> props) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_AddWebAccountAsync(get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountManagerStatics<D>::DeleteWebAccountAsync(const Windows::Security::Credentials::WebAccount & webAccount) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_DeleteWebAccountAsync(get_abi(webAccount), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> impl_IWebAccountManagerStatics<D>::FindAllProviderWebAccountsAsync() const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_FindAllProviderWebAccountsAsync(put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountManagerStatics<D>::PushCookiesAsync(const Windows::Foundation::Uri & uri, vector_view<Windows::Web::Http::HttpCookie> cookies) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_PushCookiesAsync(get_abi(uri), get_abi(cookies), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountManagerStatics<D>::SetViewAsync(const Windows::Security::Credentials::WebAccount & webAccount, const Windows::Security::Authentication::Web::Provider::WebAccountClientView & view) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_SetViewAsync(get_abi(webAccount), get_abi(view), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountManagerStatics<D>::ClearViewAsync(const Windows::Security::Credentials::WebAccount & webAccount, const Windows::Foundation::Uri & applicationCallbackUri) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_ClearViewAsync(get_abi(webAccount), get_abi(applicationCallbackUri), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Authentication::Web::Provider::WebAccountClientView>> impl_IWebAccountManagerStatics<D>::GetViewsAsync(const Windows::Security::Credentials::WebAccount & webAccount) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Authentication::Web::Provider::WebAccountClientView>> asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_GetViewsAsync(get_abi(webAccount), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountManagerStatics<D>::SetWebAccountPictureAsync(const Windows::Security::Credentials::WebAccount & webAccount, const Windows::Storage::Streams::IRandomAccessStream & webAccountPicture) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_SetWebAccountPictureAsync(get_abi(webAccount), get_abi(webAccountPicture), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountManagerStatics<D>::ClearWebAccountPictureAsync(const Windows::Security::Credentials::WebAccount & webAccount) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics)->abi_ClearWebAccountPictureAsync(get_abi(webAccount), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountManagerStatics2<D>::PullCookiesAsync(hstring_view uriString, hstring_view callerPFN) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountManagerStatics2)->abi_PullCookiesAsync(get_abi(uriString), get_abi(callerPFN), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> impl_IWebAccountScopeManagerStatics<D>::AddWebAccountAsync(hstring_view webAccountId, hstring_view webAccountUserName, map_view<hstring, hstring> props, Windows::Security::Authentication::Web::Provider::WebAccountScope scope) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountScopeManagerStatics)->abi_AddWebAccountWithScopeAsync(get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), scope, put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountScopeManagerStatics<D>::SetScopeAsync(const Windows::Security::Credentials::WebAccount & webAccount, Windows::Security::Authentication::Web::Provider::WebAccountScope scope) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountScopeManagerStatics)->abi_SetScopeAsync(get_abi(webAccount), scope, put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Provider::WebAccountScope impl_IWebAccountScopeManagerStatics<D>::GetScope(const Windows::Security::Credentials::WebAccount & webAccount) const
-{
-    Windows::Security::Authentication::Web::Provider::WebAccountScope scope {};
-    check_hresult(WINRT_SHIM(IWebAccountScopeManagerStatics)->abi_GetScope(get_abi(webAccount), &scope));
-    return scope;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> impl_IWebAccountMapManagerStatics<D>::AddWebAccountAsync(hstring_view webAccountId, hstring_view webAccountUserName, map_view<hstring, hstring> props, Windows::Security::Authentication::Web::Provider::WebAccountScope scope, hstring_view perUserWebAccountId) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountMapManagerStatics)->abi_AddWebAccountWithScopeAndMapAsync(get_abi(webAccountId), get_abi(webAccountUserName), get_abi(props), scope, get_abi(perUserWebAccountId), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountMapManagerStatics<D>::SetPerAppToPerUserAccountAsync(const Windows::Security::Credentials::WebAccount & perAppAccount, hstring_view perUserWebAccountId) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountMapManagerStatics)->abi_SetPerAppToPerUserAccountAsync(get_abi(perAppAccount), get_abi(perUserWebAccountId), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> impl_IWebAccountMapManagerStatics<D>::GetPerUserFromPerAppAccountAsync(const Windows::Security::Credentials::WebAccount & perAppAccount) const
-{
-    Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountMapManagerStatics)->abi_GetPerUserFromPerAppAccountAsync(get_abi(perAppAccount), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> Windows::Foundation::IAsyncAction impl_IWebAccountMapManagerStatics<D>::ClearPerUserFromPerAppAccountAsync(const Windows::Security::Credentials::WebAccount & perAppAccount) const
-{
-    Windows::Foundation::IAsyncAction asyncInfo;
-    check_hresult(WINRT_SHIM(IWebAccountMapManagerStatics)->abi_ClearPerUserFromPerAppAccountAsync(get_abi(perAppAccount), put_abi(asyncInfo)));
-    return asyncInfo;
-}
-
-template <typename D> void impl_IWebAccountProviderBaseReportOperation<D>::ReportCompleted() const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderBaseReportOperation)->abi_ReportCompleted());
-}
-
-template <typename D> void impl_IWebAccountProviderBaseReportOperation<D>::ReportError(const Windows::Security::Authentication::Web::Core::WebProviderError & value) const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderBaseReportOperation)->abi_ReportError(get_abi(value)));
-}
-
-template <typename D> void impl_IWebAccountProviderUIReportOperation<D>::ReportUserCanceled() const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderUIReportOperation)->abi_ReportUserCanceled());
-}
-
-template <typename D> void impl_IWebAccountProviderSilentReportOperation<D>::ReportUserInteractionRequired() const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderSilentReportOperation)->abi_ReportUserInteractionRequired());
-}
-
-template <typename D> void impl_IWebAccountProviderSilentReportOperation<D>::ReportUserInteractionRequired(const Windows::Security::Authentication::Web::Core::WebProviderError & value) const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderSilentReportOperation)->abi_ReportUserInteractionRequiredWithError(get_abi(value)));
-}
-
-template <typename D> Windows::Security::Authentication::Web::Provider::WebProviderTokenRequest impl_IWebAccountProviderTokenOperation<D>::ProviderRequest() const
-{
-    Windows::Security::Authentication::Web::Provider::WebProviderTokenRequest webTokenRequest { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountProviderTokenOperation)->get_ProviderRequest(put_abi(webTokenRequest)));
-    return webTokenRequest;
-}
-
-template <typename D> Windows::Foundation::Collections::IVector<Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse> impl_IWebAccountProviderTokenOperation<D>::ProviderResponses() const
-{
-    Windows::Foundation::Collections::IVector<Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse> value;
-    check_hresult(WINRT_SHIM(IWebAccountProviderTokenOperation)->get_ProviderResponses(put_abi(value)));
-    return value;
-}
-
-template <typename D> void impl_IWebAccountProviderTokenOperation<D>::CacheExpirationTime(const Windows::Foundation::DateTime & value) const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderTokenOperation)->put_CacheExpirationTime(get_abi(value)));
-}
-
-template <typename D> Windows::Foundation::DateTime impl_IWebAccountProviderTokenOperation<D>::CacheExpirationTime() const
-{
-    Windows::Foundation::DateTime value {};
-    check_hresult(WINRT_SHIM(IWebAccountProviderTokenOperation)->get_CacheExpirationTime(put_abi(value)));
-    return value;
-}
-
-template <typename D> void impl_IWebAccountProviderAddAccountOperation<D>::ReportCompleted() const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderAddAccountOperation)->abi_ReportCompleted());
-}
-
-template <typename D> Windows::Security::Credentials::WebAccount impl_IWebAccountProviderManageAccountOperation<D>::WebAccount() const
-{
-    Windows::Security::Credentials::WebAccount value { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountProviderManageAccountOperation)->get_WebAccount(put_abi(value)));
-    return value;
-}
-
-template <typename D> void impl_IWebAccountProviderManageAccountOperation<D>::ReportCompleted() const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderManageAccountOperation)->abi_ReportCompleted());
-}
-
-template <typename D> Windows::Security::Credentials::WebAccount impl_IWebAccountProviderDeleteAccountOperation<D>::WebAccount() const
-{
-    Windows::Security::Credentials::WebAccount value { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountProviderDeleteAccountOperation)->get_WebAccount(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Security::Credentials::WebAccount impl_IWebAccountProviderSignOutAccountOperation<D>::WebAccount() const
-{
-    Windows::Security::Credentials::WebAccount value { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountProviderSignOutAccountOperation)->get_WebAccount(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Uri impl_IWebAccountProviderSignOutAccountOperation<D>::ApplicationCallbackUri() const
-{
-    Windows::Foundation::Uri value { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountProviderSignOutAccountOperation)->get_ApplicationCallbackUri(put_abi(value)));
-    return value;
-}
-
-template <typename D> hstring impl_IWebAccountProviderSignOutAccountOperation<D>::ClientId() const
-{
-    hstring value;
-    check_hresult(WINRT_SHIM(IWebAccountProviderSignOutAccountOperation)->get_ClientId(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Foundation::Uri impl_IWebAccountProviderRetrieveCookiesOperation<D>::Context() const
-{
-    Windows::Foundation::Uri webCookieRequestContext { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountProviderRetrieveCookiesOperation)->get_Context(put_abi(webCookieRequestContext)));
-    return webCookieRequestContext;
-}
-
-template <typename D> Windows::Foundation::Collections::IVector<Windows::Web::Http::HttpCookie> impl_IWebAccountProviderRetrieveCookiesOperation<D>::Cookies() const
-{
-    Windows::Foundation::Collections::IVector<Windows::Web::Http::HttpCookie> cookies;
-    check_hresult(WINRT_SHIM(IWebAccountProviderRetrieveCookiesOperation)->get_Cookies(put_abi(cookies)));
-    return cookies;
-}
-
-template <typename D> void impl_IWebAccountProviderRetrieveCookiesOperation<D>::Uri(const Windows::Foundation::Uri & uri) const
-{
-    check_hresult(WINRT_SHIM(IWebAccountProviderRetrieveCookiesOperation)->put_Uri(get_abi(uri)));
-}
-
-template <typename D> Windows::Foundation::Uri impl_IWebAccountProviderRetrieveCookiesOperation<D>::Uri() const
-{
-    Windows::Foundation::Uri uri { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountProviderRetrieveCookiesOperation)->get_Uri(put_abi(uri)));
-    return uri;
-}
-
-template <typename D> Windows::Foundation::Uri impl_IWebAccountProviderRetrieveCookiesOperation<D>::ApplicationCallbackUri() const
-{
-    Windows::Foundation::Uri value { nullptr };
-    check_hresult(WINRT_SHIM(IWebAccountProviderRetrieveCookiesOperation)->get_ApplicationCallbackUri(put_abi(value)));
-    return value;
-}
-
-template <typename D> Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation impl_IWebAccountProviderTokenObjects<D>::Operation() const
-{
-    Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation value;
-    check_hresult(WINRT_SHIM(IWebAccountProviderTokenObjects)->get_Operation(put_abi(value)));
-    return value;
-}
-
-inline WebAccountClientView::WebAccountClientView(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType viewType, const Windows::Foundation::Uri & applicationCallbackUri) :
-    WebAccountClientView(get_activation_factory<WebAccountClientView, IWebAccountClientViewFactory>().Create(viewType, applicationCallbackUri))
+inline WebAccountClientView::WebAccountClientView(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType const& viewType, Windows::Foundation::Uri const& applicationCallbackUri) :
+    WebAccountClientView(get_activation_factory<WebAccountClientView, Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory>().Create(viewType, applicationCallbackUri))
 {}
 
-inline WebAccountClientView::WebAccountClientView(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType viewType, const Windows::Foundation::Uri & applicationCallbackUri, hstring_view accountPairwiseId) :
-    WebAccountClientView(get_activation_factory<WebAccountClientView, IWebAccountClientViewFactory>().CreateWithPairwiseId(viewType, applicationCallbackUri, accountPairwiseId))
+inline WebAccountClientView::WebAccountClientView(Windows::Security::Authentication::Web::Provider::WebAccountClientViewType const& viewType, Windows::Foundation::Uri const& applicationCallbackUri, param::hstring const& accountPairwiseId) :
+    WebAccountClientView(get_activation_factory<WebAccountClientView, Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory>().CreateWithPairwiseId(viewType, applicationCallbackUri, accountPairwiseId))
 {}
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::UpdateWebAccountPropertiesAsync(const Windows::Security::Credentials::WebAccount & webAccount, hstring_view webAccountUserName, map_view<hstring, hstring> additionalProperties)
+inline Windows::Foundation::IAsyncAction WebAccountManager::UpdateWebAccountPropertiesAsync(Windows::Security::Credentials::WebAccount const& webAccount, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& additionalProperties)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().UpdateWebAccountPropertiesAsync(webAccount, webAccountUserName, additionalProperties);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().UpdateWebAccountPropertiesAsync(webAccount, webAccountUserName, additionalProperties);
 }
 
-inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountAsync(hstring_view webAccountId, hstring_view webAccountUserName, map_view<hstring, hstring> props)
+inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountAsync(param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().AddWebAccountAsync(webAccountId, webAccountUserName, props);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().AddWebAccountAsync(webAccountId, webAccountUserName, props);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::DeleteWebAccountAsync(const Windows::Security::Credentials::WebAccount & webAccount)
+inline Windows::Foundation::IAsyncAction WebAccountManager::DeleteWebAccountAsync(Windows::Security::Credentials::WebAccount const& webAccount)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().DeleteWebAccountAsync(webAccount);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().DeleteWebAccountAsync(webAccount);
 }
 
 inline Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> WebAccountManager::FindAllProviderWebAccountsAsync()
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().FindAllProviderWebAccountsAsync();
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().FindAllProviderWebAccountsAsync();
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::PushCookiesAsync(const Windows::Foundation::Uri & uri, vector_view<Windows::Web::Http::HttpCookie> cookies)
+inline Windows::Foundation::IAsyncAction WebAccountManager::PushCookiesAsync(Windows::Foundation::Uri const& uri, param::async_vector_view<Windows::Web::Http::HttpCookie> const& cookies)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().PushCookiesAsync(uri, cookies);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().PushCookiesAsync(uri, cookies);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::SetViewAsync(const Windows::Security::Credentials::WebAccount & webAccount, const Windows::Security::Authentication::Web::Provider::WebAccountClientView & view)
+inline Windows::Foundation::IAsyncAction WebAccountManager::SetViewAsync(Windows::Security::Credentials::WebAccount const& webAccount, Windows::Security::Authentication::Web::Provider::WebAccountClientView const& view)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().SetViewAsync(webAccount, view);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().SetViewAsync(webAccount, view);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::ClearViewAsync(const Windows::Security::Credentials::WebAccount & webAccount, const Windows::Foundation::Uri & applicationCallbackUri)
+inline Windows::Foundation::IAsyncAction WebAccountManager::ClearViewAsync(Windows::Security::Credentials::WebAccount const& webAccount, Windows::Foundation::Uri const& applicationCallbackUri)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().ClearViewAsync(webAccount, applicationCallbackUri);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().ClearViewAsync(webAccount, applicationCallbackUri);
 }
 
-inline Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Authentication::Web::Provider::WebAccountClientView>> WebAccountManager::GetViewsAsync(const Windows::Security::Credentials::WebAccount & webAccount)
+inline Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Authentication::Web::Provider::WebAccountClientView>> WebAccountManager::GetViewsAsync(Windows::Security::Credentials::WebAccount const& webAccount)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().GetViewsAsync(webAccount);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().GetViewsAsync(webAccount);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::SetWebAccountPictureAsync(const Windows::Security::Credentials::WebAccount & webAccount, const Windows::Storage::Streams::IRandomAccessStream & webAccountPicture)
+inline Windows::Foundation::IAsyncAction WebAccountManager::SetWebAccountPictureAsync(Windows::Security::Credentials::WebAccount const& webAccount, Windows::Storage::Streams::IRandomAccessStream const& webAccountPicture)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().SetWebAccountPictureAsync(webAccount, webAccountPicture);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().SetWebAccountPictureAsync(webAccount, webAccountPicture);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::ClearWebAccountPictureAsync(const Windows::Security::Credentials::WebAccount & webAccount)
+inline Windows::Foundation::IAsyncAction WebAccountManager::ClearWebAccountPictureAsync(Windows::Security::Credentials::WebAccount const& webAccount)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics>().ClearWebAccountPictureAsync(webAccount);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>().ClearWebAccountPictureAsync(webAccount);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::PullCookiesAsync(hstring_view uriString, hstring_view callerPFN)
+inline Windows::Foundation::IAsyncAction WebAccountManager::PullCookiesAsync(param::hstring const& uriString, param::hstring const& callerPFN)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountManagerStatics2>().PullCookiesAsync(uriString, callerPFN);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics2>().PullCookiesAsync(uriString, callerPFN);
 }
 
-inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountAsync(hstring_view webAccountId, hstring_view webAccountUserName, map_view<hstring, hstring> props, Windows::Security::Authentication::Web::Provider::WebAccountScope scope, hstring_view perUserWebAccountId)
+inline Windows::Foundation::IAsyncOperation<Windows::Foundation::Collections::IVectorView<Windows::Security::Credentials::WebAccount>> WebAccountManager::FindAllProviderWebAccountsForUserAsync(Windows::System::User const& user)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountMapManagerStatics>().AddWebAccountAsync(webAccountId, webAccountUserName, props, scope, perUserWebAccountId);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3>().FindAllProviderWebAccountsForUserAsync(user);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::SetPerAppToPerUserAccountAsync(const Windows::Security::Credentials::WebAccount & perAppAccount, hstring_view perUserWebAccountId)
+inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountForUserAsync(Windows::System::User const& user, param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountMapManagerStatics>().SetPerAppToPerUserAccountAsync(perAppAccount, perUserWebAccountId);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3>().AddWebAccountForUserAsync(user, webAccountId, webAccountUserName, props);
 }
 
-inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::GetPerUserFromPerAppAccountAsync(const Windows::Security::Credentials::WebAccount & perAppAccount)
+inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountForUserAsync(Windows::System::User const& user, param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountMapManagerStatics>().GetPerUserFromPerAppAccountAsync(perAppAccount);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3>().AddWebAccountForUserAsync(user, webAccountId, webAccountUserName, props, scope);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::ClearPerUserFromPerAppAccountAsync(const Windows::Security::Credentials::WebAccount & perAppAccount)
+inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountForUserAsync(Windows::System::User const& user, param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope, param::hstring const& perUserWebAccountId)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountMapManagerStatics>().ClearPerUserFromPerAppAccountAsync(perAppAccount);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3>().AddWebAccountForUserAsync(user, webAccountId, webAccountUserName, props, scope, perUserWebAccountId);
 }
 
-inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountAsync(hstring_view webAccountId, hstring_view webAccountUserName, map_view<hstring, hstring> props, Windows::Security::Authentication::Web::Provider::WebAccountScope scope)
+inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountAsync(param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope, param::hstring const& perUserWebAccountId)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountScopeManagerStatics>().AddWebAccountAsync(webAccountId, webAccountUserName, props, scope);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics>().AddWebAccountAsync(webAccountId, webAccountUserName, props, scope, perUserWebAccountId);
 }
 
-inline Windows::Foundation::IAsyncAction WebAccountManager::SetScopeAsync(const Windows::Security::Credentials::WebAccount & webAccount, Windows::Security::Authentication::Web::Provider::WebAccountScope scope)
+inline Windows::Foundation::IAsyncAction WebAccountManager::SetPerAppToPerUserAccountAsync(Windows::Security::Credentials::WebAccount const& perAppAccount, param::hstring const& perUserWebAccountId)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountScopeManagerStatics>().SetScopeAsync(webAccount, scope);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics>().SetPerAppToPerUserAccountAsync(perAppAccount, perUserWebAccountId);
 }
 
-inline Windows::Security::Authentication::Web::Provider::WebAccountScope WebAccountManager::GetScope(const Windows::Security::Credentials::WebAccount & webAccount)
+inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::GetPerUserFromPerAppAccountAsync(Windows::Security::Credentials::WebAccount const& perAppAccount)
 {
-    return get_activation_factory<WebAccountManager, IWebAccountScopeManagerStatics>().GetScope(webAccount);
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics>().GetPerUserFromPerAppAccountAsync(perAppAccount);
 }
 
-inline WebProviderTokenResponse::WebProviderTokenResponse(const Windows::Security::Authentication::Web::Core::WebTokenResponse & webTokenResponse) :
-    WebProviderTokenResponse(get_activation_factory<WebProviderTokenResponse, IWebProviderTokenResponseFactory>().Create(webTokenResponse))
+inline Windows::Foundation::IAsyncAction WebAccountManager::ClearPerUserFromPerAppAccountAsync(Windows::Security::Credentials::WebAccount const& perAppAccount)
+{
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics>().ClearPerUserFromPerAppAccountAsync(perAppAccount);
+}
+
+inline Windows::Foundation::IAsyncOperation<Windows::Security::Credentials::WebAccount> WebAccountManager::AddWebAccountAsync(param::hstring const& webAccountId, param::hstring const& webAccountUserName, param::async_map_view<hstring, hstring> const& props, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope)
+{
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics>().AddWebAccountAsync(webAccountId, webAccountUserName, props, scope);
+}
+
+inline Windows::Foundation::IAsyncAction WebAccountManager::SetScopeAsync(Windows::Security::Credentials::WebAccount const& webAccount, Windows::Security::Authentication::Web::Provider::WebAccountScope const& scope)
+{
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics>().SetScopeAsync(webAccount, scope);
+}
+
+inline Windows::Security::Authentication::Web::Provider::WebAccountScope WebAccountManager::GetScope(Windows::Security::Credentials::WebAccount const& webAccount)
+{
+    return get_activation_factory<WebAccountManager, Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics>().GetScope(webAccount);
+}
+
+inline WebProviderTokenResponse::WebProviderTokenResponse(Windows::Security::Authentication::Web::Core::WebTokenResponse const& webTokenResponse) :
+    WebProviderTokenResponse(get_activation_factory<WebProviderTokenResponse, Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponseFactory>().Create(webTokenResponse))
 {}
 
 }
 
 }
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountClientView>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountClientView & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+namespace std {
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountClientView> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountClientView> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountClientViewFactory> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics2>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics2 & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics2> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics2> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderAddAccountOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderAddAccountOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountManagerStatics3> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderBaseReportOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderBaseReportOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountMapManagerStatics> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderDeleteAccountOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderDeleteAccountOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderAddAccountOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderAddAccountOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderManageAccountOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderManageAccountOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderBaseReportOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderBaseReportOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderDeleteAccountOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderDeleteAccountOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderManageAccountOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderManageAccountOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderSilentReportOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderSilentReportOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderRetrieveCookiesOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderSignOutAccountOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderSilentReportOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderSilentReportOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderUIReportOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderUIReportOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects2> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenObjects2> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderTokenOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest2>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest2 & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderUIReportOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountProviderUIReportOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponse>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponse & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebAccountScopeManagerStatics> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponseFactory>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponseFactory & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountClientView>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountClientView & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest2> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenRequest2> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderAddAccountOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderAddAccountOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponse> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponse> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderDeleteAccountOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderDeleteAccountOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponseFactory> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::IWebProviderTokenResponseFactory> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderGetTokenSilentOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderGetTokenSilentOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountClientView> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountClientView> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderManageAccountOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderManageAccountOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountManager> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountManager> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderRequestTokenOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderRequestTokenOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderAddAccountOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderAddAccountOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderRetrieveCookiesOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderRetrieveCookiesOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderDeleteAccountOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderDeleteAccountOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderSignOutAccountOperation>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderSignOutAccountOperation & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderGetTokenSilentOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderGetTokenSilentOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderTriggerDetails>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderTriggerDetails & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderManageAccountOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderManageAccountOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebProviderTokenRequest>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebProviderTokenRequest & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderRequestTokenOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderRequestTokenOperation> {};
 
-template<>
-struct std::hash<winrt::Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse>
-{
-    size_t operator()(const winrt::Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderRetrieveCookiesOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderRetrieveCookiesOperation> {};
+
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderSignOutAccountOperation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderSignOutAccountOperation> {};
+
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderTriggerDetails> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebAccountProviderTriggerDetails> {};
+
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebProviderTokenRequest> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebProviderTokenRequest> {};
+
+template<> struct hash<winrt::Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Security::Authentication::Web::Provider::WebProviderTokenResponse> {};
+
+}
 
 WINRT_WARNING_POP

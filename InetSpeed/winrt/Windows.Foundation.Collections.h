@@ -1,15 +1,16 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.Foundation.Collections.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.Foundation.Collections.2.h"
+#include "impl\Windows.Foundation.Collections.2.h"
 #include "Windows.Foundation.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
 
@@ -37,40 +38,63 @@ inline ValueSet::ValueSet() :
 
 }
 
-template<>
-struct std::hash<winrt::Windows::Foundation::Collections::IPropertySet>
-{
-    size_t operator()(const winrt::Windows::Foundation::Collections::IPropertySet & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+namespace std {
 
-template<>
-struct std::hash<winrt::Windows::Foundation::Collections::PropertySet>
-{
-    size_t operator()(const winrt::Windows::Foundation::Collections::PropertySet & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<typename T> struct hash<winrt::Windows::Foundation::Collections::IIterator<T>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IIterator<T>> {};
 
-template<>
-struct std::hash<winrt::Windows::Foundation::Collections::StringMap>
-{
-    size_t operator()(const winrt::Windows::Foundation::Collections::StringMap & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<typename T> struct hash<winrt::Windows::Foundation::Collections::IIterable<T>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IIterable<T>> {};
 
-template<>
-struct std::hash<winrt::Windows::Foundation::Collections::ValueSet>
-{
-    size_t operator()(const winrt::Windows::Foundation::Collections::ValueSet & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+template<typename T> struct hash<winrt::Windows::Foundation::Collections::IVectorView<T>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IVectorView<T>> {};
+
+template<typename T> struct hash<winrt::Windows::Foundation::Collections::IVector<T>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IVector<T>> {};
+
+template<typename T> struct hash<winrt::Windows::Foundation::Collections::IObservableVector<T>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IObservableVector<T>> {};
+
+template<typename T> struct hash<winrt::Windows::Foundation::Collections::VectorChangedEventHandler<T>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::VectorChangedEventHandler<T>> {};
+
+template<> struct hash<winrt::Windows::Foundation::Collections::IVectorChangedEventArgs> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IVectorChangedEventArgs> {};
+
+template<typename K, typename V> struct hash<winrt::Windows::Foundation::Collections::IKeyValuePair<K, V>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IKeyValuePair<K, V>> {};
+
+template<typename K, typename V> struct hash<winrt::Windows::Foundation::Collections::IMapView<K, V>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IMapView<K, V>> {};
+
+template<typename K, typename V> struct hash<winrt::Windows::Foundation::Collections::IMap<K, V>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IMap<K, V>> {};
+
+template<typename K, typename V> struct hash<winrt::Windows::Foundation::Collections::IObservableMap<K, V>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IObservableMap<K, V>> {};
+
+template<typename K, typename V> struct hash<winrt::Windows::Foundation::Collections::MapChangedEventHandler<K, V>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::MapChangedEventHandler<K, V>> {};
+
+template<typename K> struct hash<winrt::Windows::Foundation::Collections::IMapChangedEventArgs<K>> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IMapChangedEventArgs<K>> {};
+
+}
+
+namespace std {
+
+template<> struct hash<winrt::Windows::Foundation::Collections::IPropertySet> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::IPropertySet> {};
+
+template<> struct hash<winrt::Windows::Foundation::Collections::PropertySet> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::PropertySet> {};
+
+template<> struct hash<winrt::Windows::Foundation::Collections::StringMap> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::StringMap> {};
+
+template<> struct hash<winrt::Windows::Foundation::Collections::ValueSet> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Foundation::Collections::ValueSet> {};
+
+}
 
 WINRT_WARNING_POP

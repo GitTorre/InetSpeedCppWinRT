@@ -1,23 +1,91 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.Foundation.Collections.3.h"
-#include "internal/Windows.Devices.Pwm.Provider.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.Devices.Pwm.Provider.2.h"
 #include "Windows.Devices.Pwm.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> int32_t consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::PinCount() const
+{
+    int32_t value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->get_PinCount(&value));
+    return value;
+}
+
+template <typename D> double consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::ActualFrequency() const
+{
+    double value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->get_ActualFrequency(&value));
+    return value;
+}
+
+template <typename D> double consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::SetDesiredFrequency(double frequency) const
+{
+    double result{};
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->SetDesiredFrequency(frequency, &result));
+    return result;
+}
+
+template <typename D> double consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::MaxFrequency() const
+{
+    double value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->get_MaxFrequency(&value));
+    return value;
+}
+
+template <typename D> double consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::MinFrequency() const
+{
+    double value{};
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->get_MinFrequency(&value));
+    return value;
+}
+
+template <typename D> void consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::AcquirePin(int32_t pin) const
+{
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->AcquirePin(pin));
+}
+
+template <typename D> void consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::ReleasePin(int32_t pin) const
+{
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->ReleasePin(pin));
+}
+
+template <typename D> void consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::EnablePin(int32_t pin) const
+{
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->EnablePin(pin));
+}
+
+template <typename D> void consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::DisablePin(int32_t pin) const
+{
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->DisablePin(pin));
+}
+
+template <typename D> void consume_Windows_Devices_Pwm_Provider_IPwmControllerProvider<D>::SetPulseParameters(int32_t pin, double dutyCycle, bool invertPolarity) const
+{
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmControllerProvider)->SetPulseParameters(pin, dutyCycle, invertPolarity));
+}
+
+template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Devices::Pwm::Provider::IPwmControllerProvider> consume_Windows_Devices_Pwm_Provider_IPwmProvider<D>::GetControllers() const
+{
+    Windows::Foundation::Collections::IVectorView<Windows::Devices::Pwm::Provider::IPwmControllerProvider> result{ nullptr };
+    check_hresult(WINRT_SHIM(Windows::Devices::Pwm::Provider::IPwmProvider)->GetControllers(put_abi(result)));
+    return result;
+}
 
 template <typename D>
 struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : produce_base<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider>
 {
-    HRESULT __stdcall get_PinCount(int32_t * value) noexcept override
+    HRESULT __stdcall get_PinCount(int32_t* value) noexcept override
     {
         try
         {
@@ -31,7 +99,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall get_ActualFrequency(double * value) noexcept override
+    HRESULT __stdcall get_ActualFrequency(double* value) noexcept override
     {
         try
         {
@@ -45,12 +113,12 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall abi_SetDesiredFrequency(double frequency, double * value) noexcept override
+    HRESULT __stdcall SetDesiredFrequency(double frequency, double* result) noexcept override
     {
         try
         {
             typename D::abi_guard guard(this->shim());
-            *value = detach_abi(this->shim().SetDesiredFrequency(frequency));
+            *result = detach_abi(this->shim().SetDesiredFrequency(frequency));
             return S_OK;
         }
         catch (...)
@@ -59,7 +127,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall get_MaxFrequency(double * value) noexcept override
+    HRESULT __stdcall get_MaxFrequency(double* value) noexcept override
     {
         try
         {
@@ -73,7 +141,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall get_MinFrequency(double * value) noexcept override
+    HRESULT __stdcall get_MinFrequency(double* value) noexcept override
     {
         try
         {
@@ -87,7 +155,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall abi_AcquirePin(int32_t pin) noexcept override
+    HRESULT __stdcall AcquirePin(int32_t pin) noexcept override
     {
         try
         {
@@ -101,7 +169,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall abi_ReleasePin(int32_t pin) noexcept override
+    HRESULT __stdcall ReleasePin(int32_t pin) noexcept override
     {
         try
         {
@@ -115,7 +183,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall abi_EnablePin(int32_t pin) noexcept override
+    HRESULT __stdcall EnablePin(int32_t pin) noexcept override
     {
         try
         {
@@ -129,7 +197,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall abi_DisablePin(int32_t pin) noexcept override
+    HRESULT __stdcall DisablePin(int32_t pin) noexcept override
     {
         try
         {
@@ -143,7 +211,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
         }
     }
 
-    HRESULT __stdcall abi_SetPulseParameters(int32_t pin, double dutyCycle, bool invertPolarity) noexcept override
+    HRESULT __stdcall SetPulseParameters(int32_t pin, double dutyCycle, bool invertPolarity) noexcept override
     {
         try
         {
@@ -161,7 +229,7 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmControllerProvider> : pro
 template <typename D>
 struct produce<D, Windows::Devices::Pwm::Provider::IPwmProvider> : produce_base<D, Windows::Devices::Pwm::Provider::IPwmProvider>
 {
-    HRESULT __stdcall abi_GetControllers(impl::abi_arg_out<Windows::Foundation::Collections::IVectorView<Windows::Devices::Pwm::Provider::IPwmControllerProvider>> result) noexcept override
+    HRESULT __stdcall GetControllers(::IUnknown** result) noexcept override
     {
         try
         {
@@ -181,93 +249,18 @@ struct produce<D, Windows::Devices::Pwm::Provider::IPwmProvider> : produce_base<
 
 namespace Windows::Devices::Pwm::Provider {
 
-template <typename D> int32_t impl_IPwmControllerProvider<D>::PinCount() const
-{
-    int32_t value {};
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->get_PinCount(&value));
-    return value;
-}
-
-template <typename D> double impl_IPwmControllerProvider<D>::ActualFrequency() const
-{
-    double value {};
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->get_ActualFrequency(&value));
-    return value;
-}
-
-template <typename D> double impl_IPwmControllerProvider<D>::SetDesiredFrequency(double frequency) const
-{
-    double value {};
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->abi_SetDesiredFrequency(frequency, &value));
-    return value;
-}
-
-template <typename D> double impl_IPwmControllerProvider<D>::MaxFrequency() const
-{
-    double value {};
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->get_MaxFrequency(&value));
-    return value;
-}
-
-template <typename D> double impl_IPwmControllerProvider<D>::MinFrequency() const
-{
-    double value {};
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->get_MinFrequency(&value));
-    return value;
-}
-
-template <typename D> void impl_IPwmControllerProvider<D>::AcquirePin(int32_t pin) const
-{
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->abi_AcquirePin(pin));
-}
-
-template <typename D> void impl_IPwmControllerProvider<D>::ReleasePin(int32_t pin) const
-{
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->abi_ReleasePin(pin));
-}
-
-template <typename D> void impl_IPwmControllerProvider<D>::EnablePin(int32_t pin) const
-{
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->abi_EnablePin(pin));
-}
-
-template <typename D> void impl_IPwmControllerProvider<D>::DisablePin(int32_t pin) const
-{
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->abi_DisablePin(pin));
-}
-
-template <typename D> void impl_IPwmControllerProvider<D>::SetPulseParameters(int32_t pin, double dutyCycle, bool invertPolarity) const
-{
-    check_hresult(WINRT_SHIM(IPwmControllerProvider)->abi_SetPulseParameters(pin, dutyCycle, invertPolarity));
-}
-
-template <typename D> Windows::Foundation::Collections::IVectorView<Windows::Devices::Pwm::Provider::IPwmControllerProvider> impl_IPwmProvider<D>::GetControllers() const
-{
-    Windows::Foundation::Collections::IVectorView<Windows::Devices::Pwm::Provider::IPwmControllerProvider> result;
-    check_hresult(WINRT_SHIM(IPwmProvider)->abi_GetControllers(put_abi(result)));
-    return result;
 }
 
 }
 
+namespace std {
+
+template<> struct hash<winrt::Windows::Devices::Pwm::Provider::IPwmControllerProvider> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::Pwm::Provider::IPwmControllerProvider> {};
+
+template<> struct hash<winrt::Windows::Devices::Pwm::Provider::IPwmProvider> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Devices::Pwm::Provider::IPwmProvider> {};
+
 }
-
-template<>
-struct std::hash<winrt::Windows::Devices::Pwm::Provider::IPwmControllerProvider>
-{
-    size_t operator()(const winrt::Windows::Devices::Pwm::Provider::IPwmControllerProvider & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
-
-template<>
-struct std::hash<winrt::Windows::Devices::Pwm::Provider::IPwmProvider>
-{
-    size_t operator()(const winrt::Windows::Devices::Pwm::Provider::IPwmProvider & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
 
 WINRT_WARNING_POP

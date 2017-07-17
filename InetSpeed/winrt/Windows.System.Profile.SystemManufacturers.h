@@ -1,22 +1,31 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.System.Profile.SystemManufacturers.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.System.Profile.SystemManufacturers.2.h"
 #include "Windows.System.Profile.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> hstring consume_Windows_System_Profile_SystemManufacturers_ISmbiosInformationStatics<D>::SerialNumber() const
+{
+    hstring value{};
+    check_hresult(WINRT_SHIM(Windows::System::Profile::SystemManufacturers::ISmbiosInformationStatics)->get_SerialNumber(put_abi(value)));
+    return value;
+}
 
 template <typename D>
 struct produce<D, Windows::System::Profile::SystemManufacturers::ISmbiosInformationStatics> : produce_base<D, Windows::System::Profile::SystemManufacturers::ISmbiosInformationStatics>
 {
-    HRESULT __stdcall get_SerialNumber(impl::abi_arg_out<hstring> value) noexcept override
+    HRESULT __stdcall get_SerialNumber(HSTRING* value) noexcept override
     {
         try
         {
@@ -36,29 +45,23 @@ struct produce<D, Windows::System::Profile::SystemManufacturers::ISmbiosInformat
 
 namespace Windows::System::Profile::SystemManufacturers {
 
-template <typename D> hstring impl_ISmbiosInformationStatics<D>::SerialNumber() const
-{
-    hstring value;
-    check_hresult(WINRT_SHIM(ISmbiosInformationStatics)->get_SerialNumber(put_abi(value)));
-    return value;
-}
-
 inline hstring SmbiosInformation::SerialNumber()
 {
-    return get_activation_factory<SmbiosInformation, ISmbiosInformationStatics>().SerialNumber();
+    return get_activation_factory<SmbiosInformation, Windows::System::Profile::SystemManufacturers::ISmbiosInformationStatics>().SerialNumber();
 }
 
 }
 
 }
 
-template<>
-struct std::hash<winrt::Windows::System::Profile::SystemManufacturers::ISmbiosInformationStatics>
-{
-    size_t operator()(const winrt::Windows::System::Profile::SystemManufacturers::ISmbiosInformationStatics & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+namespace std {
+
+template<> struct hash<winrt::Windows::System::Profile::SystemManufacturers::ISmbiosInformationStatics> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::System::Profile::SystemManufacturers::ISmbiosInformationStatics> {};
+
+template<> struct hash<winrt::Windows::System::Profile::SystemManufacturers::SmbiosInformation> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::System::Profile::SystemManufacturers::SmbiosInformation> {};
+
+}
 
 WINRT_WARNING_POP

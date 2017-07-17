@@ -1,22 +1,31 @@
-// C++ for the Windows Runtime v1.0.170406.8
+﻿// C++/WinRT v1.0.170717.1
 // Copyright (c) 2017 Microsoft Corporation. All rights reserved.
 
 #pragma once
-
 #include "base.h"
-WINRT_WARNING_PUSH
+#include "Windows.Foundation.h"
+#include "Windows.Foundation.Collections.h"
+#include "impl\complex_structs.h"
 
-#include "internal/Windows.Phone.System.Profile.3.h"
+WINRT_WARNING_PUSH
+#include "impl\Windows.Phone.System.Profile.2.h"
 #include "Windows.Phone.System.h"
 
-WINRT_EXPORT namespace winrt {
+namespace winrt {
 
 namespace impl {
+
+template <typename D> bool consume_Windows_Phone_System_Profile_IRetailModeStatics<D>::RetailModeEnabled() const
+{
+    bool value{};
+    check_hresult(WINRT_SHIM(Windows::Phone::System::Profile::IRetailModeStatics)->get_RetailModeEnabled(&value));
+    return value;
+}
 
 template <typename D>
 struct produce<D, Windows::Phone::System::Profile::IRetailModeStatics> : produce_base<D, Windows::Phone::System::Profile::IRetailModeStatics>
 {
-    HRESULT __stdcall get_RetailModeEnabled(bool * value) noexcept override
+    HRESULT __stdcall get_RetailModeEnabled(bool* value) noexcept override
     {
         try
         {
@@ -35,29 +44,23 @@ struct produce<D, Windows::Phone::System::Profile::IRetailModeStatics> : produce
 
 namespace Windows::Phone::System::Profile {
 
-template <typename D> bool impl_IRetailModeStatics<D>::RetailModeEnabled() const
-{
-    bool value {};
-    check_hresult(WINRT_SHIM(IRetailModeStatics)->get_RetailModeEnabled(&value));
-    return value;
-}
-
 inline bool RetailMode::RetailModeEnabled()
 {
-    return get_activation_factory<RetailMode, IRetailModeStatics>().RetailModeEnabled();
+    return get_activation_factory<RetailMode, Windows::Phone::System::Profile::IRetailModeStatics>().RetailModeEnabled();
 }
 
 }
 
 }
 
-template<>
-struct std::hash<winrt::Windows::Phone::System::Profile::IRetailModeStatics>
-{
-    size_t operator()(const winrt::Windows::Phone::System::Profile::IRetailModeStatics & value) const noexcept
-    {
-        return winrt::impl::hash_unknown(value);
-    }
-};
+namespace std {
+
+template<> struct hash<winrt::Windows::Phone::System::Profile::IRetailModeStatics> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Phone::System::Profile::IRetailModeStatics> {};
+
+template<> struct hash<winrt::Windows::Phone::System::Profile::RetailMode> : 
+    winrt::impl::impl_hash_unknown<winrt::Windows::Phone::System::Profile::RetailMode> {};
+
+}
 
 WINRT_WARNING_POP
