@@ -1,2 +1,2 @@
-# InetSpeedISOCppWinRT
+# InetSpeedCppWinRT
 InetSpeedUWP sans C++/CX... This is an impl in <b>ISO</b> C++ (thanks to C++/WinRT (aka Modern CPP by Kenny Kerr)). Still waiting for UWP Shared component support...
