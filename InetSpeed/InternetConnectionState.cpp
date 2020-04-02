@@ -11,25 +11,26 @@ using namespace std;
 using namespace InetSpeed;
 
 const HostName g_socketTcpWellKnownHostNames[4] = 
-				{ 
-					HostName(L"google.com"),
-					HostName(L"bing.com"),
-					HostName(L"facebook.com"),
-					HostName(L"yahoo.com")
-				};
+{ 
+	HostName(L"microsoft.com"),
+	HostName(L"bing.com"),
+	HostName(L"facebook.com"),
+	HostName(L"yahoo.com")
+};
 
 struct ConnectionSpeedProfile
 {
 	double RawSpeed = 0.0;
 	HostName ServerHost = g_socketTcpWellKnownHostNames[0];
 	bool IsCustom = false;
-	UINT Port = 0;
-	UINT NumTests = 1;
+	UINT Port = 443;
+	UINT NumTests = 4;
 } connectionProfile;
 
 ConnectionType InternetConnectionState::GetConnectionType()
 {
 	auto profile = NetworkInformation::GetInternetConnectionProfile();
+
 	if (profile == nullptr) 
 	{
 		return ConnectionType::Other;
@@ -74,7 +75,6 @@ future<ConnectionSpeed>
 InternetConnectionState::InternetConnectSocketAsync(const atomic_bool& cancelled)
 {	
 	double currentSpeed = 0.0;
-	//auto connectionType = GetConnectionType();
 
 	for (size_t i = 0; i < connectionProfile.NumTests; ++i)
 	{
@@ -87,6 +87,7 @@ InternetConnectionState::InternetConnectSocketAsync(const atomic_bool& cancelled
 		if (connectionProfile.ServerHost == nullptr || !connectionProfile.IsCustom)
 		{
 			connectionProfile.ServerHost = HostName(g_socketTcpWellKnownHostNames[i]);
+			connectionProfile.Port = 443;
 		}
 
 		StreamSocket _clientSocket;
@@ -104,36 +105,35 @@ InternetConnectionState::InternetConnectSocketAsync(const atomic_bool& cancelled
 			currentSpeed = 0.0;
 			connectionProfile.NumTests--;
 		}
-		//close socket...
+
+		// close socket...
 		_clientSocket.Close();
 	}
 
-	//No need to continue...
+	// No need to continue...
 	if (currentSpeed == 0.0 || connectionProfile.NumTests == 0)
 	{
-		return ConnectionSpeed::Unknown;
+		co_return ConnectionSpeed::Unknown;
 	}
 	
 	double rawSpeed = currentSpeed / connectionProfile.NumTests;
 	connectionProfile.RawSpeed = rawSpeed;
-	return GetConnectionSpeed(rawSpeed);
+	co_return GetConnectionSpeed(rawSpeed);
 }
 
 double InternetConnectionState::RawSpeed()
 {
 	return connectionProfile.RawSpeed;
 }
-//TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
-ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(UINT numTests)
+
+ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed()
 {
 	if (!InternetConnected())
 	{
 		return ConnectionSpeed::Unknown;
 	}
 
-	connectionProfile.ServerHost = nullptr;
 	connectionProfile.IsCustom = false;
-	connectionProfile.NumTests = numTests;
 	auto timeout = chrono::milliseconds(1000);
 	atomic_bool cancellation_token = false;
 
@@ -142,9 +142,11 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(UINT numTest
 		auto future = InternetConnectSocketAsync(ref(cancellation_token));
 
 		future_status status;
+
 		do
 		{
 			status = future.wait_for(timeout);
+
 			if (status == std::future_status::timeout)
 			{
 				cancellation_token = true;
@@ -153,13 +155,14 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(UINT numTest
 			{
 				return future.get();
 			}
-		} while (status != std::future_status::ready);
+		} 
+		while (status != std::future_status::ready);
 
 		return ConnectionSpeed::Unknown;
 		
 	}).get();
 }
-//TODO: this needs to be async... IAsyncOperation<ConnectionSpeed>...
+
 ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(HostName hostName, UINT port, UINT numTests)
 {
 	if (!InternetConnected())
@@ -183,9 +186,11 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(HostName hos
 		auto future = InternetConnectSocketAsync(ref(cancellation_token));
 
 		future_status status;
+
 		do 
 		{
 			status = future.wait_for(timeout);
+
 			if (status == std::future_status::timeout) 
 			{
 				cancellation_token = true;
@@ -205,6 +210,7 @@ ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(HostName hos
 bool InternetConnectionState::InternetConnected()
 {
 	auto internetConnectionProfile = NetworkInformation::GetInternetConnectionProfile();
+	
 	if (internetConnectionProfile == nullptr)
 	{
 		return false;

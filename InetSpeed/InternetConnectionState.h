@@ -14,14 +14,14 @@ namespace InetSpeed
 {
 	class InternetConnectionState
 	{
-		static ConnectionType InternetConnectionState::GetConnectionType();
 		static future<ConnectionSpeed> InternetConnectionState::InternetConnectSocketAsync(const atomic_bool& cancelled);
 		static ConnectionSpeed InternetConnectionState::GetConnectionSpeed(double roundtriptime);
 
 	public:
-		static ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(UINT numTests = 1);
+		static ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed();
 		static ConnectionSpeed InternetConnectionState::GetInternetConnectionSpeed(HostName hostName, UINT port, UINT numTests = 1);
 		static bool InternetConnectionState::InternetConnected();
 		static double InternetConnectionState::RawSpeed();
+		static ConnectionType InternetConnectionState::GetConnectionType();
 	};
 }

@@ -37,6 +37,7 @@ struct App : ApplicationT<App>
 	void InternetDetect(Window const & window) const
 	{
 		TextBlock text;
+
 		if (InternetConnectionState::InternetConnected())
 		{
 			//No HostName specified...
@@ -47,20 +48,31 @@ struct App : ApplicationT<App>
 			auto host = HostName(L"www.bing.com");
 			UINT port = 443;
 			auto speed = InternetConnectionState::GetInternetConnectionSpeed(host, port);
+			auto connectionType = InternetConnectionState::GetConnectionType();
+			wstring connType = L"Other";
+
+			if (connectionType == ConnectionType::WiFi)
+			{
+				connType = L"WiFi";
+			}
+			else if (connectionType == ConnectionType::LAN)
+			{
+				connType = L"Ethernet(LAN)";
+			}
 
 			auto rawspeed = to_wstring(InternetConnectionState::RawSpeed());
 
 			if (speed == ConnectionSpeed::High)
 			{
-				text.Text(L"High speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
+				text.Text(L"Connection Type: " + connType +  L"\nHigh speed connection!\nSpeed: " + rawspeed);// +host.DisplayName().c_str() + L":" + to_wstring(port));
 			}
 			else if (speed == ConnectionSpeed::Medium)
 			{
-				text.Text(L"Medium speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
+				text.Text(L"Connection Type: " + connType + L"\nMedium speed connection!\nSpeed: " + rawspeed);// +host.DisplayName().c_str() + L":" + to_wstring(port));
 			}
 			else if (speed == ConnectionSpeed::Low)
 			{
-				text.Text(L"Low speed connection!\nSpeed: " + rawspeed + L" \nTarget: " + host.DisplayName().c_str() + L":" + to_wstring(port));
+				text.Text(L"Connection Type: " + connType + L"\nLow speed connection!\nSpeed: " + rawspeed);// +host.DisplayName().c_str() + L":" + to_wstring(port));
 			}
 			else
 			{
